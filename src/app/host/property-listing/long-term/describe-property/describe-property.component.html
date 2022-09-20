@@ -1,0 +1,80 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <form [formGroup]="describePropertyForm" class="w-100">
+        <div class="prgress-bar percent-5"></div>
+        <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+            <a [routerLink]="proListingService.CREATE_PROPERTY_STEP_TWO" [queryParams]="{ proId: pro_id }">
+                <img src="./assets/images/back.svg" alt="" />
+            </a>
+            <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !describePropertyForm.valid }"
+                class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+        </div>
+        <div class="col-md-12 mb-4">
+            <h2>Describe Your Property</h2>
+        </div>
+        <div class="col-md-12 form-block">
+            <textarea id="the-textarea" class="form-control" formControlName="property_description"
+                placeholder="Property description minimum 100 character and maximum up to 2000 character." [ngClass]="{
+                'is-invalid':
+                    propertyDescribeFormControl.property_description.errors &&
+                    (propertyDescribeFormControl.property_description.dirty ||
+                    propertyDescribeFormControl.property_description.touched)
+                }"></textarea>
+            <div id="the-count">
+                <span id="current">{{ currentLength }}</span>
+                <span id="maximum">/ 2000</span> (Minimum 100)
+                <span *ngIf="propertyDescribeFormControl.property_description.errors?.maxlength" id="maximum"
+                    class="error-msg">You have exceeded the maximum character limit</span>
+            </div>
+        </div>
+        <div *ngIf="propertyDescribeFormControl.property_description?.errors" class="error-msg">
+            {{ propertyDescribeFormControl.property_description.errors?.incorrect }}
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <div class="lable-cnt-block d-flex align-items-center justify-content-between" *ngFor="let attr of attributes">
+                
+                <!-- <div class="font-bold mm">{{ attr["attr_name"] }}</div> -->
+                <div class="font-bold mm" *ngIf="attr.input_type != 'checkbox'">{{ attr["attr_name"] }}</div>
+
+                <div id="field1" *ngIf="attr.input_type == 'range'">
+                    <button type="button" class="sub" (click)="decrease(attr['min_val'], attr['attr_key'])">-</button>
+                    <input type="number" [formControlName]="attr['attr_key']" min="{{ attr['min_val'] }}"
+                        max="{{ attr['max_val'] }}" />
+                    <button type="button" class="add" (click)="increase(attr['max_val'], attr['attr_key'])">+</button>
+                </div>
+                <label class="switch" *ngIf="attr.input_type == 'toggle'">
+                    <input type="checkbox" [formControlName]="attr['attr_key']" />
+                    <span class="slider round"></span>
+                </label>
+
+                <ng-container *ngIf="attr.input_type == 'checkbox' && propertyDescribeFormControl.utility_included.value">
+                    <div class="row">
+                        <ng-container *ngFor="let item of utilityItems">
+
+                            <div class="form-group col-md-12 checkbox-group">
+                                <input type="checkbox" id="{{item.name}}" [checked]="item.value" (change)="onCheckChange($event,item)">
+                                <label class="font-w-normal" for="{{item.name}}">{{item.name}}</label> 
+                             </div>
+
+                            <!-- <div class="col-2">
+                                <input type="checkbox" [checked]="item.value" (change)="onCheckChange($event,item)" />
+                            </div>
+                            <div class="col-10">{{item.name}}</div> -->
+
+                        </ng-container>
+                    </div>
+
+                </ng-container>
+
+
+            </div>
+        </div>
+
+        <div class="col-md-12 form-block create-listing-submit-button-block">
+            <button class="podsliving-button" [ngClass]="{ 'button-disable': !describePropertyForm.valid }"
+                (click)="next()">
+                Next
+            </button>
+        </div>
+    </form>
+</div>

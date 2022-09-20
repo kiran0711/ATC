@@ -1,0 +1,100 @@
+<div class="modal fade" id="filer_block" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Vacation Rental Advance Filters</h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-block">
+                    <div class="filter-form">
+                        <div class="border-block-y">
+                            <div class="text-20 text-bold">Type of Space</div>
+                            <div class="row mt-3">
+                                <ng-container *ngFor="let spaceType of spaceTypeData">
+                                    <div class="col-md-4 checkbox-group">
+                                        <input type="checkbox" (change)="onSpaceTypeChanged($event)"
+                                            [checked]="checkSpaceType(spaceType.category_id)"
+                                            value="{{spaceType.category_id}}" id="space_type_{{spaceType.category_id}}">
+                                        <label for="space_type_{{spaceType.category_id}}">{{spaceType.cat_name}}</label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="border-block-y">
+                            <div class="text-20 text-bold">Property Type</div>
+                            <div class="row mt-3">
+                                <ng-container *ngFor="let propertyType of propertyTypeData">
+                                    <div class="col-md-4 checkbox-group">
+                                        <input type="checkbox" (change)="onPropertyTypeChanged($event)"
+                                            [checked]="checkPropType(propertyType.category_id)"
+                                            [value]="propertyType.category_id"
+                                            id="prop_type_{{propertyType.category_id}}">
+                                        <label
+                                            for="prop_type_{{propertyType.category_id}}">{{propertyType.cat_name}}</label>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="border-block-y" *ngIf="propertyAttributes?.length>0">
+                            <div class="text-20 text-bold">Room & Space</div>
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-3"
+                                    *ngFor="let propAttributes of propertyAttributes; let i =index">
+                                    <div class="filer-room-and-space-wrapp d-flex justify-content-between">
+                                        <label><strong>{{propAttributes.attr_name}}</strong></label>
+                                        <ng-container *ngIf="propAttributes.input_type=='range'">
+                                            <div id="field1">
+                                                <button type="button" (click)="decreaseCounter(propAttributes.attr_key)"
+                                                    id="sub" class="sub">-</button>
+                                                <input type="number" value="{{propAttributes.min_val}}"
+                                                    min="{{propAttributes.min_val}}"
+                                                    [(ngModel)]="request[propAttributes.attr_key]"
+                                                    max="{{propAttributes.max_val}}">
+                                                <button type="button" (click)="increaseCounter(propAttributes.attr_key)"
+                                                    id="add" class="add">+</button>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="propAttributes.input_type=='toggle'">
+                                            <label class="switch">
+                                                <input type="checkbox"
+                                                    (change)="attrChange($event,propAttributes.attr_key)"
+                                                    [checked]="getAttrValue(propAttributes.attr_key,'toggle')">
+                                                <span class="slider round"></span>
+                                            </label>
+
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-block-y" *ngIf="distanceApplicable">
+                            <div class="text-20 text-bold">Distance (Km)</div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <ngx-slider [(value)]="request.distance" [options]="options"></ngx-slider>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-block-y">
+                            <div class="text-20 text-bold">Price (Per night)</div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <ngx-slider [(value)]="request.min_price" [(highValue)]="request.max_price"
+                                        [options]="optionsPrice"></ngx-slider>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="clearFilter()">Reset</button>
+                <button type="button" class="btn btn-primary" (click)="submit()" data-dismiss="modal">Apply Filters</button>
+              </div>
+        </div>
+    </div>
+</div>

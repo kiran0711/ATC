@@ -1,0 +1,65 @@
+<form class="w-100" [formGroup]="propertySpaceTypeForm">
+  <div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <div class="prgress-bar percent-5"></div>
+    <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+      <a [routerLink]="proListingService.CREATE_PROPERTY_STEP_ONE" [queryParams]="{ proId: pro_id }"><img
+          src="./assets/images/back.svg" alt="" /></a>
+      <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !propertySpaceTypeForm.valid }"
+        class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <div class="col-md-12 mb-3 mt-4">
+      <h2>Type of Space</h2>
+    </div>
+
+    <div class="col-md-12 type-of-space-block-wrapp d-flex align-items-center mb-4">
+      <ng-container *ngFor="let spaceType of typeOfSpace">
+        <label class="radio-img type-spc-block">
+          <input type="radio" name="category_id" id="{{ spaceType.category_id }}" formControlName="category_id"
+            class="form-control" [ngClass]="{
+              'is-invalid':
+                propertyInfoFormControl.category_id.errors &&
+                (propertyInfoFormControl.category_id.dirty ||
+                  propertyInfoFormControl.category_id.touched)
+            }" [value]="spaceType.category_id" />
+          <div class="type-of-space-block d-flex align-items-center type-of-property image">
+            <img src="{{ imageUrl + spaceType.cat_image }}" alt="" title="{{ spaceType.cat_name }}" />
+            <span>{{ spaceType.cat_name }}</span>
+          </div>
+        </label>
+      </ng-container>
+      <div *ngIf="propertyInfoFormControl.category_id.errors" class="error-msg">
+        {{ propertyInfoFormControl.category_id.errors.incorrect }}
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-3">
+      <h2>Property Type</h2>
+    </div>
+    <div class="col-md-12 type-of-space-block-wrapp d-flex align-items-center">
+      <ng-container *ngFor="let propertyType of typeOfProperty">
+        <label class="radio-img type-spc-block">
+          <input type="radio" id="{{ propertyType.category_id }}" name="property_type_id"
+            formControlName="property_type_id" class="form-control" [ngClass]="{
+              'is-invalid':
+                propertyInfoFormControl.property_type_id.errors &&
+                (propertyInfoFormControl.property_type_id.dirty ||
+                  propertyInfoFormControl.property_type_id.touched)
+            }" [value]="propertyType.category_id" />
+          <div class="type-of-space-block d-flex align-items-center type-of-property image">
+            <img src="{{ imageUrl + propertyType.cat_image }}" alt="" title="{{ propertyType.cat_name }}" />
+            <span>{{ propertyType.cat_name }}</span>
+          </div>
+        </label>
+      </ng-container>
+      <div *ngIf="propertyInfoFormControl.category_id.errors" class="error-msg">
+        {{ propertyInfoFormControl.category_id.errors.incorrect }}
+      </div>
+    </div>
+
+    <div class="col-md-12 form-block create-listing-submit-button-block">
+      <button (click)="next()" [ngClass]="{ 'button-disable': !propertySpaceTypeForm.valid }" class="podsliving-button">
+        Next
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,817 @@
+<div class="admin-panel-wrapp">
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+  <div class="admin-panel-cnt-wrapp pt-0">
+    <div class="container-fluid pr-100">
+      <div class="title-block row justify-content-between">
+        <div class="col-md-12 mt-5">
+          <h2>Dashboard</h2>
+        </div>
+      </div>
+
+      <!-- <div class="row dash-top-buttons-wrapp" *ngIf="false">
+        <div class="col-md-4">
+          <div class="border-block">
+            <div class="mb-2 w-100">Total Available Balance</div>
+            <div class="text-48 text-bold">$10,245</div>
+          </div>
+        </div>
+        <div class="col-md-4 flex-button-input-block">
+          <div class="border-block">
+            <div class="mb-2">Add Money To Wallet</div>
+            <div class="d-flex justify-content-between mb-0 form-block w-100">
+              <input type="text" placeholder="Enter Amount" /><a class="podsliving-button">Add Money</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="border-block">
+            <div class="mb-2">Have A Promocode?</div>
+            <div class="form-block mb-0 w-100">
+              <input type="text" placeholder="Enter Promocode" />
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-12 simple-tabs-wrapp td-pointer">
+          <ul class="nav nav-pills mb-4" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#shortTerm">Vacation Rental
+                Bookings</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#longTerm">Long Term Leasing Bookings</a>
+            </li>
+          </ul>
+          <div class="tab-content border p-4">
+            <div id="shortTerm" class="tab-pane fade active show">
+              <div class="col-md-12 simple-tabs-wrapp">
+                <ul class="nav nav-pills mb-4" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">Ongoing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1"> Requested</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Upcomings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu3">Past</a>
+                  </li>
+                </ul>
+
+                <div class="tab-content">
+                  <div id="home" class="tab-pane fade in active show">
+                    <div class="table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Hosted By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of ongoingBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                  <img [src]="element.property_host.profile_picture" alt="" />
+                                  <div>
+                                    <div> </div>
+                                  </div>
+                                </div> -->
+                                {{element.property_host.firstname}} {{element.property_host.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                  <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                  <div>
+                                   
+                                  </div>
+                                </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot></tfoot>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <pods-table
+                      [colDef]="columns"
+                      [dataList]="ongoingBooking"
+                      (onClick)="onClick($event)"
+                    >
+                    </pods-table>
+                    <div
+                      *ngIf="!ongoingBooking || !ongoingBooking.length"
+                      class="text-center"
+                      style="margin-top: 50px"
+                    >
+                      No Ongoing Bookings
+                    </div> -->
+                  </div>
+                  <div id="menu1" class="table-even-odd-wrapp tab-pane fade">
+                    <div class="table-responsive table-even-odd-wrapp with-image-block">
+                      <!-- <span class="comingsoon">coming soon</span> -->
+                      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerBookingRequest"
+                        class="row-border hover">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Hosted By</th>
+                            <th>Property</th>
+                            <th>Guest(s)</th>
+                            <th>Night(s)</th>
+                            <th style="width: 70px;">Check-in<br>Check-out</th>
+                            <th>CreatedAt</th>
+                            <th class="text-center">Details</th>
+                            <th class="text-center">Stauts</th>
+                            <th class="text-center">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let booking of bookingRequest; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>
+                              <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block">
+                                <img src="{{
+                                booking.requested_guest.profile_picture
+                              }}" alt="" />
+                                <div>
+                                  <div>
+                                   
+                                  </div>
+                                </div>
+                              </div> -->
+                              {{ booking.requested_host.firstname }}
+                              {{ booking.requested_host.lastname }}
+                            </td>
+                            <td (click)="onClick(booking.requested_property.pro_slug)" style="cursor: pointer"
+                              title="View Property Details">
+                              <!-- <div class="d-flex align-items-center table-image-block">
+                                <img src="{{
+                                booking.requested_property
+                                  .porperty_display_picture
+                              }}" alt="" />
+                                <div>
+                                  
+                                </div>
+                              </div> -->
+                              <div>
+                                {{ booking.requested_property.pro_title }}
+                              </div>
+                              <div class="text-14 gray-text">
+                                {{ booking.requested_property.city }}
+                              </div>
+                            </td>
+                            <td>{{ booking.total_guest }}</td>
+                            <td>{{ booking.total_stay_nights }}</td>
+                            <td>{{ booking.checkin_date | date: "mediumDate" }} <br>
+                              {{ booking.checkout_date | date: "mediumDate" }}</td>
+                            <td>{{ booking.created_on | date: "medium"}}</td>
+                            <td class="text-center">
+                              <a class="btn-sm" (click)="onClickBookingRequestDetails(booking.request_id)"
+                                title="View Booking Request Details">
+                                <i class="fa fa-eye" aria-hidden="true"></i> View
+                              </a>
+
+                            </td>
+                            <td class="text-center">
+
+                              <span *ngIf="booking.request_status == 1"
+                                class="badge rounded-pill badge-secondary">Pending</span>
+                              <span *ngIf="booking.request_status == 2"
+                                class="badge rounded-pill badge-success">Accepted</span>
+                              <span *ngIf="booking.request_status == 3"
+                                class="badge rounded-pill badge-danger">cancelled</span>
+                              <span *ngIf="booking.request_status == 4"
+                                class="badge rounded-pill badge-primary">Booked</span>
+                            </td>
+                            <td class="text-center">
+                              <ng-container *ngIf="booking.request_status == 1">
+                                Wait...
+                              </ng-container>
+                              <ng-container *ngIf="booking.request_status == 2">
+                                <a class="btn-sm" (click)="bookNow(booking)" title="click to Boook Now"> Book Now</a>
+                              </ng-container>
+                              <ng-container *ngIf="booking.request_status == 3 || booking.request_status == 4">
+                                Completed
+                              </ng-container>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- <pods-table [colDef]="columns" [dataList]="ongoingBooking" (onClick)="onClick($event)"></pods-table> -->
+                    <!-- <div
+                      *ngIf="!bookingRequest || !bookingRequest.length"
+                      class="text-center"
+                      style="margin-top: 50px"
+                    >
+                      No Bookings Request
+                    </div> -->
+                  </div>
+                  <div id="menu2" class="table-even-odd-wrapp tab-pane fade">
+                    <div class="table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerUpcomingBooking"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Hosted By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of futureBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                  <img [src]="element.property_host.profile_picture" alt="" />
+                                  <div>
+                                    <div> </div>
+                                  </div>
+                                </div> -->
+                                {{element.property_host.firstname}} {{element.property_host.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                  <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                  <div>
+                                   
+                                  </div>
+                                </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot></tfoot>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <pods-table
+                      [colDef]="columns"
+                      [dataList]="futureBooking"
+                      (onClick)="onClick($event)"
+                    >
+                    </pods-table>
+                    <div
+                      *ngIf="!futureBooking || !futureBooking.length"
+                      class="text-center"
+                      style="margin-top: 50px"
+                    >
+                      No Upcoming Bookings
+                    </div> -->
+                  </div>
+                  <div id="menu3" class="tab-pane fade">
+                    <div class="table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerPastBooking"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Hosted By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of pastBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                  <img [src]="element.property_host.profile_picture" alt="" />
+                                  <div>
+                                    <div> </div>
+                                  </div>
+                                </div> -->
+                                {{element.property_host.firstname}} {{element.property_host.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                  <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                  <div>
+                                   
+                                  </div>
+                                </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot></tfoot>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <pods-table
+                      [colDef]="columns"
+                      [dataList]="pastBooking"
+                      (onClick)="onClick($event)"
+                    >
+                    </pods-table>
+                    <div
+                      *ngIf="!pastBooking || !pastBooking.length"
+                      class="text-center"
+                      style="margin-top: 50px"
+                    >
+                      No Past Bookings
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="longTerm" class="tab-pane fade">
+              <div class="col-md-12 simple-tabs-wrapp">
+                <ul class="nav nav-pills mb-4" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#longTerm_Requested">Requested</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="longTerm_Requested" class="table-even-odd-wrapp tab-pane fade active show">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive with-image-block">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerLongTermBookingRequest"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Hosted By</th>
+                              <th>Property</th>
+                              <th>CreatedAt</th>
+                              <th class="text-center">Stauts</th>
+                              <th class="text-center">Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let booking of longTermBookingRequests; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                {{ booking.requested_host.firstname }}
+                                {{ booking.requested_host.lastname }}
+                              </td>
+                              <td (click)="onClickLongTermPropertyDetails(booking.requested_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <div>
+                                  {{ booking.requested_property.pro_title }}
+                                </div>
+                                <div class="text-14 gray-text">
+                                  {{ booking.requested_property.city }}
+                                </div>
+                              </td>
+                              <td>{{ booking.created_on | date: "medium"}}</td>
+                      
+                              <td class="text-center">
+
+                                <span *ngIf="booking.request_status == 1"
+                                  class="badge rounded-pill badge-secondary">Pending</span>
+                                <span *ngIf="booking.request_status == 2"
+                                  class="badge rounded-pill badge-success">Accepted</span>
+                                <span *ngIf="booking.request_status == 3"
+                                  class="badge rounded-pill badge-danger">cancelled</span>
+                                <span *ngIf="booking.request_status == 4"
+                                  class="badge rounded-pill badge-primary">Booked</span>
+
+                              </td>
+                              <!-- <td class="text-center">
+                                <ng-container *ngIf="booking.request_status == 1">
+                                  Wait...
+                                </ng-container>
+                                <ng-container *ngIf="booking.request_status == 2">
+                                  <a class="btn-sm" (click)="bookNow(booking)" title="click to Boook Now"> Book Now</a>
+                                </ng-container>
+                                <ng-container *ngIf="booking.request_status == 3 || booking.request_status == 4">
+                                  Completed
+                                </ng-container>
+                              </td> -->
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickLongTermBookingRequestDetails(booking.request_id)"
+                                  title="View Booking Request Details"> <i class="fa fa-eye" aria-hidden="true"></i>
+                                  View</a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- <div class="row gap-top-50" *ngIf="false">
+        <div class="col-md-12">
+          <div class="block-title-wrapp mb-20 d-flex justify-content-between">
+            <h3 class="NohightlightedTag">Favorite Properties</h3>
+            <a class="blue-text text-bold">View All</a>
+          </div>
+          <owl-carousel [options]="SlideOptions" [carouselClasses]="['owl-theme', 'sliding']">
+            <div class="similar-items-carosuel" *ngFor="let img of Images">
+              <div class="similiar-items-block">
+                <div class="similar-image-block" style="align-content: center">
+                  <img src="{{ img }}" alt="" />
+                  <div class="similr-cnt-block">
+                    <div class="d-flex justify-content-between">
+                      <h3>Modern &amp; Cozy House</h3>
+                      <img src="./assets/images/header-wishlist.svg" alt="" />
+                    </div>
+                    <div class="my-1">
+                      <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                      <span>4.2</span>
+                      <span class="gray-text ml-3">Entire house in Toronto</span>
+                    </div>
+                    <div class="f-14">
+                      4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                    </div>
+                    <div class="booked-block">Booked by 40 this week</div>
+                    <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                      <div class="d-flex justify-content-between srch-btm-icon-block">
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <a class="text-14 blue-text">+ 20 more</a>
+                      </div>
+                      <div class="srch-btm-amount-block">
+                        <div class="text-24 mb-1">
+                          <span class="text-bold">$400 /</span> night
+                        </div>
+                        <div class="gray-text">$400 total</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+      <div class="row gap-top-50" *ngIf="false">
+        <div class="col-md-12">
+          <div class="block-title-wrapp mb-20 d-flex justify-content-between">
+            <h3>Recent Viewd Properties</h3>
+            <a class="blue-text text-bold">View All</a>
+          </div>
+          <div class="similar-items-carosuel owl-carousel">
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/similar-properties.png" alt="" />
+                <div class="promoted-block">Promoted</div>
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                  <img src="./assets/images/header-wishlist.svg" alt="" />
+                </div>
+                <div class="my-1">
+                  <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div class="f-14">
+                  4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                  <div class="d-flex justify-content-between srch-btm-icon-block">
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/similar-properties.png" alt="" />
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                  <img src="./assets/images/header-wishlist.svg" alt="" />
+                </div>
+                <div class="my-1">
+                  <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div class="f-14">
+                  4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                  <div class="d-flex justify-content-between srch-btm-icon-block">
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/similar-properties.png" alt="" />
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                  <img src="./assets/images/header-wishlist.svg" alt="" />
+                </div>
+                <div class="my-1">
+                  <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div class="f-14">
+                  4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                  <div class="d-flex justify-content-between srch-btm-icon-block">
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/similar-properties.png" alt="" />
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                  <img src="./assets/images/header-wishlist.svg" alt="" />
+                </div>
+                <div class="my-1">
+                  <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div class="f-14">
+                  4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                  <div class="d-flex justify-content-between srch-btm-icon-block">
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/similar-properties.png" alt="" />
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                  <img src="./assets/images/header-wishlist.svg" alt="" />
+                </div>
+                <div class="my-1">
+                  <img src="./assets/images/star.svg" alt="" class="mr-1" />
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div class="f-14">
+                  4 Guests •&nbsp;2 Bedrooms •&nbsp;2 Beds • 1 Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                  <div class="d-flex justify-content-between srch-btm-icon-block">
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="promocode" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-block">
+              <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                  src="./assets/images/cross.svg" alt="" /></a>
+              <div class="modal-title">Add Promocode</div>
+              <div class="form-block">
+                <label class="gray-text mb-2">Enter Code</label>
+                <input type="text" />
+              </div>
+              <div class="button-group">
+                <a href="javascript:void(0);" class="podsliving-button transparent" data-dismiss="modal"
+                  aria-label="Close">Cancel</a>
+                <a href="javascript:void(0);" class="podsliving-button">Apply</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="cancellation_policy" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="modal-block">
+              <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                  src="./assets/images/cross.svg" alt="" /></a>
+              <div class="text-24 text-bold mb-3">Cancellation Policy</div>
+              <p>
+                Free cancellation until 24 hours before check-in (excluding
+                PodsLiving service fee).
+              </p>
+              <p>
+                For a full refund (excluding PodsLiving service fee) , the guest
+                must cancel at least 24 hours before the listing’s local check-in
+                time (shown in the confirmation email).
+              </p>
+              <p>
+                If the guest cancels less than 24 hours before check-in, the first
+                night and PodsLiving service fee are non-refundable.
+              </p>
+              <p>
+                If the guest arrives and decides to leave early, the nightly rate
+                for the nights not spent 24 hours after cancellation are fully
+                refunded.
+              </p>
+              <div class="line-circle-wrapp d-flex justify-content-between">
+                <div class="line-circle-block green">
+                  <div class="line-circle-label-block light-green">
+                    5 days prior
+                  </div>
+                  <div class="line-circle-info-block">Sun,Mar,14 3:00 PM</div>
+                </div>
+                <div class="line-circle-block orange">
+                  <div class="line-circle-label-block light-pink">Check-In</div>
+                  <div class="line-circle-info-block">Fri,Mar19 3:00 PM</div>
+                </div>
+                <div class="line-circle-block red">
+                  <div class="line-circle-label-block pink">Check-Out</div>
+                  <div class="line-circle-info-block">Mon, Mar 22 11:00AM</div>
+                </div>
+              </div>
+              <div class="text-center mt-5">
+                <a class="podsliving-button" data-dismiss="modal" aria-label="Close">Done</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,144 @@
+@import "~jquery-nice-select/css/nice-select";
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+  position: static !important;
+}
+header {
+  top: 0;
+}
+/* You can add global styles to this file, and also import other style files */
+.toast-container .ngx-toastr {
+  box-shadow: none;
+}
+.toast-container.toast-top-center .ngx-toastr {
+  width: 40%;
+  min-width: 200px;
+}
+.toast-top-center {
+  top: 10px;
+}
+.password-field #toggler {
+  top: 22px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.g-recaptcha-wrapper {
+  position: relative;
+  border: 1px solid #ededed;
+  background: #f9f9f9;
+  border-radius: 4px;
+  padding: 0;
+  #topHider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px !important;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+  #rightHider {
+    position: absolute;
+    top: 0;
+    left: 295px;
+    height: 100% !important;
+    width: 15px;
+    background-color: #f9f9f9;
+  }
+  #leftHider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100% !important;
+    width: 2px;
+    background-color: #f9f9f9;
+  }
+  #bottomHider {
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    height: 2px !important;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+}
+
+#google_translate_element {
+  height: 50px;
+}
+
+#google_translate_element select {
+  background-color: transparent;
+  color: #808080;
+  border: none;
+  margin-top: 17px;
+  width: auto;
+  outline: none;
+  font-size: 14px;
+}
+#google_translate_element select option {
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 40px;
+  list-style: none;
+  min-height: 40px;
+  outline: none;
+  padding-left: 18px;
+  padding-right: 29px;
+  text-align: left;
+  transition: all 0.2s;
+}
+#google_translate_element select option:hover {
+  background-color: #f6f6f6;
+}
+
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+.bs-datepicker-body
+  table
+  td:not(.disabled):not(.week)
+  span:not(.disabled):not(.is-other-month) {
+  color: #000;
+}
+.theme-blue .bs-datepicker-head {
+  background-color: #3895b0;
+}
+.bs-datepicker-body table th {
+  color: #05427c;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell::after {
+  min-height: 80px !important;
+}
+body.overlay-active{overflow: hidden;}
+
+
+
+.ng-select.custom .ng-select-container {
+  border-radius: 0.25rem 0 0 .25rem !important;
+  min-height: 41px !important;
+  background: #e9ecef;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  top: 0 !important;
+}
+
+.mlfminus30{
+  margin-left: -30px !important; 
+  margin-right: -30px !important;
+}

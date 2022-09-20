@@ -1,0 +1,4 @@
+@media  (max-device-width : 991px) {
+   .phn-n-v .col-md-3.w11{flex: 0 0 25%;  max-width: 25%;}
+   .phn-n-v .col-md-9.w2{flex: 0 0 68%;  max-width: 68%;padding: 0px 15px;}
+}

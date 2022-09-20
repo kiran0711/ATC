@@ -1,0 +1,161 @@
+<section class="create-listing-wrapp mt-70">
+  <div class="container-fluid p-0">
+    <div class="row">
+      <div class="col-md-6 leftSidebar crt-listing-left-side-image-block">
+        <div class="theiaStickySidebar">
+          <div class="position-relative">
+            <img 
+            *ngIf="hasRoute('title')"
+            src="./assets/images/title.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('property-space-type')"
+            src="./assets/images/type-of-space.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('describe-property')"
+            src="./assets/images/describe.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('more-details')"
+            src="./assets/images/additional-details.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('amenities')"
+            src="./assets/images/amenities.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('short-term-pricing')"
+            src="./assets/images/set-pricing.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('seasonal-pricing')"
+            src="./assets/images/seasional.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('calendar')"
+            src="./assets/images/calendar.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('set-cancellation-policy')"
+            src="./assets/images/cancel.png"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('upload-photos-videos')"
+            src="./assets/images/upload.jpg"  
+            alt=""   class="w-100 h-100vh" />
+            <img 
+            *ngIf="hasRoute('listing-submitted')"
+            src="./assets/images/publish.jpg"  
+            alt=""   class="w-100 h-100vh" />
+
+            <!-- <ng-template #spaceBlock>
+              <img src="./assets/images/type-of-space.jpg" alt=""  class="w-100 h-100vh"/>
+            </ng-template> -->
+            <!-- <ng-template #additionalDetails>
+              <img src="./assets/images/additional-details.jpg" alt=""  class="w-100 h-100vh"/>
+            </ng-template> -->
+
+            <img src="./assets/images/type-of-space.jpg"  alt=""   class="w-100 h-100vh" *ngIf = "spaceImg"/>
+            <div class="create-listing-image-cnt-block text-white">
+              <div class="row height-100">
+                <div class="col-md-12 flex-center height-100">
+                  <ul class="black-color right-list-menu">
+                    <li [routerLink]="['title']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Property Title & Address</a>
+                    </li>
+                    <li
+                      [routerLink]="['property-space-type']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                      (click)="space()"
+                    >
+                      <a>Type of Space & Property</a>
+                    </li>
+                    <li
+                      [routerLink]="['describe-property']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Describe your Property</a>
+                    </li>
+                    <li
+                      [routerLink]="['more-details']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Additional Details</a>
+                    </li>
+                    <li [routerLink]="['amenities']"
+                      [queryParams]="{proId: pro_id}"
+                        routerLinkActive="active">
+                      <a>Facility & Amenity</a>
+                    </li>
+                    <li
+                      [routerLink]="['short-term-pricing']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Set Pricing</a>
+                    </li>
+                    <li
+                      [routerLink]="['seasonal-pricing']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Seasonal Pricing Management</a>
+                    </li>
+                    <li
+                      [routerLink]="['calendar']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Calendar Management</a>
+                    </li>
+                    <li
+                      [routerLink]="['set-cancellation-policy']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Set Cancellation Policy</a>
+                    </li>
+                    <!-- <li
+                      [routerLink]="['set-cancellation-policy']"
+                      routerLinkActive="active"
+                    >
+                      <a>Calender Management</a> 
+                    </li> -->
+                    <li
+                      [routerLink]="['upload-photos-videos']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Upload Picture & Video</a>
+                    </li>
+                    <li
+                      [routerLink]="['listing-submitted']"
+                      [queryParams]="{proId: pro_id}"
+                      routerLinkActive="active"
+                    >
+                      <a>Publish</a>
+                    </li>
+                    <!-- <li><a>Amenities & Facilities</a></li>
+                    <li><a>Seasonal Pricing Management</a></li>
+                    <li><a>Calendar Management</a></li>
+                    <li><a>Upload Pictures & Video</a></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 rightSidebar">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+::ng-deep .cal-day-badge {
+    display: none !important;
+  }
+
+  ::ng-deep .cal-month-view .cal-day-cell {
+    min-height: 70px;
+  }
+
+  ::ng-deep .cal-month-view .cal-cell-top {
+    min-height: 40px;
+    flex: 1;
+}
+
+input[type='date']{
+  background: none;
+}
+input[type='date'][disabled] {
+  background-color: #ccc;
+}
+/* input[type='date'] :disabled{
+  background: grey;
+} */
+.grid-ul{
+  display: -ms-flexbox;           /* IE 10 */
+  display: -webkit-inline-flex;          /* Safari 6.1+. iOS 7.1+ */
+  display: inline-flex;
+  -webkit-flex-flow: wrap row; /* Safari 6.1+ */
+  flex-flow: wrap row;
+  list-style-type: none;
+  padding: 0px;
+  column-gap: 20px;
+}
+
+.block-color{
+  display: inline-block;
+  min-height: 10px;
+  min-width: 10px;
+  border-radius: 50%
+}
+
+/* ul li {
+  width:7em;
+  float:left;
+} */
+i.dob-info[data]:hover:after {
+  content: "Please select the dates for which the property is already booked via other avenues or  not available for booking.";
+  position: absolute;
+  top: 0px;
+  color: #fff;
+  width: 175px;
+  left: 8px;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10;
+}
+.info-t{
+position: relative;
+display: inline-block;
+/* margin-top: 20px; */
+cursor: default;font-size: 13px;
+}
+.sml-circle {
+  height: 34px;
+    width: 34px;
+    background: #bbc9d5;
+    border-radius: 48px;
+    padding: 8px 12px;
+    line-height: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    line-height: 17px;
+    top: 56px;
+    z-index: 9;
+    text-align: center;
+}

@@ -1,0 +1,510 @@
+<div
+  class="row create-listing-form login-modal-form-wrapp p-0 align-items-end mt-5"
+>
+  <div class="col-md-12 form-block text-center">
+    <div class="text-24 raleway mb-4 text-left">Update Email</div>
+  </div>
+  <form [formGroup]="updateEmailForm" class="col-12" autocomplete="off">
+    <div class="col-md-7 pl-0">
+      <div class="form-block">
+        <label>Email</label>
+        <div class="position-relative">
+          <input type="email" [value]="primaryEmail" readonly />
+          <span *ngIf="emailVerified" class="green-text input-text">
+            <img src="./assets/images/done.svg" alt="" /> Verified
+          </span>
+          <a
+            *ngIf="!emailVerified"
+            class="red-text input-text text-decoration-none cursor-pointer"
+            (click)="sendEmailVerificationMail()"
+            >Verify</a
+          >
+          <i
+            *ngIf="!showEmailBlock"
+            class="edit-icon fa fa-pencil"
+            (click)="showBlock()"
+            aria-hidden="true"
+          ></i>
+          <i
+            *ngIf="showEmailBlock"
+            class="close-icon fa fa-times"
+            (click)="hideEmailBlock()"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 form-block">
+      <div *ngIf="emailVerifyMailSuccess" class="text-success">
+        <span>{{ emailVerificationMailMsg }}</span>
+        <i
+          class="close-icon fa fa-times"
+          (click)="emailVerifyMailSuccess = !emailVerifyMailSuccess"
+        ></i>
+      </div>
+    </div>
+    <div *ngIf="showEmailBlock" class="col-md-7">
+      <div class="form-block">
+        <label>New Email</label>
+        <div class="position-relative">
+          <input type="email" formControlName="email" autocomplete="off" />
+        </div>
+      </div>
+      <div class="form-block">
+        <label>Confirm Email</label>
+        <div class="position-relative">
+          <input
+            type="email"
+            formControlName="confirm_email"
+            autocomplete="off"
+          />
+          <div
+            *ngIf="updateEmailFormControl.confirm_email.errors"
+            class="error-msg"
+          >
+            {{ updateEmailFormControl.confirm_email.errors.incorrect }}
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="form-block">
+          <label>Password</label>
+          <div class="position-relative">
+            <input
+              type="password"
+              formControlName="password"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 form-block mb-0" *ngIf="showEmailBlock">
+      <div class="row">
+        <div class="col-md-7 form-block">
+          <div *ngIf="emailSuccess" class="text-success">
+            <span>{{ emailSuccessMsg }}</span>
+            <i
+              class="close-icon fa fa-times"
+              style="right: 0px"
+              (click)="emailSuccess = false"
+            ></i>
+          </div>
+          <div *ngIf="emailError" class="red-text">
+            <span>{{ emailErrorMsg }}</span>
+            <i
+              class="close-icon fa fa-times"
+              style="right: 0px"
+              (click)="emailError = false"
+            ></i>
+          </div>
+        </div>
+        <div class="col-md-5 text-right">
+          <!-- <a href="create-a-listing.html" class="podsliving-button transparent">Back</a> -->
+          <button
+            class="podsliving-button"
+            (click)="changeEmail()"
+            [ngClass]="{
+              'button-disable': !updateEmailForm.valid
+            }"
+          >
+            Update Email
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div
+  class="row create-listing-form login-modal-form-wrapp p-0 align-items-end mt-5"
+>
+  <div class="col-md-12 form-block text-center">
+    <div class="text-24 raleway mb-4 text-left">Update Phone Number</div>
+  </div>
+  <form [formGroup]="updateMobileForm" class="col-12">
+    <div class="col-md-7 pl-0">
+      <div class="form-block">
+        <label>Phone Number</label>
+        <div class="row multi-form-block phn-n-v">
+          <div class="col-md-3 w11">
+            <select
+              nice-select
+              class="w-100"
+              [value]="dialingCode"
+              [attr.data-value]="dialingCode"
+              disabled
+            >
+              <option value="+01">+01</option>
+              <option value="+91">+91</option>
+              <option value="+60">+60</option>
+            </select>
+          </div>
+          <div class="col-md-9 w2">
+            <div class="position-relative">
+              <input type="number" [value]="primaryMobile" readonly />
+              <span *ngIf="mobileVerified" class="green-text input-text">
+                <img src="./assets/images/done.svg" alt="" /> Verified
+              </span>
+              <a
+                *ngIf="!mobileVerified"
+                class="red-text input-text text-decoration-none"
+              ></a>
+              <i
+                *ngIf="!showMobileBlock"
+                class="edit-icon fa fa-pencil"
+                (click)="showBlockMobile()"
+                aria-hidden="true"
+              ></i>
+              <i
+                *ngIf="showMobileBlock"
+                class="close-icon fa fa-times"
+                (click)="hideBlockMobile()"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </div>
+          <div class="col-md-12 form-block">
+            <div *ngIf="mobileUpdateSuccess" class="text-success">
+              <span>{{ mobileUpdateSuccessMsg }}</span>
+              <i
+                class="close-icon fa fa-times"
+                (click)="mobileUpdateSuccess = false"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showMobileBlock" class="col-md-7">
+      <div class="form-block">
+        <label>New Contact Number</label>
+        <div class="row multi-form-block">
+          <div class="col-md-3">
+            <select nice-select class="w-100" formControlName="dialing_code">
+              <option value="+01">+01</option>
+              <option value="+91">+91</option>
+              <option value="+60">+60</option>
+            </select>
+          </div>
+          <div class="col-md-9">
+            <input
+              type="number"
+              formControlName="new_contact_number"
+              value=""
+            />
+            <div
+              *ngIf="updateMobileFormControl.new_contact_number.errors"
+              class="error-msg"
+            >
+              {{ updateMobileFormControl.new_contact_number.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div class="form-block">
+          <label>Password</label>
+          <div class="position-relative">
+            <input type="password" formControlName="password" />
+            <div
+              *ngIf="updateMobileFormControl.password.errors"
+              class="error-msg"
+            >
+              {{ updateMobileFormControl.password.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showMobileBlock" class="col-md-12 form-block mb-0">
+      <div class="row">
+        <div class="col-md-12 form-block">
+          <div *ngIf="otpSentSuccess" class="text-success">
+            <span>{{ otpSentMessage }}</span>
+            <i
+              style="right: 0px"
+              class="close-icon fa fa-times"
+              (click)="otpSentSuccess = false"
+            ></i>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <button
+            class="podsliving-button w-100 m-width-auto"
+            (click)="resendOTP()"
+            [ngClass]="{ 'button-disable': !resendOtpBlock }"
+          >
+            Resend OTP
+          </button>
+        </div>
+        <div class="col-md-1">
+          <div class="red-text mt-2" *ngIf="totalTimeLeft">
+            {{ timeLeft }}
+          </div>
+        </div>
+        <div class="col-md-7 text-right">
+          <button
+            class="podsliving-button"
+            [ngClass]="{
+              'button-disable': !updateMobileForm.valid || disableGetOtp
+            }"
+            (click)="getOTP()"
+          >
+            Get OTP
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form [formGroup]="otpForm" *ngIf="showOTPBlock">
+    <div class="login-modal-content-block">
+      <div class="col-md-12 form-block text-center">
+        <div class="text-24 raleway mb-4 text-left">Enter OTP</div>
+      </div>
+      <div class="login-modal-form-wrapp">
+        <div class="row mt-4">
+          <div class="col-md-12 form-block pl-5 pr-5">
+            <div
+              class="text-right align-items-center justify-content-between"
+            ></div>
+            <div class="row p-col-10">
+              <div class="col-md-2">
+                <input
+                  id="1"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp1"
+                />
+              </div>
+              <div class="col-md-2">
+                <input
+                  id="2"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp2"
+                />
+              </div>
+              <div class="col-md-2">
+                <input
+                  id="3"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp3"
+                />
+              </div>
+              <div class="col-md-2">
+                <input
+                  id="4"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp4"
+                />
+              </div>
+              <div class="col-md-2">
+                <input
+                  id="5"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp5"
+                />
+              </div>
+              <div class="col-md-2">
+                <input
+                  id="6"
+                  type="number"
+                  class="p-1 text-center"
+                  (keypress)="otpLengthCheck($event)"
+                  formControlName="otp6"
+                />
+              </div>
+            </div>
+            <div *ngIf="mobileUpdateVerifyOtpfailed" class="error-msg">
+              {{ mobileUpdateVerifyMsg }}
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-4 ml-auto">
+                <button
+                  class="podsliving-button w-100 m-width-auto"
+                  (click)="verifyOtp()"
+                  [ngClass]="{
+                    'button-disable': !otpForm.valid
+                  }"
+                >
+                  Verify
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<form [formGroup]="changePasswordForm">
+  <div
+    class="row create-listing-form login-modal-form-wrapp p-0 align-items-end mt-5"
+  >
+    <div class="col-md-12 form-block text-center">
+      <div class="text-24 raleway mb-4 text-left">Change Password</div>
+    </div>
+
+    <div class="col-md-7">
+      <div class="form-block">
+        <label>Old Password</label>
+        <input
+          type="password"
+          formControlName="old_password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              changePasswordFormControl.old_password.errors &&
+              (changePasswordFormControl.old_password.dirty ||
+                changePasswordFormControl.old_password.touched)
+          }"
+        />
+
+        <div
+          *ngIf="changePasswordFormControl.old_password.errors"
+          class="error-msg"
+        >
+          {{ changePasswordFormControl.old_password.errors.incorrect }}
+        </div>
+        <div class="error-msg" *ngIf="changePasswordFormControl.old_password.invalid && changePasswordFormControl.old_password.errors && (changePasswordFormControl.old_password.dirty || changePasswordFormControl.old_password.touched)">
+          <div *ngIf="changePasswordFormControl.old_password.errors.required">
+            Enter old Password
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-block">
+        <label>New Password</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              changePasswordFormControl.password.errors &&
+              (changePasswordFormControl.password.dirty ||
+                changePasswordFormControl.password.touched)
+          }"
+          value=""
+        />
+        <div
+          *ngIf="changePasswordFormControl.password.errors"
+          class="error-msg"
+        >
+          <!-- <div *ngIf="changePasswordFormControl.password.errors.maxlength">
+            Password must be max 15 characters long including special character
+          </div>
+          <div *ngIf="changePasswordFormControl.password.errors.minlength">
+            Password must be min 12 characters long including special character
+          </div> -->
+          <div *ngIf="changePasswordFormControl.password.errors">
+            {{ changePasswordFormControl.password.errors.incorrect }}
+          </div>
+          <div *ngIf="changePasswordFormControl.password.errors.pattern">
+            Enter valid password pattern (At least one upper and lower case
+            letter, one digit, one special character, Min 12 and Max 15 in
+            length)
+          </div>
+          <div
+            *ngIf="
+              changePasswordFormControl.password.invalid &&
+              (changePasswordFormControl.password.dirty ||
+                changePasswordFormControl.password.touched)
+            "
+          >
+            <div *ngIf="changePasswordFormControl.password.errors.required">
+              Enter New Password
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="form-block">
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          formControlName="confirm_password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              changePasswordFormControl.confirm_password.errors &&
+              (changePasswordFormControl.confirm_password.dirty ||
+                changePasswordFormControl.confirm_password.touched)
+          }"
+          value=""
+        />
+        <div
+          *ngIf="changePasswordFormControl.confirm_password.errors"
+          class="error-msg"
+        >
+          <!-- <div *ngIf="changePasswordFormControl.confirm_password.errors.maxlength">
+            Password must be max 15 characters long including special character
+          </div>
+          <div *ngIf="changePasswordFormControl.confirm_password.errors.minlength">
+            Password must be min 12 characters long including special character
+          </div> -->
+          <div
+            *ngIf="
+              changePasswordFormControl.confirm_password.errors
+                .confirmedValidator
+            "
+          >
+            Password and Confirm Password must be same
+          </div>
+          <div *ngIf="changePasswordFormControl.confirm_password.errors">
+            {{ changePasswordFormControl.confirm_password.errors.incorrect }}
+          </div>
+          <div
+            *ngIf="changePasswordFormControl.confirm_password.errors.pattern"
+          >
+            Enter valid password pattern (At least one upper and lower case
+            letter, one digit, one special character, Min 12 and Max 15 in
+            length)
+          </div>
+          <div
+            *ngIf="
+              changePasswordFormControl.confirm_password.invalid &&
+              (changePasswordFormControl.confirm_password.dirty ||
+                changePasswordFormControl.confirm_password.touched)
+            "
+          >
+            <div
+              *ngIf="changePasswordFormControl.confirm_password.errors.required"
+            >
+              Enter Confirm Password
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 form-block">
+      <div *ngIf="successMsg" class="text-success">
+        <span>{{ pwdSuccessMsg }}</span>
+        <i class="close-icon fa fa-times" (click)="successMsg = false"></i>
+      </div>
+    </div>
+    <div class="col-md-12 form-block mb-0">
+      <div class="row">
+        <div class="col-md-12 text-right">
+          <!-- <a href="create-a-listing.html" class="podsliving-button transparent">Back</a> -->
+          <button class="podsliving-button" (click)="changePassword()" [ngClass]="{
+            'button-disable': !changePasswordForm.valid
+          }"> 
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

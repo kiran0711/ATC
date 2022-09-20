@@ -1,0 +1,39 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar y-auto justify-content-center">
+  <div class="prgress-bar percent-100"></div>
+  
+  <div *ngIf="step == 2">
+    <div class="col-md-12 text-center mb-4 gap-top-70">
+      <img src="./assets/images/thumbs-up-large.svg" />
+    </div>
+    <div class="col-md-12 mb-4 text-center">
+      <strong style="font-size: 25px">
+        {{ message }}
+      </strong>
+    </div>
+
+    <div class="col-md-12 form-block d-flex align-items-center justify-content-center">
+      <a (click)="navigateToPublicView()" class="blue-text text-bold d-block mr-5 cursor-pointer">Check Public View
+      </a>
+      <a [routerLink]="['/host']" (click)="clearProperty()" class="blue-text text-bold">Go to Dashboard</a>
+    </div>
+  </div>
+
+  <div *ngIf="step == 1">
+    <div class="col-md-12 mb-4 text-center">
+      <strong style="font-size: 25px">
+        Your Property is under draft. Please publish the property.
+      </strong>
+    </div>
+
+    <div
+      class="col-md-12 form-block create-listing-submit-button-block d-flex align-items-center justify-content-between">
+      <a [routerLink]="['/host/property-list']" class="podsliving-button transparent">Save & Exit</a>
+      <!-- <a (click)="onClose()" class="podsliving-button">Publish</a> -->
+      <a data-toggle="modal" data-target="#additional_details_longterm" class="podsliving-button">Publish</a>
+
+    </div>
+  </div>
+
+</div>
+
+<property-long-term-publish-modal (emitter)="onClose($event)"></property-long-term-publish-modal>

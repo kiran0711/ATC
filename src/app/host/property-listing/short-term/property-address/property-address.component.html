@@ -1,0 +1,154 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <div class="prgress-bar percent-10"></div>
+    <div class="
+      col-md-12
+      creat-listing-top-buttons-block
+      d-flex
+      align-items-center
+      justify-content-between
+      mb-4
+    ">
+        <a [routerLink]="['/host/property-list']">
+            <!-- <img src="./assets/images/back.svg" alt=""/> -->
+        </a>
+        <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !propertyAddressForm.valid }" class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <form class="w-100" [formGroup]="propertyAddressForm" on>
+        <div class="col-md-12 form-block">
+            <h2 class="mb-4">Create A Title</h2>
+            <input type="text" value="" id="crt_title" formControlName="pro_title" class="mb-3 form-control" placeholder="Cozy Homestay in the Valley" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.pro_title.errors &&
+            (propertyInfoFormControl.pro_title.dirty ||
+              propertyInfoFormControl.pro_title.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.pro_title.errors" class="error-msg">
+                {{ propertyInfoFormControl.pro_title.errors.incorrect }}
+            </div>
+            <div id="the-count-title" class="gray-text">
+                <span id="current_2">{{ currentLength }}</span>
+                <span id="maximum_2">/ 70</span>
+            </div>
+        </div>
+
+        <div class="col-md-12 form-block mb-4">
+            <h2>Property Address</h2>
+            <input type="text" id="pac-input" formControlName="google_address" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" class="controls map-input-block" placeholder="Search Address, Zip Code" />
+            <div id="map">
+                <google-map height="500" width="100%" [zoom]="17" [center]="center"></google-map>
+            </div>
+        </div>
+
+        <div class="col-md-12 form-block">
+            <h2>Confirm Your Address</h2>
+        </div>
+        <div class="col-md-12 form-block">
+            <label>Address Line 1</label>
+            <input type="text" class="form-control" formControlName="address1" value="Vasant Kunj, Block C" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.address1.errors &&
+            (propertyInfoFormControl.address1.dirty ||
+              propertyInfoFormControl.address1.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.address1.errors" class="error-msg">
+                {{ propertyInfoFormControl.address1.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-12 form-block">
+            <div class="d-flex justify-content-between">
+                <label>Address Line 2</label>
+                <span class="gray-text">Optional</span>
+            </div>
+            <input type="text" class="form-control" formControlName="address2" value="2015, Rosewood Apartments" />
+        </div>
+        <div class="col-md-12 form-block">
+            <label>City <span class="note">(Please verify if you city is correct, if not feel free to change it.)</span></label>
+            <input type="text" formControlName="city" value="Toronto" class="form-control" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.city.errors &&
+            (propertyInfoFormControl.city.dirty ||
+              propertyInfoFormControl.city.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.city.errors" class="error-msg">
+                {{ propertyInfoFormControl.city.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-12 form-block">
+            <label>State/Province <span class="note">(Please verify if you state/province is correct, if not feel free to change it.)</span></label>
+            <input type="text" formControlName="state" placeholder="State Name" class="form-control" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.state.errors &&
+            (propertyInfoFormControl.state.dirty ||
+              propertyInfoFormControl.state.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.state.errors" class="error-msg">
+                {{ propertyInfoFormControl.state.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-12 form-block">
+            <label>Postal Code</label>
+            <input type="text" formControlName="postal_code" value="110070" class="form-control" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.postal_code.errors &&
+            (propertyInfoFormControl.postal_code.dirty ||
+              propertyInfoFormControl.postal_code.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.postal_code.errors" class="error-msg">
+                {{ propertyInfoFormControl.postal_code.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-12 form-block">
+            <label>Country/Region</label>
+            <input type="text" formControlName="country_region" value="Canada - CA" class="form-control" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.country_region.errors &&
+            (propertyInfoFormControl.country_region.dirty ||
+              propertyInfoFormControl.country_region.touched)
+        }" />
+            <div *ngIf="propertyInfoFormControl.country_region.errors" class="error-msg">
+                {{ propertyInfoFormControl.country_region.errors.incorrect }}
+            </div>
+        </div>
+
+        <div class="col-md-12 form-block">
+            <label>Timezone</label>
+            <select nice-select formControlName="timezone" class="w-100 form-control" [ngClass]="{
+          'is-invalid':
+            propertyInfoFormControl.timezone.errors &&
+            (propertyInfoFormControl.timezone.dirty ||
+              propertyInfoFormControl.timezone.touched)
+        }">
+        <option
+          *ngFor="let timezone of timezoneValues"
+          value="{{ timezone.value }}"
+        >
+          {{ timezone.text }}
+        </option>
+      </select>
+            <div *ngIf="propertyInfoFormControl.timezone.errors" class="error-msg">
+                {{ propertyInfoFormControl.timezone.errors.incorrect }}
+            </div>
+        </div>
+        <!-- <div class="col-md-12 form-block">
+      <div
+        *ngIf="errorMsg"
+        class="error-msg f-14 f-w-bold"
+      >
+        {{ errorMsg }}
+      </div>
+    </div> -->
+
+
+        <div class="
+        col-md-12
+        mt-100
+        form-block
+        create-listing-submit-button-block
+        pt-20
+      ">
+            <button class="podsliving-button" [ngClass]="{ 'button-disable': !propertyAddressForm.valid }" (click)="next()">
+        Next
+      </button>
+        </div>
+    </form>
+</div>

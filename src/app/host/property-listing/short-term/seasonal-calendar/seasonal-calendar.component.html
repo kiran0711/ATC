@@ -1,0 +1,140 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <div class="prgress-bar percent-70"></div>
+    <div class="
+        col-md-12
+        creat-listing-top-buttons-block
+        d-flex
+        align-items-center
+        justify-content-between
+        mb-4
+      ">
+        <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+        <a [routerLink]="['/host/property-listing/short-term/seasonal-pricing']" [queryParams]="{proId: pro_idd}">
+            <img src="./assets/images/back.svg" alt="" />
+        </a>
+        <a (click)="skipStep()" class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <div class="row text-center">
+
+        <div class="col-md-12 mb-4">
+            <h2 class="text-left">Calendar Management</h2>
+        </div>
+        <div class="col-md-6 text-left">
+            <div class="btn transparent-btn border-0" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <span class="text-left"><strong>{{viewDate  | date:'MMMM-YYYY'}}</strong></span>
+            <div class="btn transparent-btn border-0" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="activeDayIsOpen = false">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        <div class="col-md-6 text-right">
+            <div class="btn-group mb-1">
+                <!-- <div class="btn transparent-btn border-0" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            <i class="fas fa-chevron-left"></i>
+          </div> -->
+                <div class="btn transparent-btn" mwlCalendarToday [(viewDate)]="viewDate">
+                    Back To Current Date
+                </div>
+                <!-- <div class="btn transparent-btn border-0" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            <i class="fas fa-chevron-right"></i>
+          </div> -->
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+            </mwl-calendar-month-view>
+        </div>
+        <div class="col-md-12 mt-3">
+            <ul class="grid-ul">
+                <li><span class="block-color mr-1" style="background: #ad2121"></span>Peak Season</li>
+                <li><span class="block-color mr-1" style="background: #e3bc08"></span>Moderate Season</li>
+                <li><span class="block-color mr-1" style="background: #1e90ff"></span>Slow Season</li>
+                <li><span class="block-color mr-1" style="background: #777777"></span>Not Available Booking</li>
+            </ul>
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="font-bold mb-3 text-left">
+                Not Available Booking&nbsp;
+                <span class="info-t">
+        
+                    <i id="toggler"  class="far fa-info-circle mr-1 mt-1 seasonal-price-management popover-base">
+                      <span class="popover-content">Please select the dates for which the property is already booked via other avenues or  not available for booking.</span>
+                    </i>
+                  </span>
+                <!-- <span class="info-t"><i id="toggler"
+            class="
+              far
+              fa-info-circle
+              float-right
+              mr-1
+              mt-1
+              dob-info
+            " data="You need to be 18 years older."></i></span> -->
+
+                <label class="switch pull-right">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="datesAvailable"
+                  (change)="onAvailablityChange($event)"
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <ng-container *ngIf="days.length && datesAvailable">
+                <div class="row mt-3" *ngFor="let day of days;let i=index">
+                    <div class="col-md-12" style="border-top: 1px solid lightgray;text-align: end;">
+                        <span class="sml-circle">  <i
+              class="close-icon fa fa-times cursor-pointer"
+              (click)="removeEvent(i)"
+              aria-hidden="true"
+            ></i></span>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <label class="font-w-normal">From</label>
+                        <input type="date" min="{{today}}" value="{{day.start | date:'yyyy-MM-dd'}}" (change)="onDateChanged($event,day,0)" onkeydown="return false" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="font-w-normal">To</label>
+                        <input type="date" min="{{getDatePlusOne(day.start)}}" (change)="onDateChanged($event,day,1)" value="{{day.end  | date:'yyyy-MM-dd'}}" [disabled]="!day.start" onkeydown="return false" />
+                    </div> -->
+                    <div class="col-md-12 mt-4">
+                        <div class="input-block">
+                            <label class="text-left pb-2">Start  and End Date</label>
+                            <input style="cursor: pointer; top: 40px;padding-left: 45px" placeholder="Select Check-in and Check-out date" [(ngModel)]="day.startAndEnd" (ngModelChange)="onDateChanged($event,day)" bsDaterangepicker [bsConfig]="{ 
+                                rangeInputFormat: 'MMM DD, YYYY',
+                                dateInputFormat: 'MMM DD, YYYY', 
+                                    showWeekNumbers: false ,
+                                    containerClass: 'theme-blue',
+                                    minDate: today
+                                }">
+                            <img style="top: 47px;" src="./assets/images/date.svg" alt="" class="input-icon" />
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="row" *ngIf="datesAvailable">
+                <div class="col-md-12 mt-3  text-right">
+                    <a (click)="addDays()" class="cursor-pointer add-more-text blue-text" [ngClass]="{ 'button-disable': days.length>=5 || (days.length && !days[days.length-1].start) }"><strong><span>+</span> Add</strong></a
+              >
+            </div>
+          </div>
+      </div>
+
+      <div
+        class="
+          col-md-12
+          form-block
+          create-listing-submit-button-block
+          d-flex
+          align-items-center
+          justify-content-between
+        "
+      >
+        <a (click)="skipStep()" class="podsliving-button transparent" [ngClass]="{ 'button-disable': datesAvailable  }">Skip</a>
+                    <a (click)="next()" class="podsliving-button">Next</a>
+                </div>
+            </div>
+        </div>

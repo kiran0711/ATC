@@ -1,0 +1,199 @@
+<div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+    <div class="col-md-12 form-block text-center mt-5">
+        <div class="text-24 f-bold mb-4 text-left">General Info</div>
+        <div class="avatar-upload">
+            <div class="avatar-preview">
+                <div id="imagePreview" style="background-image: 
+          url('{{ profilePic }} ')"></div>
+            </div>
+            <div class="upload-edit-block">
+                <div class="avatar-edit">
+                    <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg" (change)="uploadPhoto($event)" />
+                    <label for="imageUpload" class="cursor-pointer">
+                        <div class="blue-text text-bold">Upload Photo</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup]="generalInfoForm">
+    <div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+        <div class="col-md-6 form-block">
+            <label>First Name<span class="red-text">*</span></label>
+            <input type="text" class="form-control" formControlName="firstName" value="John Lennon Snow" [ngClass]="{
+          'is-invalid':
+            generalInfoFormControl.firstName.errors &&
+            (generalInfoFormControl.firstName.dirty ||
+              generalInfoFormControl.firstName.touched)
+        }" />
+            <div *ngIf="generalInfoFormControl.firstName.errors" class="error-msg">
+                {{ generalInfoFormControl.firstName.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-6 form-block">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName" value="John" [ngClass]="{
+          'is-invalid':
+            generalInfoFormControl.lastName.errors &&
+            (generalInfoFormControl.lastName.dirty ||
+              generalInfoFormControl.lastName.touched)
+        }" />
+        </div>
+    </div>
+    <div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+        <div class="col-md-6 form-block">
+            <label>Date of Birth<span class="red-text">*</span><span><i id="toggler"
+                        class="far fa-info-circle float-right mr-1 mt-1 dob-info"
+                        data="You need to be 18 years older."></i></span></label>
+            <input type="text" class="form-control" formControlName="dob" placeholder="Date of Birth" placement="top"
+                bsDatepicker [bsConfig]="{
+          showWeekNumbers: false,
+          isAnimated: true,
+          containerClass: 'theme-blue',
+          dateInputFormat: 'MMM DD, YYYY',          maxDate: yearsago
+        }" [ngClass]="{
+          'is-invalid':
+            generalInfoFormControl.dob.errors &&
+            (generalInfoFormControl.dob.dirty ||
+              generalInfoFormControl.dob.touched)
+        }" />
+            <div *ngIf="generalInfoFormControl.dob.errors" class="error-msg">
+                {{ generalInfoFormControl.dob.errors.incorrect }}
+            </div>
+        </div>
+        <div class="col-md-6 form-block">
+            <label>Gender<span class="red-text">*</span></label>
+            <select nice-select formControlName="gender" class="w-100 form-control" [value]="defaultGender"
+                [attr.data-value]="defaultGender" [ngClass]="{
+          'is-invalid':
+            generalInfoFormControl.gender.errors &&
+            (generalInfoFormControl.gender.dirty ||
+              generalInfoFormControl.gender.touched)
+        }">
+                <option value="">Select Your Gender</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Other</option>
+            </select>
+            <div *ngIf="generalInfoFormControl.gender.errors" class="error-msg">
+                {{ generalInfoFormControl.gender.errors.incorrect }}
+            </div>
+        </div>
+    </div>
+    <div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+        <div class="col-md-6 form-block">
+            <label>Timezone</label>
+            <select nice-select formControlName="timezone" [value]="defaultTimeZone" [attr.data-value]="defaultTimeZone"
+                class="w-100">
+                <option *ngFor="let timezone of timezoneValues" value="{{ timezone.value }}">
+                    {{ timezone.text }}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+        <div class="col-md-6 form-block">
+            <label>How did you hear about us?</label>
+            <select nice-select formControlName="reference" [value]="defaultReference"
+                [attr.data-value]="defaultReference" class="w-100">
+                <option value="social media">
+                    Social Media(Twitter, facebook , etc)
+                </option>
+                <option value="From friends">
+                    Recommendation from friends/relatives
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="
+      row
+      mb-5
+      create-listing-form
+      login-modal-form-wrapp
+      p-0
+    ">
+        <div class="col-md-6 form-block">
+            <label>Vaccinated</label>
+            <select nice-select formControlName="vaccinated" [value]="vaccination" [attr.data-value]="vaccination"
+                (change)="changeVaccinationOption($event)"  class="w-100">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+    <ng-container *ngIf="selectedType == 'Yes'">
+
+        <div class="col-md-6 form-block file-upload-only-name">
+            <label>Upload Vaccination Certificate</label>
+            <!--                                                    <div class="file-upload">
+                            <div class="file-upload-wrapper" data-text="Attach file">
+                                <input name="file-upload-field" type="file" class="file-upload-field" value="">
+                            </div>
+                        </div>-->
+            <div class="file-upload">
+                <div class="file-select w-100">
+                    <div class="file-select-button" id="fileName_1">
+                        <img src="./assets/images/choose-file-blue.svg" alt="" class="upload-file-input-icon" />
+                    </div>
+                    <div class="file-select-name blue-text" id="noFile_1">
+                        Attach file
+                    </div>
+                    <input type="file" (change)="setVaccineCert($event)" name="chooseFile" id="chooseFile_1" />
+                </div>
+            </div>
+            <div class="position-absolute">
+                <label *ngIf="clickableFile" class="mt-1 p-1 d-inline cursor-pointer"
+                    (click)="getExternalImageFromURL()" href="docUrl">{{ fileName }}
+                </label>
+                <label *ngIf="!clickableFile" class="mt-1 p-1 d-inline">{{ fileName }}
+                </label>
+                <span class="cursor-pointer ml-5" *ngIf="fileName">
+                    <i class="close-icon fa fa-times" (click)="removeFile()" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div *ngIf="generalInfoFormControl.vaccinated.errors" class="error-msg">
+                {{ generalInfoFormControl.vaccinated.errors.incorrect }}
+            </div>
+        </div>
+
+    </ng-container>
+        <div class="col-md-12 form-block">
+            <label>User-Bio</label>
+            <textarea id="the-textarea" class="form-control" formControlName="user_bio" placeholder="Enter your bio."
+                [ngClass]="{
+          'is-invalid':
+          generalInfoFormControl.user_bio.errors &&
+          (generalInfoFormControl.user_bio.dirty ||
+          generalInfoFormControl.user_bio.touched)
+        }"></textarea>
+            <div *ngIf="generalInfoFormControl.user_bio.errors" class="error-msg">
+                {{ generalInfoFormControl.user_bio.errors.incorrect }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mb-3 font-weight-bold alert alert-success" *ngIf="showSuccessMsg">
+        <div class="row">
+            <div class="pr-5 text-left p-0">
+                {{ successMsg }}
+                <span class="cursor-pointer">
+                    <i class="close-icon fa fa-times" (click)="closeMsgToast()" aria-hidden="true"></i>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-12 form-block mb-0">
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="podsliving-button" (click)="saveChanges()"
+                    [ngClass]="{ 'button-disable': !generalInfoForm.valid }">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 gap-top-70">
+        <!-- <a href="#" class="text-bold blue-text">Delete Account Permanently</a> -->
+    </div>
+</form>

@@ -1,0 +1,56 @@
+<section class="create-listing-wrapp mt-70">
+
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-6 leftSidebar crt-listing-left-side-image-block">
+                <div class="theiaStickySidebar">
+                    <div class="position-relative">
+                        <img src="./assets/images/additional-details.jpg" alt="" class="w-100 h-100vh">
+                        <div class="create-listing-image-cnt-block text-white">
+                            <div class="row  height-100">
+                                <div class="col-md-12 flex-center height-100">
+                                    <ul class="black-color right-list-menu">
+                                        <li class="active"><a [routerLink]="['/host/property-listing']">Type of Term</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 rightSidebar">
+
+                <div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+                    <div class="prgress-bar percent-15"></div>
+                    <div class="col-md-12 mb-3 mt-50">
+                        <h2>Type of Lease / Rental</h2>
+                        <label class="radio-img type-spc-block">
+                            <input type="radio" id="short_term" name="term" value="short" [(ngModel)]="term">
+                            <div class="type-of-space-block d-flex align-items-center type-of-property image">
+                                <img src="https://admin.podsliving.com/public/admin-assets/images/short-term.jpeg" alt="Short Term" title="Short Term" />
+                                <span>Vacation Rental</span>
+                            </div>
+                        </label>
+                        <span class="gray-text">Select this option if you are looking to list your property for minimum 1 day and maximum up to 60 days.</span>
+                    </div>
+                    <div class="col-md-12 mb-3 mt-50">
+                        <label class="radio-img type-spc-block">
+                            <input type="radio" id="long_term" name="term" value="long" [(ngModel)]="term">
+                            <div class="type-of-space-block d-flex align-items-center type-of-property image">
+                                <img src="https://admin.podsliving.com/public/admin-assets/images/long-term.jpeg" alt="Long Term" title="Long Term" />
+                                <span>Long Term Leasing</span>
+                            </div>
+                        </label>
+                        <span class="gray-text">Select this option if you are looking to lease your property between a duration of 1 month to 12 months.</span>
+                    </div>
+
+                    <div class="col-md-12 form-block create-listing-submit-button-block">
+                        <button (click)="next()" [ngClass]="{ 'button-disable': !term }"
+                            class="podsliving-button">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

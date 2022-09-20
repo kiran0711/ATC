@@ -1,0 +1,137 @@
+<section class="address-slide-view gap-50 position-relative">
+    <img src="../assets/images/works-banner.jpg" class="img-fluid" />
+
+    <div class="container  banner-title ">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="banner-over-text">{{title}}</h1>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p>PodsLiving will provide you following hosting guidance for listing and maintenance services.</p>
+            </div>
+        </div>
+        <div class="row m-0 mt-5 bg1 align-items-center">
+            <div class="col-sm-6 p-0">
+                <div class="center-div">
+                    <h2 class="mb-4 font-w-normal">Become Self Entrepreneur by</h2>
+                    <!-- <div *ngIf="!loginFlag"> -->
+                    <ul style="padding-left:15px;">
+                        <li>Registering as a host</li>
+                        <li>Listing your property on PodLiving.com in few clicks </li>
+                        <li>Defining your own Cancellation Policy and Seasonal Pricing to have full control of your Cash Flow</li>
+                        <li>Enjoy Instant Payouts for your booked property</li>
+                    </ul>
+                    <a href="javascript:void(0);" (click)="navigate()" class="podsliving-button">Start with listing your property</a>
+                    <!-- </div> -->
+
+                </div>
+            </div>
+            <div class="col-sm-6 p-0">
+                <video id="video1" width="100%" controls poster="../assets/images/v1.jpg" #videoPlayer>
+          <source src="../assets/videos/v2.mp4" type="video/mp4">
+        </video>
+                <!-- <div class="buttons">
+<div class="play control-btn" (click)="play()"><i class="fas fa-play"></i></div>
+<div class="pause control-btn"><i class="fas fa-pause"></i></div>
+              </div> -->
+            </div>
+        </div>
+        <div class="row m-0 mt-5 bg2 align-items-center hidden">
+
+            <div class="col-sm-6 p-0">
+                <video id="video1" width="100%" controls poster="../assets/images/ss11.jpg" #videoPlayer>
+          <source src="../assets/videos/v1.mp4" type="video/mp4">
+        </video>
+            </div>
+            <div class="col-sm-6 p-0">
+                <div class="center-div">
+                    <h2 class="mb-4">Digital Leasing Experience</h2>
+                    <!-- <a href="#" class="podsliving-button">Book Now</a>
+                <a href="#" class="podsliving-button">Lease Now</a> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row m-0 mt-5 bg1 align-items-center">
+        <div class="col-sm-6 p-0"><div class="center-div">
+            <h2 class="mb-4">Need Help To Up-Keep Your Property?</h2>
+            <p>PodsLiving will help you in management of your Property.</p>
+            <a href="javascript:void(0);"  [routerLink]="['/faq']" class="podsliving-button">Learn More</a>
+        </div></div>
+        <div class="col-sm-6 p-0">
+            <video id="video1" width="100%" controls  poster="../assets/images/ss22.jpg" #videoPlayer>
+                <source src="../assets/videos/v3.mp4" type="video/mp4">
+              </video>
+        </div>
+    </div>
+    <div class="row m-0 mt-5 bg2 align-items-center">
+        
+        <div class="col-sm-6 p-0">
+            <video id="video1" width="100%" controls  poster="../assets/images/ss33.jpg" #videoPlayer>
+                <source src="../assets/videos/v4.mp4" type="video/mp4">
+              </video>
+        </div>
+        <div class="col-sm-6 p-0">
+            <div class="center-div">
+                <h2 class="mb-4">What Other Hosts Are Talking About Podsliving?</h2>
+                
+            </div>
+        </div>
+    </div> -->
+    </div>
+</section>
+
+<div #continue_to_host class="modal fade" id="continue_to_host" tabindex="-1" role="dialog" aria-labelledby="continue_to_host" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-modal-wrapp">
+                    <a id="closeUserTypeModal" href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img src="./assets/images/cross.svg" alt="" /></a>
+
+
+
+                    <div class="user-modal-image-block">
+                        <div class="login-image-content-block">
+                            <div class="login-modal-title text-white text-center">
+                                Enjoy hosting &<br> renting experience
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-modal-content-wrapp position-relative">
+
+
+                        <div class="position-relative w-100">
+                            <div class="change-user-modal-right-content-block d-flex align-items-center">
+                                <div class="login-modal-content-block profile-image-block text-center shift-top-30">
+                                    <div class="row">
+                                        <div class="col-md-9 mx-auto">
+                                            <div class="text-center mb-3 text-24 fonmt-weight-normal">Do you want to continue as a <strong>Host</strong> and start with listing your property</div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-6 mx-auto mb-3">
+                                            <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="podsliving-button w-100 m-width-auto transparent" (click)="ChangeRegistrationType()">Continue</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

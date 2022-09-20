@@ -1,0 +1,69 @@
+.sorting-select {
+    border: 0 !important;
+    outline: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("/assets/images/sort-24px.svg");
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    padding-right: 15px;
+  }
+  
+  .fixed {
+    position: fixed;
+    width: 100%;
+    transition: 0.3s linear;
+    top: 0;
+  }
+  .notfixed {
+    position: static;
+    transition: 0.3s linear;
+    top: -60px;
+  }
+  .fixed .landing-banner-form-wrapp {
+    margin-top: 0px;
+  }
+  
+  .landing-banner-form-wrapp-custom{
+    background-color: #f8f8f8; 
+    border: 1px solid #dddddd;
+  }
+
+
+
+
+
+  .service-image {
+    height: 20px;
+  }
+  /* width */
+  .search-result-grid-wrapp::-webkit-scrollbar {
+    width: 5px;border-radius: 10px;
+  }
+  
+  /* Track */
+  .search-result-grid-wrapp::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .search-result-grid-wrapp::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  .search-result-grid-wrapp::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  .srch-btm-amount-block {
+    width: 30%;
+  }
+
+
+  agm-map{
+    height: 100%;
+    width: 100%;
+  }
+  

@@ -1,0 +1,227 @@
+<div class="admin-panel-wrapp">
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+
+  <!-- <div class="sidebar-wrapp">
+    <div class="sidebar-block">
+      <ul>
+        <li class="cusror-pointer">
+          <a (click)="navigateDashboard()"
+            ><img
+              src="./assets/images/dashboard-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/dashboard-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Dashboard</a
+          >
+        </li>
+        <li class="cusror-pointer" [routerLink]="['/booking/booking-history']">
+          <a
+            ><img
+              src="./assets/images/bookings-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/bookings-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Bookings</a
+          >
+        </li>
+        <!-- <li>
+            <a 
+              ><img
+                src="./assets/images/favorites-black.svg"
+                alt=""
+                class="inactive-image-block"
+              /><img
+                src="./assets/images/favorites-blue.svg"
+                alt=""
+                class="active-image-block"
+              />Favorites</a
+            >
+          </li>
+          <li>
+            <a 
+              ><img
+                src="./assets/images/recently-viewed-black.svg"
+                alt=""
+                class="inactive-image-block"
+              /><img
+                src="./assets/images/recently-viewed-blue.svg"
+                alt=""
+                class="active-image-block"
+              />Recently Viewed</a
+            >
+          </li>
+          <li>
+            <a 
+              ><img
+                src="./assets/images/messages-black.svg"
+                alt=""
+                class="inactive-image-block"
+              /><img
+                src="./assets/images/messages-blue.svg"
+                alt=""
+                class="active-image-block"
+              />Messages <span class="menu-notification-block">6</span></a
+            >
+          </li>
+          <li>
+            <a 
+              ><img
+                src="./assets/images/notifications-black.svg"
+                alt=""
+                class="inactive-image-block"
+              /><img
+                src="./assets/images/notifications-blue.svg"
+                alt=""
+                class="active-image-block"
+              />Notifications <span class="menu-notification-block">6</span></a
+            >
+          </li>
+          <li>
+            <a 
+              ><img
+                src="./assets/images/partners-black.svg"
+                alt=""
+                class="inactive-image-block"
+              /><img
+                src="./assets/images/partners-blue.svg"
+                alt=""
+                class="active-image-block"
+              />Partners</a
+            >
+          </li> -->
+  <!-- <li class="cusror-pointer" [routerLink]="['/booking/wallet']">
+          <a
+            ><img
+              src="./assets/images/wallet-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/wallet-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Wallet</a
+          >
+        </li>
+        <li class="cusror-pointer active" [routerLink]="['/booking/invoices']">
+          <a
+            ><img
+              src="./assets/images/bookings-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/bookings-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Invoices</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>  -->
+  <div class="admin-panel-cnt-wrapp pt-0">
+    <div class="container-fluid">
+      <div class="title-block row justify-content-between">
+        <div class="col-md-6 mt-5">
+          <h2>Invoices</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 table-even-odd-wrapp mx-auto">
+          <div class="table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+              <thead>
+                <tr>
+                  <!-- <th class="check-table-block">
+                    <div class="checkbox mb-0">
+                      <input type="checkbox" id="check_1" />
+                      <label for="check_1"></label>
+                    </div>
+                  </th> -->
+                  <th>#</th>
+                  <th>Booking Number</th>
+                  <th>Date</th>
+                  <th>Billing For</th>
+                  <th class="text-right">Total</th>
+                  <th class="text-right">Refund</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let invoice of invoices; let i = index">
+                  <!-- <td class="check-table-block">
+                    <div class="checkbox mb-0">
+                      <input type="checkbox" id="invoice-{{ i }}" />
+                      <label for="invoice-{{ i }}"></label>
+                    </div>
+                  </td> -->
+                  <td>{{i+1}}</td>
+                  <td>
+                    {{ invoice.booking_number }}
+                  </td>
+                  <td>{{ invoice.created_on |date: 'medium'}}</td>
+                  <td>{{ invoice.booking_guest }}</td>
+            
+                  <td class="text-right">
+                    <strong>{{invoice.booking_amount | currency}}</strong>
+                  </td>
+                  <td class="text-right">
+                    <strong>{{invoice.refund_amount != null ? (invoice.refund_amount | currency) : (0.0 |
+                      currency)}}</strong>
+                  </td>
+                  <td class="text-center">
+
+                    <span *ngIf="invoice.invoice_type == 1" class="badge rounded-pill badge-success">{{ invoice.status
+                      }}</span>
+                    <span *ngIf="invoice.invoice_type == 3" class="badge rounded-pill badge-secondary">{{ invoice.status
+                      }}</span>
+
+                    <!-- <span *ngIf="invoice.invoice_type == 1" [routerLink]="['/booking/invoice', invoice.booking_id, 1]"
+                      class="btn btn-outline-success">{{ invoice.status }}</span>
+                    <span *ngIf="invoice.invoice_type == 3" [routerLink]="['/booking/invoice', invoice.booking_id, 3]"
+                      class="btn btn-outline-success">{{ invoice.status }}</span> -->
+                    <!-- <span class="td-border-label-block red">Failed</span> -->
+                  </td>
+                  <td class="text-center">
+                    <a class="btn-sm" (click)="onClickInvoiceDetails(invoice)" title="View Invoice Details">
+                      <i class="fa fa-eye" aria-hidden="true" ></i> View
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <!-- <pods-table
+            [colDef]="columns"
+            [dataList]="invoices"
+            (onSort)="sortBooking($event)"
+            (onClick)="onClick($event)"
+          ></pods-table> -->
+
+
+
+          <!-- <div
+            *ngIf="!invoices || !invoices.length"
+            class="text-center"
+            style="margin-top: 50px"
+          >
+            No Invoices Found
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

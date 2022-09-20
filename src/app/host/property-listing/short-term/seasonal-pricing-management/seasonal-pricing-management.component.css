@@ -1,0 +1,144 @@
+i.seasonal-price-management,
+span.seasonal-price-management,
+i.peak-season,
+span.peak-season,
+i.moderate-season,
+span.moderate-season,
+i.slowslow-season,
+span.peak-season {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: default;
+    font-size: 12px;
+    /* font-family: var(--podsLiving-fontfamily); */
+    line-height: 13px;
+}
+
+i.seasonal-price-management[data]:hover:after {
+    content: "This functionality gives you ability to set-up price at pre-defined peak, moderate and slow season for your property and takes the hassle of continious pricing management away.";
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    width: 270px;
+    left: 8px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+span.seasonal-price-management[data]:hover:after {
+    content: "This functionality gives you ability to set-up price at pre-defined peak, moderate and slow season for your property and takes the hassle of continious pricing management away.";
+    position: absolute;
+    top: -66px;
+    color: #fff;
+    width: 235px;
+    text-align: left;
+    left: -20px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+i.peak-season[data]:hover:after {
+    content: "Peak Season definition here...";
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    width: 160px;
+    left: 8px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+span.peak-season[data]:hover:after {
+    content: "Peak Season definition here...";
+    position: absolute;
+    top: -66px;
+    color: #fff;
+    width: 130px;
+    text-align: left;
+    left: -20px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+i.moderate-season[data]:hover:after {
+    content: "Moderate Season definition here...";
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    width: 160px;
+    left: 8px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+span.moderate-season[data]:hover:after {
+    content: "Moderate Season definition here...";
+    position: absolute;
+    top: -66px;
+    color: #fff;
+    width: 130px;
+    text-align: left;
+    left: -20px;
+    background: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: var(--podsLiving-fontfamily);
+}
+
+i.slow-season[data]:hover:after {
+    content: "Slow Season definition here...";
+    position: absolute;
+    top: 0px;
+    color: #fff;
+    width: 160px;
+    left: 8px;
+    background: var(--podsLiving-borderColor);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+span.slow-season[data]:hover:after {
+    content: "Slow Season definition here...";
+    position: absolute;
+    top: -66px;
+    color: #fff;
+    width: 130px;
+    text-align: left;
+    left: -20px;
+    background: black;
+    padding: 5px;
+    /* border-radius: 5px; */
+}
+
+input[disabled] {
+    background-color: #ccc;
+}
+
+input[disabled]+span {
+    background-color: #ccc;
+    color: #000 !important
+}
+
+@media only screen and (min-device-width: 767px) and (max-device-width: 991px) {
+    .create-listing-form.login-modal-form-wrapp.theiaStickySidebar .col-md-6 {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    i.seasonal-price-management[data]:hover:after {
+        z-index: 1;
+        width: 270px;
+        left: unset;
+        right: 0;
+    }
+}

@@ -1,0 +1,442 @@
+<div class="sub-page-wrapp mt-70">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-5 mx-auto">
+        <form class="mt-4" [formGroup]="guestDetailForm">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="mb-5">Review Your Booking</h2>
+            </div>
+            <div class="col-md-8">
+              <div class="border-block">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="border-block-y">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <h3>
+                            {{
+                            bookingData.property.pro_title
+                            ? bookingData.property.pro_title
+                            : ""
+                            }}
+                          </h3>
+                          <div class="mt-1">
+                            <!-- <img src="/assets/images/star.svg" alt="" />
+                            <span>4.2</span> -->
+                            <span class="gray-text ml-1">{{
+                              bookingData.property.city
+                              ? bookingData.property.city
+                              : ""
+                              }}{{
+                              bookingData.property.state
+                              ? ",
+                              " +
+                              bookingData.property.state
+                              : ""
+                              }}{{
+                              bookingData.property.country_region
+                              ? ",
+                              " +
+                              bookingData.property.country_region
+                              : ""
+                              }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border-block-y">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="d-flex justify-content-between">
+                            <div>
+                              <div class="gray-text mb-2">Check-in</div>
+                              <div>
+                                <img src="/assets/images/date.svg" alt="" />
+                                {{ bookingData.booking.checkin_date ? (bookingData.booking.checkin_date | date: "mediumDate") : "" }}
+                              </div>
+                            </div>
+                            <div>
+                              <div class="gray-text mb-2">Check-out</div>
+                              <div>
+                                <img src="/assets/images/date.svg" alt="" />
+                                {{ bookingData.booking.checkout_date ? (bookingData.booking.checkout_date | date: "mediumDate") : "" }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border-block-y">
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div>
+                            {{
+                            bookingData.booking.adults
+                            ? bookingData.booking.adults > 1
+                            ? bookingData.booking.adults + " Adults"
+                            : bookingData.booking.adults + " Adult"
+                            : ""
+                            }}
+                            {{
+                            bookingData.booking.children
+                            ? bookingData.booking.children > 1
+                            ? " |
+                            " +
+                            bookingData.booking.children +
+                            " Children"
+                            : " | " +
+                            bookingData.booking.children +
+                            " Child"
+                            : ""
+                            }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <img src="{{
+                        bookingData.property.coverImageData
+                          ? bookingData.property.coverImageData.image
+                          : ''
+                      }}" onerror="this.src='/assets/images/placeholder.png';" alt="" class="review-booking" />
+                  </div>
+                </div>
+              </div>
+              <div class="border-block">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div>
+                      <div class="d-flex justify-content-between block-title-wrapp">
+                        <h3>Guest 1 Details</h3>
+                        <!-- <div>
+                          <a href="#" class="blue-text text-bold">Login</a> to
+                          prefill guest details
+                        </div> -->
+                      </div>
+
+                      <div class="row align-items-end">
+                        <div class="col-md-6 form-block">
+                          <label for="">First name</label>
+                          <input type="text" placeholder="First Name" formControlName="primary_firstname"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                guestFormControl.primary_firstname.errors &&
+                                (guestFormControl.primary_firstname.dirty ||
+                                  guestFormControl.primary_firstname.touched)
+                            }" />
+                          <div *ngIf="guestFormControl.primary_firstname.errors" class="invalid-feedback">
+                            <div *ngIf="
+                                guestFormControl.primary_firstname.errors
+                                  .required
+                              ">
+                              Please enter First name
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6 form-block">
+                          <label for="">Last name</label>
+                          <input type="text" placeholder="Last name" formControlName="primary_lastname"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                guestFormControl.primary_lastname.errors &&
+                                (guestFormControl.primary_lastname.dirty ||
+                                  guestFormControl.primary_lastname.touched)
+                            }" />
+                          <div *ngIf="guestFormControl.primary_lastname.errors" class="invalid-feedback">
+                            <div *ngIf="
+                                guestFormControl.primary_lastname.errors
+                                  .required
+                              ">
+                              Please enter Last name
+                            </div>
+                          </div>
+                        </div>
+                        <ng-container>
+                          <div class="col-md-6 form-block">
+                            <label for="">Email
+                              <span class="gray-text">(Booking Voucher will be sent to this Email
+                                ID)</span></label>
+                            <input type="email" [email]="true" placeholder="Email ID" formControlName="primary_email"
+                              class="form-control" [ngClass]="{
+                                'is-invalid':
+                                  guestFormControl.primary_email.errors &&
+                                  (guestFormControl.primary_email.dirty ||
+                                    guestFormControl.primary_email.touched)
+                              }" />
+                            <div *ngIf="guestFormControl.primary_email.errors" class="invalid-feedback">
+                              <div *ngIf="
+                                  guestFormControl.primary_email.errors.pattern
+                                ">
+                                Please enter a valid email address
+                              </div>
+                              <div *ngIf="
+                                  guestFormControl.primary_email.errors.required
+                                ">
+                                Please enter email
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 form-block">
+                            <label for="">Mobile Number</label>
+                            <div class="row number-input-wrapp d-flex justify-content-betweenW">
+                              <div class="number-code-block col-md-3">
+                                <select nice-select class="w-100" formControlName="primary_dialing_code"
+                                  style="height: 45px">
+                                  <option value="+01">+01</option>
+                                  <option value="+91">+91</option>
+                                  <option value="+60">+60</option>
+                                </select>
+                              </div>
+                              <div class="number-block col-md-9">
+                                <input type="text" placeholder="Mobile Number" formControlName="primary_phone"
+                                  class="form-control" [ngClass]="{
+                                    'is-invalid':
+                                      guestFormControl.primary_phone.errors &&
+                                      (guestFormControl.primary_phone.dirty ||
+                                        guestFormControl.primary_phone.touched)
+                                  }" />
+                                <div *ngIf="guestFormControl.primary_phone.errors" class="invalid-feedback">
+                                  <div *ngIf="
+                                      guestFormControl.primary_phone.errors
+                                        .pattern
+                                    ">
+                                    Please enter a valid phone number
+                                  </div>
+                                  <div *ngIf="
+                                      guestFormControl.primary_phone.errors
+                                        .required
+                                    ">
+                                    Please enter phone number
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6 form-block">
+                                  <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-3">
+                                    <label>Vaccination</label>
+                                    <label class="switch">
+                                      <input type="checkbox" checked="" />
+                                      <span class="slider round"></span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 form-block">
+                                  <label>Upload Certificate</label>
+                                  <input type="text" placeholder="Attach file" />
+                                </div> -->
+                        </ng-container>
+                      </div>
+                    </div>
+                    <div class="border-block-y" formArrayName="items" *ngFor="
+                        let item of guestFormGroups.controls;
+                        let i = index
+                      ">
+                      <div [formGroupName]="i">
+                        <div class="d-flex justify-content-between block-title-wrapp">
+                          <h3>Guest {{ i + 2 }} Details</h3>
+                          <!-- <div>
+                            <a href="#" class="blue-text text-bold">Login</a> to
+                            prefill guest details
+                          </div> -->
+                        </div>
+
+                        <div class="row align-items-end">
+                          <div class="col-md-6 form-block">
+                            <label for="">First name</label>
+                            <input type="text" placeholder="First Name" formControlName="firstname" class="form-control"
+                              [ngClass]="{
+                                'is-invalid': getValidity(i, 'firstname')
+                              }" />
+                            <div *ngIf="getValidity(i, 'firstname')" class="invalid-feedback">
+                              Please enter First name
+                            </div>
+                          </div>
+
+                          <div class="col-md-6 form-block">
+                            <label for="">Last name</label>
+                            <input type="text" placeholder="Last name" formControlName="lastname" class="form-control"
+                              [ngClass]="{
+                                'is-invalid': getValidity(i, 'lastname')
+                              }" />
+                            <div *ngIf="getValidity(i, 'lastname')" class="invalid-feedback">
+                              Please enter Last name
+                            </div>
+                          </div>
+                          <div class="col-md-6 form-block" *ngIf="i > bookingData.booking.adults">
+                            <div class="checkbox">
+                              <input type="checkbox" id="guest_{{ i + 1 }}" formControlName="is_child"
+                                class="form-control" />
+                              <label for="guest_{{ i + 1 }}" class="font-w-normal">Below 12 years of age</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border-block">
+                <div class="text-20 text-bold">Price Details</div>
+                <div class="right-wrapp mt-3">
+                  <table class="table">
+                    <!-- <tr class="table-primary">
+                          <th>Booking Date</th>
+                          <th>Fee/night</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr *ngFor="let prop of keys(bookingInfo.display_dates_with_price)">
+                          <td>{{bookingInfo.display_dates_with_price[prop].date}}</td>
+                          <td>{{bookingInfo.display_dates_with_price[prop].base_price}}</td>
+                          <td>{{bookingInfo.display_dates_with_price[prop].message}}</td>
+                        </tr> -->
+                    <tr>
+                      <td><strong>Total</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{
+                          bookingData.pricing.total_accomodation_charge
+                          }}</strong>
+                      </td>
+                    </tr>
+                    <tr *ngIf="bookingData.pricing.additional_guest_charge">
+                      <td><strong>Additional Guest Charges</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{
+                          bookingData.pricing.additional_guest_charge
+                          }}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cleaning Fee</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{ bookingData.pricing.cleaning_charge }}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>PodsLiving Service Fee</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{
+                          bookingData.pricing.pods_guest_service_charge
+                          }}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Tax</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{ bookingData.pricing.display_tax }}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>MAT</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{ bookingData.pricing?.accomodation_tax }}</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Grand Total (All inclusive)</strong></td>
+                      <td colspan="2" class="text-right">
+                        <strong>${{ bookingData.pricing.guest_pays }}</strong>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- <div class="right-block d-flex justify-content-between mb-3">
+                    <div>Total</div>
+                    <div>
+                      {{bookingData.pricing.total_accomodation_charge ? bookingData.pricing.total_accomodation_charge : ""}}
+                    </div>
+                  </div>
+                  <div class="right-block d-flex justify-content-between mb-3"
+                    *ngIf="bookingData.pricing.additional_guest_charge">
+                    <div>Additional Guest Fee</div>
+                    <div>
+                      {{bookingData.pricing.additional_guest_charge ? bookingData.pricing.additional_guest_charge : ""}}
+                    </div>
+                  </div>
+                  <div class="right-block d-flex justify-content-between mb-3">
+                    <div>Cleaning Fee</div>
+                    <div>{{bookingData.pricing.cleaning_charge ? bookingData.pricing.cleaning_charge : ""}}</div>
+                  </div>
+                  <div class="right-block d-flex justify-content-between mb-3">
+                    <div>Service Fee</div>
+                    <div>
+                      {{bookingData.pricing.pods_guest_service_charge ? bookingData.pricing.pods_guest_service_charge : ""}}
+                    </div>
+                  </div>
+                  <div class="right-block d-flex justify-content-between mb-3">
+                    <div>Tax</div>
+                    <div>{{bookingData.pricing.display_tax ? bookingData.pricing.display_tax : ""}}</div>
+                  </div>
+                  <div class="right-block d-flex justify-content-between mb-3">
+                    <div>Total (All inc.)</div>
+                    <div>{{bookingData.pricing.guest_pays ? bookingData.pricing.guest_pays : ""}}</div>
+                  </div> -->
+                </div>
+              </div>
+              <!-- <div class="text-center my-3">
+                    <a
+                      href="javascript:void(0);"
+                      class="blue-text text-bold"
+                      data-toggle="modal"
+                      data-target="#promocode"
+                      >Have a Promocode?</a
+                    >
+                  </div> -->
+              <div class="error-msg f-14 f-w-bold mt-3 mb-4" *ngIf="bookingError">
+                {{ bookingError }}
+              </div>
+              <div *ngIf="bookingData.pricing.policy.text">
+                <p class="mb-3 mt-4 color-black">
+                  <strong>Cancellation Policy</strong>
+                </p>
+                <p>{{ bookingData.pricing.policy.text }}</p>
+              </div>
+              <div class="checkbox-group mb-4 mt-3">
+                <input type="checkbox" id="craet_policy_3" formControlName="agreed" class="form-control" [ngClass]="{
+                    'is-invalid':
+                      guestFormControl.agreed.errors &&
+                      (guestFormControl.agreed.dirty ||
+                        guestFormControl.agreed.touched)
+                  }" />
+                <label for="craet_policy_3" class="font-w-normal">I have reviewed the policy above and I agreed to
+                  it.</label>
+              </div>
+              <a class="podsliving-button mb-3 w-100" [ngClass]="{
+                  'button-disable': !guestDetailForm.valid || bookingError
+                }" (click)="save()">Continue to Pay ${{ bookingData.pricing.guest_pays }}</a>
+              <!-- <a class="podsliving-button transparent w-100 mb-4">Book Now and Pay Later</a> -->
+
+              <!-- <div class="icon-list">
+                <ul class="list">
+                  <li class="color1">
+                    Free cancellation until 24 hours before check-in (excluding
+                    PodsLiving service fee)
+                  </li>
+                  <li class="color2">
+                    For a full refund (excluding PodsLiving service fee) , the
+                    guest must cancel at least 24 hours before the listing’s local
+                    check-in time (shown in the confirmation email).
+                  </li>
+                  <li class="color3">
+                    If the guest cancels less than 24 hours before check-in, the
+                    first night and PodsLiving service fee are non-refundable.
+                  </li>
+                  <li class="color4">
+                    If the guest arrives and decides to leave early, the nightly
+                    rate for the nights not spent 24 hours after cancellation are
+                    fully refunded.
+                  </li>
+                </ul>
+              </div> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- </div> -->

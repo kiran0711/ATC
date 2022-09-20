@@ -1,0 +1,494 @@
+<div class="admin-panel-wrapp">
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+  <div class="admin-panel-cnt-wrapp pt-0">
+    <div class="container-fluid">
+      <div class="title-block row justify-content-between">
+        <div class="col-md-12 mt-5">
+          <h2>Dashboard: Welcome back, {{sharedService.userDisplayNameValue}}</h2>
+        </div>
+      </div>
+      <!-- <div class="top-blue-block">
+        <span>Upload your Government ID to start Hosting.</span>
+        <div class="file-upload-only-name">
+          <div class="file-upload">
+            <div class="file-upload-wrapper" [routerLink]="['/profile/govt-id']" data-text="Upload Now">
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="row dash-top-buttons-wrapp">
+        <div class="col-md-7">
+          <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="border-block box-shadow">
+            <div class="text-48 text-bold mb-2 w-100">{{
+              dashboardCount.property.shortterm_count }}</div>
+            <div class="mb-3 mt-0 w-100">Vacation Rental Property</div>
+            <a [routerLink]="['/host/property-list']" [queryParams]="{ term: 'short' }" class="podsliving-button mr-2"><i class="fa fa-list" aria-hidden="true" ></i> Manage</a>
+            <a [routerLink]="['/host/property-listing/short-term']" class="podsliving-button"><i class="fa fa-plus" aria-hidden="true" ></i> Create</a>
+          </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="border-block box-shadow">
+            <div class="text-48 text-bold mb-2 w-100">{{
+              dashboardCount.property.longterm_count }}</div>
+            <div class="mb-3 mt-0 w-100">Long Term Leasing Property</div>
+            <a [routerLink]="['/host/property-list/']" [queryParams]="{ term: 'long'}" class="podsliving-button mr-2"><i class="fa fa-list" aria-hidden="true" ></i> Manage</a>
+            <a [routerLink]="['/host/property-listing/long-term']" class="podsliving-button"><i class="fa fa-plus" aria-hidden="true" ></i> Create</a>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <div class="border-block box-shadow">
+                <div class="text-48 text-bold mb-2 w-100">
+                  {{dashboardCount.booking_shortterm.bookings_count+dashboardCount.booking_longterm.bookings_count }}</div>
+                <div class="mb-3 mt-0 w-100">Bookings</div>
+                <a [routerLink]="['/booking/booking-history']" class="podsliving-button"><i class="fa fa-list" aria-hidden="true" ></i> Manage</a>
+              </div>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="border-block box-shadow">
+                <div class="text-48 text-bold mb-2 w-100">{{ walletBalance | currency}}</div>
+                <div class="mb-3 mt-0 w-100">Earned</div>
+                <a [routerLink]="'/booking/wallet'" class="podsliving-button"><i class="fa fa-credit-card" aria-hidden="true" ></i> Wallet</a>
+    
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 dash-top-buttons-wrapp">
+        <div class="col-md-12 simple-tabs-wrapp td-pointer">
+          <ul class="nav nav-pills mb-4" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#shortTerm">Vacation Rental
+                Bookings</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#longTerm">Long Term Leasing Bookings</a>
+            </li>
+          </ul>
+          <div class="tab-content border p-4">
+            <div id="shortTerm" class="tab-pane fade active show">
+              <div class="col-md-12 simple-tabs-wrapp">
+                <ul class="nav nav-pills mb-4" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">Ongoing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu1">Requested</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu2">Upcomings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#menu3">Past</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="home" class="tab-pane fade in active show">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Booked By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of ongoingBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                      <img [src]="element.property_guest.profile_picture" alt="" />
+                                      <div>
+                                        <div> </div>
+                                      </div>
+                                    </div> -->
+                                {{element.property_guest.firstname}} {{element.property_guest.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                      <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                      <div>
+                                       
+                                      </div>
+                                    </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot></tfoot>
+                        </table>
+                      </div>
+
+
+                      <!-- <pods-table [colDef]="columns" [dataList]="ongoingBooking" (onClick)="onClick($event)"></pods-table>
+                        <div *ngIf="!ongoingBooking || !ongoingBooking.length" class="text-center" style="margin-top: 50px">
+                          No Ongoing Bookings
+                        </div> -->
+                    </div>
+
+                  </div>
+                  <div id="menu1" class="table-even-odd-wrapp tab-pane fade">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+
+                      <div class="table-responsive with-image-block">
+                        <!-- <span class="comingsoon">coming soon</span> -->
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerBookingRequest"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Booked By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-center">Details</th>
+                              <th class="text-center">Stauts</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let booking of bookingRequest; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block">
+                                      <img src="{{
+                                      booking.requested_guest.profile_picture
+                                    }}" alt="" />
+                                      <div>
+                                        <div>
+                                         
+                                        </div>
+                                      </div>
+                                    </div> -->
+                                {{ booking.billing_firstname }}
+                                {{ booking.billing_lastname }}
+                              </td>
+                              <td (click)="onClick(booking.requested_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                      <img src="{{
+                                      booking.requested_property
+                                        .porperty_display_picture
+                                    }}" alt="" />
+                                      <div>
+                                        
+                                      </div>
+                                    </div> -->
+                                <div>
+                                  {{ booking.requested_property.pro_title }}
+                                </div>
+                                <div class="text-14 gray-text">
+                                  {{ booking.requested_property.city }}
+                                </div>
+                              </td>
+                              <td>{{ booking.total_guest }}</td>
+                              <td>{{ booking.total_stay_nights }}</td>
+                              <td>{{ booking.checkin_date | date: "mediumDate" }} <br>
+                                {{ booking.checkout_date | date: "mediumDate" }}</td>
+                              <td>{{ booking.created_on | date: "medium"}}</td>
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingRequestDetails(booking.request_id)"
+                                  title="View Booking Request Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+
+                              </td>
+                              <td class="text-center">
+
+                                <span *ngIf="booking.request_status == 1"
+                                  class="badge rounded-pill badge-secondary">Pending</span>
+                                <span *ngIf="booking.request_status == 2"
+                                  class="badge rounded-pill badge-success">Accepted</span>
+                                <span *ngIf="booking.request_status == 3"
+                                  class="badge rounded-pill badge-danger">cancelled</span>
+                                <span *ngIf="booking.request_status == 4"
+                                  class="badge rounded-pill badge-primary">Booked</span>
+
+                              </td>
+                              <td class="text-center">
+
+                                <div class="btn-sm-group" *ngIf="booking.request_status == 1">
+                                  <a class="btn-sm" (click)="onRequestAction(booking, 2)">Accept</a>
+                                  <a class="btn-sm white" (click)="onRequestAction(booking, 3)">Cancel</a>
+                                </div>
+                                <ng-container *ngIf="booking.request_status != 1">
+                                  Completed
+                                </ng-container>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- <pods-table [colDef]="columns" [dataList]="ongoingBooking" (onClick)="onClick($event)"></pods-table> -->
+                      <!-- <div *ngIf="!bookingRequest || !bookingRequest.length" class="text-center" style="margin-top: 50px">
+                            No Bookings Request
+                          </div> -->
+                    </div>
+                  </div>
+                  <div id="menu2" class="table-even-odd-wrapp tab-pane fade">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerUpcomingBooking"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Booked By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of futureBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                      <img [src]="element.property_guest.profile_picture" alt="" />
+                                      <div>
+                                        <div> </div>
+                                      </div>
+                                    </div> -->
+                                {{element.property_guest.firstname}} {{element.property_guest.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                      <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                      <div>
+                                       
+                                      </div>
+                                    </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- <pods-table [colDef]="columns" [dataList]="futureBooking" (onClick)="onClick($event)"></pods-table>
+                        <div *ngIf="!futureBooking || !futureBooking.length" class="text-center" style="margin-top: 50px">
+                          No Upcoming Bookings
+                        </div> -->
+                    </div>
+                  </div>
+                  <div id="menu3" class="tab-pane fade">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerPastBooking"
+                          class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Booked By</th>
+                              <th>Property</th>
+                              <th>Guest(s)</th>
+                              <th>Night(s)</th>
+                              <th style="width: 70px;">Check-in<br>Check-out</th>
+                              <th>CreatedAt</th>
+                              <th class="text-right">Total</th>
+                              <th class="text-center">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let element of pastBooking; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                      <img [src]="element.property_guest.profile_picture" alt="" />
+                                      <div>
+                                        <div> </div>
+                                      </div>
+                                    </div> -->
+                                {{element.property_guest.firstname}} {{element.property_guest.lastname}}
+                              </td>
+                              <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <!-- <div class="d-flex align-items-center table-image-block">
+                                      <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                      <div>
+                                       
+                                      </div>
+                                    </div> -->
+                                <div>{{element.booked_property.pro_title}}</div>
+                                <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                              </td>
+                              <td>
+                                {{ element.booked_total_guest}}
+                              </td>
+                              <td>
+                                {{ element.total_stay_nights}}
+                              </td>
+                              <td>
+                                {{ element.check_in_date | date: 'mediumDate'}} <br>
+                                {{ element.exit_date | date: 'mediumDate'}}
+                              </td>
+                              <td>{{ element.created_on | date: "medium"}}</td>
+
+                              <td class="text-right">
+                                <strong> {{element.amount | currency}}</strong>
+                              </td>
+
+
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)"
+                                  title="View Booking Details">
+                                  <i class="fa fa-eye" aria-hidden="true"></i> View
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- <pods-table [colDef]="columns" [dataList]="pastBooking" (onClick)="onClick($event)">
+                        </pods-table>
+                        <div *ngIf="!pastBooking || !pastBooking.length" class="text-center" style="margin-top: 50px">
+                          No Past Bookings
+                        </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="longTerm" class="tab-pane fade">
+              <div class="col-md-12 simple-tabs-wrapp">
+                <ul class="nav nav-pills mb-4" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#longTerm_Requested">Requested</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="longTerm_Requested" class="table-even-odd-wrapp tab-pane fade active show">
+                    <div class="col-md-12 table-even-odd-wrapp mx-auto">
+                      <div class="table-responsive with-image-block">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerLongTermBookingRequest" class="row-border hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Booked By</th>
+                              <th>Property</th>
+                              <th>CreatedAt</th>
+                              <th class="text-center">Stauts</th>
+                              <th class="text-center">Details</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let booking of longTermBookingRequests; let i = index">
+                              <td>{{i+1}}</td>
+                              <td>
+                                {{ booking.billing_firstname }}
+                                {{ booking.billing_lastname }}
+                              </td>
+                              <td (click)="onClickLongTermPropertyDetails(booking.requested_property.pro_slug)" style="cursor: pointer"
+                                title="View Property Details">
+                                <div>
+                                  {{ booking.requested_property.pro_title }}
+                                </div>
+                                <div class="text-14 gray-text">
+                                  {{ booking.requested_property.city }}
+                                </div>
+                              </td>
+                              <td>{{ booking.created_on | date: "medium"}}</td>
+                              <td class="text-center">
+
+                                <span *ngIf="booking.request_status == 1"
+                                  class="badge rounded-pill badge-secondary">Pending</span>
+                                <span *ngIf="booking.request_status == 2"
+                                  class="badge rounded-pill badge-success">Accepted</span>
+                                <span *ngIf="booking.request_status == 3"
+                                  class="badge rounded-pill badge-danger">cancelled</span>
+                                <span *ngIf="booking.request_status == 4"
+                                  class="badge rounded-pill badge-primary">Booked</span>
+
+                              </td>
+                              <td class="text-center">
+                                <a class="btn-sm" (click)="onClickLongTermBookingRequestDetails(booking.request_id)"
+                                  title="View Booking Request Details"> <i class="fa fa-eye" aria-hidden="true"></i>
+                                  View</a>
+                              </td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

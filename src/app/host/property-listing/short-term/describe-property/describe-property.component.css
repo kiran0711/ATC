@@ -1,0 +1,16 @@
+.lable-cnt-block {
+  margin-bottom: 40px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #000000;
+}
+
+.podsliving-button {
+  /* border-radius: 4px; */
+}

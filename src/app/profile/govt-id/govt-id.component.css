@@ -1,0 +1,27 @@
+.hidden {
+  visibility: hidden;
+}
+.keep-back {
+  z-index: 1;
+}
+.keep-front {
+  z-index: 3;
+}
+i.pwd-info,
+span.pwd-info {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+}
+span.pwd-info[data]:hover:after {
+  content: "View Uploaded Document";
+  position: absolute;
+  top: -40px;
+  color: #fff;
+  width: 235px;
+  text-align: left;
+  left: -100px;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+}

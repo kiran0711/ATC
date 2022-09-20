@@ -1,0 +1,50 @@
+<section class="polices-view mt-70 gap-top-70 polocies-container">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-12 mt-70 overflow-view">
+                <ul class="nav policies justify-content-center tabs-scroll-wrapp">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/terms-and-conditions']">Terms &amp; <br>Conditions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/registration-policy']">Registration <br>Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/price-payment-refund']">Price, Payment<br> &amp; Refund</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/disclosure-of-information']">Disclosure <br>of Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/cookie-policy']">Cookie <br> Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/privacy-policy']">Privacy <br>Policy</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/intellectual-property-rights']">Intellectual <br>Property Rights</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/internet-based-advertising']">Internet-based <br>Advertising</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-center" routerLinkActive="active" data-toggle="tab" [routerLink]="['/policies/prohibited-actions']">Prohibited <br>Actions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

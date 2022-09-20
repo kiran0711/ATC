@@ -1,0 +1,543 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+  <div class="prgress-bar percent-70"></div>
+  <div
+    class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4"
+  >
+    <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+    <a
+      [routerLink]="['/host/property-listing/short-term/short-term-pricing']"
+      [queryParams]="{ proId: pro_idd }"
+    >
+      <img src="./assets/images/back.svg" alt="" />
+    </a>
+    <a
+      (click)="saveAndExit()"
+      [ngClass]="{ 'button-disable': !isValid }"
+      class="btn btn-outline-primary"
+      ><strong>Save & Exit</strong></a
+    >
+  </div>
+  <div class="col-md-12 mb-4">
+    <h2>
+      Seasonal Pricing Management
+      <span>
+        
+        <i id="toggler"  class="far fa-info-circle mr-1 mt-1 seasonal-price-management popover-base">
+          <span class="popover-content">This functionality gives you ability to set-up price at pre-defined peak, moderate and slow season for your property and takes the hassle of continious pricing management away.</span>
+        </i>
+      </span>
+    </h2>
+  </div>
+
+  <div class="biglabel-block form-block col-md-12">
+    <h3 class="text-24 mb-3">Peak Season</h3>
+
+    <ng-container *ngFor="let season of peakSeasons; let i = index">
+      <div class="row">
+        <div
+          class="col-md-12"
+          *ngIf="i > 0"
+          style="border-top: 1px solid lightgray; text-align: end"
+        >
+          <span class="sml-circle"
+            ><i
+              class="close-icon fa fa-times cursor-pointer"
+              (click)="removeSeason(i, 0)"
+              aria-hidden="true"
+            ></i
+          ></span>
+        </div>
+        <div class="col-md-12">
+          <div class="input-block">
+            <label class="text-left pb-2 font-w-normal">From and To Date</label>
+            <input
+              style="cursor: pointer; top: 40px; padding-left: 45px"
+              placeholder="Select from and to date"
+              bsDaterangepicker
+              [(ngModel)]="season.bsDaterangepicker" 
+              [bsConfig]="{ rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY', showWeekNumbers: false, containerClass: 'theme-blue',minDate: today}">
+            <img
+              style="top: 47px"
+              src="./assets/images/date.svg"
+              alt=""
+              class="input-icon"
+            />
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <label class="font-w-normal">From</label>
+          <input
+            type="date"
+            (ngModelChange)="getNextDate($event, i, 1)"
+            min="{{ currentDate }}"
+            onkeydown=" false"
+            [(ngModel)]="season.from"
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="font-w-normal">To</label>
+          <input
+            type="date"
+            min="{{ getDatePlusOne(season.from) }}"
+            [disabled]="!season.from"
+            onkeydown="return false"
+            [(ngModel)]="season.to"
+          />
+        </div> -->
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label class="weight-normal">Action</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'peak-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_RAISE"
+                />
+                <span class="btn-v">Raise</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'peak-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_REDUCE"
+                />
+                <span class="btn-v">Reduce</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="weight-normal">Change Price By</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'peak-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_PERCENTAGE"
+                />
+                <span class="btn-v">Percentage</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'peak-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_AMOUNT"
+                />
+                <span class="btn-v">Amount</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 form-block">
+          <div class="d-flex justify-content-between">
+            <label class="text-bold"
+              >Enter
+              {{
+                season.change_price_by === CHANGE_BY_PERCENTAGE
+                  ? "Percentage"
+                  : "Amount"
+              }}</label
+            >
+            <!-- <span class="orange-text text-bold">New Price: $1500</span> -->
+          </div>
+          <input
+            type="number"
+            [disabled]="!season.bsDaterangepicker[0]"
+            [(ngModel)]="season.price"
+            class="form-control"
+            #peakSeason="ngModel"
+            name="peakSeason{{ i }}"
+            [ngClass]="{
+              'is-invalid':
+                !season.price && (peakSeason.dirty || peakSeason.touched)
+            }"
+          />
+          <div
+            *ngIf="!season.price && (peakSeason.dirty || peakSeason.touched)"
+            class="error-msg"
+          >
+            {{
+              season.change_price_by === CHANGE_BY_PERCENTAGE
+                ? "percentage"
+                : "amount"
+            }}
+            should be greater than 0
+          </div>
+        </div>
+        <!-- <div class="col-md-6 form-block">
+            <a (click)="removeSeason(i,0)" 
+            class="podsliving-button"
+            *ngIf="i>0"
+            >Remove</a>
+        </div> -->
+      </div>
+    </ng-container>
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <a (click)="addPeakSeason()" class="cursor-pointer add-more-text"
+          ><span>+</span> Add Another Peak Season</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="biglabel-block form-block col-md-12">
+    <h3 class="text-24 mb-3">Moderate Season</h3>
+    <ng-container *ngFor="let season of moderateSeasons; let i = index">
+      <div class="row">
+        <div
+          class="col-md-12"
+          *ngIf="i > 0"
+          style="border-top: 1px solid lightgray; text-align: end"
+        >
+          <span class="sml-circle"
+            ><i
+              class="close-icon fa fa-times cursor-pointer bb"
+              (click)="removeSeason(i, 1)"
+              aria-hidden="true"
+            ></i
+          ></span>
+        </div>
+        <div class="col-md-12">
+          <div class="input-block">
+            <label class="text-left pb-2 font-w-normal">From and To Date</label>
+            <input
+              style="cursor: pointer; top: 40px; padding-left: 45px"
+              placeholder="Select from and to date"
+              bsDaterangepicker
+              [(ngModel)]="season.bsDaterangepicker" 
+              [bsConfig]="{ rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY', showWeekNumbers: false, containerClass: 'theme-blue',minDate: today}">
+            <img
+              style="top: 47px"
+              src="./assets/images/date.svg"
+              alt=""
+              class="input-icon"
+            />
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <label class="font-w-normal">From</label>
+          <input
+            type="date"
+            (ngModelChange)="getNextDate($event, i, 2)"
+            min="{{ currentDate }}"
+            onkeydown="return false"
+            [(ngModel)]="season.from"
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="font-w-normal">To</label>
+          <input
+            type="date"
+            min="{{ getDatePlusOne(season.from) }}"
+            [disabled]="!season.from"
+            onkeydown="return false"
+            [(ngModel)]="season.to"
+          />
+        </div> -->
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label class="weight-normal">Action</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'modrate-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_RAISE"
+                />
+                <span class="btn-v">Raise</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'modrate-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_REDUCE"
+                />
+                <span class="btn-v">Reduce</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="weight-normal">Change Price By</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'modrate-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_PERCENTAGE"
+                />
+                <span class="btn-v">Percentage</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'modrate-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_AMOUNT"
+                />
+                <span class="btn-v">Amount</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 form-block">
+          <div class="d-flex justify-content-between">
+            <label class="text-bold"
+              >Enter
+              {{
+                season.change_price_by === CHANGE_BY_PERCENTAGE
+                  ? "Percentage"
+                  : "Amount"
+              }}</label
+            >
+            <!-- <span class="orange-text text-bold">New Price: $1500</span> -->
+          </div>
+          <input
+            type="number"
+            [disabled]="!season.bsDaterangepicker[0]"
+            [(ngModel)]="season.price"
+            class="form-control"
+            #moderateSeason="ngModel"
+            name="moderateSeason{{ i }}"
+            [ngClass]="{
+              'is-invalid':
+                !season.price &&
+                (moderateSeason.dirty || moderateSeason.touched)
+            }"
+          />
+          <div
+            *ngIf="
+              !season.price && (moderateSeason.dirty || moderateSeason.touched)
+            "
+            class="error-msg"
+          >
+            {{
+              season.change_price_by === CHANGE_BY_PERCENTAGE
+                ? "percentage"
+                : "amount"
+            }}
+            should be greater than 0
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <a (click)="addModerateSeason()" class="cursor-pointer add-more-text"
+          ><span>+</span> Add Another Moderate Season</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="biglabel-block form-block col-md-12">
+    <h3 class="text-24 mb-3">Slow Season</h3>
+    <ng-container *ngFor="let season of slowSeasons; let i = index">
+      <div class="row">
+        <div
+          class="col-md-12"
+          *ngIf="i > 0"
+          style="border-top: 1px solid lightgray; text-align: end"
+        >
+          <span class="sml-circle">
+            <i
+              class="close-icon fa fa-times cursor-pointer nn"
+              (click)="removeSeason(i, 2)"
+              aria-hidden="true"
+            ></i
+          ></span>
+        </div>
+        <div class="col-md-12">
+          <div class="input-block">
+            <label class="text-left pb-2 font-w-normal">From and To Date</label>
+            <input
+              style="cursor: pointer; top: 40px; padding-left: 45px"
+              placeholder="Select from and to date"
+              bsDaterangepicker
+              [(ngModel)]="season.bsDaterangepicker" 
+              [bsConfig]="{ rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY', showWeekNumbers: false, containerClass: 'theme-blue',minDate: today}">
+            <img
+              style="top: 47px"
+              src="./assets/images/date.svg"
+              alt=""
+              class="input-icon"
+            />
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <label class="font-w-normal">From</label>
+          <input
+            type="date"
+            (ngModelChange)="getNextDate($event, i, 3)"
+            min="{{ currentDate }}"
+            onkeydown="return false"
+            [(ngModel)]="season.from"
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="font-w-normal">To</label>
+          <input
+            type="date"
+            min="{{ getDatePlusOne(season.from) }}"
+            [disabled]="!season.from"
+            onkeydown="return false"
+            [(ngModel)]="season.to"
+          />
+        </div> -->
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <label class="weight-normal">Action</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'slow-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_RAISE"
+                />
+                <span class="btn-v">Raise</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'slow-action' + i }}"
+                  [(ngModel)]="season.action"
+                  [value]="ACTION_REDUCE"
+                />
+                <span class="btn-v">Reduce</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="weight-normal">Change Price By</label>
+          <div class="form-subs">
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'slow-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_PERCENTAGE"
+                />
+                <span class="btn-v">Percentage</span>
+              </label>
+            </div>
+            <div class="form-subs-lable-block">
+              <label>
+                <input
+                  type="radio"
+                  [disabled]="!season.bsDaterangepicker[0]"
+                  name="{{ 'slow-price-change' + i }}"
+                  [(ngModel)]="season.change_price_by"
+                  [value]="CHANGE_BY_AMOUNT"
+                />
+                <span class="btn-v">Amount</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 form-block">
+          <div class="d-flex justify-content-between">
+            <label class="text-bold"
+              >Enter
+              {{
+                season.change_price_by === CHANGE_BY_PERCENTAGE
+                  ? "Percentage"
+                  : "Amount"
+              }}</label
+            >
+            <!-- <span class="orange-text text-bold">New Price: $1500</span> -->
+          </div>
+          <input
+            type="number"
+            [disabled]="!season.bsDaterangepicker[0]"
+            [(ngModel)]="season.price"
+            class="form-control"
+            #slowSeason="ngModel"
+            name="slowSeason{{ i }}"
+            [ngClass]="{
+              'is-invalid':
+                !season.price && (slowSeason.dirty || slowSeason.touched)
+            }"
+          />
+          <div
+            *ngIf="!season.price && (slowSeason.dirty || slowSeason.touched)"
+            class="error-msg"
+          >
+            {{
+              season.change_price_by === CHANGE_BY_PERCENTAGE
+                ? "percentage"
+                : "amount"
+            }}
+            should be greater than 0
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row">
+      <div class="col-md-12 mt-3">
+        <a (click)="addSlowSeason()" class="cursor-pointer add-more-text"
+          ><span>+</span> Add Another Slow Season</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger f-14 f-w-bold" *ngIf="error">
+    {{ error }}
+  </div>
+  <div
+    class="col-md-12 form-block create-listing-submit-button-block d-flex align-items-center justify-content-between"
+  >
+    <a (click)="skipStep()" class="podsliving-button transparent">Skip</a>
+    <a
+      (click)="saveAndNext()"
+      class="podsliving-button"
+      [ngClass]="{ 'button-disable': !isValid }"
+      >Next</a
+    >
+  </div>
+</div>

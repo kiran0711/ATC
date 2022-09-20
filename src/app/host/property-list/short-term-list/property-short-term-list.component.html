@@ -1,0 +1,32 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>STR Number</th>
+        <th>Title</th>
+        <th>Created On</th>
+        <th>Updated On</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cursor-pointer" *ngFor="let prop of properties; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{ prop.str_number ? prop.str_number : 'N/A'}}</td>
+        <td>{{ prop.pro_title }}</td>
+        <td>{{prop.created_on | date: 'mediumDate'}}</td>
+        <td>{{prop.updated_on | date: 'mediumDate'}}</td>
+        <td class="text-center">
+          <span *ngIf="prop.status == 1" class="badge rounded-pill badge-success">Published</span>
+          <span *ngIf="prop.status != 1" class="badge rounded-pill badge-secondary">Draft</span>
+        </td>
+        <td class="text-center">
+          <i (click)="viewProperty(prop.pro_slug)" class="edit-icon fa fa-eye cursor-pointer"
+            aria-hidden="true" title="View"></i>
+          <i class="edit-icon fa fa-pencil ml-3 cursor-pointer" (click)="editProperty(prop.pro_id)"
+            aria-hidden="true" title="Edit"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>

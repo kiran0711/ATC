@@ -1,0 +1,117 @@
+<div class="
+    row
+    create-listing-form
+    login-modal-form-wrapp
+    theiaStickySidebar
+    y-auto
+    justify-content-center
+  "
+  >
+  <div class="prgress-bar percent-100"></div>
+  <!-- <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+              <a href="create-a-listing-14.html"><img src="images/back.svg" alt=""></a>
+              <a href="#" class="blue-text"><strong>Save & Exit</strong></a>
+          </div> -->
+          <div *ngIf="step==2">
+              <div class="col-md-12 text-center mb-4 gap-top-70">
+                  <img src="./assets/images/thumbs-up-large.svg" />
+                </div>
+                <div class="col-md-12 mb-4 text-center">
+                  <strong style="font-size: 25px">
+                    {{message}}
+                  </strong>
+                </div>
+              
+                <!-- uncoment this when feature listing is implemented -->
+                <!-- <div class="box-listing mb-5">
+                  <div class="col-md-12 mb-4 text-center mt-2">
+                    <h2>Feature This Listing</h2>
+                  </div>
+              
+                  <div class="col-md-12 form-block text-left">
+                    <p>
+                      Make your Property list on Home page / City Wise / Within [X] radius
+                    </p>
+                    <p>You can list your property for specific duration</p>
+                  </div>
+                  <div class="col-md-12 form-block text-left">
+                    <div class="row">
+                      <div class="col-md-4 form-block">
+                        <label>Duration</label>
+                        <select>
+                          <option value="">Please Select</option>
+                          <option value="">Please Select</option>
+                          <option value="">Please Select</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 form-block">
+                        <label>Listing will be on</label>
+                        <select>
+                          <option value="">Please Select</option>
+                          <option value="">Please Select</option>
+                          <option value="">Please Select</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 form-block">
+                        <label class="d-hidden">.</label>
+              
+                        <input class="gray-bg" type="text" value="9.00" />
+                      </div>
+                    </div>
+                    <div class="mobile-right-align right-link">
+                      <a href="javascript:void(0);">Read more about Feature Listing</a>
+                    </div>
+                  </div>
+              
+                  <div
+                    class="
+                      col-md-12
+                      form-block
+                      create-listing-submit-button-block
+                      d-flex
+                      align-items-center
+                      justify-content-center
+                      mt-0
+                    "
+                  >
+                    <a
+                      href="javascript:void(0);"
+                      class="podsliving-button button-disable f-w-bold"
+                      data-toggle="modal"
+                      data-target="#feature_listing"
+                      >Feature The Listing Now</a
+                    >
+                  </div>
+                </div> -->
+                <div class="
+                    col-md-12
+                    form-block
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                  ">
+                  <a (click)="navigateToPublicView()" class="blue-text text-bold d-block mr-5 cursor-pointer">Check Public View </a>
+                  <a [routerLink]="['/host']" (click)="clearProperty()" class="blue-text text-bold">Go to Dashboard</a>
+                </div>
+          </div>
+
+          <div *ngIf="step==1">
+              <div class="col-md-12 mb-4 text-center">
+                <strong style="font-size: 25px">
+                    Your Property is under draft. Please publish the property.
+                </strong>
+                </div>
+              
+                <div
+                  class="col-md-12 form-block create-listing-submit-button-block d-flex align-items-center justify-content-between">
+                  <a [routerLink]="['/host/property-list']" class="podsliving-button transparent">Save & Exit</a>
+                  <a data-toggle="modal" data-target="#additional_details" class="podsliving-button">Publish</a>
+                </div>
+          </div>
+  
+
+</div>
+<property-publish-modal (emitter)="onClose($event)"></property-publish-modal>
+
+
+

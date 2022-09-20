@@ -1,0 +1,19 @@
+.type-of-space-block.type-of-property img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    /* margin-top: 10px; */
+}
+
+@media (min-width: 767px) {
+    .type-of-space-block {
+        width: 100%;
+        /* min-height: 117px; */
+    }
+}
+
+@media only screen and (min-device-width: 767px) and (max-device-width: 991px) {
+    .amenities-wrapp .type-spc-block {
+        width: 28%;
+    }
+}

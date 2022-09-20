@@ -1,0 +1,109 @@
+<!-- <div class="
+    row
+    create-listing-form
+    login-modal-form-wrapp
+    p-0
+    align-items-end
+    mt-5
+  ">
+  <div class="col-md-10 form-block text-center">
+    <div class="text-24 raleway mb-4 text-left">My Referal Code</div>
+  </div>
+
+
+
+  <div class="col-md-12 form-block mb-5">
+    <div class="row">
+      <div class="col-md-5 form-block">
+        <label>Referal Link</label>
+        <input type="text" placeholder="Referal" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+  <div class="col-md-12 form-block text-center">
+    <div class="text-24 raleway mb-4 text-left">Add Referals</div>
+  </div>
+
+  <div class="col-md-12 form-block">
+    <form [formGroup]="referalForm">
+      <div class="row">
+        <div class="col-md-5 form-block">
+          <label>Referal Code</label>
+          <input type="text" formControlName="referalCode" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <button class="podsliving-button" [ngClass]="{ 'button-disable': !referalForm.valid }">
+            Apply
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+<div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+  <div class="col-md-12 form-block text-center mt-4">
+    <div class="text-24 raleway text-left">My Referrals</div>
+  </div>
+  <div class="col-md-12 form-block">
+    <ul class="list grid-ul list-style-tag" *ngIf="referal">
+      <li class="color0 prelative">
+        {{referal.description}}
+        <span style="position: absolute; right: 10px; top: 15px;  height: 30px; width: 30px; border-radius:30px;"><img
+            src="./assets/images/share.svg" alt="" class="mr-2" data-toggle="modal" data-target="#referals"
+            (click)="selectPromocode(referal.id)" /></span>
+      </li>
+
+      <!-- <ng-container *ngFor="let referal of referals; let i=index">
+            <li class="color0">
+              {{referal.program_name}}
+              <img src="./assets/images/share.svg" alt="" class="mr-2" data-toggle="modal"
+              data-target="#referals" (click)="selectPromocode(referal.code)" />
+            </li>
+          </ng-container> -->
+    </ul>
+    <ul class="list grid-ul list-style-tag" *ngIf="!referal">
+      <li class="color0 prelative">
+        No Referrals available...
+      </li>
+    </ul>
+
+
+  </div>
+</div>
+
+<div class="modal fade" id="referals" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form class="mt-4" [formGroup]="referForm">
+          <div class="modal-block">
+            <a id="closeReferModel" href="javascript:void(0);" data-dismiss="modal" aria-label="Close"
+              class="close-button"><img src="./assets/images/cross.svg" alt=""></a>
+            <div class="modal-title">Refer & Earn</div>
+            <div class="form-block">
+              <label class="gray-text mb-2">Enter Email</label>
+              <input type="email" formControlName="email">
+            </div>
+            <div class="error-msg f-14 f-w-bold mt-3 mb-4" *ngIf="error">
+              {{error}}
+            </div>
+            <div class="button-group">
+              <a href="javascript:void(0);" class="podsliving-button transparent" data-dismiss="modal"
+                aria-label="Close">Cancel</a>
+              <a href="javascript:void(0);" class="podsliving-button" [ngClass]="{ 'button-disable': !referForm.valid }"
+                (click)="sendReferal()">Share</a>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

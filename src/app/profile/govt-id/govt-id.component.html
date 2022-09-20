@@ -1,0 +1,95 @@
+
+<div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+  <div class="col-md-12 form-block text-center mt-5">
+    <div class="text-24 raleway mb-4 text-left">Identity Verification</div>
+  </div>
+</div>
+<form [formGroup]="kycForm">
+  <div class="row create-listing-form login-modal-form-wrapp p-0">
+    <div class="col-md-5 form-block" style="display: none">
+      <label>User Id<span class="red-text">*</span></label>
+      <input type="text" [attr.disabled]="true" formControlName="userid"
+        class="form-control ng-pristine ng-valid ng-touched">
+    </div>
+    <div class="col-md-5 form-block">
+      <label>Mobile<span class="red-text">*</span></label>
+      <div class="row multi-form-block">
+        <div class="col-md-3">
+          <select nice-select class="w-100" 
+          formControlName="dialing_code">
+            <option value="+01">+01</option>
+            <option value="+91">+91</option>
+            <option value="+60">+60</option>
+          </select>
+        </div>
+        <div class="col-md-9">
+          <input
+            type="number"
+            formControlName="contact_number"
+            value=""
+          />
+        </div>
+      </div>
+      <div class="row multi-form-block" *ngIf="(kycFormControl.dialing_code.errors && (kycFormControl.contact_number.dirty ||
+      kycFormControl.contact_number.touched) || kycFormControl.contact_number.errors &&
+        (kycFormControl.contact_number.dirty ||
+          kycFormControl.contact_number.touched))" class="error-msg">
+        Country code and Mobile number can not be empty
+      </div>
+    </div>
+    <div class="col-md-5 form-block">
+      <label>Name<span class="red-text">*</span></label>
+      <input type="tel" formControlName="name" class="form-control ng-pristine ng-valid ng-touched">
+    </div>
+    <div class="col-md-5 form-block">
+      <label>Country<span class="red-text">*</span></label>
+      <select nice-select formControlName="country">
+        <option *ngFor="let country of countries" value="{{country.key}}">{{country.label}}</option>
+      </select>
+      <div *ngIf="kycFormControl.country.errors" class="error-msg">
+        Please select a country
+      </div>
+    </div>
+    <div class="col-md-5 form-block" style="display: none">
+      <label>Redirect URL<span class="red-text">*</span></label>
+      <input type="url" [attr.disabled]="true" formControlName="redirectURL" class="form-control ng-pristine ng-valid ng-touched">
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <!-- *ngIf="url" -->
+        <div class="col-md-12 form-block"  >
+          <label *ngIf="url">Verification Link<span class="red-text">*</span></label>
+          <span *ngIf="url">{{url}}</span>
+        </div>
+        <!-- *ngIf="qrCode" -->
+        <div class="col-md-3 form-block">
+          <!-- <img alt='Embedded Image' src="{{qrCode}}" /> -->
+          <img src="{{qrCode}}" alt="" *ngIf="qrCode" class="img-fluid" style="width: 100px; height: 100px;">
+          <label class="small red-text" *ngIf="qrCode">(Scan a QR Code)</label>
+        </div>
+        <div class="col-md-7 text-right">
+          <!-- <a href="create-a-listing.html" class="podsliving-button transparent">Back</a> -->
+          <button class="podsliving-button" *ngIf="kycStatus!=1;else content"
+          [ngClass]="{ 'button-disable': !kycForm.valid || !checkButtonEnabled }" (click)="save()">
+            {{buttonText}}
+          </button>
+          <ng-template #content>
+            <span class="green-text input-text">
+              <img src="./assets/images/done.svg" alt="" /> Verified
+            </span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <div class="col-md-12 gap-top-70">
+    <!-- <a href="#" class="text-bold blue-text">Delete Account Permanently</a> -->
+  </div>
+</form>

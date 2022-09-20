@@ -1,0 +1,124 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar" *ngIf="step == 1">
+    <div class="prgress-bar percent-15"></div>
+    <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+        <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+            <a [routerLink]="proListingService.CREATE_PROPERTY_STEP_FOUR" [queryParams]="{ proId: pro_id }">
+            <img src="./assets/images/back.svg" alt="" />
+        </a>
+        <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !isValidStep1 || !isValidStep2 }"
+            class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <div class="col-md-12 mb-4">
+        <h2>Upload Photos & Videos</h2>
+    </div>
+
+    <div class="col-md-12 form-block mb-10">
+        <div class="col-md-12">
+            <div class="upload-progress">
+                <div class="upload-section d-flex align-items-center w-100" *ngFor="let image of files; let i = index">
+                    <div class="img-v">
+                        <img src="{{ image.image_url }}" *ngIf="image.file.type.includes('image')" alt=""
+                            class="img-fluid" />
+                        <video class="w-100" id="preview" width="50" height="50"
+                            *ngIf="image.file.type.includes('video')">
+                            <source src="{{ image.image_url }}" />
+                        </video>
+                    </div>
+                    <div class="progess-view pl-3">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <span>{{ image.file.name }}</span> &nbsp;<span>{{
+                                    getImageSize(image.file.size)
+                                    }}</span>
+                            </div>
+                            <div>
+                                <img src="assets/images/cross.svg" (click)="stopUpload(i)" *ngIf="image.progress != 100"
+                                    alt="" class="img-fluid cross" />
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <progress id="file" *ngIf="image.progress != 100" value="{{ image.progress }}" max="100"
+                                class="w-100">
+                                {{ image.progress }}%
+                            </progress>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div *ngIf="!image.error">
+                                <span>{{ image.progress }}% done</span>
+                            </div>
+                            <div class="error-msg">
+                                <span>{{ image.error }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="uploadOuter">
+            <span ngClass="{{ dragAreaClass }}">
+                <div class="drag-and-drop-wrapp">
+                    <div class="drag-drop-image-block">
+                        <img src="../assets/images/drag-and-drop.PNG" alt="" />
+                    </div>
+                    <div class="gray-text">Drag & drop photos</div>
+                </div>
+                <input #file [multiple]="true" type="file" (change)="dragNdrop($event)" id="uploadFile"
+                    accept="image/x-png,image/jpeg,image/bmp,image/jpg,video/mp4,video/avi" />
+            </span>
+        </div>
+        <div class="error-msg f-14 f-w-bold" *ngIf="error.length">
+            {{ error }}
+        </div>
+        <div *ngIf="!isValidStep1" class="alert alert-danger mt-3">
+            Please select at least two image
+        </div>
+        <div>
+            Minimum 2 photos required and Maximum 20 Photo's allowed (Maximum size per
+            photo 5MB) and only 1 video allowed (maximum size of 50MB)
+        </div>
+        <!-- <div id="preview"></div> -->
+    </div>
+    <div class="col-md-12 form-block half-screen-mobile cover-screen">
+        <div class="row">
+            <div class="col-md-4 image-radio-buttons-wrapp" *ngFor="let image of images; let i = index">
+                <div class="image-radio-buttons">
+                    <div class="radio-buttons-image-block position-relative">
+                        <i class="close-icon fa fa-times cursor-pointer" (click)="removeImage(i)"
+                            style="position: absolute; right: 10px; top: 6px" aria-hidden="true"></i>
+                        <img id="preview" *ngIf="checkFileType(image.image) == 0; else elseStatement"
+                            src="{{ imageUrl + image.image }}" alt="" class="w-100" />
+                        <ng-template #elseStatement>
+                            <video class="w-100" id="preview" width="320" height="240" controls>
+                                <source src="{{ imageUrl + image.image }}" />
+                            </video>
+                        </ng-template>
+                        <div class="image-radio" *ngIf="image.file_type == 'image'">
+                            <input type="radio" id="{{ image.pro_img_id }}" name="is_primary"
+                                [checked]="image.is_primary" (change)="onChange(image)" />
+                            <label for="{{ image.pro_img_id }}">Cover</label>
+                        </div>
+                    </div>
+                    <div class="form-block" *ngIf="image.file_type == 'image'">
+                        <label>Caption</label>
+                        <input type="text" [(ngModel)]="image.image_caption" />
+                        <!-- <div *ngIf="!image.image_caption" class="error-msg">
+              Please enter caption
+            </div> -->
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!imageSaveRequest.is_primary && images.length" class="error-msg">
+                Please upload at least two image for cover & preview
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="col-md-12 form-block create-listing-submit-button-block d-flex align-items-center justify-content-between">
+        <!-- <a class="podsliving-button transparent">Open Camera</a> -->
+        <a href="javascript:void(0)" (click)="file.click()" class="podsliving-button">Browse</a>
+        <a (click)="saveImageAndProceed()" class="podsliving-button"
+            [ngClass]="{ 'button-disable': !isValidStep1 || !isValidStep2 }">Next</a>
+    </div>
+</div>

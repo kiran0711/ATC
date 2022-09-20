@@ -1,0 +1,867 @@
+<div class="home-page-search" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'notfixed'">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab2" data-toggle="pill" href="#short_term_form2" role="tab" aria-controls="pills-home" aria-selected="true">Vacation Rental </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab2" data-toggle="pill" href="#long_term_form2" role="tab" aria-controls="pills-profile" aria-selected="false">Long Term Leasing</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+
+                <div class="tab-pane fade show active" id="short_term_form2" role="tabpanel" aria-labelledby="pills-home-tab2">
+                    <form [formGroup]="searchPropertyForm" (ngSubmit)="getPropertyList()">
+                        <div class="landing-banner-form-wrapp mt-0">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-block">
+                                        <label>Destination</label>
+                                        <!-- <input type="text" formControlName="destination" placeholder="Where do you want to go?" > -->
+                                        <input type="text" formControlName="destination" ngx-google-places-autocomplete
+                                            (input)="resetLatLng($event)" (onAddressChange)="handleAddressChange($event)"
+                                            class="controls map-input-block" placeholder="Where do you want to go?" />
+                                        <img src="./assets/images/location.svg" alt="" class="input-icon">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="input-block">
+                                                        <label>Check-in and Check-out Dates</label>
+                                                        <input style="cursor: pointer;"
+                                                            placeholder="Select Check-in and Check-out Dates"
+                                                            formControlName="startAndEndDate" bsDaterangepicker [bsConfig]="{ 
+                                                    rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY',
+                                                    showWeekNumbers: false ,
+                                                    containerClass: 'theme-blue',
+                                                    minDate: minimumDate
+                                                }">
+                                                        <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                                    </div>
+                                                </div>
+        
+                                                <!-- <div class="col-md-4">
+                                        <div class="input-block">
+                                            <label>Start Date</label>
+                                            <input type="date" (onChange)="getNextDate($event)" [min]="minimumDate" formControlName="startDate" name="startDate">
+                                            <img src="./assets/images/date.svg" alt="" class="input-icon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-block">
+                                            <label>End Date</label>
+                                            <input type="date" formControlName="endDate" min="{{getDatePlusOne(searchPropertFormControl.startDate.value)}}">
+                                            <img src="./assets/images/date.svg" alt="" class="input-icon">
+                                        </div>
+                                    </div> -->
+                                                <div class="col-md-4">
+                                                    <div class="input-block">
+                                                        <label>Guest(s)</label>
+                                                        <!-- <input type="text" formControlName="max_additional_guest_allow" placeholder="Add Guests">
+                                                <img src="./assets/images/user.svg" alt="" class="input-icon"> -->
+                                                        <div class="position-relative" id="drop-div">
+                                                            <input type="text"
+                                                                value="{{searchPropertFormControl.adults.value}} Adult(s), {{searchPropertFormControl.children.value}} Child(s)"
+                                                                id="sh" (click)="onClickGuest($event)" readonly
+                                                                style="cursor: pointer;">
+                                                            <!-- <div id="sh" class="numberOfGuestLabel"></div> -->
+                                                            <img src="./assets/images/user.svg" alt="" class="input-icon">
+        
+                                                            <div *ngIf="GuestDropDown" id="GuestDropDown"
+                                                                class="right-wrapp error-right-wrapp banner-select user-dropdown"
+                                                                style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                                                <div
+                                                                    class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                                                    <div class="w-100">Adult(s)</div>
+                                                                    <div id="field1">
+                                                                        <button type="button" id="sub" class="sub"
+                                                                            [ngClass]="{ 'button-disable': searchPropertFormControl.adults.value == 1 }"
+                                                                            (click)="decrease('adults')">-</button>
+                                                                        <input type="number" formControlName="adults">
+                                                                        <button type="button" id="add" class="add"
+                                                                            (click)="increase('adults')">+</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class=" d-flex align-items-center justify-content-between border-botoom-0">
+                                                                    <div class="w-100">Children(s) <span
+                                                                            class="d-block mt-1 gray-text">Age
+                                                                            2-12</span>
+                                                                    </div>
+                                                                    <div id="field1">
+                                                                        <button type="button" id="sub" class="sub"
+                                                                            (click)="decrease('children')">-</button>
+                                                                        <input type="number" formControlName="children">
+                                                                        <button type="button" id="add" class="add"
+                                                                            (click)="increase('children')">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <!-- <div class="col-md-4 input-blk-with-icon">
+                    <label>Guests</label>
+                    <div class="position-relative">
+                      <input type="text" value="2 Adults, 1 Child">
+                      <img src="./assets/images/user.svg" alt="" class="input-icon">
+                      <div class="right-wrapp error-right-wrapp banner-select"
+                        style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                        <div class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                          <div>Adults</div>
+                          <div id="field1">
+                            <button type="button" id="sub" class="sub">-</button>
+                            <input type="number" id="1" value="1" min="1" max="3">
+                            <button type="button" id="add" class="add">+</button>
+                          </div>
+                        </div>
+                        <div class=" d-flex align-items-center justify-content-between border-botoom-0">
+                          <div>Children <span class="d-block mt-1 gray-text">Age 2-12</span></div>
+                          <div id="field1">
+                            <button type="button" id="sub" class="sub">-</button>
+                            <input type="number" id="1" value="1" min="1" max="3">
+                            <button type="button" id="add" class="add">+</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                                            </div>
+                                        </div>
+        
+                                        <div class="col-md-2">
+                                            <div class="row align-items-center">
+                                                <!-- <div class="col-md-6">
+                <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                    data-target="#filer_block">
+                    <img src="./assets/images/filters.svg" alt="">
+                    <span>Search Options</span>
+                </div>
+                </div> -->
+                                                <div class="col-md-12">
+                                                    <!--   
+                <a [routerLink]="['/properties']"
+                    class="podsliving-button black-bg"><img src="./assets/images/search-white.svg" alt=""
+                    class="search-icon">Search</a>-->
+                                                    <button type="submit" class="podsliving-button black-bg"
+                                                        [ngClass]="{ 'button-disable': !searchPropertyForm.valid }">
+                                                        <img src="./assets/images/search-white.svg" alt="" class="search-icon">
+                                                        Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="long_term_form2" role="tabpanel" aria-labelledby="pills-profile-tab2">
+                    <form [formGroup]="searchLongTermPropertyForm" (ngSubmit)="getLongTermPropertyList()">
+                        <div class="landing-banner-form-wrapp mt-0">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Destination</label>
+                                        <input type="text" formControlName="destination"
+                                            ngx-google-places-autocomplete (input)="resetLatLng($event)"
+                                            (onAddressChange)="handleLongTermAddressChange($event)"
+                                            class="controls map-input-block"
+                                            placeholder="Where do you want to go?" />
+                                        <img src="./assets/images/location.svg" alt="" class="input-icon">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Min Lease Duration</label>
+                                        <select nice-select placeholder="Select lease duration"
+                                            formControlName="minimum_lease_duration" class="w-100 form-control">
+                                            <option value="" disabled>Select min lease duration</option>
+                                            <option *ngFor="let element of leaseDurations"
+                                                value="{{ element.value }}">{{ element.text }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Max Lease Duration</label>
+                                        <select nice-select placeholder="Select lease duration"
+                                            formControlName="maximum_lease_duration" class="w-100 form-control">
+                                            <option value="" disabled>Select max lease duration</option>
+                                            <option *ngFor="let element of leaseDurations"
+                                                value="{{ element.value }}">{{ element.text }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Lease Start Date</label>
+                                        <input style="cursor: pointer;" placeholder="Select Lease Start Date"
+                                            formControlName="lease_start_date" bsDatepicker [bsConfig]="{  
+                                                dateInputFormat: 'MMM DD, YYYY',
+                                                showWeekNumbers: false ,
+                                                containerClass: 'theme-blue'
+                                            }">
+                                        <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Occupants</label>
+                                        <div class="position-relative" id="drop-div">
+                                            <input type="text"
+                                                value="{{searchLongTermPropertyFormControls.no_of_occupants.value}} Occupants"
+                                                id="sh" (click)="onClickTenant($event)" readonly
+                                                style="cursor: pointer;">
+                                            <img src="./assets/images/user.svg" alt="" class="input-icon">
+
+                                            <div *ngIf="tenantDropDown" id="tenantDropDown"
+                                                class="right-wrapp error-right-wrapp banner-select user-dropdown"
+                                                style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                                <div
+                                                    class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                                    <div class="w-100">Occupants</div>
+                                                    <div id="field1">
+                                                        <button type="button" id="sub" class="sub"
+                                                            [ngClass]="{ 'button-disable': searchLongTermPropertyFormControls.no_of_occupants.value == 1 }"
+                                                            (click)="decreaseOccupants()">-</button>
+                                                        <input type="number" formControlName="no_of_occupants">
+                                                        <button type="button" id="add" class="add"
+                                                            (click)="increaseOccupants()">+</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 align-items-center">
+                                    <button type="submit" class="podsliving-button black-bg"
+                                        [ngClass]="{ 'button-disable': searchLongTermPropertyForm.invalid }">
+                                        <img src="./assets/images/search-white.svg" alt=""
+                                            class="search-icon">Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<section class="landing-banner-wrapp" id="banner-search">
+    <div class="landing-banner-content-wrapp" id="banner-search-content">
+        <div class="container" id="banner-search-container">
+            <div class="col-md-12" id="banner-search-container-title">
+                <h1 class="text-white">Book a Home for a<br />Vacation or Leasing</h1>
+            </div>
+
+            <div class="col-md-12 mt-100">
+
+                <ul class="nav nav-pills mb-0 landing-form-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#short_term_form"
+                            role="tab" aria-controls="pills-home" aria-selected="true">Vacation Rental</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#long_term_form" role="tab"
+                            aria-controls="pills-profile" aria-selected="false">Long Term Leasing</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+
+                    <div class="tab-pane fade show active" id="short_term_form" role="tabpanel"
+                        aria-labelledby="pills-home-tab">
+                        <form [formGroup]="searchPropertyForm" (ngSubmit)="getPropertyList()">
+                            <div class="landing-banner-form-wrapp mt-0">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-block">
+                                            <label>Destination</label>
+                                            <!-- <input type="text" formControlName="destination" placeholder="Where do you want to go?" > -->
+                                            <input type="text" formControlName="destination"
+                                                ngx-google-places-autocomplete (input)="resetLatLng($event)"
+                                                (onAddressChange)="handleAddressChange($event)"
+                                                class="controls map-input-block"
+                                                placeholder="Where do you want to go?" />
+                                            <img src="./assets/images/location.svg" alt="" class="input-icon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="input-block">
+                                                            <label>Check-in and Check-out Dates</label>
+                                                            <input style="cursor: pointer;"
+                                                                placeholder="Select Check-in and Check-out Dates"
+                                                                formControlName="startAndEndDate" bsDaterangepicker
+                                                                [bsConfig]="{ 
+                                                            rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY',
+                                                            showWeekNumbers: false ,
+                                                            containerClass: 'theme-blue',
+                                                            minDate: minimumDate
+                                                        }">
+                                                            <img src="./assets/images/date.svg" alt=""
+                                                                class="input-icon" />
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <div class="col-md-4">
+                                                <div class="input-block">
+                                                    <label>Start Date</label>
+                                                    <input type="date" (onChange)="getNextDate($event)" [min]="minimumDate" formControlName="startDate" name="startDate">
+                                                    <img src="./assets/images/date.svg" alt="" class="input-icon">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="input-block">
+                                                    <label>End Date</label>
+                                                    <input type="date" formControlName="endDate" min="{{getDatePlusOne(searchPropertFormControl.startDate.value)}}">
+                                                    <img src="./assets/images/date.svg" alt="" class="input-icon">
+                                                </div>
+                                            </div> -->
+                                                    <div class="col-md-4">
+                                                        <div class="input-block">
+                                                            <label>Guest(s)</label>
+                                                            <!-- <input type="text" formControlName="max_additional_guest_allow" placeholder="Add Guests">
+                                                        <img src="./assets/images/user.svg" alt="" class="input-icon"> -->
+                                                            <div class="position-relative" id="drop-div">
+                                                                <input type="text"
+                                                                    value="{{searchPropertFormControl.adults.value}} Adult(s), {{searchPropertFormControl.children.value}} Child(s)"
+                                                                    id="sh" (click)="onClickGuest($event)" readonly
+                                                                    style="cursor: pointer;">
+                                                                <!-- <div id="sh" class="numberOfGuestLabel"></div> -->
+                                                                <img src="./assets/images/user.svg" alt=""
+                                                                    class="input-icon">
+
+                                                                <div *ngIf="GuestDropDown" id="GuestDropDown"
+                                                                    class="right-wrapp error-right-wrapp banner-select user-dropdown"
+                                                                    style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                                                    <div
+                                                                        class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                                                        <div class="w-100">Adult(s)</div>
+                                                                        <div id="field1">
+                                                                            <button type="button" id="sub" class="sub"
+                                                                                [ngClass]="{ 'button-disable': searchPropertFormControl.adults.value == 1 }"
+                                                                                (click)="decrease('adults')">-</button>
+                                                                            <input type="number"
+                                                                                formControlName="adults">
+                                                                            <button type="button" id="add" class="add"
+                                                                                (click)="increase('adults')">+</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class=" d-flex align-items-center justify-content-between border-botoom-0">
+                                                                        <div class="w-100">Children(s) <span
+                                                                                class="d-block mt-1 gray-text">Age
+                                                                                2-12</span>
+                                                                        </div>
+                                                                        <div id="field1">
+                                                                            <button type="button" id="sub" class="sub"
+                                                                                (click)="decrease('children')">-</button>
+                                                                            <input type="number"
+                                                                                formControlName="children">
+                                                                            <button type="button" id="add" class="add"
+                                                                                (click)="increase('children')">+</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- <div class="col-md-4 input-blk-with-icon">
+                            <label>Guests</label>
+                            <div class="position-relative">
+                              <input type="text" value="2 Adults, 1 Child">
+                              <img src="./assets/images/user.svg" alt="" class="input-icon">
+                              <div class="right-wrapp error-right-wrapp banner-select"
+                                style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                <div class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                  <div>Adults</div>
+                                  <div id="field1">
+                                    <button type="button" id="sub" class="sub">-</button>
+                                    <input type="number" id="1" value="1" min="1" max="3">
+                                    <button type="button" id="add" class="add">+</button>
+                                  </div>
+                                </div>
+                                <div class=" d-flex align-items-center justify-content-between border-botoom-0">
+                                  <div>Children <span class="d-block mt-1 gray-text">Age 2-12</span></div>
+                                  <div id="field1">
+                                    <button type="button" id="sub" class="sub">-</button>
+                                    <input type="number" id="1" value="1" min="1" max="3">
+                                    <button type="button" id="add" class="add">+</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div> -->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="row align-items-center">
+                                                    <!-- <div class="col-md-6">
+                        <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                            data-target="#filer_block">
+                            <img src="./assets/images/filters.svg" alt="">
+                            <span>Search Options</span>
+                        </div>
+                        </div> -->
+                                                    <div class="col-md-12">
+                                                        <!--   
+                        <a [routerLink]="['/properties']"
+                            class="podsliving-button black-bg"><img src="./assets/images/search-white.svg" alt=""
+                            class="search-icon">Search</a>-->
+                                                        <button type="submit" class="podsliving-button black-bg"
+                                                            [ngClass]="{ 'button-disable': !searchPropertyForm.valid }">
+                                                            <img src="./assets/images/search-white.svg" alt=""
+                                                                class="search-icon">
+                                                            Search
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="long_term_form" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                        <form [formGroup]="searchLongTermPropertyForm" (ngSubmit)="getLongTermPropertyList()">
+                            <div class="landing-banner-form-wrapp mt-0">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="input-block">
+                                            <label>Destination</label>
+                                            <input type="text" formControlName="destination"
+                                                ngx-google-places-autocomplete (input)="resetLatLng($event)"
+                                                (onAddressChange)="handleLongTermAddressChange($event)"
+                                                class="controls map-input-block"
+                                                placeholder="Where do you want to go?" />
+                                            <img src="./assets/images/location.svg" alt="" class="input-icon">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-block">
+                                            <label>Min Lease Duration</label>
+                                            <select nice-select placeholder="Select lease duration"
+                                                formControlName="minimum_lease_duration" class="w-100 form-control">
+                                                <option value="" disabled>Select min lease duration</option>
+                                                <option *ngFor="let element of leaseDurations"
+                                                    value="{{ element.value }}">{{ element.text }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-block">
+                                            <label>Max Lease Duration</label>
+                                            <select nice-select placeholder="Select lease duration"
+                                                formControlName="maximum_lease_duration" class="w-100 form-control">
+                                                <option value="" disabled>Select max lease duration</option>
+                                                <option *ngFor="let element of leaseDurations"
+                                                    value="{{ element.value }}">{{ element.text }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-block">
+                                            <label>Lease Start Date</label>
+                                            <input style="cursor: pointer;" placeholder="Select Lease Start Date"
+                                                formControlName="lease_start_date" bsDatepicker [bsConfig]="{  
+                                                    dateInputFormat: 'MMM DD, YYYY',
+                                                    showWeekNumbers: false ,
+                                                    containerClass: 'theme-blue'
+                                                }">
+                                            <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-block">
+                                            <label>Occupants</label>
+                                            <div class="position-relative" id="drop-div">
+                                                <input type="text"
+                                                    value="{{searchLongTermPropertyFormControls.no_of_occupants.value}} Occupants"
+                                                    id="sh" (click)="onClickTenant($event)" readonly
+                                                    style="cursor: pointer;">
+                                                <img src="./assets/images/user.svg" alt="" class="input-icon">
+
+                                                <div *ngIf="tenantDropDown" id="tenantDropDown"
+                                                    class="right-wrapp error-right-wrapp banner-select user-dropdown"
+                                                    style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                                    <div
+                                                        class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                                        <div class="w-100">Occupants</div>
+                                                        <div id="field1">
+                                                            <button type="button" id="sub" class="sub"
+                                                                [ngClass]="{ 'button-disable': searchLongTermPropertyFormControls.no_of_occupants.value == 1 }"
+                                                                (click)="decreaseOccupants()">-</button>
+                                                            <input type="number" formControlName="no_of_occupants">
+                                                            <button type="button" id="add" class="add"
+                                                                (click)="increaseOccupants()">+</button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 align-items-center">
+                                        <button type="submit" class="podsliving-button black-bg"
+                                            [ngClass]="{ 'button-disable': searchLongTermPropertyForm.invalid }">
+                                            <img src="./assets/images/search-white.svg" alt=""
+                                                class="search-icon">Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="explore-carousel-wrapp gap-top-70">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <a [routerLink]="['/traveller-home-stay']" class="d-flex justify-content-between">
+                    <div class="img-hv"><img src="./assets/images/traveler.png" class="img-fluid" alt="" />
+                        <div class="over-text other">Traveler</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a [routerLink]="['/student-accommodation']" class="d-flex justify-content-between">
+                    <div class="img-hv"><img src="./assets/images/student.png" class="img-fluid" alt="" />
+                        <div class="over-text other">Student</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a [routerLink]="['/long-term-accommodation']" class="d-flex justify-content-between">
+                    <div class="img-hv"><img src="./assets/images/professional.png" class="img-fluid" alt="" />
+                        <div class="over-text other">Professional</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="container">
+    <!-- <section class="explore-carousel-wrapp gap-top featured-property">
+      <h2 class="title-v m-0">Featured Property/Listing</h2>
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</p>
+      <div class="row mt-4">
+          <div class="col-md-3">
+              <img src="./assets/images/p1.png" class="img-fluid" alt="" />
+              <div class="row property-space">
+                  <div class="col-md-6">
+                      <h3>Property Name</h3>
+                      <p>3 Beds | 234 Reviews |</p>
+                  </div>
+                  <div class="col-md-6 text-right mob-align-left">
+                      <h3>Start from $235.00</h3>
+                      <div class="rating-p">
+                          <div class="star-icon-block d-flex justify-content-end">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span class="grey-color">★</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <img src="./assets/images/p2.png" class="img-fluid" alt="" />
+              <div class="row property-space">
+                  <div class="col-md-6">
+                      <h3>Property Name</h3>
+                      <p>3 Beds | 234 Reviews |</p>
+                  </div>
+                  <div class="col-md-6 text-right mob-align-left">
+                      <h3>Start from $235.00</h3>
+                      <div class="rating-p">
+                          <div class="star-icon-block d-flex justify-content-end">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span class="grey-color">★</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <img src="./assets/images/p3.png" class="img-fluid" alt="" />
+              <div class="row property-space">
+                  <div class="col-md-6">
+                      <h3>Property Name</h3>
+                      <p>3 Beds | 234 Reviews |</p>
+                  </div>
+                  <div class="col-md-6 text-right mob-align-left">
+                      <h3>Start from $235.00</h3>
+                      <div class="rating-p">
+                          <div class="star-icon-block d-flex justify-content-end">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span class="grey-color">★</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <img src="./assets/images/p4.png" class="img-fluid" alt="" />
+              <div class="row property-space">
+                  <div class="col-md-6">
+                      <h3>Property Name</h3>
+                      <p>3 Beds | 234 Reviews |</p>
+                  </div>
+                  <div class="col-md-6 text-right mob-align-left">
+                      <h3>Start from $235.00</h3>
+                      <div class="rating-p">
+                          <div class="star-icon-block d-flex justify-content-end">
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span>★</span>
+                              <span class="grey-color">★</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section> -->
+
+    <section class="explore-carousel-wrapp gap-top-70">
+        <div class=" d-flex justify-content-between mb-4">
+            <h2 class="m-0">Top Destinations</h2>
+            <a class="blue-text cursor-pointer" [routerLink]="['/top-destination']"><strong>View all</strong></a>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-3" *ngFor="let item of topDestinations | slice:0:4; let i=index"
+                [routerLink]="['/properties/top-destination/',item.slug]"
+                [queryParams]="{distance: item.distance , lat: item.latitude, lng: item.longitude}">
+                <div class="img-hv">
+                    <img src="{{item.image_path}}" class="img-fluid cursor-pointer" alt="" />
+
+                    <!-- <h3>{{item.title}}</h3> -->
+                    <div class="over-text">{{item.title}}</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="explore-carousel-wrapp gap-top-70">
+        <h2 class="mb-2">Search by Specific Amenity</h2>
+        <p>PodsLiving offers properties with Swimming pool, gym, game room and more. </p>
+
+        <div class="row mt-4">
+            <div class="col-md-5 custom-width1" *ngFor="let item of masterAmenities | slice:0:1; let i=index">
+                <div class="img-hv block" (click)="searchByAminity(item.service_id)">
+                    <img style="object-fit: cover;" src="{{imageUrl+'storage/' + item.display_image}}"
+                        class="img-fluid cursor-pointer" alt="" (click)="searchByAminity(item.service_id)" />
+                    <div class="over-text">{{item.service_name}}</div>
+                </div>
+
+            </div>
+            <div class="col-md-7 custom-width2">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let item of masterAmenities | slice:1:7; let i=index">
+                        <div class="img-hv" (click)="searchByAminity(item.service_id)">
+                            <img src="{{imageUrl +'storage/'+ item.display_image}}" class="img-fluid cursor-pointer"
+                                alt="" />
+                            <div class="over-text">{{item.service_name}}</div>
+                        </div>
+                        <!-- <div class="img-hv" (click)="searchByAminity('acc-pro')"><img src="./assets/images/accessible-property.png" class="img-fluid" alt="" />  <div class="over-text">Accessible Property</div></div> -->
+                    </div>
+                    <!-- <div class="col-md-4">
+                      <div class="img-hv" (click)="searchByAminity('shared-room')"><img src="./assets/images/rom.jpg" class="img-fluid" alt="" />  <div class="over-text">Shared Room</div></div>
+                      <div class="img-hv" (click)="searchByAminity('game-room')"><img src="./assets/images/game-room.png" class="img-fluid" alt="" />  <div class="over-text">Game Room</div></div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="img-hv" (click)="searchByAminity('swiming-pool')"><img src="./assets/images/swimingpool.jpg" class="img-fluid" alt="" />  <div class="over-text">Swimming Pool</div></div>
+                      <div class="img-hv" (click)="searchByAminity('beach-side')"><img src="./assets/images/beachside.png" class="img-fluid" alt="" />  <div class="over-text">Beachside</div></div>
+                  </div> -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="explore-carousel-wrapp gap-top-70">
+        <h2 class="mb-2">Search by Property Type</h2>
+        <p> Whatever your rental needs is, we've got you covered with our diverse selection of properties.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-5 custom-width1" *ngFor="let item of typeOfProperty | slice:0:1; let i=index">
+                <div class="img-hv block" (click)="searchByProperty(item.category_id)">
+                    <img style="object-fit: cover;width: 100%" src="{{imageUrl + item.cat_image}}"
+                        class="img-fluid cursor-pointer" alt="" (click)="searchByProperty(item.category_id)" />
+                    <div class="over-text">{{item.cat_name}}</div>
+                </div>
+
+            </div>
+            <!-- <div class="col-md-5 custom-width1">
+              <div class="img-hv" (click)="searchByProperty('cottage')">
+                  <img src="./assets/images/img-big1.jpg" class="img-fluid" alt="" />
+                  <div class="over-text">Cottage</div>
+              </div>
+
+          </div> -->
+            <div class="col-md-7 custom-width2">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let item of typeOfProperty | slice:1:7; let i=index">
+                        <div class="img-hv" (click)="searchByProperty(item.category_id)">
+                            <img src="{{imageUrl + item.cat_image}}" style="object-fit: cover;"
+                                class="img-fluid cursor-pointer" alt="" />
+                            <div class="over-text">{{item.cat_name}}</div>
+                        </div>
+                        <!-- <div class="img-hv" (click)="searchByAminity('acc-pro')"><img src="./assets/images/accessible-property.png" class="img-fluid" alt="" />  <div class="over-text">Accessible Property</div></div> -->
+                    </div>
+                    <!-- <div class="col-md-4">
+                      <div class="img-hv" (click)="searchByProperty('pets')"><img src="./assets/images/pets.jpg" class="img-fluid" alt="" />  <div class="over-text">Pets Allowed</div></div>
+                      <div class="img-hv" (click)="searchByProperty('studio')"><img src="./assets/images/studio.jpg" class="img-fluid" alt="" />  <div class="over-text">Studio</div></div>
+                  </div> -->
+                    <!-- <div class="col-md-4">
+                      <div class="img-hv" (click)="searchByProperty('shared-room')"><img src="./assets/images/rom.jpg" class="img-fluid" alt="" />  <div class="over-text">Shared Room</div></div>
+                      <div class="img-hv" (click)="searchByProperty('condo')"><img src="./assets/images/condo.jpg" class="img-fluid" alt="" />  <div class="over-text">Condo</div></div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="img-hv" (click)="searchByProperty('swiming-pool')"><img src="./assets/images/swimingpool.jpg" class="img-fluid" alt="" />  <div class="over-text">Swimming Pool</div></div>
+                      <div class="img-hv" (click)="searchByProperty('townhouse')"><img src="./assets/images/townhouse.jpg" class="img-fluid" alt="" />  <div class="over-text">Townhouse</div></div>
+                  </div> -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="promotion-banner-image-wrapp gap-top" *ngIf="!user.user_type || user.user_type==1">
+        <div class="promotion-image-content-wrapp">
+            <div class="promotion-align-content">
+                <div class="promotion-title text-white">Become a Host</div>
+                <div class="d-flex promotion-button-group mt-2">
+                    <a (click)="openRegister()" class="podsliving-button border-0">Try Hosting</a>
+                    <a [routerLink]="['/how-it-works-host']"
+                        class="podsliving-button border-0 full-transparent color-white">Learn
+                        More</a>
+                </div>
+            </div>
+        </div>
+        <div class="promotion-image-block">
+            <img src="./assets/images/became-host.png" alt="">
+        </div>
+    </section>
+    <app-what-makes-us-special></app-what-makes-us-special>
+
+
+    <!-- <section class="explore-carousel-wrapp gap-top-70">
+      <h2>Value Added Services</h2>
+      <div class="row mt-4">
+          <div class="col-md-3 col-6">
+              <div class="img-hv"><img src="./assets/images/Plumbing_work.jpg" class="img-fluid" alt="" />  <div class="over-text other">Plumber</div></div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="img-hv"><img src="./assets/images/electrician.jpg" class="img-fluid" alt="" />  <div class="over-text other">Electrician</div></div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="img-hv"><img src="./assets/images/cleaning.jpg" class="img-fluid" alt="" />  <div class="over-text other">Cleaning</div></div>
+          </div>
+          <div class="col-md-3 col-6">
+              <div class="img-hv"><img src="./assets/images/facility-management1.jpg" class="img-fluid" alt="" />  <div class="over-text other">Facility Management</div></div>
+          </div>
+
+      </div>
+  </section> -->
+    <!-- <section class="promotion-banner-wrapp gap-top become-partner-wrapp min-height-100">
+      <div class="overlay-area">
+          <div class="promotion-content-wrapp">
+              <div class="promotion-title text-black">Partner With Us</div>
+              <p class="text-black">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam</p>
+              <a href="#" class="podsliving-button">Register as a Partner</a>
+          </div>
+      </div>
+  </section> -->
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="signUpForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content shadow-box">
+            <a href="javascript:void(0);" class="close-button btn-c" data-dismiss="modal" aria-label="Close"
+                id="signUpModelCloseButton" #signUpModelCloseButton (click)="signUpModelClose()">
+                <img src="./assets/images/cross.svg" alt="">
+            </a>
+            <div class="modal-body">
+                <div class="row align-items-center">
+                    <div class="col-md-7 order-2-mobile">
+                        <h3 class="title">Limited time offer!!!</h3>
+                        <p class="description">Register now and enjoy free hosting until December 31, 2022</p>
+                        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="name"
+                                    placeholder="Enter your name"
+                                    [ngClass]="{ 'is-invalid': (formGroupControl.name.errors && (formGroupControl.name.dirty || formGroupControl.name.touched)) || (formGroupControl.name.errors?.required && submitted )}">
+
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" formControlName="email"
+                                    placeholder="Enter your email"
+                                    [ngClass]="{ 'is-invalid': (formGroupControl.email.errors && (formGroupControl.email.dirty || formGroupControl.email.touched)) || (formGroupControl.email.errors?.required && submitted )}">
+
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="podsliving-button w-100"><span>GET INSTANT
+                                        ACCESS</span></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5 order-1-mobile">
+                        <div>
+                            <img src="./assets/images/podsLiving-logo.svg" alt="" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<button id="signUpFormButton" hidden class="btn btn-primary" #signUpFormButton data-toggle="modal"
+    data-target="#signUpForm">SignUp</button>

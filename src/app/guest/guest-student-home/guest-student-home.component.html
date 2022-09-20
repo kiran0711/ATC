@@ -1,0 +1,1116 @@
+<!-- <div class="guest-home">
+  <section class="landing-banner-wrapp student-banner" id="banner-search" style="background-image: url('../assets/images/student-banner.png');">
+    <div class="landing-banner-content-wrapp">
+      <div class="container">
+        <div class="col-md-12">
+          <h1 class="text-white text-shadow">
+            Book a Home for a<br />Vacation or Leasing
+          </h1>
+          <ul
+            class="nav nav-pills mb-0 landing-form-tabs"
+            id="pills-tab"
+            role="tablist"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="pills-home-tab"
+                data-toggle="pill"
+                href="#short_term_form"
+                role="tab"
+                aria-controls="pills-home"
+                aria-selected="true"
+                >University / College</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="pills-profile-tab"
+                data-toggle="pill"
+                href="#long_term_form"
+                role="tab"
+                aria-controls="pills-profile"
+                aria-selected="false"
+                >By Location</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="short_term_form"
+              role="tabpanel"
+              aria-labelledby="pills-home-tab"
+            >
+              <div class="landing-banner-form-wrapp mt-0">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="input-block">
+                      <label>Select</label>
+                     <select class="b0">
+                       <option>University of Toronto</option>
+                       <option>University of Toronto</option>
+                     </select>
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-7">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Lease Duration</label>
+                              <select class="b0">
+                                <option>3 Month</option>
+                                <option>6 Month</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Lease Start Date</label>
+                              <input
+                              type="text"
+                              name="check_in"
+                              placeholder="Select Date"
+                            />
+                            <img
+                              src="./assets/images/date.svg"
+                              alt=""
+                              class="input-icon"
+                            />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Tenants</label>
+                              <input type="text" placeholder="Add Guests" />
+                              <img
+                                src="./assets/images/user.svg"
+                                alt=""
+                                class="input-icon"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="row align-items-center">
+                          <div class="col-md-6">
+                            <div
+                              class="filter-block d-flex align-items-center"
+                              data-toggle="modal"
+                              data-target="#filer_block"
+                            >
+                              <img src="./assets/images/filters.svg" alt="" />
+                              <span>Search Options</span>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <a
+                              [routerLink]="['/properties']"
+                              class="podsliving-button black-bg"
+                              ><img
+                                src="./assets/images/search-white.svg"
+                                alt=""
+                                class="search-icon"
+                              />Search</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="long_term_form"
+              role="tabpanel"
+              aria-labelledby="pills-profile-tab"
+            >
+              <div class="landing-banner-form-wrapp mt-0">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="input-block">
+                      <label>Location</label>
+                      <input
+                        type="text"
+                        placeholder="Where do you want to go?"
+                      />
+                      <img
+                        src="./assets/images/location.svg"
+                        alt=""
+                        class="input-icon"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <div class="row">
+                      <div class="col-md-7">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Lease Duration</label>
+                              <input
+                                type="text"
+                                name="check_in"
+                                value="10/24/1984"
+                              />
+                              <img
+                                src="./assets/images/date.svg"
+                                alt=""
+                                class="input-icon"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Lease Start Date</label>
+                              <input
+                                type="text"
+                                name="check_out"
+                                value="10/24/1984"
+                              />
+                              <img
+                                src="./assets/images/date.svg"
+                                alt=""
+                                class="input-icon"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="input-block">
+                              <label>Tenants</label>
+                              <input type="text" placeholder="Add Guests" />
+                              <img
+                                src="./assets/images/user.svg"
+                                alt=""
+                                class="input-icon"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-5">
+                        <div class="row align-items-center">
+                          <div class="col-md-6">
+                            <div
+                              class="filter-block d-flex align-items-center"
+                              data-toggle="modal"
+                              data-target="#filer_block"
+                            >
+                              <img src="./assets/images/filters.svg" alt="" />
+                              <span>Search Options</span>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <a
+                              [routerLink]="['/properties']"
+                              class="podsliving-button black-bg"
+                              ><img
+                                src="./assets/images/search-white.svg"
+                                alt=""
+                                class="search-icon"
+                              />Search</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="explore-carousel-wrapp gap-top featured-property">
+      <h2 class="title-v m-0">Recently Viewed</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <owl-carousel
+            [options]="SlideOptions"
+            [carouselClasses]="['owl-theme', 'sliding']"
+          >
+            <div class="similar-items-carosuel" *ngFor="let img of Images">
+              <div class="similiar-items-block">
+                <div class="similar-image-block" style="align-content: center">
+                  <img src="{{ img }}" alt="" />
+
+                  <div class="row property-space">
+                    <div class="col-md-6">
+                      <h3>Property Name</h3>
+                      <p>3 Beds | 234 Reviews |</p>
+                    </div>
+                    <div class="col-md-6 text-right mob-align-left">
+                      <h3>Start from $235.00</h3>
+                      <div class="rating-p">
+                        <div class="star-icon-block d-flex justify-content-end">
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span>★</span>
+                          <span class="grey-color">★</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </section>
+    <section class="gap-top">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="title-font">
+            Get Recommendations<br />Near Your University
+          </h2>
+          <p class="grey-text">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+          </p>
+          <div class="text-center">
+            <span class="box-text"
+              ><img src="./assets/images/school.png" class="mr-3" /> Central
+              Saint Martins, University of the Arts London, United Kingdom</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="explore-carousel-wrapp gap-top-70">
+      <h2 class="m-0">Featured Stays at Montreal</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <owl-carousel
+            [options]="CarouselOptions"
+            [carouselClasses]="['owl-theme', 'sliding']"
+          >
+            <div class="similar-items-carosuel" *ngFor="let img of Images1">
+              <div class="similiar-items-block">
+                <div class="similar-image-block" style="align-content: center">
+                  <img src="{{ img }}" alt="" />
+                  <div class="promoted-block">Featured</div>
+                  <div class="promoted-block wishlist">
+                    <i class="fa fa-heart"></i>
+                  </div>
+                  <div class="similr-cnt-block">
+                    <div class="d-flex justify-content-between">
+                      <h3>Modern &amp; Cozy House</h3>
+                    </div>
+                    <div class="my-1">
+                      <span class="fa fa-star mr-1"></span>
+                      <span>4.2</span>
+                      <span class="gray-text ml-3"
+                        >Entire house in Toronto</span
+                      >
+                    </div>
+                    <div>
+                      4 Guests <span>&#9679;</span>&nbsp;2 Bedrooms
+                      <span>&#9679;</span>&nbsp;2 Beds <span>&#9679;</span> 1
+                      Bathroom
+                    </div>
+                    <div class="booked-block">Booked by 40 this week</div>
+                    <div
+                      class="
+                        search-result-grid-bottom-block
+                        d-flex
+                        align-items-end
+                        justify-content-between
+                      "
+                    >
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          srch-btm-icon-block
+                        "
+                      >
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                        <a href="#" class="text-14 blue-text">+ 20 more</a>
+                      </div>
+                      <div class="srch-btm-amount-block">
+                        <div class="text-24 mb-1 mt-minus-12">
+                          <span class="text-bold">$400 /</span> night
+                        </div>
+                        <div class="gray-text">$400 total</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </owl-carousel>
+          <div class="similar-items-carosuel owl-carousel">
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/f1.png" alt="" class="w-100" />
+                <div class="promoted-block">Featured</div>
+                <div class="promoted-block wishlist">
+                  <i class="fa fa-heart"></i>
+                </div>
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                </div>
+                <div class="my-1">
+                  <span class="fa fa-star mr-1"></span>
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div>
+                  4 Guests <span>&#9679;</span>&nbsp;2 Bedrooms
+                  <span>&#9679;</span>&nbsp;2 Beds <span>&#9679;</span> 1
+                  Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div
+                  class="
+                    search-result-grid-bottom-block
+                    d-flex
+                    align-items-end
+                    justify-content-between
+                  "
+                >
+                  <div
+                    class="d-flex justify-content-between srch-btm-icon-block"
+                  >
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a href="#" class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1 mt-minus-12">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/f2.png" alt="" class="w-100" />
+                <div class="promoted-block">Featured</div>
+                <div class="promoted-block wishlist">
+                  <i class="fa fa-heart"></i>
+                </div>
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                </div>
+                <div class="my-1">
+                  <span class="fa fa-star mr-1"></span>
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div>
+                  4 Guests <span>&#9679;</span>&nbsp;2 Bedrooms
+                  <span>&#9679;</span>&nbsp;2 Beds <span>&#9679;</span> 1
+                  Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div
+                  class="
+                    search-result-grid-bottom-block
+                    d-flex
+                    align-items-end
+                    justify-content-between
+                  "
+                >
+                  <div
+                    class="d-flex justify-content-between srch-btm-icon-block"
+                  >
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a href="#" class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1 mt-minus-12">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img src="./assets/images/f3.png" alt="" class="w-100" />
+                <div class="promoted-block">Featured</div>
+                <div class="promoted-block wishlist">
+                  <i class="fa fa-heart"></i>
+                </div>
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                </div>
+                <div class="my-1">
+                  <span class="fa fa-star mr-1"></span>
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div>
+                  4 Guests <span>&#9679;</span>&nbsp;2 Bedrooms
+                  <span>&#9679;</span>&nbsp;2 Beds <span>&#9679;</span> 1
+                  Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div
+                  class="
+                    search-result-grid-bottom-block
+                    d-flex
+                    align-items-end
+                    justify-content-between
+                  "
+                >
+                  <div
+                    class="d-flex justify-content-between srch-btm-icon-block"
+                  >
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a href="#" class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1 mt-minus-12">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similiar-items-block">
+              <div class="similar-image-block">
+                <img
+                  src="./assets/images/similar-properties.png"
+                  alt=""
+                  class="w-100"
+                />
+                <div class="promoted-block">Featured</div>
+                <div class="promoted-block wishlist">
+                  <i class="fa fa-heart"></i>
+                </div>
+              </div>
+              <div class="similr-cnt-block">
+                <div class="d-flex justify-content-between">
+                  <h3>Modern &amp; Cozy House</h3>
+                </div>
+                <div class="my-1">
+                  <span class="fa fa-star mr-1"></span>
+                  <span>4.2</span>
+                  <span class="gray-text ml-3">Entire house in Toronto</span>
+                </div>
+                <div>
+                  4 Guests <span>&#9679;</span>&nbsp;2 Bedrooms
+                  <span>&#9679;</span>&nbsp;2 Beds <span>&#9679;</span> 1
+                  Bathroom
+                </div>
+                <div class="booked-block">Booked by 40 this week</div>
+                <div
+                  class="
+                    search-result-grid-bottom-block
+                    d-flex
+                    align-items-end
+                    justify-content-between
+                  "
+                >
+                  <div
+                    class="d-flex justify-content-between srch-btm-icon-block"
+                  >
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <img src="./assets/images/wifi_black_24dp.svg" alt="" />
+                    <a href="#" class="text-14 blue-text">+ 20 more</a>
+                  </div>
+                  <div class="srch-btm-amount-block">
+                    <div class="text-24 mb-1 mt-minus-12">
+                      <span class="text-bold">$400 /</span> night
+                    </div>
+                    <div class="gray-text">$400 total</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="testimonials-carousel-wrapp gap-top">
+      <h2>What Students Around The World Say About Us</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+      </p>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <owl-carousel
+            [options]="CarouselOptions"
+            [carouselClasses]="['owl-theme', 'sliding']"
+          >
+            <div class="similar-items-carosuel" *ngFor="let img of Images">
+              <div class="testimonials-carousel-block">
+                <a href="#">
+                  <div class="testi-cnt-block">
+                    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                    sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                    magna aliquyam erat."
+                  </div>
+                  <div class="testi-rat-block d-flex">
+                    <div class="testi-rat-image-block">
+                      <img src="./assets/images/testimonail.png" alt="" />
+                    </div>
+                    <div class="testi-rat-cnt">
+                      <div class="mb-0">
+                        Bashita Rahman,
+                        <span class="gray-text testi-designation"
+                          >University of the Arts London, United Kingdom</span
+                        >
+                      </div>
+                      <div class="star-icon-block d-flex">
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                        <span>&#9733;</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </section>
+    <section class="explore-carousel-wrapp gap-top-70">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="title-font">Select The Tenure <br />Of Your Lease</h2>
+          <p class="grey-text">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr
+          </p>
+        </div>
+        <div class="col-md-12">
+          <ul
+            class="
+              nav nav-tabs
+              justify-content-center
+              filter-tab
+              border-0
+              mt-5
+              mb-5
+            "
+          >
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#3month"
+                >3 Months</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#6month">6 Months</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#9month">9 Months</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#12month"
+                >12 Months</a
+              >
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane active" id="3month">
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <owl-carousel
+                    [options]="CarouselOptions"
+                    [carouselClasses]="['owl-theme', 'sliding']"
+                  >
+                    <div
+                      class="similar-items-carosuel"
+                      *ngFor="let img of Images2"
+                    >
+                      <div class="similiar-items-block">
+                        <div
+                          class="similar-image-block"
+                          style="align-content: center"
+                        >
+                          <div
+                            class="exp-carosuel-image-block position-relative"
+                          >
+                            <img src="{{ img }}" alt="" />
+                            <div class="star-block">
+                              <img src="./assets/images/star.svg" alt="" />
+                              <span>4.8</span>
+                            </div>
+                            <div class="testimonials-carousel-block">
+                              <a href="#">
+                                <div
+                                  class="
+                                    exp-carosuel-image-block
+                                    position-relative
+                                  "
+                                ></div>
+                                <div class="explore-carousel-content">
+                                  <div
+                                    class="explore-carousel-title mb-1"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Japanese inspire single room"
+                                  >
+                                    Japanese inspire single room
+                                  </div>
+                                  <div class="gray-text mb-1">
+                                    Kensington Market
+                                  </div>
+                                  <div class="explore-carousel-price-block">
+                                    $150 per night
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </owl-carousel>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="6month">
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <owl-carousel
+                    [options]="CarouselOptions"
+                    [carouselClasses]="['owl-theme', 'sliding']"
+                  >
+                    <div
+                      class="similar-items-carosuel"
+                      *ngFor="let img of Images2"
+                    >
+                      <div class="similiar-items-block">
+                        <div
+                          class="similar-image-block"
+                          style="align-content: center"
+                        >
+                          <div
+                            class="exp-carosuel-image-block position-relative"
+                          >
+                            <img src="{{ img }}" alt="" />
+                            <div class="star-block">
+                              <img src="./assets/images/star.svg" alt="" />
+                              <span>4.8</span>
+                            </div>
+                            <div class="testimonials-carousel-block">
+                              <a href="#">
+                                <div
+                                  class="
+                                    exp-carosuel-image-block
+                                    position-relative
+                                  "
+                                ></div>
+                                <div class="explore-carousel-content">
+                                  <div
+                                    class="explore-carousel-title mb-1"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Japanese inspire single room"
+                                  >
+                                    Japanese inspire single room
+                                  </div>
+                                  <div class="gray-text mb-1">
+                                    Kensington Market
+                                  </div>
+                                  <div class="explore-carousel-price-block">
+                                    $150 per night
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </owl-carousel>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="9month">
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <owl-carousel
+                    [options]="CarouselOptions"
+                    [carouselClasses]="['owl-theme', 'sliding']"
+                  >
+                    <div
+                      class="similar-items-carosuel"
+                      *ngFor="let img of Images"
+                    >
+                      <div class="similiar-items-block">
+                        <div
+                          class="similar-image-block"
+                          style="align-content: center"
+                        >
+                          <div
+                            class="exp-carosuel-image-block position-relative"
+                          >
+                            <img src="{{ img }}" alt="" />
+                            <div class="star-block">
+                              <img src="./assets/images/star.svg" alt="" />
+                              <span>4.8</span>
+                            </div>
+                            <div class="testimonials-carousel-block">
+                              <a href="#">
+                                <div
+                                  class="
+                                    exp-carosuel-image-block
+                                    position-relative
+                                  "
+                                ></div>
+                                <div class="explore-carousel-content">
+                                  <div
+                                    class="explore-carousel-title mb-1"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Japanese inspire single room"
+                                  >
+                                    Japanese inspire single room
+                                  </div>
+                                  <div class="gray-text mb-1">
+                                    Kensington Market
+                                  </div>
+                                  <div class="explore-carousel-price-block">
+                                    $150 per night
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </owl-carousel>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="12month">
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <owl-carousel
+                    [options]="CarouselOptions"
+                    [carouselClasses]="['owl-theme', 'sliding']"
+                  >
+                    <div
+                      class="similar-items-carosuel"
+                      *ngFor="let img of Images2"
+                    >
+                      <div class="similiar-items-block">
+                        <div
+                          class="similar-image-block"
+                          style="align-content: center"
+                        >
+                          <div
+                            class="exp-carosuel-image-block position-relative"
+                          >
+                            <img src="{{ img }}" alt="" />
+                            <div class="star-block">
+                              <img src="./assets/images/star.svg" alt="" />
+                              <span>4.8</span>
+                            </div>
+                            <div class="testimonials-carousel-block">
+                              <a href="#">
+                                <div
+                                  class="
+                                    exp-carosuel-image-block
+                                    position-relative
+                                  "
+                                ></div>
+                                <div class="explore-carousel-content">
+                                  <div
+                                    class="explore-carousel-title mb-1"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Japanese inspire single room"
+                                  >
+                                    Japanese inspire single room
+                                  </div>
+                                  <div class="gray-text mb-1">
+                                    Kensington Market
+                                  </div>
+                                  <div class="explore-carousel-price-block">
+                                    $150 per night
+                                  </div>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </owl-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promotion-banner-image-wrapp gap-top">
+      <div class="promotion-image-content-wrapp">
+        <div class="promotion-align-content">
+          <div class="promotion-title text-white">Become a Host</div>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam.
+          </p>
+          <div class="d-flex promotion-button-group mt-2">
+            <a href="#" class="podsliving-button border-0">Try Hosting</a>
+            <a
+              href="#"
+              class="podsliving-button border-0 full-transparent color-white"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="promotion-image-block">
+        <img src="./assets/images/became-host.png" alt="" />
+      </div>
+    </section>
+
+    <section class="make-us-special-wrapp gap-top">
+      <div class="text-center">
+        <h3>What makes us special</h3>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+        <div class="row make-us-special-content-wrapp gap-top-70">
+          <div class="col-md-3 make-us-special-block">
+            <div class="make-us-special-image-block">
+              <img src="./assets/images/mus-1.svg" alt="" />
+            </div>
+            <h3>Industry leading Identity verification</h3>
+            <p>Industry-leading background checks and identity verification</p>
+          </div>
+          <div class="col-md-3 make-us-special-block">
+            <div class="make-us-special-image-block">
+              <img src="./assets/images/mus-2.svg" alt="" />
+            </div>
+            <h3>Easy booking</h3>
+            <p>Flexible rental terms and calendar based booking</p>
+          </div>
+          <div class="col-md-3 make-us-special-block">
+            <div class="make-us-special-image-block">
+              <img src="./assets/images/mus-3.svg" alt="" />
+            </div>
+            <h3>Support</h3>
+            <p>Support for any issues during your rental period</p>
+          </div>
+          <div class="col-md-3 make-us-special-block">
+            <div class="make-us-special-image-block">
+              <img src="./assets/images/mus-4.svg" alt="" />
+            </div>
+            <h3>Personal profiles</h3>
+            <p>Get a snapshot of who lives in the home and their lifestyle</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="promotion-banner-wrapp gap-top become-partner-wrapp min-height-100"
+    >
+      <div class="overlay-area">
+        <div class="promotion-content-wrapp">
+          <div class="promotion-title text-black">Partner With Us</div>
+          <p class="text-black">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam
+          </p>
+          <a href="#" class="podsliving-button">Register as a Partner</a>
+        </div>
+      </div>
+    </section>
+    <section class="blog-carousel-wrapp gap-top">
+      <h2>Blog & Articles</h2>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <owl-carousel
+            [options]="CarouselSlideOptions"
+            [carouselClasses]="['owl-theme', 'sliding']"
+          >
+            <div class="similar-items-carosuel" *ngFor="let img of Images3">
+              <div class="blog-carousel-block">
+                <div class="blog-image-block">
+                  <img src="{{ img }}" alt="" />
+                </div>
+                <div class="blog-cont-block">
+                  <p class="mb-2">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy
+                  </p>
+                  <a href="#" class="text-bold blue-text">Read More</a>
+                </div>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </section>
+  </div>
+</div> -->
+
+<div class="container">
+    <section class="explore-carousel-wrapp gap-top-70" style="margin-top: 95px">
+
+          <div
+          class="d-flex justify-content-between mb-4 " >
+       <div> <h2 class="mb-2">Universities</h2>
+        <p>Applying to universities is stressful but finding accommodation doesn't have to be.</p>
+      </div>
+        <!-- <a class="blue-text cursor-pointer" [routerLink]="['/search-by/top-destination']"><strong>View all</strong></a> -->
+        <a class="blue-text cursor-pointer" [routerLink]="['/university']"><strong>View all</strong></a>
+
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-3" *ngFor="let item of topDestinations | slice:0:4; let i=index" [routerLink]="['/properties/university/',item.slug]" [queryParams]="{distance: item.distance , lat: item.latitude, lng: item.longitude}">
+              <div class="img-hv">
+                <img src="{{item.image_path}}" class="img-fluid cursor-pointer" alt="" />
+                
+                    <div class="over-text">
+                        {{item.title}}
+                    </div>
+
+                
+            </div>
+              
+            </div>
+        </div>
+    </section>
+    <section class="explore-carousel-wrapp gap-top-70">
+        <h2>Search by Specific Amenity</h2>
+
+        <div class="row mt-4">
+            <div class="col-md-5 custom-width1" *ngFor="let item of masterAmenities | slice:0:1; let i=index">
+                <div class="img-hv block cursor-pointer" (click)="searchByAminity(item.service_id)">
+                    <img style="object-fit: cover;" src="{{imageUrl+'storage/' + item.display_image}}" class="img-fluid" alt="" (click)="searchByAminity(item.service_id)" />
+                    <div class="over-text">{{item.service_name}}</div>
+                </div>
+
+            </div>
+            <div class="col-md-7 custom-width2">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let item of masterAmenities | slice:1:7; let i=index">
+                        <div class="img-hv cursor-pointer" (click)="searchByAminity(item.service_id)">
+                            <img src="{{imageUrl +'storage/'+ item.display_image}}" class="img-fluid" alt="" />
+                            <div class="over-text">{{item.service_name}}</div>
+                        </div>
+                        <!-- <div class="img-hv" (click)="searchByAminity('acc-pro')"><img src="./assets/images/accessible-property.png" class="img-fluid" alt="" />  <div class="over-text">Accessible Property</div></div> -->
+                    </div>
+                    <!-- <div class="col-md-4">
+                            <div class="img-hv" (click)="searchByAminity('shared-room')"><img src="./assets/images/rom.jpg" class="img-fluid" alt="" />  <div class="over-text">Shared Room</div></div>
+                            <div class="img-hv" (click)="searchByAminity('game-room')"><img src="./assets/images/game-room.png" class="img-fluid" alt="" />  <div class="over-text">Game Room</div></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="img-hv" (click)="searchByAminity('swiming-pool')"><img src="./assets/images/swimingpool.jpg" class="img-fluid" alt="" />  <div class="over-text">Swimming Pool</div></div>
+                            <div class="img-hv" (click)="searchByAminity('beach-side')"><img src="./assets/images/beachside.png" class="img-fluid" alt="" />  <div class="over-text">Beachside</div></div>
+                        </div> -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="explore-carousel-wrapp gap-top-70">
+        <h2>Search by Property Type</h2>
+        <div class="row mt-4">
+            <div class="col-md-5 custom-width1" *ngFor="let item of typeOfProperty | slice:0:1; let i=index">
+                <div class="img-hv block cursor-pointer" (click)="searchByProperty(item.category_id)">
+                    <img style="object-fit: cover;width: 100%" src="{{imageUrl + item.cat_image}}" class="img-fluid" alt="" (click)="searchByProperty(item.category_id)" />
+                    <div class="over-text">{{item.cat_name}}</div>
+                </div>
+
+            </div>
+            <!-- <div class="col-md-5 custom-width1">
+                    <div class="img-hv" (click)="searchByProperty('cottage')">
+                        <img src="./assets/images/img-big1.jpg" class="img-fluid" alt="" />
+                        <div class="over-text">Cottage</div>
+                    </div>
+      
+                </div> -->
+            <div class="col-md-7 custom-width2">
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let item of typeOfProperty | slice:1:7; let i=index">
+                        <div class="img-hv cursor-pointer" (click)="searchByProperty(item.category_id)">
+                            <img src="{{imageUrl + item.cat_image}}" style="object-fit: cover;" class="img-fluid" alt="" />
+                            <div class="over-text">{{item.cat_name}}</div>
+                        </div>
+                        <!-- <div class="img-hv" (click)="searchByAminity('acc-pro')"><img src="./assets/images/accessible-property.png" class="img-fluid" alt="" />  <div class="over-text">Accessible Property</div></div> -->
+                    </div>
+                    <!-- <div class="col-md-4">
+                            <div class="img-hv" (click)="searchByProperty('pets')"><img src="./assets/images/pets.jpg" class="img-fluid" alt="" />  <div class="over-text">Pets Allowed</div></div>
+                            <div class="img-hv" (click)="searchByProperty('studio')"><img src="./assets/images/studio.jpg" class="img-fluid" alt="" />  <div class="over-text">Studio</div></div>
+                        </div> -->
+                    <!-- <div class="col-md-4">
+                            <div class="img-hv" (click)="searchByProperty('shared-room')"><img src="./assets/images/rom.jpg" class="img-fluid" alt="" />  <div class="over-text">Shared Room</div></div>
+                            <div class="img-hv" (click)="searchByProperty('condo')"><img src="./assets/images/condo.jpg" class="img-fluid" alt="" />  <div class="over-text">Condo</div></div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="img-hv" (click)="searchByProperty('swiming-pool')"><img src="./assets/images/swimingpool.jpg" class="img-fluid" alt="" />  <div class="over-text">Swimming Pool</div></div>
+                            <div class="img-hv" (click)="searchByProperty('townhouse')"><img src="./assets/images/townhouse.jpg" class="img-fluid" alt="" />  <div class="over-text">Townhouse</div></div>
+                        </div> -->
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="promotion-banner-image-wrapp gap-top" *ngIf="!user.user_type || user.user_type==1">
+        <div class="promotion-image-content-wrapp">
+            <div class="promotion-align-content">
+                <div class="promotion-title text-white">Become a Host</div>
+                <div class="d-flex promotion-button-group mt-2">
+                    <a (click)="openRegister()" class="podsliving-button border-0">Try Hosting</a>
+                    <a [routerLink]="['/how-it-works']" class="podsliving-button border-0 full-transparent color-white">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div class="promotion-image-block">
+            <img src="./assets/images/became-host.png" alt="">
+        </div>
+    </section>
+<app-what-make-us></app-what-make-us>
+    
+</div>

@@ -1,0 +1,126 @@
+.profile-links-block {
+  display: block;
+}
+.signin-button {
+  width: 100%;
+  height: 48px;
+  display: none;
+}
+
+.login-image-content-block .login-modal-title {
+  font: normal normal bold 28 px / 40 px Raleway;
+  letter-spacing: 0px;
+  color: #ffffff;
+  text-shadow: 0px 3px 6px #000000;
+}
+
+.login-modal-form-wrapp .form-block label {
+  font: normal normal 600 14px/22px;
+  font-family: var(--podsLiving-fontfamily);
+}
+
+.right-link *,
+.right-link span {
+  font: normal normal normal 12px/17px;
+  font-family: var(--podsLiving-fontfamily);
+  color: #325eab;
+}
+
+div#register_content select {
+  height: 48px !important;
+}
+
+.navbar-brand {
+  cursor: pointer;
+}
+
+i.dob-info,
+i.pwd-info,
+span.pwd-info {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+  cursor: default;
+}
+i.dob-info[data]:hover:after {
+  content: "You need to be 18 years older.";
+  position: absolute;
+  top: -26px;
+  color: #fff;
+  width: 182px;
+  left: 8px;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+i.pwd-info[data]:hover:after {
+  content: "Password must contain atleast one uppercase, lowercase, number, special character. eg. Tree@123";
+  position: absolute;
+  top: -60px;
+  color: #fff;
+  width: 270px;
+  left: 8px;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+span.pwd-info[data]:hover:after {
+  content: "Password must contain atleast one uppercase, lowercase, number, special character. eg. Tree@123";
+  position: absolute;
+  top: -66px;
+  color: #fff;
+  width: 235px;
+  text-align: left;
+  left: -20px;
+  background: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+.error-text {
+  font: normal normal normal 12px/17px ;
+  font-family: var(--podsLiving-fontfamily);
+}
+header .landing-banner-content-wrapp {
+  width: 100%;
+  top: 100%;
+  transform: none;
+}
+header .landing-banner-content-wrapp  .landing-form-tabs {
+  margin-top: 0;
+}
+
+.change-user-modal-right-content-block {
+  height: 500px;
+  overflow: auto;
+  padding: 0px 45px;
+  padding-top: 50px;
+  width: 100%;
+}
+
+.term-condition-block {
+  text-align: left;
+  max-height: 270px;
+  overflow-y: auto;
+}
+
+i.dob-info[data]:hover:after {left: unset;right: 0;}
+i.pwd-info[data]:hover:after {left: unset;right: 0;}
+
+.flag-img{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span:first-child{display: none;}
+#google_translate_element .goog-te-gadget-simple .goog-te-menu-value:before{content: 'Translate'}
+
+
+.invalid-feedback-force {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}

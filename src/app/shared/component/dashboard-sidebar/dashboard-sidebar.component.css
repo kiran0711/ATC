@@ -1,0 +1,70 @@
+/* =========================================Sidebar=================================== */
+
+.sidebar-wrapp ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-wrapp ul li {
+    list-style: none;
+    padding: 15px 0;
+    position: relative;
+    padding-left: 50px;
+}
+
+.sidebar-wrapp ul li a {
+    text-decoration: none !important;
+    color: #000000;
+}
+
+.sidebar-wrapp ul li.active a {
+    text-decoration: none !important;
+    color: var(--podsLiving-primary);
+    font-weight: bold;
+}
+
+.sidebar-wrapp ul li a img {
+    margin-right: 15px;
+}
+
+.sidebar-wrapp li.active:before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--podsLiving-primary);
+}
+
+.sidebar-wrapp-width {
+    width: 20%;
+}
+
+.active-image-block {
+    display: none;
+}
+
+li.active .active-image-block {
+    display: inline-block;
+}
+
+li.active .inactive-image-block {
+    display: none;
+}
+
+.menu-notification-block {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: #FD0A0E;
+    margin-left: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.7;
+}
+app-dashboard-sidebar {
+    width: 20%;
+}

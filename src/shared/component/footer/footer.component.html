@@ -1,0 +1,266 @@
+
+<div class="modal fade" id="not-find" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body pb-3 pt-2">
+                <div class="modal-header pt-15">
+                    <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img src="../assets/images/cross.svg" alt="" id="close-btn"></a>
+                    <div class="text-bold text-20 mb-3">Didn't find what you were looking for? </div>
+                </div>
+                <div class="modal-block pt-0 pb-3 mt-3">
+                    <div class="filter-form">
+                        <p>
+                            Please share details below and we will notify you once the property is available</p>
+                        <form [formGroup]="didnotFindForm">
+                            <div class="border-block-y">
+                                <div class="row">
+                                    <div class="col-md-6 form-block">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" formControlName="name" class="form-control" placeholder="Full Name" [ngClass]="{
+                        'is-invalid':
+                        lookingForFormControl.name.errors &&
+                          (lookingForFormControl.name.dirty ||
+                          lookingForFormControl.name.touched)
+                      }">
+                                        <div *ngIf="lookingForFormControl.name.errors" class="error-msg">
+                                            {{ lookingForFormControl.name.errors.incorrect }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-block">
+                                        <label>Email ID</label>
+                                        <input type="email" class="form-control" formControlName="email" placeholder="Email" [ngClass]="{
+                        'is-invalid':
+                        lookingForFormControl.email.errors &&
+                          (lookingForFormControl.email.dirty ||
+                          lookingForFormControl.email.touched)
+                      }">
+                                        <div *ngIf="lookingForFormControl.email.errors" class="error-msg">
+                                            {{ lookingForFormControl.email.errors.incorrect }}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row form-block lable-cnt-block d-flex align-items-center justify-content-between mb-4">
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-12"><label>Mobile Number</label></div>
+                                            <div class="col-md-4 col-4">
+                                                <select formControlName="dialing_code" class="form-control" [ngClass]="{
+                            'is-invalid':
+                            lookingForFormControl.dialing_code.errors &&
+                              (lookingForFormControl.dialing_code.dirty ||
+                              lookingForFormControl.dialing_code.touched)
+                          }">
+                          <option value="+1">+1</option>
+                          <option value="+91">+91</option>
+                          <option value="+60">+60</option>
+                        </select>
+                                                <div *ngIf="lookingForFormControl.dialing_code.errors" class="error-msg">
+                                                    {{ lookingForFormControl.dialing_code.errors.incorrect }}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-8">
+                                                <input type="number" class="form-control" formControlName="mobile" placeholder="xxxxxxxxxxxxx" [ngClass]="{
+                            'is-invalid':
+                            lookingForFormControl.mobile.errors &&
+                              (lookingForFormControl.mobile.dirty ||
+                              lookingForFormControl.mobile.touched)
+                          }">
+                                                <div *ngIf="lookingForFormControl.mobile.errors" class="error-msg">
+                                                    {{ lookingForFormControl.mobile.errors.incorrect }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label><strong>Location</strong></label>
+                                        <select formControlName="location" class="form-control">
+                      <option *ngFor="let location of lookingforlocations" value="{{ location.title }}">
+                        {{ location.title }}
+                      </option>
+                    </select>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <label><strong>Radius</strong></label>
+                                        <select formControlName="radius" class="form-control">
+                      <option value="1-3 Kilometers">1-3 Kilometers</option>
+                      <option value="4-6 Kilometers">4-6 Kilometers</option>
+                      <option value="7-9 Kilometers">7-9 Kilometers</option>
+                      <option value="10-12 Kilometers">10-12 Kilometers</option>
+                      <option value="13-15 Kilometers">13-15 Kilometers</option>
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="text-20 text-bold">Type of Property</div>
+                                <div class="row mt-3">
+                                    <div class="col-md-4 checkbox-group">
+                                        <input type="checkbox" (change)="onChangePropertyTypes($event)" formControlName="property_type" id="entire_place" value="Entire Place">
+                                        <label for="entire_place">Entire Place</label>
+                                    </div>
+                                    <div class="col-md-4 checkbox-group">
+                                        <input type="checkbox" (change)="onChangePropertyTypes($event)" formControlName="property_type" id="private_room" value="Private Room">
+                                        <label for="private_room">Private Room</label>
+                                    </div>
+                                    <div class="col-md-4 checkbox-group">
+                                        <input type="checkbox" (change)="onChangePropertyTypes($event)" formControlName="property_type" id="shared_room" value="Shared Room">
+                                        <label for="shared_room">Shared Room</label>
+                                    </div>
+                                    <div class="col-md-12  mt-4">
+
+                                        <textarea class="form-control min-height-auto" formControlName="comment" placeholder="Comment" [ngClass]="{
+                        'is-invalid':
+                        lookingForFormControl.comment.errors &&
+                          (lookingForFormControl.comment.dirty ||
+                          lookingForFormControl.comment.touched)
+                      }" rows="3"></textarea>
+                                        <div *ngIf="lookingForFormControl.comment.errors" class="error-msg">
+                                            {{ lookingForFormControl.comment.errors.incorrect }}
+                                        </div>
+                                        <div *ngIf="lookingForFormControl.comment.errors?.maxlength" class="error-msg">
+                                            Maximum 500 characters allowed.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <div class="text-success p-2" *ngIf="lookingForSuccess">
+                                        <span>{{ successMsg }}</span>
+                                        <i class="close-icon fa fa-times ml-3 cursor-pointer" (click)="lookingForSuccess = !lookingForSuccess"></i>
+                                    </div>
+                                    <div class="red-text p-2" *ngIf="lookingForFailed">
+                                        <span>{{ failedMsg }}</span>
+                                        <i class="close-icon fa fa-times ml-3 cursor-pointer" (click)="lookingForFailed = !lookingForFailed"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="d-flex align-items-right justify-content-between">
+                                    <button class="podsliving-button" (click)="sendInterest()" [ngClass]="{
+                      'button-disable': !didnotFindForm.valid
+                    }">
+                    Let us Know Your Interest
+                  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<footer class="gap-top">
+    <div class="container">
+        <div class="row footer-links-block">
+            <div class="col-md-3">
+                <div class="links-title">Search By</div>
+                <ul>
+                    <li>
+                        <a [routerLink]="['/location']" class="d-flex justify-content-between">Top Location</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/university']" class="d-flex justify-content-between">Top University</a>
+                    </li>                  
+                    <li>
+                        <a [routerLink]="['/top-destination']" class="d-flex justify-content-between">Top Destinatiions</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="d-flex justify-content-between cursor-pointer" data-toggle="modal" data-target="#not-find">Didn’t Find what you’re Looking For?</a>
+                    </li>
+                </ul>
+            </div>
+          
+<div class="col-md-3">
+                <div class="links-title">Knowledge Base</div>
+                <ul>
+                    <!-- <li>
+                        <a [routerLink]="['/how-it-works']" class="d-flex justify-content-between">How It Works?</a> 
+                    </li> -->
+                    <li>
+                        <a [routerLink]="['/how-it-works-host']" class="d-flex justify-content-between">Host - How It Works</a>
+                    </li>
+                    <!-- <li>
+                        <a [routerLink]="['/how-it-works-partner']" class="d-flex justify-content-between">How It Works Partner?</a>
+                    </li> -->
+                    <!-- <li>
+                        <a [routerLink]="['/become-a-partner']" class="d-flex justify-content-between">Become a Partner</a>
+                    </li> -->
+                    <li>
+                        <a [routerLink]="['/faq']" class="d-flex justify-content-between">FAQs</a>
+                    </li>
+                    <li>
+                        <a href="https://PodsLiving.ca/resources/" target="_blank" class="d-flex justify-content-between">Resources</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/information-center']" class="d-flex justify-content-between">Information Center</a>
+                    </li>
+                </ul>
+</div>
+<div class="col-md-3">
+                <div class="links-title">About PodsLiving</div>
+                <ul>
+                    <li>
+                        <a [routerLink]="['/about']" class="d-flex justify-content-between">About Us</a>
+                    </li>
+
+                    <li>
+                        <a [routerLink]="['/career']" class="d-flex justify-content-between">Career</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/contactus']" class="d-flex justify-content-between">Contact Us</a>
+                    </li>
+                    
+                </ul>
+</div>
+<div class="col-md-3">
+                <div class="links-title m-0 ">Subscribe to Newsletters</div>
+                <form [formGroup]="subscriptionForm">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 mt-5">
+                            <div class="newsletter-block">
+                                <input type="email" formControlName="subscribe_email" placeholder="Email Address*" />
+                                <button (click)="subscribeNewsLetters()" [ngClass]="{
+                    '': !subscriptionForm.valid
+                  }" class="podsliving-button">
+                  Subscribe
+                </button>
+                            </div>
+                        </div>
+                        <div class="col-5"></div>
+                        <div class="col-7">
+                            <div class="form-block">
+                                <div class="text-success p-2" *ngIf="subsSuccess">
+                                    <span>{{ successMsg }}</span>
+                                    <i class="close-icon fa fa-times ml-3 cursor-pointer" (click)="subsSuccess = !subsSuccess"></i>
+                                </div>
+                                <div class="red-text p-2" *ngIf="subsFailed">
+                                    <span>{{ failedMsg }}</span>
+                                    <i class="close-icon fa fa-times ml-3 cursor-pointer" (click)="subsFailed = !subsFailed"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+<div class="row footer-copyright-block">
+            <div class="col-md-8">
+                © PodsLiving&trade; {{currentYearLong()}}. All Rights Reserved. |
+                <a [routerLink]="['/policies/terms-and-conditions']" target="_blank" class="linkLegal">Legal & Policies</a>
+            </div>
+            <div class="col-md-4 footer-social-block">
+                <a href="https://www.facebook.com/podsliving" target="_blank" title="Facebook"><i class="fa fa-facebook-official"
+            aria-hidden="true"></i></a>
+                <a href="https://twitter.com/podsliving" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/company/podsliving/" target="_blank" title="LinkedIn"><i class="fa fa-linkedin"
+            aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/podsliving/" target="_blank" title="Instagram"><i class="fa fa-instagram"
+            aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div> 
+</footer>   

@@ -1,0 +1,96 @@
+.dragBoxHover {
+    width: 100%; 
+    height: 200px; 
+    position: relative; 
+    color: #D3D3D3; 
+    display: flex; 
+    transition: transform 0.3s; 
+    background-color: #EFEFEF; 
+    border-radius: 4px; 
+    align-items: center; 
+    justify-content: center; 
+    flex-wrap: wrap;
+    border: 3px dashed #D3D3D3;
+}
+
+.dragBoxHover input[type="file"] {position: absolute; height: 100%; width: 100%; opacity: 0; top: 0; left: 0;}
+
+.modal-dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+  }
+
+.img-v {  width: 100px; margin-right: 5px;}
+.progess-view{ width: calc(100% - 60px)}   
+progress { height: 5px;border-radius: 4px;}
+.progess-view {font-size: 12px;line-height: 2;}
+progress::-webkit-progress-value { background: #393A3B;}
+progress::-moz-progress-bar {  background: #FBFBFB;}
+progress::-webkit-progress-value {  background: #393A3B;}
+progress::-webkit-progress-bar { background: #FBFBFB;}
+.upload-section{margin: 20px 0px;}
+.cross {width: 16px;cursor: pointer;}
+
+.cover-screen [type="radio"]:checked + label, .cover-screen [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 18px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #000000;
+    font-size: 12px;
+}
+.cover-screen [type="radio"]:checked + label:before, .cover-screen [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #000000;
+    border-radius: 100%;
+    background: #fff;
+}
+.cover-screen .image-radio {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-color: #ffffff;
+    padding: 4px 7px;
+    border-radius: 4px;
+}
+.cover-screen .col-md-4.image-radio-buttons-wrapp{padding: 0px 7px;}
+.cover-screen .radio-buttons-image-block {
+    margin-bottom: 10px;    max-height: 130px;
+    border: 1px solid #dfe1e4;
+}
+.cover-screen .form-block input {
+    height: 40px;
+}
+.cover-screen .form-block {
+    margin-bottom: 10px;
+}
+.cover-screen .form-block label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#preview{
+    height: 100px;
+    object-fit: cover;
+}
+.img-v img {
+    height: 70px;
+    object-fit: cover;
+    width: 70px;
+}
+@media only screen 
+  and (min-device-width : 767px) 
+  and (max-device-width : 991px){ 
+.col-md-4.image-radio-buttons-wrapp{
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+  }

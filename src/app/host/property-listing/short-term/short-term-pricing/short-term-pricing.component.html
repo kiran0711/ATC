@@ -1,0 +1,314 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <div class="prgress-bar percent-70"></div>
+    <div class="
+      col-md-12
+      creat-listing-top-buttons-block
+      d-flex
+      align-items-center
+      justify-content-between
+      mb-4
+    ">
+        <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+        <a [routerLink]="['/host/property-listing/short-term/amenities']" [queryParams]="{proId: pro_idd}">
+            <img src="./assets/images/back.svg" alt="" />
+        </a>
+        <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !isValid }" class="btn btn-outline-primary"><strong>Save
+        & Exit</strong></a>
+    </div>
+    <div class="col-md-12">
+        <h2>Vacation Rental Pricing<span class="briefContent gray-text">(in $)</span></h2>
+    </div>
+
+    <!-- <div class="col-md-12 form-block">
+    <label>Base Price (Per Night)</label>
+    <div class="position-relative">
+      <input
+        type="number"
+        placeholder="0"
+        [(ngModel)]="req.base_price_per_night"
+        class="form-control"
+        #base_price_per_night="ngModel"
+        name="base_price_per_night"
+        [ngClass]="{
+          'is-invalid':
+            !req.base_price_per_night &&
+            (base_price_per_night.dirty ||
+              base_price_per_night.touched)
+        }"
+      />
+      <a
+        href="javascript:void(0);"
+        class="gray-text input-text text-decoration-none"
+        >Per night</a
+      >
+    </div>
+  </div> -->
+
+    <div class="col-md-12 form-block mt-4">
+        <div id="accordion">
+
+            <div class="card">
+
+                <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                    <!-- <div class="btn-link btn"> -->
+                    <h2 class="mb-3">Base Price<span class="briefContent gray-text">(per night)</span></h2>
+                    <!-- </div> -->
+
+                </div>
+
+                <div class="card-body">
+                    <div class="position-relative">
+                        <input type="number" placeholder="0" [(ngModel)]="req.base_price_per_night" class="form-control" #base_price_per_night="ngModel" name="base_price_per_night" [ngClass]="{
+                                                  'is-invalid':
+                                                    !req.base_price_per_night &&
+                                                    (base_price_per_night.dirty ||
+                                                      base_price_per_night.touched)
+                                                }" />
+                        <!-- <a href="javascript:void(0);" class="gray-text input-text text-decoration-none">Per night</a> -->
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+                <!-- <div class="card-header" id="headingsix">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix"
+              aria-expanded="true" aria-controls="collapseSix">
+              <div class="collpsd-cnt">Set Different Price for Weekends</div>
+              <div class="normal-cnt">Weekend Pricing</div>
+            </button>
+          </h5>
+        </div> -->
+
+                <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="btn-link btn"> -->
+                    <h2 class=" mb-0">Set Different Price for Weekends<span class="briefContent gray-text">(Per Night)</span></h2>
+                    <!-- </div> -->
+
+                </div>
+
+
+
+                <div class="card-body">
+                    <div class="form-block">
+                        <!-- <div>Price for Weekends</div> -->
+                        <div class="position-relative">
+                            <input type="number" placeholder="0" [(ngModel)]="req.weekend_price_per_night" class="form-control" #weekend_price_per_night="ngModel" name="weekend_price_per_night" [ngClass]="{
+                    'is-invalid':
+                      !req.weekend_price_per_night &&
+                      (weekend_price_per_night.dirty ||
+                      weekend_price_per_night.touched)
+                  }" />
+                            <!-- <a href="javascript:void(0);" class="gray-text input-text text-decoration-none">Per night</a> -->
+                        </div>
+                    </div>
+
+                    <div class="form-block mb-0">
+                        <label class="text-bold">Weekends</label>
+                        <div class="row">
+                            <div class="col-md-3 checkbox-group" *ngFor="let day of weekends; let i = index;">
+                                <input value="{{day.key}}" id="{{day.key}}" type="checkbox" (click)="dayChange($event, day.key)" [checked]="req.weekend.includes(day.key)" />
+                                <label for="{{day.key}}" class="font-w-normal">{{day.label}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- this is applicable for long term listing -->
+            <!-- <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button
+              class="btn btn-link collapsed"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              <div class="collpsd-cnt">Set Weekly Pricing</div>
+              <div class="normal-cnt">Weekly Pricing</div>
+            </button>
+          </h5>
+        </div>
+        <div
+          id="collapseOne"
+          class="collapse"
+          aria-labelledby="headingOne"
+          data-parent="#accordion"
+        >
+          <div class="card-body">
+            <div class="form-block">
+              <div>Price Per Week</div>
+              <div class="position-relative">
+                <input type="number" [(ngModel)]="req.per_week_price" />
+                <a href="#" class="gray-text input-text text-decoration-none"
+                  >Per night</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+            <div class="card" *ngIf="additionalGuestAllowed">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <div class="collpsd-cnt">Set Pricing for Additional Guests</div>
+              <div class="normal-cnt">Additional Guests</div>
+            </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+                    <div class="card-body">
+                        <div class="form-block">
+                            <div>Price for Additional Guests</div>
+                            <div class="position-relative">
+                                <input type="number" placeholder="0" [(ngModel)]="req.price_for_1additional_guest" class="form-control" #price_for_1additional_guest="ngModel" name="price_for_1additional_guest" [ngClass]="{
+                    'is-invalid':
+                      !req.price_for_1additional_guest &&
+                      (price_for_1additional_guest.dirty ||
+                        price_for_1additional_guest.touched)
+                  }" />
+                                <!-- <a href="javascript:void(0);" class="gray-text input-text text-decoration-none">Per night</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <!-- <div class="card-header" id="headingFour">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour"
+              aria-expanded="false" aria-controls="collapseThree">
+              <div class="collpsd-cnt">Add Cleaning Fee</div>
+              <div class="normal-cnt">Cleaning Fee</div>
+            </button>
+          </h5>
+        </div> -->
+
+                <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="btn-link btn"> -->
+                    <h2 class=" mb-0">Add Cleaning Fee</h2>
+                    <!-- </div> -->
+
+                </div>
+
+
+                <div class="card-body">
+                    <div class="form-block">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="weight-normal">Select Frequency</label>
+                                <div class="form-subs" style="width: 50%;">
+                                    <div class="form-subs-lable-block">
+                                        <label>
+                        <input type="radio" name="cleaning-frequency" [value]="CLEANING_FREQUENCY_PER_NIGHT"
+                          [(ngModel)]="req.cleaning_frequency" />
+                        <span class="btn-v">Per Night</span>
+                      </label>
+                                    </div>
+                                    <div class="form-subs-lable-block">
+                                        <label>
+                        <input type="radio" name="cleaning-frequency" [value]="CLEANING_FREQUENCY_PER_STAY"
+                          [(ngModel)]="req.cleaning_frequency" />
+                        <span class="btn-v">Per Stay</span>
+                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 position-relative">
+                                <label class="text-bold">Amount <!--<span class="gray-text">(per night)</span>--></label>
+                                <input type="number" [(ngModel)]="req.cleaning_amount" class="form-control" placeholder="0" #cleaning_amount="ngModel" name="cleaning_amount" [ngClass]="{
+                    'is-invalid':
+                      !req.cleaning_amount &&
+                      (cleaning_amount.dirty ||
+                      cleaning_amount.touched)
+                  }" />
+                                <!-- <a href="javascript:void(0);" class="gray-text input-text text-decoration-none">Per night</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card">
+                <!--                                            <div class="card-header" id="headingFour">
+                      <div class="collpsd-cnt mb-4"><strong>Book Now & Pay Later</strong></div>
+                   
+                  </div>-->
+                <!-- <div
+          class="
+            lable-cnt-block
+            d-flex
+            align-items-center
+            justify-content-between
+            mb-4
+          "
+        >
+          <div>
+            <div><strong>Book Now & Pay Later</strong></div>
+          </div>
+          <label class="switch">
+            <input
+              type="checkbox"
+              (ngModelChange)="req.book_now_pay_later = $event ? 1 : 0"
+              [ngModel]="req.book_now_pay_later == 1"
+            />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="form-block" *ngIf="req.book_now_pay_later">
+          <div class="row">
+            <div class="col-md-6">
+              <label class="weight-normal">Charge Price By</label>
+              <div class="form-subs">
+                <div class="form-subs-lable-block">
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender2"
+                      [value]="CHANGE_PRICE_BY_PERCENTAGE"
+                      [(ngModel)]="req.pay_later_frequency"
+                    />
+                    <span class="btn-v">Percentage</span>
+                  </label>
+                </div>
+                <div class="form-subs-lable-block">
+                  <label>
+                    <input
+                      type="radio"
+                      name="gender2"
+                      [value]="CHANGE_PRICE_BY_AMOUNT"
+                      [(ngModel)]="req.pay_later_frequency"
+                      
+                    />
+                    <span class="btn-v">Amount</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 position-relative">
+              <label class="text-bold"
+                >Enter
+                {{
+                  req.pay_later_frequency === CHANGE_PRICE_BY_PERCENTAGE
+                    ? "Percentage"
+                    : "Amount"
+                }}</label
+              >
+              <input type="number" placeholder="0" [(ngModel)]="req.pay_later_amount" 
+              class="form-control"  />
+            </div>
+          </div>
+        </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 form-block create-listing-submit-button-block">
+        <a (click)="saveAndNext()" class="podsliving-button" [ngClass]="{ 'button-disable': !isValid }">Next</a>
+    </div>
+</div>

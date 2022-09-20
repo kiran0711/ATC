@@ -1,0 +1,71 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <form [formGroup]="describePropertyForm" class="w-100">
+        <div class="prgress-bar percent-5"></div>
+        <div class="
+        col-md-12
+        creat-listing-top-buttons-block
+        d-flex
+        align-items-center
+        justify-content-between
+        mb-4
+      ">
+            <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+            <a [routerLink]="['/host/property-listing/short-term/property-space-type']" [queryParams]="{proId: pro_idd}">
+                <img src="./assets/images/back.svg" alt="" />
+            </a>
+            <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !describePropertyForm.valid }" class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+        </div>
+        <div class="col-md-12 mb-4">
+            <h2>Describe Your Property</h2>
+        </div>
+        <div class="col-md-12 form-block">
+            <textarea id="the-textarea" class="form-control" formControlName="property_description" placeholder="Property description minimum 100 character and maximum up to 2000 character." [ngClass]="{
+          'is-invalid':
+          propertyDescribeFormControl.property_description.errors &&
+          (propertyDescribeFormControl.property_description.dirty ||
+          propertyDescribeFormControl.property_description.touched)
+        }"></textarea>
+            <div id="the-count">
+                <span id="current">{{ currentLength }}</span>
+                <span id="maximum">/ 2000</span> (Minimum 100)
+                <span *ngIf="propertyDescribeFormControl.property_description.errors?.maxlength" id="maximum" class="error-msg">You have exceeded the maximum character limit</span>
+            </div>
+        </div>
+        <div *ngIf="propertyDescribeFormControl.property_description?.errors" class="error-msg">
+            {{ propertyDescribeFormControl.property_description.errors?.incorrect }}
+        </div>
+
+        <div class="col-md-12 mt-4">
+            <div class="
+          lable-cnt-block
+          d-flex
+          align-items-center
+          justify-content-between
+        " *ngFor="let attr of attributes">
+                <div class="font-bold">{{ attr["attr_name"] }}</div>
+                <div id="field1" *ngIf="attr['max_val']">
+                    <button type="button" class="sub" (click)="decrease(attr['min_val'], attr['attr_key'])">
+            -
+          </button>
+                    <input type="number" value="1" [formControlName]="attr['attr_key']" min="{{ attr['min_val'] }}" max="{{ attr['max_val'] }}" />
+                    <button type="button" class="add" (click)="increase(attr['max_val'], attr['attr_key'])">
+            +
+          </button>
+                </div>
+                <label class="switch" *ngIf="!attr['max_val']">
+          <input
+            type="checkbox"
+            [(ngModel)]="intialVal"
+            [formControlName]="attr['attr_key']"
+            (change)="allowSharing($event)"
+          />
+          <span class="slider round"></span>
+        </label>
+            </div>
+        </div>
+
+        <div class="col-md-12 form-block create-listing-submit-button-block">
+            <button class="podsliving-button" [ngClass]="{ 'button-disable': !describePropertyForm.valid }" (click)="next()">Next</button>
+        </div>
+    </form>
+</div>

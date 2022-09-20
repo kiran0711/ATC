@@ -1,0 +1,25 @@
+.btn-group-w-adjust {
+    width: 42%;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    min-width: 100px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background-color: var(--podsLiving-primary);
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.btn-sm:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.btn-sm.white {
+    color: var(--podsLiving-primary) !important;
+    background-color: #ffffff;
+}

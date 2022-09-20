@@ -1,0 +1,26 @@
+<div class="sidebar-wrapp">
+    <div class="sidebar-block">
+        <ul>
+            <li class="cusror-pointer" [routerLink]="['/'+dashboardLink]" routerLinkActive="active">
+                <a><img src="../../../../assets/images/dashboard-black.svg" alt="" class="inactive-image-block" /><img 
+                    src="../../../../assets/images/dashboard-blue.svg" alt="" class="active-image-block" />Dashboard</a>
+            </li>
+            <li class="cusror-pointer" [routerLink]="['/host/property-list']" routerLinkActive="active" *ngIf="userCurrentlySelectedRole == 'host'">
+                <a><img src="../../../../assets/images/bookings-black.svg" alt="" class="inactive-image-block" /><img
+                        src="../../../../assets/images/bookings-blue.svg" alt="" class="active-image-block" />Property</a>
+            </li>
+            <li class="cusror-pointer" [routerLink]="['/booking/booking-history']" routerLinkActive="active">
+                <a><img src="../../../../assets/images/bookings-black.svg" alt="" class="inactive-image-block" /><img
+                        src="../../../../assets/images/bookings-blue.svg" alt="" class="active-image-block" />Bookings</a>
+            </li>
+            <li class="cusror-pointer" [routerLink]="['/booking/wallet']" routerLinkActive="active">
+                <a><img src="../../../../assets/images/wallet-black.svg" alt="" class="inactive-image-block" /><img
+                        src="../../../../assets/images/wallet-blue.svg" alt="" class="active-image-block" />Wallet</a>
+            </li>
+            <li class="cusror-pointer" [routerLink]="['/booking/invoices']" routerLinkActive="active">
+                <a><img src="../../../../assets/images/bookings-black.svg" alt="" class="inactive-image-block" /><img
+                        src="../../../../assets/images/bookings-blue.svg" alt="" class="active-image-block" />Invoices</a>
+            </li>
+        </ul>
+    </div>
+</div>

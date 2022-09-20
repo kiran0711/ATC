@@ -1,0 +1,36 @@
+<div class="admin-panel-wrapp">
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+  <div class="admin-panel-cnt-wrapp pt-0">
+    <div class="container-fluid">
+      <div class="row table-even-odd-wrapp">
+        <div class="col-md-12">
+
+          <div class="block-title-wrapp mb-20 d-flex justify-content-between">
+            <h3>Properties</h3>
+            <a [routerLink]="['/host/property-listing']" class="podsliving-button blue-">Create Property</a>
+          </div>
+          <div class="col-md-12 simple-tabs-wrapp td-pointer">
+            <ul class="nav nav-pills mb-4" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': term == 'short'}" data-toggle="tab" href="#shortTerm">Vacation Rental</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': term == 'long'}" data-toggle="tab" href="#longTerm">Long Term Leasing</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="shortTerm" class="tab-pane fade" [ngClass]="{'active show': term == 'short'}">
+                <app-property-short-term-list></app-property-short-term-list>
+              </div>
+              <div id="longTerm" class="tab-pane fade" [ngClass]="{'active show': term == 'long'}">
+                <app-property-long-term-list></app-property-long-term-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

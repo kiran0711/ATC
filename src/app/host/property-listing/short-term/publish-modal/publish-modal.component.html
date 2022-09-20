@@ -1,0 +1,91 @@
+<form class="w-100" [formGroup]="publishForm">
+  <div class="modal fade" id="additional_details" tabindex="-1" role="dialog" aria-labelledby="login_register"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="login-modal-wrapp">
+            <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                src="assets/images/cross.svg" alt=""></a>
+            <div class="login-modal-image-block">
+            </div>
+            <div class="login-modal-content-wrapp position-relative">
+              <div class="modal-right-content-block d-flex align-items-center">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">{{isStrMandatorty?'Hosting Charges & Additional Details':'Additional Details'}}</div>
+                  <div class="mb-4 mt-4">As soon as the guest checks-in, you will receive your money minus a 1.5%
+                    PodsLiving INC. service fee. You can add or change your preferred payout method via Digital Wallet
+                    which can be accessed via Dashboard.</div>
+
+                  <div class="login-modal-form-wrapp">
+                    <div *ngIf="isStrMandatorty">
+                        <div class="position-relative">
+                            <div class="d-flex align-items-center justify-content-between">
+                              <label>STR Number</label>
+                              <!-- <span class="gray-text">Optional</span> -->
+                            </div>
+                            <input type="text"
+                            type="text"
+                            formControlName="str_number"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                publishFormControl.str_number.errors &&
+                                (publishFormControl.str_number.dirty ||
+                                  publishFormControl.str_number.touched)
+                            }" [readonly]="!showStrBlock" style="width: 85%;display: inline-block;margin-right: 18px;">
+                            <i
+                              *ngIf="!showStrBlock"
+                              class="edit-icon fa fa-pencil"
+                              (click)="strVisiblity(true)"
+                              aria-hidden="true"
+                            ></i>
+                            <i
+                              *ngIf="showStrBlock"
+                              class="close-icon fa fa-times"
+                              (click)="strVisiblity(false)"
+                              aria-hidden="true"
+                            ></i>
+                          </div>
+                          <div *ngIf="publishFormControl.str_number.errors" class="error-msg">
+                            {{ publishFormControl.str_number.errors.incorrect }}
+                          </div>
+                          <div class="form-block">
+                            <p>The short term rental (STR) number provided by Toronto Municipal will be required to list and
+                              book the property for less than 28 consecutive days.</p>
+                          </div>
+                          <div class="text-bold form-block" *ngIf="!proListingService.property.publish_step.str_number">Don’t have STR Number? <a href="{{applyLink}}" target="_blank" class="blue-text"> Apply
+                              Here</a>
+                          </div>
+                    </div>
+                    <div class="checkbox-group">
+                      <input type="checkbox" id="craet_policy_3"
+                      formControlName="agreed"
+                      class="form-control"
+                      (change)="updateCheckBoxVal($event.target);"
+                      [ngClass]="{
+                        'is-invalid':
+                          publishFormControl.agreed.errors &&
+                          (publishFormControl.agreed.dirty ||
+                            publishFormControl.agreed.touched)
+                      }"
+                        >
+                      <label for="craet_policy_3" class="font-w-normal">I understand and agree</label>
+                    </div>
+                    <div class="form-block create-listing-submit-button-block">
+                      <a class="podsliving-button"
+                      [ngClass]="{ 'button-disable': !publishForm.valid }"
+                      (click)="submit()"
+                      >Continue</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,116 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+    <div class="prgress-bar percent-70"></div>
+    <div class="
+      col-md-12
+      creat-listing-top-buttons-block
+      d-flex
+      align-items-center
+      justify-content-between
+      mb-4
+    ">
+        <!-- <a (click)="back()"><img src="./assets/images/back.svg" alt="" /></a> -->
+        <a [routerLink]="['/host/property-listing/short-term/calendar']" [queryParams]="{proId: pro_idd}">
+            <img src="./assets/images/back.svg" alt="" />
+        </a>
+        <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !isValid }" class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <div class="col-md-12 mb-4">
+        <h2>Set Your Cancellation Policy<span class="briefContent gray-text">(Vacation Rental)</span></h2>
+    </div>
+
+    <ng-container *ngFor="let policy of policyMaster; let pi = index">
+
+        <div class="col-md-12 form-block">
+            <h3>{{policy.policy_name}}</h3>
+            <div>
+                <p>{{policy.policy_description.length > 200 ? policy.policy_description.substring(0, 200) : policy.policy_description}}<span id="dots" *ngIf="!policy.readmore">...</span><span id="moreContent" *ngIf="policy.readmore">{{policy.policy_description.length > 200 ? policy.policy_description.substring(200) : ''}}</span></p>
+                <a href="javascript:void(0);" (click)="policy.readmore = !policy.readmore" id="myBtn" class="{{ !policy.readmore ? 'read-more' : 'read-less'}}">Read {{!policy.readmore ? 'More' : ' Less'}}</a>
+            </div>
+        </div>
+        <div class="col-md-12 form-block">
+            <div class="row">
+                <ng-container *ngFor="let season of seasonList; let i = index">
+                    <div class="col-md-3 checkbox-group" style="padding-right: 0px" *ngIf="season.display">
+                        <input type="checkbox" [checked]="isSelected(season.season_id, policy)" id="{{'' + i + pi + season.season_id }}" [disabled]="selectedPolicies[season.season_id] && selectedPolicies[season.season_id] != policy" (change)="onSeasonSelect($event, season.season_id, policy)"
+                        />
+                        <label for="{{'' + i + pi + season.season_id}}" class="font-w-normal">{{season.season_name}}</label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngFor="let policy of customPolicy; let ci = index">
+        <div class="col-md-6 form-block">
+            <h3>Create Your Own Policy</h3>
+        </div>
+        <div class="col-md-6 form-block">
+            <!-- <i
+        class="close-icon fa fa-times cursor-pointer float-right"
+        (click)="removeCustomPolicy(ci)"
+        aria-hidden="true"
+      ></i> -->
+        </div>
+        <!-- <div class="col-md-12 form-block">
+      <textarea 
+        [(ngModel)]="policy.policy_description" 
+        (keyup)="policyCharCount[ci] = policy.policy_description.length"
+        [ngClass]="{ 'is-invalid': policy.policy_description.length > 1000 }"
+      ></textarea>
+      <div id="the-count">
+        <span id="current">{{ policyCharCount[ci] }}</span>
+        <span id="maximum">/ 1000</span> 
+        <span *ngIf="policy.policy_description.length > 1000" id="maximum" class="error-msg">You have exceeded the maximum character limit</span>
+      </div>
+    </div> -->
+        <div class="col-md-6 form-block">
+            <div class="d-flex justify-content-between">
+                <label class="text-bold">No of Hours</label>
+            </div>
+            <input type="number" placeholder="0" [(ngModel)]="policy.no_of_hours" />
+        </div>
+        <div class="col-md-6 form-block">
+            <div class="d-flex justify-content-between">
+                <label class="text-bold">Refund Percentage</label>
+            </div>
+            <input type="number" placeholder="0" [(ngModel)]="policy.refund_per" />
+        </div>
+        <div class="col-md-12 form-block">
+            <p>
+                <b>{{policy.refund_per}}%</b> of booking amount will be refunded for cancellation until <b>{{policy.no_of_hours}}</b> hours before check-in (excluding PodsLiving service fee). For <b>{{policy.refund_per}}%</b> refund (excluding PodsLiving
+                service fee) , the guest must cancel at least <b>{{policy.no_of_hours}}</b> hours before the listing’s local check-in time (shown in the confirmation email). If the guest cancels less than <b>{{policy.no_of_hours}}</b> hours before check-in,
+                the first night and PodsLiving service fee are non-refundable. If the guest arrives and decides to leave early, the nightly rate for the nights not spent <b>{{policy.no_of_hours}}</b> hours after cancellation are fully refunded.
+            </p>
+        </div>
+        <div class="col-md-12 form-block mb-3">
+            <div class="row">
+                <ng-container *ngFor="let season of seasonList; let i = index">
+                    <div class="col-md-3 checkbox-group" style="padding-right: 0px" *ngIf="season.display">
+                        <input [checked]="selectedPolicies[season.season_id] && selectedPolicies[season.season_id] == policy" type="checkbox" id="{{ci + i + '' + season.season_id}}" [disabled]="selectedPolicies[season.season_id] && selectedPolicies[season.season_id] != policy"
+                            (change)="onSeasonSelect($event, season.season_id, policy)" />
+                        <label for="{{ci + i + '' + season.season_id}}" class="font-w-normal">{{season.season_name}}</label>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <a (click)="addMoreCustomPolicy()" class="add-more-text cursor-pointer"><span>+</span> Add Another Policy</a>
+        </div>
+    </div>
+    <div *ngIf="!isValid" class="alert alert-danger w-100 d-block mt-3">
+        Please select cancellation policy for all seasons
+    </div>
+    <div class="
+      col-md-12
+      form-block
+      create-listing-submit-button-block
+      d-flex
+      align-items-center
+      justify-content-end
+    ">
+        <a (click)="skipToNext()" class="podsliving-button transparent hidden">Skip</a>
+        <a (click)="saveAndNext()" data-toggle="modal" data-target="#additional_details" class="podsliving-button" [ngClass]="{ 'button-disable': !isValid }">Next</a>
+    </div>
+</div>

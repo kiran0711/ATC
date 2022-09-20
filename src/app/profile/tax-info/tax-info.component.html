@@ -1,0 +1,23 @@
+<div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end">
+  <div class="col-md-12 form-block text-center mt-4">
+    <div class="text-24 raleway text-left">Tax Informantion</div>
+  </div>
+  <div class="col-md-12 form-block">
+  
+    <div class="col-md-6">
+      <div class="form-block">
+        <label>HST Number</label>
+        <div class="position-relative">
+          <input type="text" [(ngModel)]="hst_number"  />
+         
+          <a
+            class="red-text input-text text-decoration-none cursor-pointer"
+            (click)="saveHSTNumber()"
+            >Save</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,101 @@
+/*===============POLICIES CSS=======================*/
+
+.polocies-container {
+    padding-top: 20px
+}
+
+.tabs-scroll-wrapp li a.active {
+    color: var(--podsLiving-secondary);
+    border-bottom: 2px solid var(--podsLiving-secondary);
+    font-weight: bold;
+}
+.tabs-scroll-wrapp li:hover a {
+    color: var(--podsLiving-secondary);
+     border-bottom: 0px solid var(--podsLiving-secondary); 
+}
+
+.policies li+li {
+    margin-left: 1px;
+}
+
+.band {
+    font: normal normal normal 12px/22px Open Sans;
+    background: #CBF2EB 0% 0% no-repeat padding-box;
+    padding: 2px 10px;
+}
+
+.light-green {
+    background: #CBF2EB 0% 0% no-repeat padding-box;
+}
+
+.light-orange {
+    background: #FFE9CC 0% 0% no-repeat padding-box;
+}
+
+.light-red {
+    background: #FECECE 0% 0% no-repeat padding-box;
+}
+
+.color span {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 7px 0px;
+}
+
+.green {
+    background: #1EC19C;
+}
+
+.orange {
+    background: #FD9326;
+}
+
+.red {
+    background: #FD0D1B;
+}
+
+.supple date {
+    font: normal normal normal 12px/19px Open Sans;
+    color: #808080;
+}
+
+.polices-view p {
+    color: #000;
+}
+
+ul.nav.tabs-scroll-wrapp {
+    width: 1150px; margin: 0px auto;
+}
+.overflow-view {
+    overflow-y: auto;
+}
+/* width */
+.overflow-view::-webkit-scrollbar {
+    height: 4px  !important;
+  }
+  
+  /* Track */
+  .overflow-view::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  .overflow-view::-webkit-scrollbar-thumb {
+    background: var(--podsLiving-secondary)
+  }
+  @media (max-width: 991px){
+.tabs-scroll-wrapp li {
+    margin-bottom: 0;
+}
+}
+@media (max-width:1200px){
+    .tabs-scroll-wrapp li a.active {
+        border-bottom: 0px solid var(--podsLiving-secondary);  
+    }
+    .tabs-scroll-wrapp li:hover {
+        border-bottom: 0px solid var(--podsLiving-secondary);
+    }
+}
+/*===============END POLICIES CSS=======================*/

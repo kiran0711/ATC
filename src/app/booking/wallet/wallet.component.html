@@ -1,0 +1,250 @@
+<div class="admin-panel-wrapp">
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+  <div class="admin-panel-cnt-wrapp pt-0">
+    <div class="container-fluid">
+      <div class="title-block row justify-content-between">
+        <div class="col-md-12 mt-5">
+          <h2>Wallet</h2>
+        </div>
+      </div>
+      <div class="row dash-top-buttons-wrapp">
+        <!-- <div class="col-md-5">
+            <div class="row border-block">
+          
+            </div>
+  
+  
+          </div> -->
+        <div class="col-md-4 card">
+          <div class="card-body">
+            <h5 class="card-title">Total Available Balance</h5>
+            <p class="card-text text-48">${{ walletBalance }}</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 card">
+          <div class="card-body">
+            <h5 class="card-title">Add Money to wallet</h5>
+            <div class="row">
+              <div class="col-md-7 form-block">
+                <input
+                  type="number"
+                  [(ngModel)]="amount"
+                  placeholder="Enter Amount"
+                />
+              </div>
+              <div class="col-5">
+                <!-- data-toggle="modal"
+                  data-target="#add_to_wallet" -->
+                <a
+                  class="podsliving-button"
+                  style="min-width: 0; width: 100%"
+                  (click)="openPaymentPopup()"
+                  [ngClass]="{ 'button-disable': !amount }"
+                  >Add Money</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row gap-top-50">
+        <div class="col-md-12 table-even-odd-wrapp mx-auto">
+
+          <div class="table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Transaction Id</th>
+                  <th>Transaction Date</th>
+                  <th class="text-right">Total Amount</th>
+                  <th class="text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+             
+                <tr *ngFor="let element of transactions; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{ element.txn_id }}</td>
+                  <td>{{ element.created_at | date: 'medium'}}</td>
+                  <td>
+                    <label>
+                      <i [ngClass]="element.type == 'credit' ? 'credit fa fa-arrow-circle-up':'debit fa fa-arrow-circle-up' "></i> <strong> {{element.amount | currency}}</strong>
+
+                  </label>
+                  </td>
+                  <td class="text-center">
+                    <span *ngIf="element.status == 1"
+                    class="badge rounded-pill badge-success">Completed</span>
+                  <span *ngIf="element.status == 2"
+                    class="badge rounded-pill badge-danger">Failed</span>
+                  <span *ngIf="element.status == 3"
+                    class="badge rounded-pill badge-secondary">Pending</span>
+
+                    <!-- <label *ngIf="element.status == 1" class="transaction btn btn-outline-success">Complete</label>
+                    <label *ngIf="element.status == 2" class="transaction btn btn-outline-danger">Failed</label>
+                    <label *ngIf="element.status == 3" class="transaction btn btn-outline-warning">Pending</label> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- <pods-table
+            [colDef]="columns"
+            [dataList]="transactions"
+            (onSort)="sortColumn($event)"
+          ></pods-table> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    #add_to_wallet
+    class="modal fade"
+    id="add_to_wallet"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="add_to_wallet"
+    aria-hidden="true"
+    data-backdrop="static"
+    data-keyboard="false"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-header pt-15">
+            <a
+              id="closeWallet"
+              href="javascript:void(0);"
+              data-dismiss="modal"
+              aria-label="Close"
+              class="close-button"
+              ><img src="./assets/images/cross.svg" alt=""
+            /></a>
+            <!-- <div class="text-bold text-24 mb-3">Search Options</div> -->
+          </div>
+          <div class="modal-block pt-0 pb-3 mt-3">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="text-bold mb-2">Other Methods</div>
+                <div class="border-block pay-mthd-wrapp">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input
+                        type="radio"
+                        id="other_methods_1"
+                        name="paymentMethord"
+                        [(ngModel)]="selectedMethord"
+                        [value]="card"
+                      />
+                      <label for="other_methods_1">
+                        <div>Add a new Credit or Debit Card</div>
+                        <div class="mt-2">
+                          <img src="/assets/images/pay-method-1.png" alt="" />
+                          <img src="/assets/images/pay-method-2.svg" alt="" />
+                          <img src="/assets/images/pay-method-3.svg" alt="" />
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="border-block pay-mthd-wrapp">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <input
+                        type="radio"
+                        id="paypal"
+                        name="paymentMethord"
+                        [(ngModel)]="selectedMethord"
+                        [value]="'paypal'"
+                        #paypal
+                        disabled
+                      />
+                      <label for="paypal">
+                        <div>
+                          <img src="/assets/images/pay-method-4.png" alt="" />
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <form
+                  #checkout="ngForm"
+                  class="checkout"
+                  [class.hidden]="selectedMethord != card"
+                >
+                  <div class="form-row">
+                    <label for="card-info">Card Info</label>
+                    <div id="card-info" #cardInfo></div>
+
+                    <div id="card-errors" role="alert" *ngIf="error">
+                      {{ error }}
+                    </div>
+                  </div>
+                </form>
+                <form
+                  action="/"
+                  id="my-sample-form"
+                  method="post"
+                  class="checkout col-md-12"
+                  [class.hidden]="selectedMethord != 'paypal'"
+                >
+                  <div class="row">
+                    <div class="col-6">
+                      <!-- <label for="card-number">Card Number</label> -->
+                      <div id="card-number" style="height: 40px"></div>
+                    </div>
+
+                    <div class="col">
+                      <!-- <label for="expiration-date">Expiration Date</label> -->
+                      <div id="expiration-date" style="height: 40px"></div>
+                    </div>
+                    <div class="col">
+                      <!-- <label for="cvv">CVV</label> -->
+                      <div id="cvv" style="height: 40px"></div>
+                    </div>
+                  </div>
+
+                  <!-- <input type="submit" value="Pay" disabled /> -->
+                </form>
+                <div
+                  id="card-errors"
+                  role="alert"
+                  *ngIf="braintreeError && selectedMethord == 'paypal'"
+                >
+                  {{ braintreeError }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <a
+                  class="podsliving-button transparent with-padding pull-left"
+                  href="javascript:void(0);"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  >Cancel</a
+                >
+              </div>
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <a
+                  class="podsliving-button with-padding pull-right"
+                  [ngClass]="{ 'button-disable': !getFormValid() }"
+                  (click)="onSubmit()"
+                  >Add Money</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

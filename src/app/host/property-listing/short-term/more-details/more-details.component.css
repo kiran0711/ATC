@@ -1,0 +1,29 @@
+.podsliving-button {
+  /* border-radius: 4px; */
+}
+.add-another {
+  cursor: pointer;
+  color: #007bff !important;
+}
+.add-another:hover {
+  cursor: pointer;
+  color: #0056b3 !important;
+}
+
+.disabled, .disabled:hover {
+  cursor: auto;
+  pointer-events: none;
+  color: #808080 !important;
+}
+.col-md-1.rr {
+  position: absolute;
+  right: 0;
+  top: 29px;
+}
+.row.mb-4.xr {
+  position: relative;
+}
+.mb-4.gg {
+  margin: 0 !important;
+}
+.mb-4.gg .font-bold.g{margin: 20px 0px;}

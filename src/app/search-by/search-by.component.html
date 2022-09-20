@@ -1,0 +1,148 @@
+<!-- <section class="landing-banner-wrapp" id="banner-search" style="background-image: url('./assets/images/banner.png')">
+  <div class="landing-banner-content-wrapp">
+    <div class="container">
+      <div class="col-md-12">
+        <h1 class="text-white mb-0">Find Dream <br />Vacationing Properties</h1>
+        <p class="text-white mt-2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+      </div>
+      <div class="col-md-10 mt-100">
+        <div class="landing-banner-form-wrapp mt-0">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="input-block">
+                <label>Destination</label>
+                <input type="text" placeholder="Where do you want to go?">
+                <img src="images/location.svg" alt="" class="input-icon">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-7">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="input-block">
+                        <label>Start Date</label>
+                        <input type="text" name="check_in" value="10/24/1984">
+                        <img src="images/date.svg" alt="" class="input-icon">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-block">
+                        <label>End Date</label>
+                        <input type="text" name="check_out" value="10/24/1984">
+                        <img src="images/date.svg" alt="" class="input-icon">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-block">
+                        <label>Guests</label>
+                        <input type="text" placeholder="Add Guests">
+                        <img src="images/user.svg" alt="" class="input-icon">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="row align-items-center">
+                    <div class="col-md-6">
+                      <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                        data-target="#filer_block">
+                        <img src="images/filters.svg" alt="">
+                        <span>Search Options</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <a href="booking-flow/homepage-mockup-66-xd-slide-4-and-5.html"
+                        class="podsliving-button black-bg"><img src="images/search-white.svg" alt=""
+                          class="search-icon">Search</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<div class="container">
+  <section class="explore-carousel-wrapp gap-top-70 featured-property" style="margin-top: 95px">
+    <div class="text-left mt-3">
+      <h1 class="title-font h1">{{title}}: {{bio}} </h1>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="row" style="grid-column-gap: 0px;grid-row-gap: 30px;">
+          <div class="col-md-4 item"
+          [routerLink]="['/properties/',type,item.slug]"
+          [queryParams]="{distance: item.distance , lat: item.latitude, lng: item.longitude}" 
+           *ngFor="let item of properties; let i=index">
+           <div class="img-hv">
+            <img src="{{item.image_path}}" class="img-fluid" alt="" />         
+            <div class="over-text">{{item.title}}</div>
+           </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="container p-0" *ngIf="!isLoading && !properties.length">
+        <div class="row">
+          <div class="col-md-12 mt-70">
+            <div class="text-center 404">
+              <h3>Data not found</h3>
+              <div class="text-center mt-70 promotion-button-group">
+                <a (click)="back()" class="podsliving-button border-0">Go Back</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!-- <section class="make-us-special-wrapp gap-top">
+  <div class="text-center">
+    <h3>What makes us special</h3>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+    <div class="row make-us-special-content-wrapp gap-top-70">
+      <div class="col-md-3 make-us-special-block">
+        <div class="make-us-special-image-block">
+          <img src="images/mus-1.svg" alt="">
+        </div>
+        <h3>Industry leading Identity verification</h3>
+        <p>Industry-leading background checks and identity verification</p>
+      </div>
+      <div class="col-md-3 make-us-special-block">
+        <div class="make-us-special-image-block">
+          <img src="images/mus-2.svg" alt="">
+        </div>
+        <h3>Easy booking</h3>
+        <p>Flexible rental terms and calendar based booking</p>
+      </div>
+      <div class="col-md-3 make-us-special-block">
+        <div class="make-us-special-image-block">
+          <img src="images/mus-3.svg" alt="">
+        </div>
+        <h3>Support</h3>
+        <p>Support for any issues during your rental period</p>
+      </div>
+      <div class="col-md-3 make-us-special-block">
+        <div class="make-us-special-image-block">
+          <img src="images/mus-4.svg" alt="">
+        </div>
+        <h3>Personal profiles</h3>
+        <p>Get a snapshot of who lives in the home and their lifestyle</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+

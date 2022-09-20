@@ -1,0 +1,113 @@
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    position: absolute;
+    left: -25px;
+    background: url(/assets/images/date.svg) no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+    height: auto;
+    bottom: 0px;
+    /* left: 0; */
+    right: 0;
+    top: 30px;
+    width: auto;
+}
+
+.img-hv {
+    margin-bottom: 10px;
+}
+
+/* .user-dropdown {
+    display: none;
+} */
+
+
+/* .img-hv.block{
+    height: 300px !important;
+} */
+
+
+
+h3.title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.description {
+    line-height: inherit;
+    margin: 0 0 24px px;
+    font-size: 17px;
+    font-weight: 300;
+    color: #000;
+}
+
+input#email {
+    height: 48px;
+}
+
+button.button.primary {
+    /* margin: 8px; */
+    padding: 11px 32px;
+    font-weight: 900;
+    line-height: 1.55555556;
+    border-radius: 0;
+    border: 3px solid #0f0f0f;
+    background-color: transparent;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.field {
+    margin-bottom: 40px;
+}
+
+.btn-c {
+    position: absolute;
+    right: 20px;
+    top: 15px
+}
+
+.shadow-box {
+    box-shadow: 0 10px 24px 0 rgb(54 61 77 / 15%);
+    padding: 50px;
+}
+
+@media screen and (min-width: 960px) {
+    #signUpForm {
+        margin: auto;
+    }
+    #signUpForm .modal-dialog {
+        width: 707px;
+        max-width: none;
+    }
+}
+
+.linkLegal {
+    /* color: #FFB100 !important; */
+    font-weight: 500;
+    color: var(--podsLiving-primary);
+    /* border-bottom: 1px dashed #FFB100 !important; */
+}
+
+.linkLegal:hover {
+    color: var(--podsLiving-secondary);
+    /* border-bottom: 1px dashed #FFB100; */
+}
+@media (max-width: 767px) {
+    .order-1-mobile{order: 1; margin-bottom: 20px;}
+    .order-2-mobile{order: 2;}
+}
+.home-page-search .landing-banner-form-wrapp{
+    padding: 0px 45px;
+}
+.home-page-search{opacity: 0; visibility: hidden; height: 0;}
+.home-page-search.fixed{top: 0px;height: auto;opacity: 1;visibility: visible;    box-shadow: 0px 5px 5px #9ebac536;}
+.form-control:focus , .nice-select:focus{
+
+    box-shadow: none !important;
+}

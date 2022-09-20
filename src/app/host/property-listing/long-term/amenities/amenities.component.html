@@ -1,0 +1,33 @@
+<div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+  <form [formGroup]="amenityAndFacilityForm" class="w-100">
+    <div class="prgress-bar percent-5"></div>
+    <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+      <a [routerLink]="proListingService.CREATE_PROPERTY_STEP_THREE" [queryParams]="{ proId: pro_id }">
+        <img src="./assets/images/back.svg" alt="" />
+      </a>
+      <a (click)="saveAndExit()" class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+    </div>
+    <div class="col-md-12 mb-4">
+      <h2>Facility & Amenity</h2>
+    </div>
+    <div class="col-md-12 amenities-wrapp type-of-space-block-wrapp d-flex align-items-center mb-5">
+      <label class="radio-img type-spc-block" *ngFor="let amenity of amenitiesList">
+        <input type="checkbox" name="amenityAndFacility" (change)="onCheckboxChange($event)"
+          value="{{ amenity.service_id }}" [checked]="isSelected(amenity.service_id)" />
+        <div class="type-of-space-block d-flex align-items-center type-of-property image"
+          title="{{ amenity.service_name }}">
+          <span><img src="{{ imageUrl + amenity.service_image }}" alt="" /></span>
+          <span>{{ amenity.service_name }}</span>
+        </div>
+      </label>
+    </div>
+    <div *ngIf="!isValid" class="alert alert-danger">
+      Please select at least one amenity
+    </div>
+    <div class="col-md-12 form-block create-listing-submit-button-block">
+      <button (click)="nextStep()" class="podsliving-button" [ngClass]="{ 'button-disable': !isValid }">
+        Next
+      </button>
+    </div>
+  </form>
+</div>

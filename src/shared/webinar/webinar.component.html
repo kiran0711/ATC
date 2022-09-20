@@ -1,0 +1,69 @@
+<div class="sub-page-wrapp mt-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center mt-5 mb-5">
+                <h2>2022 Real Estate IRA Investment Trends and Insights</h2>
+                <p class="mt-3">Now, more than ever, people are investing in real estate as a way to save for
+                    retirement. For 35 consecutive years, the
+
+                    number of The Entrust Group’s clients investing in real estate in their self-directed IRAs has grown
+                    consistently. Each year, The Entrust Group uncovers real estate investment trends based on data from
+                    Entrust clients and respected organizations</p>
+            </div>
+            <div class="col-md-6">
+                <div class="webinar-box">
+                    <div class="text-center">
+                        <h3>Reserve Your Spot</h3>
+                        <h4>3PM EST- MARCH, 1st 2022 </h4>
+                    </div>
+                    <div class="webinar-form">
+                        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+
+                            <p id="demo"></p>
+                            <cd-timer></cd-timer>
+                            <div class="d-flex counter-box justify-content-center mb-5">
+                                <div class="days text-center bx"><span class="box day">30</span>Days</div>
+                                <div class="hours text-center bx"><span class="box hours">20</span>Hours</div>
+                                <div class="minuts text-center bx"><span class="box minuts">30</span>Minuts</div>
+                                <div class="seconds text-center bx"><span class="box day">40</span>Seconds</div>
+                            </div>
+
+                            <div class="login-modal-form-wrapp form-group">
+                                <label>Your Name</label>
+                                <input type="text" class="form-control" formControlName="name" placeholder="Enter your name"
+                                    [ngClass]="{ 'is-invalid': (formGroupControl.name.errors && (formGroupControl.name.dirty || formGroupControl.name.touched)) || (formGroupControl.name.errors?.required && submitted )}">
+                               
+                            </div>
+                            <div class="login-modal-form-wrapp form-group">
+                                <label>Your Email</label>
+                                <input type="email" class="form-control" formControlName="email" placeholder="Enter your email"
+                                    [ngClass]="{ 'is-invalid': (formGroupControl.email.errors && (formGroupControl.email.dirty || formGroupControl.email.touched)) || (formGroupControl.email.errors?.required && submitted )}">
+                              
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="podsliving-button w-100" id="cont_with_mobile">Save My
+                                    Spot</button>
+                            </div>
+                            <small>Reimagine how you can use <b>webinars</b> to acquire and engage your audience.
+                                Connect
+                                with sales opportunities faster your community and teams better.</small>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4">About Webinar</h2>
+                <p class="light-big-font">Real estate teams are quickly taking over the industry.
+                    If you’re not growing a team or on a team in the next 5 years, you will likely struggle to succeed
+                    or even survive.</p>
+                <p class="light-big-font">In real estate, our entire world depends on transactions; transactions between
+                    buyers, sellers, and lenders. A short sale is one type of those transactions. Despite the name,
+                    short sales are neither short nor simple. Short sales are complicated.</p>
+                <p class="light-big-font">Real estate teams are quickly taking over the industry. A short sale is one
+                    type of those transactions. Despite the name,
+                    short sales are neither short nor simple. Short sales are complicated.</p>
+
+            </div>
+        </div>
+    </div>
+</div>

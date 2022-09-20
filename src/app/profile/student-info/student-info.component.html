@@ -1,0 +1,401 @@
+<form [formGroup]="studentInfoForm" class="col-12 p-0">
+  <div
+    class="
+      row
+      create-listing-form
+      login-modal-form-wrapp
+      p-0
+      align-items-end
+      mt-5
+    "
+  >
+    <div class="col-md-12">
+      <div class="text-24 raleway mb-4 text-left">Student Details</div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>University/College/School Name<span class="red-text">*</span></label>
+      <select
+        nice-select
+        formControlName="university"
+        [value]="universityName"
+        [attr.data-value]="universityName"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.university.errors &&
+            (studentInfoFormControl.university.dirty ||
+              studentInfoFormControl.university.touched)
+        }"
+      >
+        <option value="">Select University</option>
+        <option value="Pune University">Pune University</option>
+        <option value="Delhi University">Delhi University</option>
+        <option value="Uttarpradesh University">Uttarpradesh University</option>
+        <option value="Gujarat University">Gujarat University</option>
+      </select>
+      <div *ngIf="studentInfoFormControl.university.errors" class="error-msg">
+        {{ studentInfoFormControl.university.errors.incorrect }}
+      </div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Course/Program Name<span class="red-text">*</span></label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="program"
+        placeholder="Enter Course Name"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.program.errors &&
+            (studentInfoFormControl.program.dirty ||
+              studentInfoFormControl.program.touched)
+        }"
+      />
+      <div *ngIf="studentInfoFormControl.program.errors" class="error-msg">
+        {{ studentInfoFormControl.program.errors.incorrect }}
+      </div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Duration of the Program<span class="red-text">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="course_duration"
+        placeholder="Select date"
+        placement="top"
+        bsDatepicker
+        [bsConfig]="{
+          showWeekNumbers: false,
+          isAnimated: true,
+          containerClass: 'theme-blue',
+          dateInputFormat: 'MMM DD, YYYY'      }"
+      />
+      <div
+        *ngIf="studentInfoFormControl.course_duration.errors"
+        class="error-msg"
+      >
+        {{ studentInfoFormControl.course_duration.errors.incorrect }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <label class="text-24 raleway mb-3">Guardian Details</label>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Full Name<span class="red-text">*</span></label>
+      <input
+        type="text"
+        formControlName="guardian_name"
+        placeholder="Enter Guardian’s Full Name"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.guardian_name.errors &&
+            (studentInfoFormControl.guardian_name.dirty ||
+              studentInfoFormControl.guardian_name.touched)
+        }"
+      />
+      <div
+        *ngIf="studentInfoFormControl.guardian_name.errors"
+        class="error-msg"
+      >
+        {{ studentInfoFormControl.guardian_name.errors.incorrect }}
+      </div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Email Address<span class="red-text">*</span></label>
+      <input
+        type="email"
+        formControlName="guardian_email"
+        placeholder="Email Address"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.guardian_email.errors &&
+            (studentInfoFormControl.guardian_email.dirty ||
+              studentInfoFormControl.guardian_email.touched)
+        }"
+      />
+      <div
+        *ngIf="studentInfoFormControl.guardian_email.errors"
+        class="error-msg"
+      >
+        {{ studentInfoFormControl.guardian_email.errors.incorrect }}
+      </div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Phone Number<span class="red-text">*</span></label>
+      <div class="row multi-form-block">
+        <div class="col-md-3">
+          <select
+            nice-select
+            class="form-control"
+            formControlName="guardian_dialing_code"
+            [value]="dialingCode"
+            [attr.data-value]="dialingCode"
+            [ngClass]="{
+              'is-invalid':
+                studentInfoFormControl.guardian_dialing_code.errors &&
+                (studentInfoFormControl.guardian_dialing_code.dirty ||
+                  studentInfoFormControl.guardian_dialing_code.touched)
+            }"
+          >
+            <option value="+1">+1</option>
+            <option value="+91">+91</option>
+            <option value="+60">+60</option>
+          </select>
+          <div
+            *ngIf="studentInfoFormControl.guardian_dialing_code.errors"
+            class="error-msg"
+          >
+            {{ studentInfoFormControl.guardian_dialing_code.errors.incorrect }}
+          </div>
+        </div>
+        <div class="col-md-9">
+          <input
+            type="number"
+            value=""
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                studentInfoFormControl.guardian_contact_number.errors &&
+                (studentInfoFormControl.guardian_contact_number.dirty ||
+                  studentInfoFormControl.guardian_contact_number.touched)
+            }"
+            formControlName="guardian_contact_number"
+          />
+          <div
+            *ngIf="studentInfoFormControl.guardian_contact_number.errors"
+            class="error-msg"
+          >
+            {{
+              studentInfoFormControl.guardian_contact_number.errors.incorrect
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 form-block">
+      <label>Relationship<span class="red-text">*</span></label>
+      <input
+        type="text"
+        formControlName="guardian_relationship"
+        placeholder="Enter Relationship With Guardian"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.guardian_relationship.errors &&
+            (studentInfoFormControl.guardian_relationship.dirty ||
+              studentInfoFormControl.guardian_relationship.touched)
+        }"
+      />
+      <div
+        *ngIf="studentInfoFormControl.guardian_relationship.errors"
+        class="error-msg"
+      >
+        {{ studentInfoFormControl.guardian_relationship.errors.incorrect }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <label class="text-24 raleway mb-3">Guardian’s Address</label>
+    </div>
+    <div class="col-md-12 form-block">
+      <div class="checkbox check-2-line-block">
+        <input
+          type="checkbox"
+          formControlName="guardian_address"
+          checked="selectCheckbox"
+          id="guardian_address"
+          (change)="displayAddress()"
+        />
+        <label for="guardian_address" class="font-w-normal"
+          >Guardian's address same as mine</label
+        >
+      </div>
+    </div>
+    <ng-container *ngIf="!sameAddress">
+      <div class="col-md-6 form-block">
+        <label>Address Line 1<span class="red-text">*</span></label>
+        <input type="text" placeholder="" formControlName="address_line_1"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.address_line_1.errors &&
+            (studentInfoFormControl.address_line_1.dirty ||
+              studentInfoFormControl.address_line_1.touched)
+        }" />
+        <div
+          *ngIf="studentInfoFormControl.address_line_1.errors"
+          class="error-msg"
+        >
+          {{ studentInfoFormControl.address_line_1.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <div class="row">
+          <div class="col-6"><label>Address Line 2</label></div>
+          <div class="col-6 text-right mobile-left">
+            <span class="optional">Optional</span>
+          </div>
+        </div>
+        <input type="text" formControlName="address_line_2" />
+        <div
+          *ngIf="studentInfoFormControl.address_line_2.errors"
+          class="error-msg"
+        >
+          {{ studentInfoFormControl.address_line_2.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>City<span class="red-text">*</span></label>
+        <input type="text" formControlName="city"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.city.errors &&
+            (studentInfoFormControl.city.dirty ||
+              studentInfoFormControl.city.touched)
+        }" />
+        <div *ngIf="studentInfoFormControl.city.errors" class="error-msg">
+          {{ studentInfoFormControl.city.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>State<span class="red-text">*</span></label>
+        <input type="text" formControlName="state"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.state.errors &&
+            (studentInfoFormControl.state.dirty ||
+              studentInfoFormControl.state.touched)
+        }" />
+        <div *ngIf="studentInfoFormControl.state.errors" class="error-msg">
+          {{ studentInfoFormControl.state.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>Zip Code<span class="red-text">*</span></label>
+        <input type="number" formControlName="zipcode" 
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.zipcode.errors &&
+            (studentInfoFormControl.zipcode.dirty ||
+              studentInfoFormControl.zipcode.touched)
+        }"/>
+        <div *ngIf="studentInfoFormControl.zipcode.errors" class="error-msg">
+          {{ studentInfoFormControl.zipcode.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>Landmark</label>
+        <input type="text" formControlName="landmark" />
+        <div *ngIf="studentInfoFormControl.landmark.errors" class="error-msg">
+          {{ studentInfoFormControl.landmark.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>Country<span class="red-text">*</span></label>
+        <input type="text" formControlName="country" class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            studentInfoFormControl.country.errors &&
+            (studentInfoFormControl.country.dirty ||
+              studentInfoFormControl.country.touched)
+        }"/>
+        <div *ngIf="studentInfoFormControl.country.errors" class="error-msg">
+          {{ studentInfoFormControl.country.errors.incorrect }}
+        </div>
+      </div>
+      <div class="col-md-6 form-block">
+        <label>County</label>
+        <input type="text" formControlName="county" />
+        <div *ngIf="studentInfoFormControl.county.errors" class="error-msg">
+          {{ studentInfoFormControl.county.errors.incorrect }}
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-12 form-block">
+      <div class="row">
+        <div class="col-md-6 form-block">
+          <label>Are you claiming any Educational Loan?</label>
+          <div class="row">
+            <div class="col-md-12 form-block ">
+              <div class="form-subs">
+                <div class="form-subs-lable-block">
+                  <label>
+                    <input
+                      type="radio"
+                      formControlName="educational_loan"
+                      [value]="true"
+                    />
+                    <span class="btn-v">Yes</span>
+                  </label>
+                </div>
+                <div class="form-subs-lable-block">
+                  <label>
+                    <input
+                      type="radio"
+                      formControlName="educational_loan"
+                      [value]="false"
+                    />
+                    <span class="btn-v">No</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 form-block mb-0">
+          <label>Name of the Scholarship</label>
+          <input type="text" formControlName="scholarship" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 form-block mb-0 font-weight-bold text-success">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row" *ngIf="showStatusMsg">
+            <div class="pr-5 text-left p-0">
+              {{ statusMsg }}
+            </div>
+            <span class="cursor-pointer">
+              <i class="close-icon fa fa-times"
+                (click)="showStatusMsg = false"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-4 text-right">
+          <button class="podsliving-button" 
+            (click)="saveChanges()" 
+            [disabled]="!studentInfoForm.valid"
+            [ngClass]="{ 'button-disable': !studentInfoForm.valid }">
+            Save Changes
+          </button>
+          <!-- <a href="create-a-listing.html" class="podsliving-button transparent">Back</a> -->
+          <!-- <a (click)="saveChanges()" class="podsliving-button">Save Changes</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 gap-top-70">
+      <!-- <a href="#" class="text-bold blue-text">Delete Account Permanently</a> -->
+    </div>
+  </div>
+</form>

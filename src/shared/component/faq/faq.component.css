@@ -1,0 +1,108 @@
+a.card-link {
+    color: #000!important;
+    background-color: #f1f1f1!important;
+    display: block;
+    padding: 10px 15px;
+}
+
+.card {
+    border: 0;
+    margin-bottom: 20px;
+    /* background-color: #b5daed29; */
+    box-shadow: 0 2px 6px 0 rgb(178 179 245 / 69%), inset 0 1px 2px 0 rgb(178 179 245 / 10%);
+    border-radius: 5px;
+}
+
+.card-body {
+    padding: 10px 15px;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -40%);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+h1.banner-over-text {
+    text-align: center;
+    font: normal normal bold 48px/65px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-shadow: 0px 3px 6px #000000;
+}
+
+.tab-content>.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ul.nav.nav-tabs.nv li a {
+    padding: 12px 17px;
+    border: 1px solid #ddd;
+    display: block;
+    color: #333;
+    border-radius: 15px 15px 0px 0px;
+}
+
+li a.active {
+    background-color: var(--podsLiving-primary);
+    color: #FFF !important;
+} */
+
+ul.nav.nav-tabs.nv {
+    margin-bottom: 40px;
+}
+.tabs-scroll-wrapp li a.active {
+    color: var(--podsLiving-secondary);
+    border-bottom: 2px solid var(--podsLiving-secondary);
+    font-weight: bold;
+}
+.tabs-scroll-wrapp li:hover a {
+    color: var(--podsLiving-secondary);
+    /* border-bottom: 2px solid var(--podsLiving-secondary); */
+}
+.panel-title a {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DDDDDD;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    letter-spacing: 0px;
+    color: #000000;
+    position: relative;
+    padding-left: 60px;
+}
+
+h4.panel-title {
+    margin: 0;
+}
+
+.panel.panel-default {
+    margin-bottom: 15px;
+}
+
+.panel-title a::before {
+    content: "Q";
+    left: 0;
+    position: absolute;
+    width: 45px;
+    background: var(--podsLiving-primary);
+    height: 100%;
+    top: 0;
+    line-height: 37px;
+    text-align: center;
+    color: var(--podsLiving-white);
+}
+
+.panel-body {
+    padding: 10px;
+}
+
+.panel-body {
+    border: 1px solid #efefef;
+    background: #f5f4f4;
+}

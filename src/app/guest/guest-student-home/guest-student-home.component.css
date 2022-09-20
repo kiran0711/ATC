@@ -1,0 +1,68 @@
+.similar-items-carosuel {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.similr-cnt-block img {
+  width: 24px;
+  height: 24px;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+  right: -20px !important;
+}
+
+.owl-theme .owl-nav:hover {
+  background: transparent;
+}
+
+.star-block img {
+  width: auto !important;
+  height: auto;
+  margin-right: 8px;
+  color: #000000;
+}
+
+.testimonials-carousel-block {
+  padding: 10px;
+}
+.promoted-block {
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 0px 4px 4px 0px;
+  background-color: #fd0a0e;
+  color: #ffffff;
+  position: absolute;
+  top: 8px;
+  left: 0px;
+  padding: 7px 10px;
+}
+.promoted-block.wishlist {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 32px;
+  color: #008fff;
+  right: 8px;
+  left: auto;
+}
+.similr-cnt-block .fa-star {
+  color: #FFC400;
+}
+.similr-cnt-block {
+  padding: 15px;
+  font-size: 12px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #EFEFEF;
+  border-radius: 4px;
+}
+
+.gray-text.testi-designation { display: block; font-size: 12px;}
+h2.title-font { font: normal normal bold 42px/50px Raleway;}
+.landing-banner-content-wrapp h1 {
+  text-shadow: 0px 3px 6px #622323;
+}
+.b0{border: none; width: 90%;}
+.img-hv {
+  margin-bottom: 10px;
+}

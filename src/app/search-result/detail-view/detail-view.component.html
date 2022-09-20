@@ -1,0 +1,931 @@
+<div class="sub-page-wrapp recent-booking-wrapp mt-70">
+  <div *ngIf="state == 1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-between page-title-block">
+              <div>
+                <h2 class="mb-2">{{ property.pro_title }}</h2>
+                <div class="gray-text mb-3">
+                  <span class="mr-2" *ngIf="property.rating"><img src="./assets/images/star.svg" alt=""
+                      class="mr-1" />{{ property.rating }}
+                  </span>
+                  <a class="blue-text text-decoration-none" *ngIf="">{{ property.review_count }} Reviews</a>
+                  <span class="gray-text">{{ property.city ? property.city : ""
+                    }}{{ property.state ? ", " + property.state : ""
+                    }}{{
+                    property.country_region
+                    ? ", " + property.country_region
+                    : ""
+                    }}</span>
+                </div>
+              </div>
+              <div class="d-flex">
+                <a href="javascript:void(0);" class="rounded-icons">
+                  <img src="./assets/images/share.svg" alt="" />
+                  <share-buttons [theme]="'modern-dark'" [include]="[
+                      'facebook',
+                      'twitter',
+                      'linkedin',
+                      'email',
+                      'whatsapp'
+                    ]" [show]="5" [showIcon]="true" [showText]="true"></share-buttons>
+                </a>
+                <!-- <a href="javascript:void(0);" class="rounded-icons">
+                  <img src="./assets/images/favorite-24px.svg" alt="" title="Add to WishList" />
+                </a> -->
+              </div>
+            </div>
+            <div class="col-md-12 galler-wrapp">
+              <div class="galler-big-wrapp">
+                <img src="{{
+                    property.coverImageData ? property.coverImageData.image : ''
+                  }}" onerror="this.src='/assets/images/placeholder.png';" alt="" data-toggle="modal"
+                  data-target="#gallery_slider" />
+                <div class="over-text other" *ngIf="
+                    property.coverImageData &&
+                    property.coverImageData.image_caption
+                  ">
+                  {{
+                  property.coverImageData
+                  ? property.coverImageData.image_caption
+                  : ""
+                  }}
+                </div>
+              </div>
+              <div class="galler-sm-wrapp">
+                <ng-container *ngFor="let images of property.property_image; let i = index">
+                  <ng-container *ngIf="images.is_primary == 0">
+                    <div *ngIf="i == 0" class="galler-sm-block">
+                      <ng-container *ngFor="
+                          let images of property.property_image;
+                          let j = index
+                        ">
+                        <div *ngIf="j < 2 && images.file_type != ''">
+                          <img src="{{ imageURL + images.image }}" onerror="this.src='/assets/images/placeholder.png';"
+                            *ngIf="images.file_type == 'image'" alt="" data-toggle="modal"
+                            data-target="#gallery_slider" />
+                          <video class="w-100" width="278" height="196" *ngIf="images.file_type == 'video'"
+                            type="video/mp4" controls>
+                            <source src="{{ imageURL + images.image }}" />
+                          </video>
+                          <div class="over-text other" *ngIf="
+                              images.image_caption &&
+                              images.file_type == 'image'
+                            ">
+                            {{ images.image_caption }}
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div *ngIf="i == 2" class="galler-sm-block">
+                      <ng-container *ngFor="
+                          let images of property.property_image;
+                          let j = index
+                        ">
+                        <div *ngIf="j == 2 && images.file_type != ''">
+                          <img class="jj" src="{{ imageURL + images.image }}"
+                            onerror="this.src='/assets/images/placeholder.png';" *ngIf="images.file_type == 'image'"
+                            alt="" data-toggle="modal" data-target="#gallery_slider" />
+                          <video class="w-100" width="278" height="196" *ngIf="images.file_type == 'video'"
+                            type="video/mp4" controls>
+                            <source src="{{ imageURL + images.image }}" />
+                          </video>
+                          <div class="over-text other" *ngIf="
+                              images.image_caption &&
+                              images.file_type == 'image'
+                            ">
+                            {{ images.image_caption }}
+                          </div>
+                        </div>
+                        <div *ngIf="j == 3 && images.file_type != ''">
+                          <img src="{{ imageURL + images.image }}" *ngIf="images.file_type == 'image'" alt=""
+                            data-toggle="modal" data-target="#gallery_slider" />
+                          <video class="w-100 jj" width="278" height="196" *ngIf="images.file_type == 'video'"
+                            type="video/mp4" controls>
+                            <source src="{{ imageURL + images.image }}" />
+                          </video>
+                          <div class="over-text other" *ngIf="
+                              images.image_caption &&
+                              images.file_type == 'image'
+                            ">
+                            {{ images.image_caption }}
+                          </div>
+                          <a href="javascript:void(0);" data-toggle="modal" data-target="#gallery_slider"
+                            class="galler-overlay-block" *ngIf="property.property_image?.length > 4">+{{
+                            property.property_image?.length - 4 }} Photos &
+                            Videos</a>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-scroll-wrapp">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <ul>
+              <li [ngClass]="{ active: activeTab == 'about' }" (click)="scrollToView(about)">
+                <a>About</a>
+              </li>
+              <li [ngClass]="{ active: activeTab == 'amen_fac' }" (click)="scrollToView(amen_fac)">
+                <a>Facility & Amenity</a>
+              </li>
+              <li [ngClass]="{ active: activeTab == 'policies' }" (click)="scrollToView(policies)">
+                <a>House Rules</a>
+              </li>
+              <li [ngClass]="{ active: activeTab == 'location' }" (click)="scrollToView(location)">
+                <a>Location</a>
+              </li>
+
+              <li [ngClass]="{ active: activeTab == 'additionalDetails' }" (click)="scrollToView(additionalDetails)">
+                <a>Additional Details</a>
+              </li>
+              <li [ngClass]="{ active: activeTab == 'host' }" (click)="scrollToView(host)">
+                <a>Host</a>
+              </li>
+              <!-- <li [ngClass]="{'active':activeTab == 'review_block'}" (click)="scrollToView(review_block)"><a>Reviews</a>
+                            </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="row mt-4">
+            <div class="col-md-8">
+              <h3 class="propertyTitle">
+                {{
+                property.property_category &&
+                property.property_category.cat_name
+                ? property.property_category.cat_name + " in "
+                : ""
+                }}
+                {{ property.pro_title ? property.pro_title : "" }}
+                {{ property.city ? " in " + property.city : "" }}
+              </h3>
+              <div class="mt-1" id="about" #about>
+                <span class="highlight-bg">Starting from
+                  {{
+                  property.property_attribute &&
+                  property.property_attribute.base_price_per_night
+                  ? (property.property_attribute.base_price_per_night
+                  | currency: "USD":"symbol":"1.0-0") + "*/Night"
+                  : ""
+                  }}
+                </span>
+                •
+
+                {{
+                property.property_attribute &&
+                property.property_attribute.guests_allowed
+                ? property.property_attribute.guests_allowed + " Guest(s) •"
+                : ""
+                }}
+                {{
+                property.property_attribute &&
+                property.property_attribute.additional_guest_allow
+                ? property.property_attribute.max_additional_guest_allow +
+                " Additional Guest(s) •"
+                : ""
+                }}
+                {{
+                property.property_attribute &&
+                property.property_attribute.bedrooms
+                ? property.property_attribute.bedrooms + " Bedroom(s) •"
+                : ""
+                }}
+                {{
+                property.property_attribute &&
+                property.property_attribute.beds
+                ? property.property_attribute.beds + " Bed(s) •"
+                : ""
+                }}
+                {{
+                property.property_attribute &&
+                property.property_attribute.baths
+                ? property.property_attribute.baths + " Bathroom(s) •"
+                : ""
+                }}
+                {{
+                property.property_attribute &&
+                property.property_attribute.parkings &&
+                property.property_attribute.parkings > 0
+                ? property.property_attribute.parkings +
+                " Parking(s) available "
+                : "No parking available "
+                }}
+              </div>
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <p>
+                    {{ property.property_description }}
+                  </p>
+                  <!-- <div class="vaccine-img">
+                                <img src="./assets/images/vaccinated.png" class="img-fluid" />
+                                <span class="red-b-font">Is mandatory</span>
+                                </div> -->
+                </div>
+              </div>
+              <div id="amen_fac" id="amen_fac" #amen_fac>
+                <div class="row mt-1" *ngIf="property.amenities?.length > 0">
+                  <div class="col-md-12">
+                    <h3 class="mb-3">Facility & Amenity</h3>
+                    <div class="row">
+                      <div class="col-md-12 type-of-space-block-wrapp d-flex align-items-center rec-booking-icon-block">
+                        <ng-container *ngFor="let amenties of property.amenities">
+                          <label class="type-spc-block">
+                            <input type="radio" name="layout" />
+                            <div class="type-of-space-block d-flex align-items-center type-of-property image"
+                              title="{{ amenties.service_name }}">
+                              <span><img src="{{ amenties.service_image }}" alt="{{ amenties.service_name }}" /></span>
+                              <span>{{ amenties.service_name }}</span>
+                            </div>
+                          </label>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row mt-1" *ngIf="property.facilities?.length>0;">
+                                    <div class="col-md-12">
+                                        <h3 class="mb-3">Facilities</h3>
+                                        <div class="row">
+                                            <div class="col-md-12 type-of-space-block-wrapp d-flex align-items-center rec-booking-icon-block">
+                                                <ng-container *ngFor="let facilities of property.facilities">
+                                                    <label class="type-spc-block">
+                            <input type="radio" name="layout" />
+                            <div class="type-of-space-block d-flex align-items-center type-of-property image" title="{{facilities.service_name}}">
+                              <span><img src="{{facilities.service_image}}" alt="{{facilities.service_name}}" /></span>
+                              <span>{{facilities.service_name}}</span>
+                            </div>
+                          </label>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+              </div>
+              <div class="row mt-1 label-with-tick-wrapp" id="policies" #policies>
+                <div class="col-md-12" *ngIf="property.property_rules?.length > 0">
+                  <h3 class="mb-3">House Rules</h3>
+                  <div class="row">
+                    <div class="col-md-12 d-flex justify-content-between">
+                      <ul class="list">
+                        <!-- <img src="./assets/images/tick-black.svg" alt="" class="mr-2" /> -->
+                        <ng-container *ngFor="
+                            let rule of property.property_rules;
+                            let i = index
+                          ">
+                          <li class="color0" *ngIf="rule.rule">
+                            {{ rule.rule }}
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-1" id="location" #location>
+                <div class="col-md-12">
+                  <h3>Location</h3>
+                  <div class="my-3">
+                    <!-- {{ property.address1 ? property.address1 : " " }}
+                    {{ property.address2 ? property.address2 : " " }} -->
+                    {{ property.city ? property.city : ""
+                    }}{{ property.state ? ", " + property.state : ""
+                    }}{{
+                    property.country_region
+                    ? ", " + property.country_region
+                    : ""
+                    }}
+                  </div>
+                  <google-map height="450" width="100%" [zoom]="14" [center]="center">
+                    <map-marker #marker="mapMarker" [position]="center"
+                      (mouseOver)="openInfoWindow(marker, infoWindow)"></map-marker>
+                    <map-info-window #infoWindow="mapInfoWindow">
+                      <strong>
+                        <p>{{ property.pro_title }}</p>
+                      </strong>
+                      <strong>
+                        <p>{{ property.google_address }}</p>
+                      </strong>
+                      <strong>
+                        <p>{{ property.city }}</p>
+                      </strong>
+                      <strong>
+                        <p>{{ property.state }}</p>
+                      </strong>
+                    </map-info-window>
+                  </google-map>
+                </div>
+              </div>
+              <div class="row mt-4" *ngIf="nearByPlaces">
+                <div class="col-md-12">
+                  <h3 class="mb-3">What’s Nearby</h3>
+                  <div class="nearby-wrapp d-flex justify-content-between">
+                    <ng-container *ngFor="let nearByPlaces of nearByPlaces; let i = index">
+                      <a class="nearby-block d-flex justify-content-between" *ngIf="i < 10">
+                        <div class="d-flex">
+                          <img src="{{ nearByPlaces.icon }}" alt="" />
+                          <div class="nearByTitle">{{ nearByPlaces.name }}</div>
+                        </div>
+                        <div class="nearByValue">
+                          {{ getKmFromNearByPlace(nearByPlaces) }}Km
+                        </div>
+                      </a>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <!-- below commented section is applicable for long term booking only -->
+              <div class="row mt-4" id="pricing">
+                <div class="col-md-12">
+                  <h3 class="mb-3">Pricing</h3>
+                  <div class="nearby-wrapp d-flex justify-content-between">
+                    <!-- <div class="nearby-block d-flex justify-content-between white-bg">
+                                            <div>Base Price</div>
+                                            <div class="text-bold">{{property.property_attribute && property.property_attribute.base_price_per_night ? "$" + property.property_attribute.base_price_per_night + "/" : "" }} {{property.property_attribute && property.property_attribute.base_price_per_night
+                                                ? "night" : "" }}
+                                            </div>
+                                        </div> -->
+                    <div class="nearby-block d-flex justify-content-between white-bg" *ngIf="
+                        property.property_attribute &&
+                        property.property_attribute.cleaning_amount
+                      ">
+                      <div>Cleaning Fee</div>
+                      <div class="text-bold">
+                        {{
+                        property.property_attribute &&
+                        property.property_attribute.cleaning_amount
+                        ? "$" +
+                        property.property_attribute.cleaning_amount +
+                        "/"
+                        : ""
+                        }}
+                        {{
+                        property.property_attribute &&
+                        property.property_attribute.cleaning_frequency == 1
+                        ? "Night"
+                        : "Stay"
+                        }}
+                      </div>
+                    </div>
+                    <div class="nearby-block d-flex justify-content-between white-bg" *ngIf="
+                        property.property_attribute &&
+                        property.property_attribute.weekend_price_per_night
+                      ">
+                      <div>Weekend</div>
+                      <div class="text-bold">
+                        {{
+                        property.property_attribute &&
+                        property.property_attribute.weekend
+                        ? "(" + property.property_attribute.weekend + ")"
+                        : ""
+                        }}
+                      </div>
+                    </div>
+                    <div class="nearby-block d-flex justify-content-between white-bg" *ngIf="
+                        property.property_attribute &&
+                        property.property_attribute.guests_allowed
+                      ">
+                      <div>Additional Guest Charges</div>
+                      <div class="text-bold">
+                        {{
+                        property.property_attribute &&
+                        property.property_attribute
+                        .price_for_1additional_guest
+                        ? "$" +
+                        property.property_attribute
+                        .price_for_1additional_guest +
+                        "/ Night"
+                        : " "
+                        }}
+                      </div>
+                    </div>
+                    <!-- <div class="nearby-block d-flex justify-content-between white-bg">
+                        <div>Half-Yearly Price</div>
+                        <div class="text-bold">$300 / half year</div>
+                    </div>
+                    <div class="nearby-block d-flex justify-content-between white-bg">
+                        <div>Monthly Price</div>
+                        <div class="text-bold">$360 / month</div>
+                    </div>
+                    <div  class="nearby-block d-flex justify-content-between white-bg" >
+                        <div>Yearly Price</div>
+                        <div class="text-bold">$280 / year</div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row mt-5">
+                <div class="col-md-12">
+                    <h3 class="mb-3">Damage and Incidentals</h3>
+                    <div>
+                    You will be responsible for any damage to the rental property
+                    caused by you or your party during your stay.
+                    </div>
+                </div>
+                </div>  -->
+              <div class="row mt-4 label-with-tick-wrapp" id="additionalDetails" #additionalDetails>
+                <div class="col-md-12" *ngIf="property.additional_details?.length > 0">
+                  <h3 class="mb-3">Additional Details</h3>
+                  <div class="row">
+                    <div class="col-md-12 d-flex">
+                      <!-- <span *ngFor="let additionalDetails of property.additional_details; let i=index" class="mr-3">
+                          <img src="./assets/images/tick-black.svg" alt=""> {{additionalDetails}}</span> -->
+                      <ul class="list grid-ul list-style-tag">
+                        <!-- <img src="./assets/images/tick-black.svg" alt="" class="mr-2" /> -->
+                        <ng-container *ngFor="
+                            let additionalDetails of property.additional_details;
+                            let i = index
+                          ">
+                          <li class="color0">
+                            {{ additionalDetails }}
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-1" id="host" #host>
+                <!-- *ngIf="property.property_host" -->
+                <div class="col-md-12" *ngIf="property.property_host">
+                  <h3 class="mb-3">About Your Host</h3>
+                  <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                    <div class="about-host-info-block d-flex">
+                      <div class="about-host-image-block">
+                        <img src="{{ property.hostProfilePic }}" alt="" />
+                      </div>
+                      <div>
+                        <div class="text-bold">
+                          {{
+                          property.property_host &&
+                          property.property_host.firstname
+                          ? property.property_host.firstname +
+                          " " +
+                          property.property_host.lastname
+                          : ""
+                          }}
+                        </div>
+                        <div class="star-icon-block d-flex mt-2"></div>
+                      </div>
+                    </div>
+                    <div *ngIf="
+                        property.property_host &&
+                        property.property_host.kyc_status &&
+                        property.property_host &&
+                        property.property_host.kyc_status == 1
+                      " class="about-host-verified-block">
+                      <img src="./assets/images/verified-user.svg" alt="" class="mr-2" />
+                      <span>Verified Host</span>
+                    </div>
+                  </div>
+                  <p class="mb-3">
+                    {{
+                    property.property_host && property.property_host.user_bio
+                    ? property.property_host.user_bio
+                    : ""
+                    }}
+                  </p>
+                  <!-- *ngIf="property.property_host && property.property_host.firstname" -->
+                  <ng-container *ngIf="false">
+                    <label class="text-bold mb-2">{{
+                      property.property_host && property.property_host.firstname
+                      ? "Send a Message to " +
+                      property.property_host.firstname +
+                      " " +
+                      property.property_host.lastname
+                      : ""
+                      }}</label>
+                    <textarea [(ngModel)]="messageToHost" class="host-cmment"
+                      placeholder="Type Your Message…"></textarea>
+                    <button (click)="sendMessageToHost()" class="podsliving-button mt-3">
+                      Send
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="row mt-5" id="review_block" #review_block>
+                <!-- <div class="col-md-12">
+                  <div class="d-flex justify-content-between">
+                    <h3 class="mb-3">
+                      Reviews <span class="gray-text">({{property.reviews_arr?.length }})</span>
+                    </h3>
+                    <span><img src="./assets/images/star.svg" alt="" class="mr-2" />{{property.rating}}</span>
+                  </div>
+
+                  <div class="mb-4" *ngFor="let reviews of property.reviews_arr;let i = index">
+                    <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                      <div class="about-host-info-block d-flex">
+                        <div class="about-host-image-block">
+                          <img src="{{(reviews.image) ? imageURL+reviews.image :'./assets/images/testimonail.png' }}"
+                            alt="" />
+                        </div>
+                        <div>
+                          <div class="text-bold">{{reviews.name}}</div>
+                          <div class="star-icon-block d-flex mt-2">
+                            <span *ngFor="let in of counter(reviews.rating) ;let i = index">★</span>
+                            <span class="disable">★</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="about-host-verified-block">
+                        <img src="./assets/images/verified-user.svg" alt="" class="mr-2" />
+                        <span>Verified Guest</span>
+                      </div>
+                    </div>
+                    <div id="less{{i}}">{{ reviews.review | slice:0:50}}...
+                      <span id="lessBtn{{i}}">
+                        <a href="javascript:void(0);" (click)="readMoreReview(i)" class="read-more more hide">Read
+                          more</a>
+                      </span>
+                    </div>
+                    <ng-container>
+                      <div class="read-less-block mt-3" id="more{{i}}">{{ reviews.review }}
+                      </div>
+                      <span id="moreBtn{{i}}" [style.display]="'none'">
+                        <a href="javascript:void(0);" (click)="readLessReview(i)" class="read-more more">Read less</a>
+                      </span>
+                    </ng-container>
+                  </div>
+                  <div class="col-md-12 p-0">
+                    <div id="review_form_wrapper">
+                      <div id="review_form">
+                        <div id="respond" class="comment-respond">
+                          <form id="form-review" class="comment-form has-validation-callback">
+                            <div class="comment-form-rating d-flex mb-3">
+                              <label for="rating"><strong>Your rating&nbsp;<span
+                                    class="required">*</span></strong></label>
+                              <div class="rating-p">
+                                <div class="star-icon-block d-flex justify-content-end">
+                                  <span _ngcontent-prc-c76="" class="grey-color">★</span>
+                                  <span _ngcontent-prc-c76="" class="grey-color">★</span>
+                                  <span _ngcontent-prc-c76="" class="grey-color">★</span>
+                                  <span _ngcontent-prc-c76="" class="grey-color">★</span>
+                                  <span _ngcontent-prc-c76="" class="grey-color">★</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <p class="comment-form-comment form-block">
+                              <label for="text">Your review&nbsp;<span class="required">*</span></label>
+                              <textarea id="text" name="text" cols="45" rows="8" data-validation="required"
+                                placeholder="Type Something"></textarea>
+                            </p>
+                            <p class="comment-form-comment form-block">
+                              <label for="name">Your Name&nbsp;<span class="required">*</span></label>
+                              <input id="name" name="name" type="text" value=" " data-validation="required length"
+                                data-validation-length="max191" placeholder="Enter Your Name">
+                            </p>
+                            <p class="comment-form-comment form-block">
+                              <span class="lable-suggestion">
+                                <label for="email">Your Email&nbsp;<span class="required">*</span></label>
+                                <span class="text-light-gray">Your email address will not be published</span>
+                              </span>
+                              <input id="email" name="email" type="email" value=""
+                                data-validation="required email length" data-validation-length="max128"
+                                placeholder="Enter Your Email">
+                            </p>
+                            <p class="form-submit">
+                              <button class="podsliving-button  m-width-auto "> Submit </button>
+                            </p>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="load-more-block text-center">
+                    <a href="#">Load More</a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-4 booking-flow-right-block">
+              <div class="sticky-custom">
+                <div class="border-block">
+                  <form [formGroup]="bookingDetailForm">
+                    <div class="row">
+                      <div class="form-block input-blk-with-icon col-md-12">
+                        <label>Check-in and Check-out Dates</label>
+                        <div class="position-relative">
+                          <input style="cursor: pointer" readonly placeholder="Select Check-in and Check-out date"
+                            formControlName="checkINAndOut" class="form-control" bsDaterangepicker [bsConfig]="{
+                              rangeInputFormat: 'MMM DD, YYYY',
+                              dateInputFormat: 'MMM DD, YYYY',
+                              showWeekNumbers: false,
+                              containerClass: 'theme-blue',
+                              minDate: minimumDate
+                            }" (ngModelChange)="onDataChanged()" />
+                          <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                        </div>
+
+                        <span class="text-center mt-1 ml-1">Check-in
+                          {{ property.property_attribute.check_in_time }} -
+                          Check-out
+                          {{ property.property_attribute.check_out_time }}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-block col-md-12 input-blk-with-icon">
+                        <label>Guest(s)</label>
+                        <div class="position-relative" id="guest_toggle" data-toggle="collapse"
+                          data-target="#collapse_guest" aria-expanded="true" aria-controls="collapse">
+                          <div class="numberOfGuestLabel">
+                            {{ bookingFormControl.adults.value }} Adult(s)<span *ngIf="
+                                property.property_attribute.children_allowed ==
+                                  1 && bookingFormControl.children.value > 0
+                              ">,
+                              {{ bookingFormControl.children.value }} Child(s)
+                            </span>
+                          </div>
+                          <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                        </div>
+                        <div class="right-wrapp error-right-wrapp collapse" id="collapse_guest">
+                          <div
+                            class="more-details-block d-flex align-items-center justify-content-between border-botoom-0">
+                            <div>Adult(s)</div>
+                            <div id="field1">
+                              <button type="button" id="sub" class="sub" [ngClass]="{
+                                  'button-disable':
+                                    bookingFormControl.adults.value == 1
+                                }" (click)="decrease('adults')">
+                                -
+                              </button>
+                              <input type="number" id="1" value="0" min="0" max="3" formControlName="adults" />
+                              <button type="button" id="add" class="add" (click)="increase('adults')">
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <div
+                            class="more-details-block d-flex align-items-center justify-content-between border-botoom-0"
+                            *ngIf="
+                              property.property_attribute.children_allowed == 1
+                            ">
+                            <div>
+                              Children(s)
+                              <span class="d-block mt-1 gray-text">Age 2-12</span>
+                            </div>
+                            <div id="field1">
+                              <button type="button" id="sub" class="sub" (click)="decrease('children')">
+                                -
+                              </button>
+                              <input type="number" id="1" value="0" min="0" max="3" formControlName="children" />
+                              <button type="button" id="add" class="add" (click)="increase('children')">
+                                +
+                              </button>
+                            </div>
+                          </div>
+                          <!-- <a (click)="getFees()"
+                                                        class="podsliving-button transparent w-100">Done</a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div class="right-wrapp mt-3" *ngIf="bookingInfo">
+                    <div class="card">
+                      <div class="card-header" id="heading">
+                        <h5 class="mb-0 mt-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse"
+                            aria-expanded="true" aria-controls="collapse">
+                            <div class="collpsd-cnt">
+                              {{
+                              keys(bookingInfo.display_dates_with_price)
+                              .length
+                              }}
+                              Night
+                            </div>
+                            <div class="normal-cnt">
+                              {{
+                              keys(bookingInfo.display_dates_with_price)
+                              .length
+                              }}
+                              Night
+                            </div>
+                          </button>
+                        </h5>
+                      </div>
+
+                      <div id="collapse" class="collapse" aria-labelledby="heading">
+                        <div class="card-body">
+                          <table class="table">
+                            <tr class="table-primary">
+                              <th>Booking Date</th>
+                              <th class="text-right">Charges/Night</th>
+                              <!-- <th>Description</th> -->
+                            </tr>
+                            <tr *ngFor="
+                                let prop of keys(
+                                  bookingInfo.display_dates_with_price
+                                )
+                              ">
+                              <td>
+                                {{
+                                bookingInfo?.display_dates_with_price[prop]
+                                .date | date: "EEEE d MMMM y"
+                                }}
+                              </td>
+                              <td class="text-right">
+                                {{
+                                bookingInfo?.display_dates_with_price[prop]
+                                .base_price
+                                }}
+                              </td>
+                              <!-- <td>{{bookingInfo?.display_dates_with_price[prop].message}}</td> -->
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <table class="table">
+                      <tr>
+                        <td><strong>Total</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{
+                            bookingInfo?.total_accomodation_charge
+                            }}</strong>
+                        </td>
+                      </tr>
+                      <tr *ngIf="bookingInfo.additional_guest_charge">
+                        <td><strong>Additional Guest Charges</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{ bookingInfo?.additional_guest_charge }}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>Cleaning Fee</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{ bookingInfo?.cleaning_charge }}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>PodsLiving Service Fee</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{
+                            bookingInfo?.pods_guest_service_charge
+                            }}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tax</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{ bookingInfo?.display_tax }}</strong>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><strong>MAT</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{ bookingInfo?.accomodation_tax }}</strong>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td><strong>Grand Total (All inclusive)</strong></td>
+                        <td colspan="2" class="text-right">
+                          <strong>${{ bookingInfo?.guest_pays }}</strong>
+                        </td>
+                      </tr>
+                    </table>
+                    <ng-container *ngIf="bookingInfo && bookingInfo.policy">
+                      <p class="mb-3 mt-4 color-black">
+                        <strong>Cancellation Policy</strong>
+                      </p>
+                      <div class="icon-list">
+                        <ul class="list">
+                          <li class="color1">
+                            {{ bookingInfo?.policy.text }}
+                          </li>
+                        </ul>
+                      </div>
+                    </ng-container>
+                    <a (click)="proceedWithBooking()" [ngClass]="{ 'button-disable': bookingError }"
+                      class="podsliving-button w-100 mt-3" *ngIf="property.property_attribute.instant_booking == 1">Book
+                      Now</a>
+
+                    <a (click)="proceedWithRequesting()" [ngClass]="{ 'button-disable': bookingError }"
+                      class="podsliving-button w-100 mt-3"
+                      *ngIf="property.property_attribute.instant_booking != 1">Request to Book</a>
+                  </div>
+                  <div class="mt-3 alert alert-danger lll" *ngIf="bookingError">
+                    {{ bookingError }}
+                  </div>
+                  <div class="mt-3 alert alert-success lll" *ngIf="bookingSuccessMsg">
+                    {{ bookingSuccessMsg }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="state == 0">
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-md-12 mt-70">
+          <div class="text-center 404">
+            <h3>Loading...</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="state == 2">
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-md-12 mt-70">
+          <div class="text-center 404">
+            <h1 style="font-size: 12rem; color: #f60202">404</h1>
+            <h3>The requested URL was not found on this server</h3>
+            <div class="text-center mt-4 promotion-button-group mt-2">
+              <a (click)="back()" class="podsliving-button border-0">Go Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="gallery_slider" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-block pl-0 pr-0">
+          <div class="modal-title-block d-flex justify-content-between side-gap">
+            <h2 class="magrin0">Photos & Videos</h2>
+            <a href="javascript:void(0);" data-dismiss="modal" class="exit-button">Exit</a>
+          </div>
+          <div class="outer">
+            <owl-carousel #big id="big" [options]="SlideOptions" *ngIf="
+                property && property.all_image && property.all_image.length
+              ">
+              <div class="item" *ngFor="let images of property.all_image; let i = index">
+                <img src="{{ imageURL + images.image }}" *ngIf="images.file_type == 'image'" class="img-fluid" />
+                <video class="w-100" width="278" height="460" *ngIf="images.file_type == 'video'" type="video/mp4"
+                  controls>
+                  <source src="{{ imageURL + images.image }}" />
+                </video>
+                <p *ngIf="images.image_caption">{{ images.image_caption }}</p>
+              </div>
+            </owl-carousel>
+            <owl-carousel #thumbs id="thumbs" [options]="Thumbptions" *ngIf="
+                property && property.all_image && property.all_image.length
+              ">
+              <div class="item" *ngFor="let images of property.all_image; let i = index">
+                <img (click)="updateBigCarousel(i)" src="{{ imageURL + images.image }}" *ngIf="images.file_type == 'image'" class="img-fluid" />
+                <video (click)="updateBigCarousel(i)" class="w-100" width="278" height="220" class="img-fluid" *ngIf="images.file_type == 'video'"
+                  type="video/mp4" controls>
+                  <source src="{{ imageURL + images.image }}" />
+                </video>
+                <p *ngIf="images.image_caption" >{{ images.image_caption }}</p>
+              </div>
+            </owl-carousel>
+          </div>
+          <!-- <div class="outer">
+            <owl-carousel id="big" [options]="SlideOptions">
+
+              <div class="item" *ngFor="let images of property.property_image;let i = index">
+                <img src="{{imageURL+images.image}}" *ngIf="images.file_type == 'image'" alt="" />
+                <video class="w-100" width="278" height="460" *ngIf="images.file_type == 'video'" type="video/mp4"
+                  controls>
+                  <source src="{{imageURL+images.image}}">
+                </video>
+                <p *ngIf="images.image_caption">{{images.image_caption}}</p>
+              </div>
+            </owl-carousel>
+            <div id="thumbs" class="owl-carousel owl-theme">
+              <ng-container *ngFor="let images of property.property_image;let i = index">
+                <div class="item">
+                  <img src="{{imageURL+images.image}}" *ngIf="images.file_type == 'image'" alt="" />
+                  <video class="w-100" width="278" height="460" *ngIf="images.file_type == 'video'" type="video/mp4"
+                    controls>
+                    <source src="{{imageURL+images.image}}">
+                  </video>
+                </div>
+              </ng-container>
+            </div>
+
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZrIUBGN0aJOY6pRWnpkgISJ5bFMaKDwE&callback=initMap&libraries=places"
+      async></script>
+  </div>
+</div>

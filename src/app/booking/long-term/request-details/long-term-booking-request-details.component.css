@@ -1,0 +1,205 @@
+.mb-4, .my-4 {
+  margin-bottom: 1.5rem!important;
+}
+.mt-0, .my-0 {
+  margin-top: 0!important;
+}
+.my-4 {
+  margin-top: 1.5rem!important;
+  margin-bottom: 1.5rem!important;
+}
+
+.info__text .input-group{
+  flex-wrap: initial;
+}
+.info__text p {
+padding: 15px;
+margin: 0;
+}
+.info__text .input-group-text {
+height: auto;
+background: yellowgreen;
+color: #fff;
+}
+.info__text {
+background: bisque;
+font-size: 14px;
+}
+.form-control:focus {
+color: #ced4da;
+background-color: #fff;
+border-color: initial;
+outline: 0;
+box-shadow: none;
+}
+.form-switch .form-check-input {
+width: 2.5em;
+
+}
+.form-switch .form-check-input:checked{
+  background-color: var(--podsLiving-primary) !important;
+}
+.social__icons i {
+  background: #fff;
+box-shadow: 0px 0px 5px #ddd;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+padding: 10px;
+}
+.social__icons {
+float: right;
+}
+.save__continue__btn {
+background: #0d6efd;
+color: #fff;
+border: 0;
+padding: 8px 20px;
+margin: 5em 0px 1em 0px;
+}
+.form__section .input-group-text {
+font-size: 25px;
+width: 50px;
+height: 50px;
+background: #ddd;
+}
+.country__name {
+color: #a0a0a0;
+text-transform: capitalize;
+}
+.rating {
+padding-right: 10px;
+}
+.heading a {
+text-decoration: none;
+color: #0d6efd;
+padding-right: 10px;
+}
+.form__section .form-control {
+height: 50px;
+}
+.lease__team .months-btn {
+background: #0d6efd;
+border: none;
+padding: 12px 15px;
+color: #fff;
+}
+.lease__team h5 {
+font-size: 14px;
+padding-bottom: 15px;
+text-transform: capitalize;
+}
+.heading h5 {
+font-size: 22px;
+font-weight: 600;
+}
+.heading {
+padding: 20px 0px;
+}
+.form__section {
+padding-top: 20px;
+padding-bottom: 20px;
+}
+.form__section .form-control,.form__section .input-group-text {
+border-radius: 0px;
+}
+.form__section label {
+padding-bottom: 5px;
+}
+
+.form-switch .form-check-input {
+  height: 18px;
+  min-width: 40px;
+}
+.w-forms label{
+  font-size: 14px;
+}
+.w-forms .input-label{
+  font-size: 14px;
+  color: #808080 !important;
+}
+.w-forms .input-group-text{
+  background-color: #D3D3D3 !important;
+  border-radius: 0;
+  min-width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+}
+.w-forms .input-group-text i{
+  font-size: 23px;
+}
+.w-forms .form-control, .w-forms .form-select{
+  font-size: 14px;
+  height: 48px;
+  border-radius:0 !important;
+  border-color: #D3D3D3 !important;
+}
+.utility-inputs table{
+  width: 300px;
+}
+.utility-inputs table thead th{
+  font-weight: normal !important;
+}
+.utility-inputs table tr td{
+  padding: 4px 30px 4px 4px;
+}
+.utility-inputs .form-control, .utility-inputs .input-group-text{
+  height: 31px;
+  min-width: 31px;
+}
+
+.note-block{
+  display: flex;
+}
+.note-block .icon{
+  background-color: #C1C806;
+  padding: 15px;
+  width: 52px;
+  color: #ffffff;
+ 
+}
+.note-block .icon i{
+  font-size: 20px;
+}
+
+.note-block .text{
+  background:#F5F6C0;
+  padding: 15px;
+}
+.btn-sec{
+  display: flex;
+}
+.btn-sec .btn-primary, .btn-sec .btn-outline-primary, .btn-sec [class="btn-*"]{
+font-size: 16px !important;
+
+}
+.btn-sec  .btn-outline-primary strong{
+  font-weight: 600 !important;
+}
+.toggle-btn-sec{
+  display: flex;
+  flex-wrap: wrap;
+}
+.toggle-btn-sec .btn{
+  border-radius: 0;
+  font-size: 14px;
+  padding: 13px 19px;
+  text-align: center;
+  border-color: #D3D3D3 !important;
+  color:#eaeaea;
+  box-shadow: none !important;
+  outline: 0 !important;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 350ms;
+  background: transparent !important;
+  color: #808080 !important;
+  min-width: 100px;
+  margin-bottom: 5px;
+}
+.toggle-btn-sec .btn.active, .toggle-btn-sec .btn:hover{
+  background: var(--podsLiving-primary) !important;
+  color: var(--podsLiving-white) !important;
+  border-color: var(--podsLiving-primary) !important;;
+}

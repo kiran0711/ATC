@@ -1,0 +1,82 @@
+<div class="row mt-5">
+
+    <ng-container *ngIf="properties?.length>0; else noRecordFound">
+        <div class="col-md-6">
+            <!-- <div  style="height: 30rem; overflow: scroll;"  infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="100" [scrollWindow]="false"
+        (scrolled)="onScrollDown()" class="search-results search-result-grid-wrapp"> -->
+            <div class="search-results search-result-grid-wrapp" style="height: '35rem'; overflow: scroll;">
+                <div class="search-result-grid-block d-flex cursor-pointer" *ngFor="let prop of properties" [routerLink]="['/property/detail',prop.pro_slug]" [queryParams]="{startDate: reqFeild.startDate, 
+                endDate: reqFeild.endDate, 
+                adult: reqFeild.adults, 
+                children: reqFeild.children}">
+                    <div class="search-result-grid-image-block">
+                        <img src="{{prop.coverImageData ? prop.coverImageData.image: ''}}" alt="">
+                        <div class="over-text other" *ngIf="prop.coverImageData  && prop.coverImageData.image_caption">{{prop.coverImageData.image_caption}}</div>
+                    </div>
+                    <div class="search-result-grid-cnt-block">
+                        <div class="d-flex justify-content-between">
+                            <h3><a>{{prop.pro_title}}</a></h3>
+                            <!-- <img src="./assets/images/header-wishlist.svg" alt=""> -->
+                        </div>
+                        <div class="my-1">
+                            <img *ngIf="prop.review" src="./assets/images/star.svg" alt="" class="mr-1">
+                            <span *ngIf="prop.rating">{{prop.rating}}</span>
+                            <span class="gray-text">{{prop.property_category && prop.property_category.cat_name ? prop.property_category.cat_name : "" }}  {{prop.city ? 
+                            " in " + prop.city : "" }}</span>
+                        </div>
+                        <div>{{ prop.property_attribute && prop.property_attribute.guests_allowed ? prop.property_attribute.guests_allowed + " Guest(s) •" : "" }} {{prop.property_attribute && prop.property_attribute.bedrooms ? prop.property_attribute.bedrooms
+                            + " Bedroom(s) •" : "" }} {{prop.property_attribute && prop.property_attribute.beds ? prop.property_attribute.beds + " Bed(s) •" : "" }} {{prop.property_attribute && prop.property_attribute.baths ? prop.property_attribute.baths
+                            + " Bathroom(s)" : "" }}
+                        </div>
+                        <!-- <div class="booked-block ">Booked by 40 this week</div> -->
+                        <div class="search-result-grid-bottom-block d-flex align-items-end justify-content-between">
+                            <div class="d-flex justify-content-between">
+                                <img *ngIf="prop.amenityImage" src="{{prop.amenityImage}}" alt="" class="service-image">
+                                <a class="text-14 ml-3 blue-text" *ngIf="prop.property_amenities?.length>1" [routerLink]="['/property/detail',prop.pro_slug]">+ {{(prop.property_amenities?.length-1)}} more</a>
+                                <a href="#" class="red-text ml-3 vaccination-proof mm" *ngIf="prop.property_attribute.vaccination_allowed == 1"
+                                    style="font-size: 12px">{{prop.property_attribute.vaccination_allowed ? " Vaccination Proof Required" : ""
+                            }}</a>
+                            </div>
+                            <div class="srch-btm-amount-block">
+                                <div class="text-24 mb-1">
+                                    <span class="text-bold">{{prop.property_attribute && prop.property_attribute.base_price_per_night ? "$" + prop.property_attribute.base_price_per_night + "/" : ""
+                                }} </span> {{prop.property_attribute && prop.property_attribute.base_price_per_night ? "night" : "" }}
+                                </div>
+                                <div class="gray-text">{{prop.property_attribute && prop.property_attribute.base_price_per_night ? "$" + prop.property_attribute.base_price_per_night + " total" : "" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center load-more-block" *ngIf="showLoadMore && properties?.length>=10">
+                    <a href="javascript:void(0)" (click)="onScrollDown()">Load More</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ng-container *ngIf="properties?.length>0">
+                <agm-map #gm [latitude]="parseFloat(properties[0].latitude)" [longitude]="parseFloat(properties[0].longitude)" [zoom]="7" [zoomControl]="true">
+                    <agm-marker *ngFor="let prop of properties" (mouseOver)="onMouseOver(infoWindow,gm)" [latitude]="parseFloat(prop.latitude)" [longitude]="parseFloat(prop.longitude)">
+                        <agm-info-window #infoWindow>
+                            <strong><p>{{prop.pro_title}}</p></strong>
+                            <strong><p>{{prop.google_address}}</p></strong>
+                            <strong><p>{{prop.city}}</p></strong>
+                            <strong><p>{{prop.state}}</p></strong>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </ng-container>
+            <!-- <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.163741622!2d76.81306442366602!3d28.64727993557044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1629871573111!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+        </div>
+
+    </ng-container>
+    <ng-template #noRecordFound>
+        <div class="text-center col-md-12 mt-5">
+            <p>No record found.</p>
+        </div>
+    </ng-template>
+</div>

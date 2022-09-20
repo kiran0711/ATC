@@ -1,0 +1,38 @@
+<div class="modal fade" id="additional_details_longterm" tabindex="-1" role="dialog" aria-labelledby="login_register"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="login-modal-wrapp">
+                    <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                            src="assets/images/cross.svg" alt=""></a>
+                    <div class="login-modal-image-block"></div>
+                    <div class="login-modal-content-wrapp position-relative">
+                        <div class="modal-right-content-block d-flex align-items-center">
+                            <div class="login-modal-content-block">
+                                <div class="login-modal-title">Terms and conditions</div>
+                                <div class="mb-4 mt-4">As soon as the guest checks-in, you will receive your money
+                                    minus a 1.5%
+                                    PodsLiving INC. service fee. You can add or change your preferred payout method
+                                    via Digital Wallet
+                                    which can be accessed via Dashboard.</div>
+
+                                <div class="login-modal-form-wrapp">
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" [(ngModel)]="agreed" id="craet_policy_3">
+                                        <label for="craet_policy_3" class="font-w-normal">I understand and agree</label>
+                                    </div>
+                                    <div class="form-block create-listing-submit-button-block">
+                                        <a class="podsliving-button" [ngClass]="{ 'button-disable': !agreed }"
+                                            (click)="submit()">Continue</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

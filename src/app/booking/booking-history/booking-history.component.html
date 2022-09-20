@@ -1,0 +1,455 @@
+<div class="admin-panel-wrapp">
+    <div class="sidebar-wrapp-width">
+        <app-dashboard-sidebar></app-dashboard-sidebar>
+    </div>
+
+    <div class="admin-panel-cnt-wrapp pt-0">
+        <div class="container-fluid">
+            <div>
+                <div class="">
+                    <div class="title-block row justify-content-between ">
+                        <div class="col-md-6 mt-5">
+                            <h2>Bookings</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 simple-tabs-wrapp td-pointer">
+                            <ul class="nav nav-pills mb-4" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#menu0">Ongoing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu1">Upcoming</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu2">Completed</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#menu3">Cancelled</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="menu0" class="tab-pane fade active show table-even-odd-wrapp mx-auto table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                        class="row-border hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Booked By</th>
+                                                <th>Property</th>
+                                                <th>Guest(s)</th>
+                                                <th>Night(s)</th>
+                                                <th style="width: 70px;">Check-in<br>Check-out</th>
+                                                <th>CreatedAt</th>
+                                                <th class="text-right">Total</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let element of bookings; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>
+                                                  <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                                    <img [src]="element.property_host.profile_picture" alt="" />
+                                                    <div>
+                                                      <div> </div>
+                                                    </div>
+                                                  </div> -->
+                                                  {{element.property_host.firstname}} {{element.property_host.lastname}}
+                                                </td>
+                                                <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                                  title="View Property Details">
+                                                  <!-- <div class="d-flex align-items-center table-image-block">
+                                                    <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                                    <div>
+                                                     
+                                                    </div>
+                                                  </div> -->
+                                                  <div>{{element.booked_property.pro_title}}</div>
+                                                  <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                                                </td>
+                                                <td>
+                                                  {{ element.booked_total_guest}}
+                                                </td>
+                                                <td>
+                                                  {{ element.total_stay_nights}}
+                                                </td>
+                                                <td>
+                                                  {{ element.check_in_date | date: 'mediumDate'}} <br> 
+                                                 {{ element.exit_date | date: 'mediumDate'}}
+                                                </td>
+                                                <td>{{ element.created_on | date: "medium"}}</td>
+                        
+                                                <td class="text-right">
+                                                  <strong> {{element.amount | currency}}</strong>
+                                                </td>
+                        
+                                              
+                                                <td class="text-center">
+                                                  <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)" title="View Booking Details">
+                                                    <i class="fa fa-eye" aria-hidden="true" ></i> View
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="menu1" class="tab-pane fade table-even-odd-wrapp mx-auto table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerUpcomingBooking"
+                                        class="row-border hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Booked By</th>
+                                                <th>Property</th>
+                                                <th>Guest(s)</th>
+                                                <th>Night(s)</th>
+                                                <th style="width: 70px;">Check-in<br>Check-out</th>
+                                                <th>CreatedAt</th>
+                                                <th class="text-right">Total</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let element of upcomingBookings; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>
+                                                  <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                                    <img [src]="element.property_host.profile_picture" alt="" />
+                                                    <div>
+                                                      <div> </div>
+                                                    </div>
+                                                  </div> -->
+                                                  {{element.property_host.firstname}} {{element.property_host.lastname}}
+                                                </td>
+                                                <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                                  title="View Property Details">
+                                                  <!-- <div class="d-flex align-items-center table-image-block">
+                                                    <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                                    <div>
+                                                     
+                                                    </div>
+                                                  </div> -->
+                                                  <div>{{element.booked_property.pro_title}}</div>
+                                                  <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                                                </td>
+                                                <td>
+                                                  {{ element.booked_total_guest}}
+                                                </td>
+                                                <td>
+                                                  {{ element.total_stay_nights}}
+                                                </td>
+                                                <td>
+                                                  {{ element.check_in_date | date: 'mediumDate'}} <br> 
+                                                 {{ element.exit_date | date: 'mediumDate'}}
+                                                </td>
+                                                <td>{{ element.created_on | date: "medium"}}</td>
+                        
+                                                <td class="text-right">
+                                                  <strong> {{element.amount | currency}}</strong>
+                                                </td>
+                        
+                                              
+                                                <td class="text-center">
+                                                  <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)" title="View Booking Details">
+                                                    <i class="fa fa-eye" aria-hidden="true" ></i> View
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="menu2" class="tab-pane fade table-even-odd-wrapp mx-auto table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerPastBooking"
+                                        class="row-border hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Booked By</th>
+                                                <th>Property</th>
+                                                <th>Guest(s)</th>
+                                                <th>Night(s)</th>
+                                                <th style="width: 70px;">Check-in<br>Check-out</th>
+                                                <th>CreatedAt</th>
+                                                <th class="text-right">Total</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let element of pastBookings; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>
+                                                  <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                                    <img [src]="element.property_host.profile_picture" alt="" />
+                                                    <div>
+                                                      <div> </div>
+                                                    </div>
+                                                  </div> -->
+                                                  {{element.property_host.firstname}} {{element.property_host.lastname}}
+                                                </td>
+                                                <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                                  title="View Property Details">
+                                                  <!-- <div class="d-flex align-items-center table-image-block">
+                                                    <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                                    <div>
+                                                     
+                                                    </div>
+                                                  </div> -->
+                                                  <div>{{element.booked_property.pro_title}}</div>
+                                                  <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                                                </td>
+                                                <td>
+                                                  {{ element.booked_total_guest}}
+                                                </td>
+                                                <td>
+                                                  {{ element.total_stay_nights}}
+                                                </td>
+                                                <td>
+                                                  {{ element.check_in_date | date: 'mediumDate'}} <br> 
+                                                 {{ element.exit_date | date: 'mediumDate'}}
+                                                </td>
+                                                <td>{{ element.created_on | date: "medium"}}</td>
+                        
+                                                <td class="text-right">
+                                                  <strong> {{element.amount | currency}}</strong>
+                                                </td>
+                        
+                                              
+                                                <td class="text-center">
+                                                  <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)" title="View Booking Details">
+                                                    <i class="fa fa-eye" aria-hidden="true" ></i> View
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="menu3" class="tab-pane fade table-even-odd-wrapp mx-auto table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTriggerCancelledBooking"
+                                        class="row-border hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Booked By</th>
+                                                <th>Property</th>
+                                                <th>Guest(s)</th>
+                                                <th>Night(s)</th>
+                                                <th style="width: 70px;">Check-in<br>Check-out</th>
+                                                <th>CreatedAt</th>
+                                                <th class="text-right">Total</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let element of cancelledBookings; let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>
+                                                  <!-- <div class="d-flex align-items-center table-image-block table-cirscle-image-block ">
+                                                    <img [src]="element.property_host.profile_picture" alt="" />
+                                                    <div>
+                                                      <div> </div>
+                                                    </div>
+                                                  </div> -->
+                                                  {{element.property_host.firstname}} {{element.property_host.lastname}}
+                                                </td>
+                                                <td (click)="onClick(element.booked_property.pro_slug)" style="cursor: pointer"
+                                                  title="View Property Details">
+                                                  <!-- <div class="d-flex align-items-center table-image-block">
+                                                    <img [src]="element.booked_property.porperty_display_picture" alt="" />
+                                                    <div>
+                                                     
+                                                    </div>
+                                                  </div> -->
+                                                  <div>{{element.booked_property.pro_title}}</div>
+                                                  <div class="text-14 gray-text">{{element.booked_property.city}}</div>
+                                                </td>
+                                                <td>
+                                                  {{ element.booked_total_guest}}
+                                                </td>
+                                                <td>
+                                                  {{ element.total_stay_nights}}
+                                                </td>
+                                                <td>
+                                                  {{ element.check_in_date | date: 'mediumDate'}} <br> 
+                                                 {{ element.exit_date | date: 'mediumDate'}}
+                                                </td>
+                                                <td>{{ element.created_on | date: "medium"}}</td>
+                        
+                                                <td class="text-right">
+                                                  <strong> {{element.amount | currency}}</strong>
+                                                </td>
+                        
+                                              
+                                                <td class="text-center">
+                                                  <a class="btn-sm" (click)="onClickBookingDetails(element.booking_id)" title="View Booking Details">
+                                                    <i class="fa fa-eye" aria-hidden="true" ></i> View
+                                                  </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="overlay"></div>
+<div class="right-side-panel-wrapp " [hidden]="!isShows">
+    <div class="title-block d-flex justify-content-between mb-3">
+        <div>
+            <h3>Booking ID 2244 <span class="panel-label green-text complete-bg">Completed</span></h3>
+        </div>
+        <a href="javascript:void(0);" (click)="close()"><img src="../assets/images/cross.svg" alt=""
+                class="right-side-panle-close"></a>
+    </div>
+    <img src="../assetsimages/booking-1.png" alt="" class="w-100">
+    <div class="mt-3 text-24 text-semibold mb-1">Modern & Cozy House</div>
+    <div class="d-flex justify-content-between">
+        <div class="gray-text">Entire house in Toronto</div>
+        <a href="#" class="text-bold">Property Details</a>
+    </div>
+    <div class="mt-5 border-bottom pb-3">
+        <div class="text-24 text-bold">Booking Details</div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Booked on</span>
+            <span>21 Aug, 2021 at 10:30 PM</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Guests</span>
+            <span>2</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Check-in</span>
+            <span>August 21, 2021</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Check-out</span>
+            <span>August 21, 2021</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Nights</span>
+            <span>5</span>
+        </div>
+    </div>
+    <!--        <div class="border-link rht-icon-block">
+      <a href="#"><img src="../images/get-directions.svg" alt="">Get Directions</a>
+    </div>
+    <div class="border-link rht-icon-block">
+      <a href="#"><img src="../images/copy-address.svg" alt="">Copy Address</a>
+    </div>-->
+    <div class="border-link rht-icon-block">
+        <a href="#"><img src="../assets/images/message-host.svg" alt="">Message Host</a>
+    </div>
+    <!--        <div class="border-link rht-icon-block">
+      <a href="#"><img src="../images/call-host.svg" alt="">Call Host</a>
+   </div>-->
+    <div class="mt-2 border-bottom pb-3">
+        <div class="text-24 text-bold">Payment Details</div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">5 Nights</span>
+            <span>USD 2500</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Cleaning Fee</span>
+            <span>USD 500</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">Security deposit</span>
+            <span>USD 130</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="gray-text">PodsLiving Service Fee (20%)</span>
+            <span>USD 2500</span>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+            <span class="text-24 text-semibold">Total</span>
+            <span class="text-24 text-semibold">USD 6036</span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+            <span class="text-12 gray-text">Includes Taxes & Fees</span>
+            <span class="text-12 text-bold green-text">Full Paid</span>
+        </div>
+    </div>
+    <div class="border-link rht-icon-block">
+        <a href="#"><img src="images/view-invoice.svg" alt="">View Invoice</a>
+    </div>
+    <div class="border-link rht-icon-block">
+        <a href="#"><img src="images/download-blue.svg" alt="">Download Invoice</a>
+    </div>
+    <div class="container-fluid p-0 mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="mb-3">About Your Host</h3>
+                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                    <div class="about-host-info-block d-flex">
+                        <div class="about-host-image-block">
+                            <img src="../images/testimonail.png" alt="">
+                        </div>
+                        <div>
+                            <div class="text-bold">Bashita Rahman</div>
+                            <div class="star-icon-block d-flex mt-2">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span class="disable">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-host-verified-block">
+                        <img src="../images/verified-user.svg" alt="" class="mr-2">
+                        <span>Verified Host</span>
+                    </div>
+                </div>
+                <p class="mb-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                    invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+                    duo dolores et ea rebum. Stet clita kasd gubergren,
+                    no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="col-md-12">
+                <h3 class="mb-3">Rate & Review The Host</h3>
+                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                    <div class="about-host-info-block d-flex">
+
+                        <div class="star-icon-block d-flex">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span class="disable">★</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <label class="text-bold mb-2">Review</label>
+                <textarea class="host-cmment" placeholder="Type your review…."></textarea>
+                <button class="podsliving-button mt-3">Submit</button>
+            </div>
+        </div>
+    </div>
+    <!--    <h3 class="mb-3 mt-4">Cancellation Policy</h3>
+<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+<a href="javascript:void(0);" class="blue-text text-bold" data-toggle="modal" data-target="#cancellation_policy">View Details</a>-->
+</div>

@@ -1,0 +1,260 @@
+<div class="admin-panel-wrapp">
+  <!-- <div class="sidebar-wrapp">
+    
+    <div class="sidebar-block">
+      <ul>
+        <li class="pointer active">
+          <a (click)="navigateDashboard()"
+            ><img
+              src="./assets/images/dashboard-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/dashboard-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Dashboard</a
+          >
+        </li>
+        <li class="cusror-pointer" [routerLink]="['/booking/booking-history']" >
+          <a 
+            ><img
+              src="./assets/images/bookings-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/bookings-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Bookings</a
+          >
+        </li>
+        <li class="cusror-pointer" [routerLink]="['/booking/wallet']">
+          <a 
+            ><img
+              src="./assets/images/wallet-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/wallet-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Wallet</a
+          >
+        </li>
+        <li class="cusror-pointer" [routerLink]="['/booking/invoices']">
+          <a><img src="./assets/images/bookings-black.svg" alt="" class="inactive-image-block" /><img
+            src="./assets/images/bookings-blue.svg" alt="" class="active-image-block" />Invoices</a>
+        </li>  -->
+  <!-- <li>
+          <a href="bookings-2-xd-slide-no-7-15-24-28-and-31.html"
+            ><img
+              src="./assets/images/bookings-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/bookings-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Bookings</a
+          >
+        </li>
+        <li>
+          <a href="favourit-xd-slide-no-13.html"
+            ><img
+              src="./assets/images/favorites-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/favorites-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Favorites</a
+          >
+        </li>
+        <li>
+          <a href="recently-viewed-xd-slide-no-23.html"
+            ><img
+              src="./assets/images/recently-viewed-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/recently-viewed-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Recently Viewed</a
+          >
+        </li>
+        <li>
+          <a href="messages-xd-slide-no-6-and-14.html"
+            ><img
+              src="./assets/images/messages-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/messages-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Messages <span class="menu-notification-block">6</span></a
+          >
+        </li>
+        <li>
+          <a href="notifications-1-xd-slide-no-7.html"
+            ><img
+              src="./assets/images/notifications-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/notifications-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Notifications <span class="menu-notification-block">6</span></a
+          >
+        </li>
+        <li>
+          <a href="#"
+            ><img
+              src="./assets/images/partners-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/partners-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Partners</a
+          >
+        </li>
+        <li>
+          <a href="e-wallet-2-xd-slide-no-9-and-10.html"
+            ><img
+              src="./assets/images/wallet-black.svg"
+              alt=""
+              class="inactive-image-block"
+            /><img
+              src="./assets/images/wallet-blue.svg"
+              alt=""
+              class="active-image-block"
+            />Wallet</a
+          >
+        </li> -->
+  <!-- </ul>
+    </div>
+  </div> -->
+  <div class="sidebar-wrapp-width">
+    <app-dashboard-sidebar></app-dashboard-sidebar>
+  </div>
+  <div class="admin-panel-cnt-wrapp">
+    <div class="container-fluid">
+      <div class="row profile-page-wrapp">
+        <div class="col-md-9  pr-50 mobile-right-padding">
+          <div class="top-blue-block" *ngIf="false">
+            <span>Upload your Government ID to start Hosting.</span>
+            <div class="file-upload-only-name">
+              <div class="file-upload">
+                <div class="file-upload-wrapper" [routerLink]="['/profile/govt-id']" data-text="Upload Now">
+                  <!-- <input
+                    name="file-upload-field"
+                    type="file"
+                    class="file-upload-field"
+                    value=""
+                  /> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row gap-top-50">
+            <div class="col-md-12 simple-tabs-wrapp">
+              <ul class="nav nav-pills nav policies" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" id="pills-home-tab" data-toggle="pill"
+                    [routerLink]="['/profile/general-info']" role="tab" aria-controls="pills-home"
+                    aria-selected="true">General Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" id="pills-profile-tab" data-toggle="pill"
+                    [routerLink]="['/profile/contact']" role="tab" aria-controls="pills-profile"
+                    aria-selected="false">Contact Info</a>
+                </li>
+                <li class="nav-item" *ngIf="!isHost">
+                  <a class="nav-link" id="pills-contact-tab" routerLinkActive="active" data-toggle="pill"
+                    [routerLink]="['/profile/student-info']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">
+                    Student Info
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-gov-tab" routerLinkActive="active" data-toggle="pill"
+                    [routerLink]="['/profile/govt-id']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Verification</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" id="pills-security-tab" data-toggle="pill"
+                    [routerLink]="['/profile/security']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Security</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" id="pills-refer-tab" data-toggle="pill"
+                    [routerLink]="['/profile/refer-and-earn']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Refer & Earn</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" id="pills-refer-tab" data-toggle="pill"
+                    [routerLink]="['/profile/tax-info']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Tax Info</a>
+                </li>
+
+                <!-- only host -->
+                <li class="nav-item" *ngIf="currentRoleText === 'host'">
+                  <a class="nav-link" routerLinkActive="active" id="pills-refer-tab" data-toggle="pill"
+                    [routerLink]="['/profile/payout']" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">Payout </a>
+                </li>
+
+              </ul>
+              <div class="tab-content creat-listing-form-wrapp" id="pills-tabContent">
+                <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <router-outlet></router-outlet>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-3 profile-right-wrapp">
+          <div class="profile-right-block">
+            <div class="profile-progress-block percent-30">
+              <div class="text-48 text-bold red-text">30%</div>
+              <div>Profile Completed</div>
+            </div>
+            <div class="action-items-wrapp">
+              <div class="text-bold mb-3">Action Items</div>
+              <div
+                class="action-item-block d-flex justify-content-between mb-3"
+              >
+                <span>Payout Acount</span>
+                <a [routerLink]="['/comingsoon']" class="blue-text text-decoration-none">Add Now</a>
+              </div>
+              <div
+                class="action-item-block d-flex justify-content-between mb-3"
+              >
+                <span>Profile Picture</span>
+                <a [routerLink]="['/profile/general-info']" class="blue-text text-decoration-none"
+                  >Upload Now</a
+                >
+              </div>
+              <div
+                class="action-item-block d-flex justify-content-between mb-3"
+              >
+                <span>Payment Method</span>
+                <a [routerLink]="['/comingsoon']" class="blue-text text-decoration-none">Setup Now</a>
+              </div>
+              <div class="action-item-block d-flex justify-content-between">
+                <span>Beneficiary Details</span>
+                <a [routerLink]="['/comingsoon']" class="blue-text text-decoration-none">Add Now</a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

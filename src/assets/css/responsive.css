@@ -1,0 +1,252 @@
+/* ====================================Arabic Css========================================= */
+.translated-rtl{direction: rtl;}
+.translated-rtl .navbar-nav.ml-auto {margin-left: unset !important;}
+.translated-rtl .explore-carousel-wrapp { text-align: right;}
+.translated-rtl .links-title{text-align: right;}
+.translated-rtl .footer-social-block a:nth-last-child(1) { margin-right: 30px;}
+.translated-rtl .footer-social-block {text-align: left;}
+.translated-rtl .footer-copyright-block .col-md-8{ text-align: right;}
+.translated-rtl .landing-banner-content-wrapp h1 { text-align: right;}
+.translated-rtl .landing-banner-form-wrapp .input-block {border-right:0px; border-left:  1px solid #dddddd;    text-align: right;}
+.translated-rtl .landing-banner-form-wrapp input {padding-left: 0;padding-right: 31px;}
+.translated-rtl .landing-banner-form-wrapp .input-icon { right: 0;}
+/* ===========================================Responsive=================================== */
+
+@media(max-width: 1700px) {
+    .amenities-wrapp .type-spc-block {
+        margin-right: 16px;
+    }
+    .form-block label {
+        font-size: 13px;
+    }
+    .create-listing-form h2 {
+        font-size: 22px;
+    }
+    body {
+        font-size: 14px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .srch-btm-amount-block .text-24 {
+        font-size: 18px;
+    }
+    .search-result-grid-wrapp .booked-block {
+        display: inline-block;
+        width: auto;
+    }
+    .text-14 {
+        font-size: 12px;
+    }
+    .sub-page-wrapp h2 {
+        font-size: 28px;
+    }
+    #amen_fac .type-spc-block {
+        margin-right: 14px;
+    }
+    .rec-booking-icon-block .type-spc-block {
+        width: 18%;
+    }
+    #amen_fac .type-of-space-block {
+    padding: 3px;
+        margin-bottom: 15px;
+    }
+    #amen_fac .type-of-space-block span {
+        font-size: 12px;
+    }
+    .sub-page-wrapp h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .admin-panel-cnt-wrapp .line-circle-label-block,
+    .admin-panel-cnt-wrapp .line-circle-info-block {
+        font-size: 12px;
+    }
+    .table-even-odd-wrapp table th,
+    .table-even-odd-wrapp table td {
+        padding: 10px 5px;
+    }
+    /* h2 {font-size: 30px;}
+    h3 {font-size: 22px;} */
+    .text-24 {
+        font-size: 22px;
+    }
+    .panel-label {
+        font-size: 14px;
+    }
+    .listing-wrapp .type-of-space-block span {
+        font-size: 12px;
+    }
+    .listing-wrapp .type-of-space-block.type-of-property img {
+        height: 70px;
+    }
+    .login-modal-title {
+        font-size: 26px;
+    }
+    .text-48 {
+        font-size: 40px !important;
+    }
+}
+
+@media(max-width: 767px) {
+    .sidebar-wrapp,
+    .admin-panel-cnt-wrapp {
+        width: 100%;
+    }
+    .navbar-brand {
+        width: 122px;
+    }
+    h1,
+    .text-48 {
+        font-size: 28px;
+    }
+    h2,
+    .text-24 {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    .dash-top-buttons-wrapp .text-48.text-bold {
+        width: 100%;
+    }
+    .dash-top-buttons-wrapp .col-md-4 {
+        margin-bottom: 20px;
+    }
+    .dash-top-buttons-wrapp .col-md-4:nth-last-child(1) {
+        margin-bottom: 0px;
+    }
+    .dash-top-buttons-wrapp .form-block {
+        width: 100%;
+    }
+    .table-responsive table td {
+        min-width: 100px;
+    }
+    .with-image-block td:nth-child(1) {
+        min-width: 200px;
+    }
+    .right-side-panel-wrapp {
+        width: 100%;
+    }
+    .right-side-panel-wrapp .about-host-image-block img {
+        width: 40px;
+        height: 40px;
+    }
+    .message-chat-wrapp {
+        margin-top: 30px;
+    }
+    .message-type-block {
+        flex-wrap: wrap;
+    }
+    .message-input-block {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .message-type-block button {
+        width: 100%;
+    }
+    .btn-group-w-adjust {
+        width: 100%;
+    }
+    .text-48 {
+        font-size: 26px !important;
+    }
+    .d-block-mobile{display: block;}
+}
+
+@media(max-width: 991px) {
+    /* Navbar */
+    .navbar {
+        justify-content: flex-start;
+    }
+    .desktop-only {
+        display: none !important;
+    }
+    .profile-block:after {
+        display: none;
+    }
+    .profile-block {
+        padding-right: 0;
+    }
+    .profile-links-block {
+        left: auto;
+        right: 0;
+    }
+    .notification-dropdown-block {
+        min-width: 300px;
+    }
+    .sidebar-wrapp {
+        display: block;
+    }
+    .sidebar-block {
+        background-color: var(--podsLiving-white);
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 67%;
+        z-index: 5;
+        height: 100%;
+        padding-top: 0px;
+        width: 100%;
+    }
+    .sidebar-wrapp-width {
+        width: 100%;
+    }
+    .table-even-odd-wrapp table {
+        width: 100%;
+        min-width: 550px;
+    }
+    .dashboard-menu-block {
+        z-index: 9;
+    }
+}
+
+@media(min-width: 767px) {
+    .dataTables_wrapper {
+        overflow-x: hidden;
+    }
+    .message-chat-wrapp {
+        padding-left: 50px;
+    }
+    .p-col-10 [class*="col-"] {
+        padding-left: 10px !important;
+        padding-right: 10px;
+    }
+    .p-col-10 {
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+    }
+    .p-col-4 [class*="col-"] {
+        padding-left: 4px !important;
+        padding-right: 4px;
+    }
+    .p-col-4 {
+        margin-left: -4px !important;
+        margin-right: -4px !important;
+    }
+    .check-2-line-block label {
+        padding-left: 30px;
+    }
+    .check-2-line-block.checkbox label:before {
+        margin-right: 10px;
+        margin-left: -27px;
+    }
+    .check-2-line-block.checkbox input:checked+label:after {
+        left: 10px;
+    }
+    .shift-top-30 {
+        margin-top: -30px !important;
+    }
+}
+
+@media(min-width: 991px) {
+    .mobile-only {
+        display: none !important;
+    }
+}

@@ -1,0 +1,233 @@
+<section class="address-slide-view gap-50">
+  <div class="container mt-4">
+   
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          
+          <div class="col-md-5">
+            <div class="banner-title mb-4"><h1>Contact Us</h1></div>
+  
+            <div class="country-address">
+            <h3>Corporate Office - CANADA</h3>
+            <ul class="add-bar" style="padding: 0;
+            list-style: inside; list-style: none;">
+              <li class="add">
+                <b>PodsLiving Inc. </b><br/>
+1133 – 2967 Dundas St. West<br/>
+Toronto, Ontario M6P 1Z2<br/>
+Canada
+              </li>
+              <li class="mailid">
+                <a href="mailto:hello@podsliving.com">hello@podsliving.com</a>
+              </li>
+              <li>  <img src="./assets/images/canada-flag.png" alt="" /></li>
+            </ul>
+            <div>
+            
+            </div>
+          </div>
+          </div>
+
+          <div class="col-md-7">
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.1776431459775!2d-79.47026998422231!3d43.66527515966746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3420491e89d5%3A0x8254c518b1c093d4!2s2967%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6P%201Z2%2C%20Canada!5e0!3m2!1sen!2sin!4v1635929011046!5m2!1sen!2sin"
+            width="100%"
+            height="320"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+          </div>
+        </div>
+        <!-- <owl-carousel
+          [options]="SlideOptions"
+          [carouselClasses]="['owl-theme', 'sliding']"
+        >
+          <div class="similar-items-carosuel" *ngFor="let img of Images">
+            <div class="similiar-items-block">
+              <div class="similar-image-block" style="align-content: center">
+                <img src="{{ img }}" alt="" />
+                <div class="similr-cnt-block">
+                  <div class="country-address">
+                    <h3>Corporate Office - CANADA</h3>
+                    <ul class="add-bar">
+                      <li class="add">
+                        PodsLiving Inc. 1133 - 2967 Dundas St. West Toronto,
+                        Canada ON M6P 1Z2
+                      </li>
+                      <li class="mailid">
+                        <a href="#">hello@podsliving.local</a>
+                      </li>
+                    </ul>
+                    <div>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.1776431459775!2d-79.47026998422231!3d43.66527515966746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3420491e89d5%3A0x8254c518b1c093d4!2s2967%20Dundas%20St%20W%2C%20Toronto%2C%20ON%20M6P%201Z2%2C%20Canada!5e0!3m2!1sen!2sin!4v1635929011046!5m2!1sen!2sin"
+                        width="100%"
+                        height="320"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </owl-carousel> -->
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact-form-view gap-100">
+  <form [formGroup]="contactUsForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>Send us a message & we'll get back to you shortly!</h2>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <div class="form-block">
+            <label>Name <span class="red-text">*</span></label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder=""
+              [ngClass]="{
+                'is-invalid':
+                  contactUsFormControl.name.errors &&
+                  (contactUsFormControl.name.dirty ||
+                    contactUsFormControl.name.touched)
+              }"
+            />
+            <div
+              *ngIf="contactUsFormControl.name.errors"
+              class="invalid-feedback"
+            >
+              {{ contactUsFormControl.name.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-block">
+            <label>Email <span class="red-text">*</span></label>
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control"
+              placeholder=""
+              [ngClass]="{
+                'is-invalid':
+                  contactUsFormControl.email.errors &&
+                  (contactUsFormControl.email.dirty ||
+                    contactUsFormControl.email.touched)
+              }"
+            />
+            <div
+              *ngIf="contactUsFormControl.email.errors"
+              class="invalid-feedback"
+            >
+              {{ contactUsFormControl.email.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-block">
+            <label>Phone <span class="red-text">*</span></label>
+            <input
+              type="tel"
+              formControlName="contactNumber"
+              class="form-control"
+              placeholder=""
+              [ngClass]="{
+                'is-invalid':
+                  contactUsFormControl.contactNumber.errors &&
+                  (contactUsFormControl.contactNumber.dirty ||
+                    contactUsFormControl.contactNumber.touched)
+              }"
+            />
+            <div
+              *ngIf="contactUsFormControl.contactNumber.errors"
+              class="invalid-feedback"
+            >
+              {{ contactUsFormControl.contactNumber.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-block">
+            <label>Reason to Contact <span class="red-text">*</span></label>
+            <input
+              type="text"
+              formControlName="subject"
+              class="form-control"
+              placeholder=""
+              [ngClass]="{
+                'is-invalid':
+                  contactUsFormControl.subject.errors &&
+                  (contactUsFormControl.subject.dirty ||
+                    contactUsFormControl.subject.touched)
+              }"
+            />
+            <div
+              *ngIf="contactUsFormControl.subject.errors"
+              class="invalid-feedback"
+            >
+              {{ contactUsFormControl.subject.errors.incorrect }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-block">
+            <label>Message <span class="red-text">*</span></label>
+            <textarea
+              rows="1"
+              formControlName="description"
+              cols="1"
+              [ngClass]="{
+                'is-invalid':
+                  contactUsFormControl.description.errors &&
+                  (contactUsFormControl.description.dirty ||
+                    contactUsFormControl.description.touched)
+              }"
+            ></textarea>
+            <div
+              *ngIf="contactUsFormControl.description.errors"
+              class="invalid-feedback"
+            >
+              {{ contactUsFormControl.description.errors.incorrect }}
+            </div>
+            <div
+              *ngIf="contactUsFormControl.description.errors?.minlength"
+              class="error-msg"
+            >
+              Minimum 50 characters required.
+            </div>
+            <div
+              *ngIf="contactUsFormControl.description.errors?.maxlength"
+              class="error-msg"
+            >
+              Maximum 500 characters allowed.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button
+            class="podsliving-button w-100 m-width-auto w-auto"
+            id="cont_with_mobile"
+            (click)="submitContactUsForm()"
+            [ngClass]="{
+              'button-disable': !contactUsForm.valid
+            }"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

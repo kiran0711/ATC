@@ -1,0 +1,187 @@
+<form [formGroup]="payoutForm" (ngSubmit)="handlePayoutForm($event)">
+    <div class="row create-listing-form login-modal-form-wrapp p-0 align-items-end mt-5">
+        <div class="col-md-12 form-block text-center">
+            <div class="text-24 raleway mb-4 text-left">Payout Details</div>
+        </div>
+        <div class="col-md-6 form-block">
+            <label>Select Payout Type<span class="red-text">*</span></label>
+            <select nice-select class="w-100 form-control" formControlName="mode" (change)="onChangePayout()" placeholder="Select Your Payout"
+                [ngClass]="{ 'is-invalid': isFieldInvalid('mode') }">
+                <option value="">Select Your Payout</option>
+                <option value="bank">Bank</option>
+                <option value="paypal">Paypal</option>
+            </select>
+            <div class="error-msg" *ngIf="isFieldRequired('mode')"> Payout Mode is required</div>
+
+        </div>
+        <ng-container *ngIf="payoutForm.controls['mode'].value === 'bank'">
+            <div class="col-md-6 form-block">
+                <label>Select Payout Bank<span class="red-text">*</span></label>
+                <select nice-select class="w-100 form-control" formControlName="bank_type" (change)="onChangePayoutBank()" placeholder="Select Payout Bank"
+                    [ngClass]="{ 'is-invalid': isFieldInvalid('bank_type') }">
+                    <option value="">Select Your Bank</option>
+                    <option value="canadian">Canadian</option>
+                    <option value="non-canadian">Non Canadian</option>
+                </select>
+                <div class="error-msg" *ngIf="isFieldRequired('bank_type')"> Bank is required</div>
+            </div>
+            <ng-container
+                *ngIf="payoutForm.controls['bank_type'].value === 'canadian' || payoutForm.controls['bank_type'].value === 'non-canadian'">
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Financial Institution Name<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Account Holder Name" formControlName="account_name"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('account_name') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('account_name')"> Account Holder Name is required
+                        </div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('account_name')"> The text entered exceeds the
+                            maximum
+                            length.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Financial Institution Number<span class="red-text">*</span></label>
+                        <input type="number" placeholder="Enter Acoount Number" formControlName="account_number"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('account_number') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('account_number')"> Account Number is required
+                        </div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('account_number')"> The text entered exceeds the
+                            maximum
+                            length.</div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Transit Number<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Bank Name" formControlName="bank_name"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('bank_name') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('bank_name')"> Bank Name is required</div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('bank_name')"> The text entered exceeds the
+                            maximum
+                            length.</div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Account Number<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Bank Address" formControlName="bank_address"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('bank_address') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('bank_address')"> Bank Address is required</div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('bank_address')"> The text entered exceeds the
+                            maximum
+                            length.</div>
+
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="payoutForm.controls['bank_type'].value === 'canadian'">
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Institution Number<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Institution Number" formControlName="institution_number"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('institution_number') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('institution_number')"> Institution Number is
+                            required
+                        </div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('institution_number')"> The text entered exceeds
+                            the
+                            maximum
+                            length.
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Transit Number<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Transit Number" formControlName="transit_number"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('transit_number') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('transit_number')"> Transit Number is required
+                        </div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('transit_number')"> The text entered exceeds the
+                            maximum
+                            length.
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="payoutForm.controls['bank_type'].value === 'non-canadian'">
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Routing Number<span class="red-text">*</span></label>
+                        <input type="number" placeholder="Enter Routing Number" formControlName="routing_number"
+                            class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('routing_number') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('routing_number')"> Routing Number is required
+                        </div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('routing_number')"> The text entered exceeds the
+                            maximum
+                            length.</div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>IBAN<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter IBAN" formControlName="iban" class="form-control"
+                            [ngClass]="{ 'is-invalid': isFieldInvalid('iban') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('iban')"> IBAN is required</div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('iban')"> The text entered exceeds the maximum
+                            length.
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-block">
+                        <label>Swift<span class="red-text">*</span></label>
+                        <input type="text" placeholder="Enter Swift" formControlName="swift" class="form-control"
+                            [ngClass]="{ 'is-invalid': isFieldInvalid('swift') }">
+                        <div class="error-msg" *ngIf="isFieldRequired('swift')"> Swift is required</div>
+                        <div class="error-msg" *ngIf="isFieldMaxLength('swift')"> The text entered exceeds the maximum
+                            length.
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="payoutForm.controls['mode'].value === 'paypal'">
+            <div class="col-md-6">
+                <div class="form-block">
+                    <label>Paypal Email<span class="red-text">*</span></label>
+                    <input type="email" placeholder="Enter Paypal Email" formControlName="paypal_email"
+                        class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('paypal_email') }">
+                    <div class="error-msg" *ngIf="isFieldRequired('paypal_email')"> Paypal Email is required</div>
+                    <div class="error-msg" *ngIf="isFieldEmailValid('paypal_email')"> Paypal Email is not valid</div>
+                    <div class="error-msg" *ngIf="isFieldMaxLength('paypal_email')"> The text entered exceeds the
+                        maximum
+                        length.</div>
+                </div>
+            </div>
+        </ng-container>
+
+
+
+        <div class="col-md-12 form-block">
+
+            <div *ngIf="alertMsg" [ngClass]="pwdSuccessMsg ? 'text-success' : 'text-danger'">
+                <span>{{ pwdSuccessMsg ? pwdSuccessMsg : pwdErrorMsg}}</span>
+                <i class="close-icon fa fa-times" (click)="alertMsg = false"></i>
+            </div>
+
+        </div>
+        <div class="col-md-12 form-block mb-0">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="podsliving-button" type="submit" [ngClass]="{ 'button-disable': !payoutForm.valid}">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

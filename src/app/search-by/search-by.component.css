@@ -1,0 +1,23 @@
+.col-md-4.item {
+    position: relative;
+    overflow: hidden;
+}
+.property-space {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    background: #555252d1 0 0 no-repeat padding-box;
+    text-align: left;
+    /* padding-left: 10%; */
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 30px);
+    transition: all .35s;
+    display: block;
+    margin: 0;
+    padding: 5px;
+}
+.property-space h3 {
+    color: #ffffff;
+}
+.col-md-4.item  img{width: 100%;}

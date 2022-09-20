@@ -1,0 +1,1900 @@
+<header *ngIf="loginFlag" id="stick_bar">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <!-- <button class="navbar-toggler dashboard-menu-block" type="button">
+              <span class="navbar-toggler-icon"></span>
+          </button> -->
+      <a class="navbar-brand" (click)="redirectToHome()"><img src="./assets/images/podsLiving-logo.svg" alt="" /></a>
+      <div class="mobile-only d-flex ml-auto">
+        <a href="javascript:void(0);" class="pods-login-button" (click)="navigateToMobileLogin()"
+          >Login</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ml-auto justify-content-center">
+          <button class="_b2fxuo" type="button" (click)="searchBarClick()" style="display: none !important">
+            <div class="_1g5ss3l" id="littleSearchLabel">Start your search</div>
+            <div class="_i8zuk7" data-icon="true" data-testid="little-search-icon">
+              <img src="./assets/images/search-white.svg" alt="" class="search-icon" />
+            </div>
+          </button>
+
+          <div class="landing-banner-content-wrapp 22" *ngIf="headerSearchbar">
+            <div class="container">
+              <div class="col-md-12">
+                <ul class="nav nav-pills mb-0 landing-form-tabs" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#short_term_form" role="tab"
+                      aria-controls="pills-home" aria-selected="true">Vacation Rental<br />&lt; 31 days</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#long_term_form" role="tab"
+                      aria-controls="pills-profile" aria-selected="false">Long Term Leasing<br />&gt; 31 days</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="short_term_form" role="tabpanel"
+                    aria-labelledby="pills-home-tab">
+                    <div class="landing-banner-form-wrapp mt-0">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="input-block">
+                            <label>Location</label>
+                            <input type="text" placeholder="Where do you want to go?" />
+                            <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-in</label>
+                                    <input type="text" name="check_in" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-out</label>
+                                    <input type="text" name="check_out" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Guests</label>
+                                    <input type="text" placeholder="Add Guests" />
+                                    <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5">
+                              <div class="row align-items-center">
+                                <div class="col-md-6">
+                                  <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                    data-target="#filer_block">
+                                    <img src="./assets/images/filters.svg" alt="" />
+                                    <span>Search Options</span>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <a [routerLink]="['/properties']" class="podsliving-button black-bg"><img
+                                      src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="long_term_form" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="landing-banner-form-wrapp mt-0">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="input-block">
+                            <label>Location</label>
+                            <input type="text" placeholder="Where do you want to go?" />
+                            <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-in</label>
+                                    <input type="text" name="check_in" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-out</label>
+                                    <input type="text" name="check_out" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Guests</label>
+                                    <input type="text" placeholder="Add Guests" />
+                                    <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5">
+                              <div class="row align-items-center">
+                                <div class="col-md-6">
+                                  <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                    data-target="#filer_block">
+                                    <img src="./assets/images/filters.svg" alt="" />
+                                    <span>Search Options</span>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <a [routerLink]="['/properties']" class="podsliving-button"><img
+                                      src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <!-- <a
+              class="nav-link red-text green-btn mr-2"
+              href="javascript:void(0);"
+              data-toggle="modal"
+              data-target="#welcome_back_user"
+              >Book facility Services</a
+            > -->
+          </li>
+          <li class="desktop-only flex-center">
+            <span class="f-14 flex-center"><img src="{{ selectedLanguage.img ? selectedLanguage.img : '' }}"
+                class="flag-img" />
+              <span class="notranslate">&nbsp;{{
+                selectedLanguage.label ? selectedLanguage.label : ""
+                }}&nbsp;:&nbsp;</span>
+            </span>
+            <div id="google_translate_element" class="ml-3" (change)="getLangCode($event)"></div>
+            <!-- <select nice-select (change)="changeLanguage($event)">
+              <option
+                value="{{ language.code }}"
+                *ngFor="let language of languages"
+              >
+                {{ language.label }}
+              </option>
+            </select> -->
+          </li>
+          <!-- <li class="desktop-only">
+                        <select nice-select>
+              <option value="">$ CAD</option>
+            </select>
+                    </li> -->
+
+          <li>
+            <a href="javascript:void(0);" class="pods-login-button" data-toggle="modal" (click)="modalClick()"
+              data-target="#login_register">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<header *ngIf="!loginFlag" id="stick_bar">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" (click)="redirectToHome()"><img src="./assets/images/podsLiving-logo.svg" alt="" /></a>
+      <div class="mobile-only d-flex ml-auto align-items-center">
+        <div class="position-relative mobile-only">
+          <!-- <a href="javascript:void(0);" class="notifiaction-icon-block"><img
+              src="./assets/images/notifications_black_24dp (2).svg" alt="" /></a> -->
+          <ul class="navbar-nav mr-auto ml-auto justify-content-center">
+            <button class="_b2fxuo" type="button" (click)="searchBarClick()" style="display: none !important">
+              <div class="_1g5ss3l" id="littleSearchLabel">
+                Start your search
+              </div>
+              <div class="_i8zuk7" data-icon="true" data-testid="little-search-icon">
+                <img src="./assets/images/search-white.svg" alt="" class="search-icon" />
+              </div>
+            </button>
+
+            <div class="landing-banner-content-wrapp 11" *ngIf="headerSearchbar">
+              <div class="container">
+                <div class="col-md-12">
+                  <ul class="nav nav-pills mb-0 landing-form-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#short_term_form"
+                        role="tab" aria-controls="pills-home" aria-selected="true">Vacation Rental<br />&lt; 31 days</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#long_term_form" role="tab"
+                        aria-controls="pills-profile" aria-selected="false">Long Term Leasing<br />&gt; 31 days</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="short_term_form" role="tabpanel"
+                      aria-labelledby="pills-home-tab">
+                      <div class="landing-banner-form-wrapp mt-0">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="input-block">
+                              <label>Location</label>
+                              <input type="text" placeholder="Where do you want to go?" />
+                              <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                            </div>
+                          </div>
+                          <div class="col-md-9">
+                            <div class="row">
+                              <div class="col-md-7">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Check-in</label>
+                                      <input type="text" name="check_in" value="10/24/1984" />
+                                      <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Check-out</label>
+                                      <input type="text" name="check_out" value="10/24/1984" />
+                                      <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Guests</label>
+                                      <input type="text" placeholder="Add Guests" />
+                                      <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="row align-items-center">
+                                  <div class="col-md-6">
+                                    <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                      data-target="#filer_block">
+                                      <img src="./assets/images/filters.svg" alt="" />
+                                      <span>Search Options</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <a [routerLink]="['/properties']" class="podsliving-button black-bg"><img
+                                        src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="long_term_form" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      <div class="landing-banner-form-wrapp mt-0">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="input-block">
+                              <label>Location</label>
+                              <input type="text" placeholder="Where do you want to go?" />
+                              <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                            </div>
+                          </div>
+                          <div class="col-md-9">
+                            <div class="row">
+                              <div class="col-md-7">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Check-in</label>
+                                      <input type="text" name="check_in" value="10/24/1984" />
+                                      <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Check-out</label>
+                                      <input type="text" name="check_out" value="10/24/1984" />
+                                      <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="input-block">
+                                      <label>Guests</label>
+                                      <input type="text" placeholder="Add Guests" />
+                                      <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-5">
+                                <div class="row align-items-center">
+                                  <div class="col-md-6">
+                                    <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                      data-target="#filer_block">
+                                      <img src="./assets/images/filters.svg" alt="" />
+                                      <span>Search Options</span>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <a [routerLink]="['/properties']" class="podsliving-button"><img
+                                        src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
+          <div class="notification-dropdown-block">
+            <div class="noti-drp-content-block">
+              <div class="text-bold mb-3">New</div>
+              <div class="notification-block d-flex light-blue-bg">
+                <div class="notification-image-block position-relative">
+                  <div>
+                    <img src="./assets/images/notification-icon.svg" alt="" />
+                  </div>
+                </div>
+                <div class="notification-cnt-block">
+                  <div class="text-bold mb-1 d-flex justify-content-between">
+                    <span>New Booking</span>
+                  </div>
+                  <div class="mb-3 gray-text">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore
+                  </div>
+                  <div class="btn-sm-group">
+                    <a href="notifications-1-xd-slide-no-7.html" class="btn-sm">View Details</a>
+                  </div>
+                </div>
+              </div>
+              <div class="notification-block d-flex">
+                <div class="notification-image-block position-relative">
+                  <div>
+                    <img src="./assets/images/notification-icon.svg" alt="" />
+                  </div>
+                </div>
+                <div class="notification-cnt-block">
+                  <div class="text-bold mb-1 d-flex justify-content-between">
+                    <span>New Booking</span>
+                  </div>
+                  <div class="mb-3 gray-text">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore
+                  </div>
+                  <div class="btn-sm-group">
+                    <a href="notifications-1-xd-slide-no-7.html" class="btn-sm">View Details</a>
+                  </div>
+                </div>
+              </div>
+              <div class="text-bold my-3">Earlier</div>
+              <div class="notification-block d-flex">
+                <div class="notification-image-block position-relative">
+                  <div>
+                    <img src="./assets/images/notification-icon.svg" alt="" />
+                  </div>
+                </div>
+                <div class="notification-cnt-block">
+                  <div class="text-bold mb-1 d-flex justify-content-between">
+                    <span>New Booking</span>
+                  </div>
+                  <div class="mb-3 gray-text">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore
+                  </div>
+                </div>
+              </div>
+              <div class="notification-block d-flex">
+                <div class="notification-image-block position-relative">
+                  <div>
+                    <img src="./assets/images/notification-icon.svg" alt="" />
+                  </div>
+                </div>
+                <div class="notification-cnt-block">
+                  <div class="text-bold mb-1 d-flex justify-content-between">
+                    <span>New Booking</span>
+                  </div>
+                  <div class="mb-3 gray-text">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore
+                  </div>
+                </div>
+              </div>
+              <div class="notification-block d-flex">
+                <div class="notification-image-block position-relative">
+                  <div>
+                    <img src="./assets/images/notification-icon.svg" alt="" />
+                  </div>
+                </div>
+                <div class="notification-cnt-block">
+                  <div class="text-bold mb-1 d-flex justify-content-between">
+                    <span>New Booking</span>
+                  </div>
+                  <div class="mb-3 gray-text">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <a href="notifications-1-xd-slide-no-7.html" class="blue-text text-bold">View All</a>
+            </div>
+          </div>
+        </div>
+        <div #profile_button2 class="profile-wrapp position-relative" [ngClass]="{
+            active: profileOptions
+          }" (click)="profileClick()">
+          <div id="profile_button" class="profile-block">
+            <div class="profile-image-block">
+              <img src="{{ profilePic }}" alt="" />
+            </div>
+          </div>
+          <div class="profile-links-block" *ngIf="profileOptions">
+            <ul>
+              <li><a (click)="navigateDashboard()">Dashboard</a></li>
+              <li *ngIf="role != 'guest'">
+                <a [routerLink]="['/host/property-list']" class="d-flex justify-content-between">
+                  <span>My Listings</span>
+                </a>
+              </li>
+              <li>
+                <a [routerLink]="['/profile/general-info']" class="d-flex justify-content-between"><span>My Profile
+                  </span><span class="red-text">30%</span></a>
+              </li>
+              <!-- <li>
+                <a href="refer-a-friend-xd-slide-no-4.html">Refer a Friend</a>
+                                            </li>
+                                            <li><a href="#">Payment & Payouts</a></li>
+                                            <li>
+                                                <a href="/profile/security">Change Password</a>
+                                            </li> -->
+              <li><a (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto  justify-content-center desktop-only">
+          <button class="_b2fxuo" type="button" (click)="searchBarClick()" style="display: none !important">
+            <div class="_1g5ss3l" id="littleSearchLabel">
+              Start your searchs
+            </div>
+            <div class="_i8zuk7" data-icon="true" data-testid="little-search-icon">
+              <img src="./assets/images/search-white.svg" alt="" class="search-icon" />
+            </div>
+          </button>
+
+          <div class="landing-banner-content-wrapp 11" *ngIf="headerSearchbar">
+            <div class="container">
+              <div class="col-md-12">
+                <!-- <ul class="nav nav-pills mb-0 landing-form-tabs" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#short_term_form" role="tab"
+                      aria-controls="pills-home" aria-selected="true">Short Term<br />&lt; 31 days</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#long_term_form" role="tab"
+                      aria-controls="pills-profile" aria-selected="false">Long Term<br />&gt; 31 days</a>
+                  </li>
+                </ul> -->
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="short_term_form" role="tabpanel"
+                    aria-labelledby="pills-home-tab">
+                    <div class="landing-banner-form-wrapp mt-0">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="input-block">
+                            <label>Location</label>
+                            <input type="text" placeholder="Where do you want to go?" />
+                            <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-in</label>
+                                    <input type="text" name="check_in" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-out</label>
+                                    <input type="text" name="check_out" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Guests</label>
+                                    <input type="text" placeholder="Add Guests" />
+                                    <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5">
+                              <div class="row align-items-center">
+                                <div class="col-md-6">
+                                  <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                    data-target="#filer_block">
+                                    <img src="./assets/images/filters.svg" alt="" />
+                                    <span>Search Options</span>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <a [routerLink]="['/properties']" class="podsliving-button black-bg"><img
+                                      src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="long_term_form" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="landing-banner-form-wrapp mt-0">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="input-block">
+                            <label>Location</label>
+                            <input type="text" placeholder="Where do you want to go?" />
+                            <img src="./assets/images/location.svg" alt="" class="input-icon" />
+                          </div>
+                        </div>
+                        <div class="col-md-9">
+                          <div class="row">
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-in</label>
+                                    <input type="text" name="check_in" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Check-out</label>
+                                    <input type="text" name="check_out" value="10/24/1984" />
+                                    <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="input-block">
+                                    <label>Guests</label>
+                                    <input type="text" placeholder="Add Guests" />
+                                    <img src="./assets/images/user.svg" alt="" class="input-icon" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-5">
+                              <div class="row align-items-center">
+                                <div class="col-md-6">
+                                  <div class="filter-block d-flex align-items-center" data-toggle="modal"
+                                    data-target="#filer_block">
+                                    <img src="./assets/images/filters.svg" alt="" />
+                                    <span>Search Options</span>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <a [routerLink]="['/properties']" class="podsliving-button"><img
+                                      src="./assets/images/search-white.svg" alt="" class="search-icon" />Search</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <!-- <a
+              class="nav-link red-text green-btn mr-2"
+              href="javascript:void(0);"
+              data-toggle="modal"
+              data-target="#welcome_back_user"
+              >Book facility Services</a
+            > -->
+          </li>
+          <li class="nav-item" *ngIf="becomeHostBtn">
+            <a class="podsliving-button mr-2" href="javascript:void(0);" (click)="changeUserType('host')">{{
+              user.user_type == 3
+              ? "Switch to Host Profile"
+              : "Become a Host"
+              }}</a>
+            <!-- data-toggle="modal"
+              data-target="#change_user_type" -->
+          </li>
+
+          <!-- data-toggle="modal"
+            data-target="#change_user_type" -->
+          <li class="nav-item" *ngIf="!becomeHostBtn">
+            <a class="podsliving-button mr-2" href="javascript:void(0);" (click)="changeUserType('guest')">{{
+              user.user_type == 3
+              ? "Switch to Guest Profile"
+              : "Become a Guest"
+              }}</a>
+          </li>
+          <li class="desktop-only flex-center">
+            <span class="f-14 flex-center"><img src="{{ selectedLanguage.img ? selectedLanguage.img : '' }}"
+                class="flag-img" />
+              <span class="notranslate">&nbsp;{{
+                selectedLanguage.label ? selectedLanguage.label : ""
+                }}&nbsp;:&nbsp;</span>
+            </span>
+            <div id="google_translate_element" class="ml-3" (change)="getLangCode($event)"></div>
+            <!-- <select nice-select (change)="changeLanguage($event)">
+              <option
+                value="{{ language.code }}"
+                *ngFor="let language of languages"
+              >
+                {{ language.label }}
+              </option>
+            </select> -->
+          </li>
+          <!-- <li class="desktop-only">
+            <select nice-select>
+              <option value="">$ CAD</option>
+            </select>
+          </li> -->
+          <li class="desktop-only">
+            <div class="profile-wrapp position-relative" [ngClass]="{
+                active: profileOptions
+              }" #profile_button (click)="profileClick()">
+              <div class="profile-block d-flex align-items-center">
+                <div class="profile-image-block mr-3">
+                  <img src="{{ profilePic }}" alt="" />
+                </div>
+                <div class="profile-title">{{ userDisplayName }}</div>
+              </div>
+              <div class="profile-links-block" *ngIf="profileOptions">
+                <ul>
+                  <li><a (click)="navigateDashboard()">Dashboard</a></li>
+                  <li *ngIf="role != 'guest'">
+                    <a [routerLink]="['/host/property-list']" class="d-flex justify-content-between">
+                      <span>My Listings</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['/profile/general-info']" class="d-flex justify-content-between">
+                      <span>My Profile </span>
+                      <!-- <span class="red-text">30%</span> -->
+                    </a>
+                  </li>
+                  <!-- <li>
+                    <a [routerLink]="['/profile/preferences']" class="d-flex justify-content-between">
+                      <span>My Preferences </span>
+                      <span class="red-text">30%</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="refer-a-friend-xd-slide-no-4.html">Refer a Friend</a>
+                  </li>
+                  <li><a href="#">Payment & Payouts</a></li> -->
+                  <li>
+                    <a [routerLink]="['/profile/security']">Change Password</a>
+                  </li>
+                  <li><a (click)="logout()">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div #login_register class="modal fade" id="login_register" tabindex="-1" role="dialog" aria-labelledby="login_register"
+  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="login-modal-wrapp">
+          <a id="closeModal" href="javascript:void(0);" data-dismiss="modal" aria-label="Close"
+            class="close-button"><img src="./assets/images/cross.svg" alt="" /></a>
+          <a href="javascript:void(0);" class="back-button" id="mobile_no_back__button"><img
+              src="./assets/images/back.svg" alt="" /></a>
+          <a href="javascript:void(0);" class="back-button" id="get_otp_back_button"><img src="./assets/images/back.svg"
+              alt="" /></a>
+          <div class="login-modal-image-block">
+            <div class="login-image-content-block">
+              <div class="login-modal-title text-white text-center">
+                Login and enjoy hosting<br />& renting experience
+              </div>
+            </div>
+          </div>
+          <div class="login-modal-content-wrapp position-relative">
+            <div id="login_content" *ngIf="loginContentFlag" class="position-relative w-100">
+              <div class="modal-right-content-block">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Login</div>
+                  <div class="login-modal-form-wrapp">
+                    <form [formGroup]="loginForm">
+                      <div class="col-md-12 form-block p-0">
+                        <label>Email or Mobile Number<span class="red-text">*</span></label>
+                        <input formControlName="username" type="text" placeholder="Enter email or mobile number"
+                          class="form-control" [ngClass]="{
+                            'is-invalid':
+                              loginControlForm.username.errors &&
+                              (loginControlForm.username.dirty ||
+                                loginControlForm.username.touched)
+                          }" />
+                        <div *ngIf="loginControlForm.username.errors" class="invalid-feedback">
+                          <div *ngIf="
+                              loginControlForm.username.errors
+                                .userNameValidatorError
+                            ">
+                            <!-- Incorrect username -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 form-block p-0">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <label>Password<span class="red-text">*</span></label>
+                          </div>
+                          <div class="col-md-8 text-right mobile-right-align right-link">
+                            <span class="pwd-info" data="fjkb">Minimum Password Requirement</span>
+                          </div>
+                        </div>
+
+                        <!-- <label>Password<span class="red-text">*</span></label> -->
+                        <div class="password-field">
+                          <input formControlName="loginPassword" [type]="fieldTextType ? 'text' : 'password'"
+                            id="loginPassword" placeholder="Enter Password" class="form-control" [ngClass]="{
+                              'is-invalid':
+                                loginControlForm.loginPassword.errors &&
+                                (loginControlForm.loginPassword.dirty ||
+                                  loginControlForm.loginPassword.touched)
+                            }" />
+                          <span><i id="toggler" class="fa" [ngClass]="{
+                                'fa-eye-slash': !fieldTextType,
+                                'fa-eye': fieldTextType
+                              }" (click)="toggleFieldTextType()"></i></span>
+                          <div *ngIf="loginControlForm.loginPassword.errors" class="invalid-feedback">
+                            <div *ngIf="
+                                loginControlForm.loginPassword.errors.maxlength
+                              ">
+                              Password must be between 12 to 20 characters and contain at least one uppercase,
+                              lowercase, number & special character. eg. Treetops@123
+                            </div>
+                            <div *ngIf="
+                                loginControlForm.loginPassword.errors.pattern ||
+                                loginControlForm.loginPassword.errors.minlength
+                              ">
+                              Password must be between 12 to 20 characters and contain at least one uppercase,
+                              lowercase, number & special character. eg. Treetops@123
+                            </div>
+                          </div>
+                          <div *ngIf="
+                              loginControlForm.loginPassword.errors &&
+                              !generalErrorMsgFlag &&
+                              !loginErrorMsg
+                            " class="invalid-feedback">
+                            {{ loginControlForm.loginPassword.errors.incorrect }}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 text-right mobile-right-align right-link">
+                            <a href="javascript:void(0);" (click)="forgotPassword()">Forgot Password</a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div *ngIf="loginErrorMsg" class="pl-3 text-14 error-text">
+                            <span class="text-danger">
+                              It seems you are not a registered user with
+                              PodsLiving. Please
+                              <a href="javascript:void(0);" (click)="registerAsContent()" style="font-weight: 900">
+                                click</a>
+                              to register.</span>
+                          </div>
+                          <div class="pl-3 text-14 text-danger error-text" *ngIf="generalErrorMsgFlag">
+                            {{ generalErrorMsg }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row my-3">
+                        <div class="col-md-12">
+                          <div class="g-recaptcha-wrapper">
+                            <!-- <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token"
+                              (resolved)="resolved($event)" (error)="errored($event)"
+                              [ngModelOptions]="{ standalone: true }" [class.is-invalid]="
+                                recaptcha.invalid &&
+                                (recaptcha.dirty || recaptcha.touched)
+                              ">
+                            </re-captcha> -->
+                            <div id="topHider"></div>
+                            <div id="rightHider"></div>
+                            <div id="bottomHider"></div>
+                            <div id="leftHider"></div>
+                          </div>
+                          <!--    <div *ngIf="captchaErrorMsg" class="invalid-feedback-force">{{captchaErrorMsg}}</div> -->
+                        </div>
+                      </div>
+
+                      <div class="row align-items-center mb-4">
+                        <div class="col-md-8 text-left mobile-right-align right-link pt-20">
+                          <span>Don't have Account?
+                            <a href="javascript:void(0);" (click)="registerAsContent()"
+                              style="font-weight: 900">Register</a></span>
+                        </div>
+                        <!-- [ngClass]="{ 'button-disable': !loginForm.valid }" -->
+                        <div class="col-md-4">
+                          <button class="podsliving-button w-100 m-width-auto" id="cont_with_mobile" (click)="login()">
+                            Login
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="row mb-4">
+                      <div class="col-md-12">
+                        <label>Or continue with</label>
+                        <div class="row">
+                          <div class="col">
+                            <a (click)="loginWithGoogle()" class="continue-button cursor-pointer"
+                              id="cont_with_goggle"><img src="./assets/images/google.svg" alt="" /></a>
+                          </div>
+                          <div class="col">
+                            <a (click)="loginWithFacebook()" class="continue-button cursor-pointer"
+                              id="continue_with_social"><img src="./assets/images/facebook.svg" alt="" /></a>
+                          </div>
+                          <div class="col">
+                            <div id="appleid-signin" class="signin-button" data-color="white" data-border="true"
+                              data-type="sign in"></div>
+                            <a href="javascript:void(0);" class="continue-button" (click)="appleSigninClick()"
+                              id="continue_with_social"><img src="./assets/images/apple-icon.png" alt="" /></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="login-bottom-info-block">
+                      By registering or logging in to {{domain.text}} you agree to all our <a
+                        [routerLink]="['/policies/terms-and-conditions']" target="_blank"
+                        class="blue-text text-bold">legal terms and conditions and policies</a>. You
+                      may receive SMS Notifications from us and can opt out any time.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="register_email_content" *ngIf="registerFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" (click)="backTologinorRegister()"
+                id="google_register_back_button"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block">
+                <form [formGroup]="otpForm">
+                  <div class="login-modal-content-block">
+                    <div class="login-modal-title">
+                      Enter OTP
+                      <span class="red-text mt-2 pull-right" style="font-size: medium; font-weight: 500"
+                        *ngIf="totalTimeLeft">
+                        {{ timeLeft }}
+                      </span>
+                    </div>
+                    <div class="login-modal-form-wrapp">
+                      <div class="row mt-4">
+                        <div class="col-md-12 form-block">
+                          <div class="text-right align-items-center justify-content-between"></div>
+                          <div class="row p-col-10">
+                            <div class="col-md-2">
+                              <input id="1" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp1" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="2" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp2" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="3" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp3" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="4" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp4" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="5" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp5" autocomplete="off" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="6" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp6" autocomplete="off" />
+                            </div>
+                          </div>
+                          <div class="mt-3" [ngClass]="{
+                              'red-text': !otpMsgSuccess,
+                              'text-success': otpMsgSuccess
+                            }">
+                            {{ otpSentMsg }}
+                          </div>
+                          <div class="row mt-3">
+                            <div class="col-md-5">
+                              <button class="podsliving-button w-100 m-width-auto" (click)="resendOTP()" [ngClass]="{
+                                  'button-disable': !resendOtpBlock
+                                }">
+                                Resend OTP
+                              </button>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4 ml-auto">
+                              <button class="podsliving-button w-100 m-width-auto" (click)="verifyOtp()" [ngClass]="{
+                                  'button-disable': !otpForm.valid
+                                }">
+                                Verify
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="register_as_content" *ngIf="registerAsContentFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" (click)="registerAsContent()"
+                id="register_as_back_button"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Register as</div>
+                  <div class="login-modal-form-wrapp">
+                    <form [formGroup]="userTypeForm">
+                      <div class="row align-items-baseline p-col-10">
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="userType" value="1" formControlName="userType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/gust.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp height-160">
+                                  <div class="register-as-title">Guest</div>
+                                  <p>
+                                    Register as guest to book rental space of
+                                    your choice.
+                                  </p>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="userType" value="2" formControlName="userType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/host1.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp height-160">
+                                  <div class="register-as-title">Host</div>
+                                  <p>
+                                    Register as host to enjoy incredible hosting
+                                    experience.
+                                  </p>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="userType" value="3" formControlName="userType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/gust-and-host.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp height-160">
+                                  <div class="register-as-title">
+                                    Guest & Host
+                                  </div>
+                                  <p>
+                                    Register once and enjoy best of both worlds.
+                                  </p>
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-md-4 ml-auto">
+                          <button class="podsliving-button w-100 m-width-auto" [ngClass]="{
+                              'button-disable': !userTypeForm.valid
+                            }" (click)="continueRegisterStep()" id="register_as_continue_button">
+                            Continue
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="register_as_guest_content" *ngIf="registerAsGuestContentFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" (click)="backFromGuestType()"
+                id="register_as_back_button"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Register as</div>
+                  <div class="login-modal-form-wrapp">
+                    <form [formGroup]="guestTypeForm">
+                      <div class="row align-items-baseline p-col-10">
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="guestType" value="1" formControlName="guestType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/student1.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp">
+                                  <div class="register-as-title">Student</div>
+                                  <!-- <p>
+                                    Register as guest to book rental space of
+                                    your choice.
+                                  </p> -->
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="guestType" value="2" formControlName="guestType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/professional1.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp">
+                                  <div class="register-as-title">
+                                    Professional
+                                  </div>
+                                  <!-- <p>
+                                    Register as host to enjoy incredible hosting
+                                    experience.
+                                  </p> -->
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="register-as-block">
+                            <label class="radio-img">
+                              <input type="radio" name="guestType" value="3" formControlName="guestType" />
+                              <div class="image d-flex flex-wrap">
+                                <div class="register-as-image-block">
+                                  <img src="./assets/images/gust.png" alt="" />
+                                </div>
+                                <div class="regiaster-as-contnet-wrapp">
+                                  <div class="register-as-title">Traveller</div>
+                                  <!-- <p>
+                                    Register once and enjoy best of both worlds.
+                                  </p> -->
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-md-4 ml-auto">
+                          <button class="podsliving-button w-100 m-width-auto" [ngClass]="{
+                              'button-disable': !guestTypeForm.valid
+                            }" (click)="continueRegisterSection()" id="register_as_continue_button">
+                            Continue
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="register_content" *ngIf="registerContentFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" (click)="backFromRegisterContent()"
+                id="register_back_button"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block d-flex">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Register</div>
+                  <form [formGroup]="registerForm">
+                    <div class="login-modal-form-wrapp">
+                      <div class="row">
+                        <div class="col-md-6 form-block">
+                          <label>First Name<span class="red-text">*</span></label>
+                          <input type="text" formControlName="firstName" placeholder="Enter First Name"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.firstName.errors &&
+                                (registrationForm.firstName.dirty ||
+                                  registrationForm.firstName.touched)
+                            }" />
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Last Name<span class="red-text">*</span></label>
+                          <input type="text" formControlName="lastName" placeholder="Enter Last Name" />
+                        </div>
+                        <div class="col-md-6 form-block phone-n-v">
+                          <label>Phone Number<span class="red-text">*</span></label>
+                          <div class="row p-col-4">
+                            <div class="col-md-4 w-4">
+                              <select nice-select formControlName="dialingCode" [(ngModel)]="defaultCoutryCode"
+                                class="w-100" [attr.data-value]="defaultCoutryCode">
+                                <option *ngFor="let code of countryCodes" [value]="code">
+                                  {{ code }}
+                                </option>
+                                <!-- <option value="+1">+1</option>
+                                <option value="+91">+91</option> -->
+                              </select>
+                            </div>
+                            <div class="col-md-8 w-8">
+                              <input type="text" formControlName="phoneNumber" placeholder="Enter phone no."
+                                class="form-control" [ngClass]="{
+                                  'is-invalid':
+                                    registrationForm.phoneNumber.errors &&
+                                    (registrationForm.phoneNumber.dirty ||
+                                      registrationForm.phoneNumber.touched)
+                                }" />
+                              <div *ngIf="registrationForm.phoneNumber.errors" class="invalid-feedback">
+                                <div *ngIf="
+                                    registrationForm.phoneNumber.errors
+                                      .pattern ||
+                                    registrationForm.phoneNumber.errors
+                                      .minlength ||
+                                    registrationForm.phoneNumber.errors
+                                      .maxlength
+                                  ">
+                                  Please enter valid mobile number
+                                </div>
+                              </div>
+                              <div *ngIf="registrationForm.phoneNumber.errors" class="invalid-feedback">
+                                {{
+                                registrationForm.phoneNumber.errors.incorrect
+                                }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Email Address<span class="red-text">*</span></label>
+                          <input type="email" formControlName="emailAddress" placeholder="Enter Email Address"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.emailAddress.errors &&
+                                (registrationForm.emailAddress.dirty ||
+                                  registrationForm.emailAddress.touched)
+                            }" />
+                          <div *ngIf="registrationForm.emailAddress.errors" class="invalid-feedback">
+                            <div *ngIf="
+                                registrationForm.emailAddress.errors.pattern
+                              ">
+                              Please enter valid email address
+                            </div>
+                          </div>
+                          <div *ngIf="registrationForm.emailAddress.errors" class="invalid-feedback">
+                            {{ registrationForm.emailAddress.errors.incorrect }}
+                          </div>
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Password<span class="red-text">*</span>
+                            <span><i id="toggler" class="far fa-info-circle float-right mr-1 mt-1 pwd-info"
+                                data="Password must be between 12 to 20 characters and contain at least one uppercase, lowercase, number & special character. eg. Treetops@123"></i></span></label>
+                          <input type="password" formControlName="password" placeholder="Enter Password"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.password.errors &&
+                                (registrationForm.password.dirty ||
+                                  registrationForm.password.touched)
+                            }" />
+                          <div *ngIf="registrationForm.password.errors" class="invalid-feedback">
+                            <div *ngIf="registrationForm.password.errors.maxlength">
+                              Password must be between 12 to 15 characters long including special character
+                            </div>
+                            <div *ngIf="
+                                registrationForm.password.errors.pattern ||
+                                registrationForm.password.errors.minlength
+                              ">
+                              Password must be between 12 to 15 characters long including special character
+                            </div>
+                          </div>
+                          <div *ngIf="registrationForm.password.errors" class="invalid-feedback">
+                            {{ registrationForm.password.errors.incorrect }}
+                          </div>
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Confirm Password<span class="red-text">*</span></label>
+                          <input type="password" formControlName="confirmPassword" placeholder="Enter Confirm Password"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.confirmPassword.errors &&
+                                (registrationForm.confirmPassword.dirty ||
+                                  registrationForm.confirmPassword.touched)
+                            }" />
+                          <div *ngIf="registrationForm.confirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="
+                                registrationForm.confirmPassword.errors
+                                  .maxlength
+                              ">
+                              Password must be between 8 to 15 characters long
+                              including special character
+                            </div>
+                            <div *ngIf="
+                                registrationForm.confirmPassword.errors
+                                  .pattern ||
+                                registrationForm.confirmPassword.errors
+                                  .minlength
+                              ">
+                              Password must be between 8 to 15 characters long
+                              including special character
+                            </div>
+                            <div *ngIf="
+                                registrationForm.confirmPassword.errors
+                                  .confirmedValidator
+                              ">
+                              Password and Confirm Password must be same
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <div class="d-flex justify-content-between">
+                            <label class="w-100">Date of Birth<span class="red-text">*</span><span><i id="toggler"
+                                  class="far fa-info-circle float-right mr-1 mt-1 dob-info"
+                                  data="You need to be 18 years older."></i></span></label>
+                          </div>
+                          <input type="text" class="form-control" formControlName="dob" placeholder="Date of Birth"
+                            bsDatepicker placement="top" [bsConfig]="{
+                              showWeekNumbers: false,
+                              isAnimated: true,
+                              containerClass: 'theme-blue',
+                              dateInputFormat: 'MMM DD, YYYY',
+                              maxDate: yearsago
+                            }" class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.dob.errors &&
+                                (registrationForm.dob.dirty ||
+                                  registrationForm.dob.touched)
+                            }" />
+                          <!-- <input
+                            type="number"
+                            formControlName="dob"
+                            placeholder="DD/MM/YYYY"
+                          /> -->
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Gender<span class="red-text">*</span></label>
+                          <select formControlName="gender" class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.gender.errors &&
+                                (registrationForm.gender.dirty ||
+                                  registrationForm.gender.touched)
+                            }">
+                            <option value="" ngDefaultControl>
+                              Select Your Gender
+                            </option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Other</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6 form-block">
+                          <label>Referal Code</label>
+                          <input type="text" formControlName="referedBy" placeholder="Enter Referal Code"
+                            class="form-control" [ngClass]="{
+                              'is-invalid':
+                                registrationForm.referedBy.errors &&
+                                (registrationForm.referedBy.dirty ||
+                                  registrationForm.referedBy.touched)
+                            }" />
+                        </div>
+                        <div class="col-md-12 form-block mb-0">
+                          <div class="checkbox check-2-line-block">
+                            <input formControlName="acceptAndAgree" type="checkbox" id="agree_register_form" />
+
+                            <label for="agree_register_form">By registering or logging in to {{domain.text}} you agree
+                              to
+                              all our <a [routerLink]="['/policies/terms-and-conditions']" target="_blank"
+                                class="blue-text text-bold">legal terms and conditions and policies</a>.
+                            </label>
+                          </div>
+                        </div>
+                        <!-- <div class="row mb-4"> -->
+                        <div class="col-md-8 text-left mobile-right-align right-link pt-20">
+                          <span>Already have an account?
+                            <a href="javascript:void(0);" (click)="backTologin()"
+                              style="font-weight: 900">Login</a></span>
+                        </div>
+                        <div class="col-md-4 ml-auto">
+                          <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                            id="register_form_continut_button" [ngClass]="{
+                              'button-disable': !registerForm.valid
+                            }" (click)="submitRegistration()">Continue</a>
+                        </div>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div id="login_congratulations" *ngIf="loginCongratulationsFlag" class="position-relative w-100">
+              <div class="modal-right-content-block d-flex align-items-center">
+                <div class="login-modal-content-block text-center shift-top-30">
+                  <img src="./assets/images/green-thumb.svg" alt="" class="mb-3" />
+                  <div class="login-modal-title text-center mb-3 text-48">
+                    Congratulations!
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-9 mx-auto">
+                      <div class="gray-text">
+                        {{ congratulationsMsg }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- <div class="col-md-8 mx-auto mb-3">
+                      <a href="#" class="podsliving-button w-100 m-width-auto"
+                        >Complete Your Profile & List Your Property</a
+                      >
+                    </div> -->
+                    <div class="col-md-8 mx-auto">
+                      <a (click)="goToDashboard()" class="podsliving-button w-100 m-width-auto">Go to Homepage</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="forgot_password_content" *ngIf="forgotPasswordFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" id="forgot_password_back_button"
+                (click)="forgotPassword()"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Forgot Password</div>
+                  <form [formGroup]="forgotPasswordForm">
+                    <div class="login-modal-form-wrapp">
+                      <div class="row">
+                        <div class="col-md-12 form-block mb-0">
+                          <label>Please enter your registered Email address or
+                            Mobile number<span class="red-text">*</span></label>
+                          <div>
+                            <input type="email" formControlName="forgotPasswordEmail" id="forgotPasswordEmail"
+                              placeholder="Enter email address" class="form-control" [ngClass]="{
+                                'is-invalid':
+                                  forgotPasswordControlForm.forgotPasswordEmail
+                                    .errors &&
+                                  (forgotPasswordControlForm.forgotPasswordEmail
+                                    .dirty ||
+                                    forgotPasswordControlForm
+                                      .forgotPasswordEmail.touched)
+                              }" />
+                            <div *ngIf="
+                                forgotPasswordControlForm.forgotPasswordEmail
+                                  .errors
+                              " class="invalid-feedback">
+                              <div *ngIf="
+                                  forgotPasswordControlForm.forgotPasswordEmail
+                                    .errors.userNameValidatorError
+                                ">
+                                Incorrect username
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 ml-auto mt-4">
+                          <button class="podsliving-button w-100 m-width-auto" [ngClass]="{
+                              'button-disable': !forgotPasswordForm.valid
+                            }" (click)="resetLink()">
+                            Get OTP
+                          </button>
+                        </div>
+                      </div>
+                      <!-- <div class="login-bottom-info-block">
+                        By registering or logging in to {{domain.text}}  you agree
+                        to our
+                        <a href="#" class="blue-text text-bold"
+                          >Terms, Data Policy</a
+                        >
+                        and
+                        <a href="#" class="blue-text text-bold">Cookies Policy</a
+                        >. You may receive SMS Notifications from us and can opt
+                        out any time.
+                      </div> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div id="reset_link" *ngIf="resetLinkFlag" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" id="reset_link_back_button"
+                (click)="backToForgotPassword()"><img src="./assets/images/back.svg" alt="" /></a>
+              <div class="modal-right-content-block">
+                <div class="login-modal-content-block">
+                  <div class="login-modal-title">Reset Password</div>
+                  <div class="login-modal-form-wrapp">
+                    <form [formGroup]="resetForm">
+                      <div class="row">
+                        <div class="col-md-12 form-block">
+                          <label>Please enter new Password<span class="red-text">*</span></label>
+                          <div class="password-field">
+                            <input type="password" id="newPassword" formControlName="newPassword"
+                              placeholder="Enter Password" class="form-control" [ngClass]="{
+                                'is-invalid':
+                                  resetPasswordControlForm.newPassword.errors &&
+                                  (resetPasswordControlForm.newPassword.dirty ||
+                                    resetPasswordControlForm.newPassword
+                                      .touched)
+                              }" />
+                            <div *ngIf="
+                                resetPasswordControlForm.newPassword.errors
+                              " class="invalid-feedback">
+                              <div *ngIf="
+                                  resetPasswordControlForm.newPassword.errors
+                                    .maxlength
+                                ">
+                                password must be between 8 to 15 characters long
+                                including special character
+                              </div>
+                              <div *ngIf="
+                                  resetPasswordControlForm.newPassword.errors
+                                    .pattern ||
+                                  resetPasswordControlForm.newPassword.errors
+                                    .minlength
+                                ">
+                                Password must be between 8 to 15 characters long
+                                including special character
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 form-block">
+                          <label>Please Re-enter new Password<span class="red-text">*</span></label>
+                          <div class="password-field">
+                            <input type="password" id="confirmNewPassword" placeholder="Re-enter Password"
+                              class="form-control" formControlName="confirmNewPassword" [ngClass]="{
+                                'is-invalid':
+                                  resetPasswordControlForm.confirmNewPassword
+                                    .errors &&
+                                  (resetPasswordControlForm.confirmNewPassword
+                                    .dirty ||
+                                    resetPasswordControlForm.confirmNewPassword
+                                      .touched)
+                              }" />
+                            <div *ngIf="
+                                resetPasswordControlForm.confirmNewPassword
+                                  .errors
+                              " class="invalid-feedback">
+                              <div *ngIf="
+                                  resetPasswordControlForm.confirmNewPassword
+                                    .errors.maxlength
+                                ">
+                                password must be between 8 to 15 characters long
+                                including special character
+                              </div>
+                              <div *ngIf="
+                                  resetPasswordControlForm.confirmNewPassword
+                                    .errors.pattern ||
+                                  resetPasswordControlForm.confirmNewPassword
+                                    .errors.minlength
+                                ">
+                                Password must be between 8 to 15 characters long
+                                including special character
+                              </div>
+                              <div *ngIf="
+                                  resetPasswordControlForm.confirmNewPassword
+                                    .errors.confirmedValidator
+                                ">
+                                Password and Confirm Password must be same
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12 form-block">
+                          <label>Enter OTP<span class="red-text">*</span>
+                            <span class="red-text mt-2 pull-right" style="font-size: medium; font-weight: 500"
+                              *ngIf="totalTimeLeft">
+                              {{ timeLeft }}
+                            </span></label>
+                          <div class="row form-block mb-0">
+                            <div class="col-md-2">
+                              <input id="1" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp1" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="2" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp2" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="3" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp3" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="4" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp4" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="5" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp5" />
+                            </div>
+                            <div class="col-md-2">
+                              <input id="6" type="number" class="p-1 text-center" (keypress)="otpLengthCheck($event)"
+                                formControlName="otp6" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <button class="podsliving-button w-100 m-width-auto" (click)="resendOTPResetPassword()"
+                            [ngClass]="{
+                              'button-disable': !resendOtpBlock
+                            }">
+                            Resend OTP
+                          </button>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 ml-auto">
+                          <button class="podsliving-button w-100 m-width-auto" (click)="resetPassword()" [ngClass]="{
+                              'button-disable': !resetForm.valid
+                            }">
+                            Reset Password
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="reset_field" class="position-relative w-100">
+              <a href="javascript:void(0);" class="back-button" id="reset_field_back" onclick="resetFieldBack();"><img
+                  src="./assets/images/back.svg" alt="" /></a>
+            </div>
+
+            <div *ngIf="chooseHostOrGuestFlag" class="container max-w-1260">
+              <div id="welcome_back" class="position-relative w-100" style="display: inline-block">
+                <div class="modal-right-content-block d-flex align-items-center">
+                  <div class="login-modal-content-block text-center shift-top-30">
+                    <div class="login-modal-title text-center mb-3 text-24">
+                      Welcome, {{ welcomeUserName | titlecase }}
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-md-12 mx-auto">
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                              (click)="guestOrHost(1)">Continue as Guest</a>
+                          </div>
+                          <div class="col-md-6">
+                            <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                              (click)="guestOrHost(2)">Continue as Host</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="alreadyRegistered" class="container max-w-1260">
+              <div class="position-relative w-100" style="display: inline-block">
+                <div class="modal-right-content-block d-flex align-items-center">
+                  <div class="login-modal-content-block text-center shift-top-30">
+                    <div class="login-modal-title text-center mb-3">
+                      A user with same email id or mobile number is already
+                      registered, if it is you
+                    </div>
+                    <div class="row mt-5">
+                      <div class="col-md-8 mx-auto">
+                        <div class="row mb-2 justify-content-center">
+                          <button class="podsliving-button w-100 m-width-auto" (click)="continueToLogin()">
+                            Continue to Login
+                          </button>
+                        </div>
+                        OR
+                        <div class="row mt-2 justify-content-center">
+                          <button class="podsliving-button w-100 m-width-auto" (click)="backToRegister()">
+                            Back
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div id="mobile_no">
+          <div class="modal-right-content-block d-flex align-items-center">
+            <div class="login-modal-content-block">
+              <div class="login-modal-title">Confirm Your Mobile Number</div>
+              <div class="login-modal-form-wrapp">
+                <div class="row">
+                  <div class="col-md-12 form-block">
+                    <label>Mobile Number</label>
+                                            <input type="text" />
+                                        </div>
+                                        <div class="col-md-12 form-block">
+                                            <button class="podsliving-button w-100 button-disable" id="get_otp">
+                      Get OTP
+                    </button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="otp">
+                    <div class="modal-right-content-block d-flex align-items-center">
+                        <div class="login-modal-content-block">
+                            <div class="login-modal-title">Confirm Your Mobile Number</div>
+                            <div class="login-modal-form-wrapp">
+                                <div class="row">
+                                    <div class="col-md-12 form-block">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <label>Enter OTP</label>
+                                            <span class="red-text mb-1">30s</span>
+                                        </div>
+                                        <input type="text" />
+                                    </div>
+                                    <div class="col-md-12 form-block">
+                                        <button class="podsliving-button w-100 button-disable">
+                      Register
+                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="change_user_type" tabindex="-1" role="dialog" aria-labelledby="change_user_type"
+  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="login-modal-wrapp">
+          <a id="closeUserTypeModal" href="javascript:void(0);" (click)="ChangeRegistrationType(null)"
+            data-dismiss="modal" aria-label="Close" class="close-button"><img src="./assets/images/cross.svg"
+              alt="" /></a>
+          <a href="javascript:void(0);" class="back-button" id="mobile_no_back__button"><img
+              src="./assets/images/back.svg" alt="" /></a>
+          <a href="javascript:void(0);" class="back-button" id="get_otp_back_button"><img src="./assets/images/back.svg"
+              alt="" /></a>
+          <div class="user-modal-image-block">
+            <div class="login-image-content-block">
+              <div class="login-modal-title text-white text-center">
+                Enjoy hosting & <br /> renting experience
+              </div>
+            </div>
+          </div>
+          <div class="login-modal-content-wrapp position-relative">
+            <div *ngIf="!changeTypeMethordChoosen">
+              <div class="profile-image-block mr-5 text-center">
+                <img src="{{ profilePic }}" alt="" />
+                <div class="row mt-5">
+                  <div class="col-md-12 mx-auto">
+                    Do you want to create a new <strong>{{user.type}}</strong> profile or do you want to list the
+                    property via your existing profile?
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-md-12 mx-auto">
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <a href="javascript:void(0);" class="continue-button w-100 m-width-auto"
+                          (click)="ChangeRegistrationType('existing')">Use Existing Profile</a>
+                      </div>
+                      <div class="col-md-6">
+                        <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                          (click)="ChangeRegistrationType('new')">Create New Host Profile</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="changeTypeMethordChoosen=='existing'">
+              <div class="row">
+                <div class="col-md-12" style="padding: 0 5rem;">
+                  <div>
+                    <h2>Terms & Conditions</h2>
+                    <p style="height: 300px; overflow-y: scroll;">
+                      We respect your privacy and are committed to protecting it through our compliance with this
+                      privacy policy (“Policy”). This Policy describes the types of information we may collect from you
+                      or that you may provide (“Personal Information”) on the podslivng.com website (“Website”),
+                      “PodsLiving” mobile application (“Mobile Application”), and any of their related products and
+                      services (collectively, “Services”), and our practices for collecting, using, maintaining,
+                      protecting, and disclosing that Personal Information. It also describes the choices available to
+                      you regarding our use of your Personal Information and how you can access and update it. This
+                      Policy is a legally binding agreement between you (“User”, “you” or “your”) and PODSLIVING INC.
+                      (“PODSLIVING INC.”, “we”, “us” or “our”). If you are entering into this agreement on behalf of a
+                      business or other legal entity, you represent that you have the authority to bind such entity to
+                      this agreement, in which case the terms “User”, “you” or “your” shall refer to such entity. If you
+                      do not have such authority, or if you do not agree with the terms of this agreement, you must not
+                      accept this agreement and may not access and use the Services. By accessing and using the
+                      Services, you acknowledge that you have read, understood, and agree to be bound by the terms of
+                      this Policy. This Policy does not apply to the practices of companies that we do not own or
+                      control, or to individuals that we do not employ or manage We respect your privacy and are
+                      committed to protecting it through our compliance with this privacy policy (“Policy”). This Policy
+                      describes the types of information we may collect from you or that you may provide (“Personal
+                      Information”) on the podslivng.com website (“Website”), “PodsLiving” mobile application (“Mobile
+                      Application”), and any of their related products and services (collectively, “Services”), and our
+                      practices for collecting, using, maintaining, protecting, and disclosing that Personal
+                      Information. It also describes the choices available to you regarding our use of your Personal
+                      Information and how you can access and update it. This Policy is a legally binding agreement
+                      between you (“User”, “you” or “your”) and PODSLIVING INC. (“PODSLIVING INC.”, “we”, “us” or
+                      “our”). If you are entering into this agreement on behalf of a business or other legal entity, you
+                      represent that you have the authority to bind such entity to this agreement, in which case the
+                      terms “User”, “you” or “your” shall refer to such entity. If you do not have such authority, or if
+                      you do not agree with the terms of this agreement, you must not accept this agreement and may not
+                      access and use the Services. By accessing and using the Services, you acknowledge that you have
+                      read, understood, and agree to be bound by the terms of this Policy. This Policy does not apply to
+                      the practices of companies that we do not own or control, or to individuals that we do not employ
+                      or manage
+                    </p>
+                    <div class="row mt-5">
+                      <div class="col-md-12 mx-auto">
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                          </div>
+                          <div class="col-md-6">
+                            <a href="javascript:void(0);" (click)="updateUserType()"
+                              class="podsliving-button w-100 m-width-auto">Accept & Continue</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div #change_user_type class="modal fade" id="change_user_type" tabindex="-1" role="dialog"
+  aria-labelledby="login_register" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="login-modal-wrapp">
+          <a id="closeUserTypeModal" href="javascript:void(0);" (click)="ChangeRegistrationType(null)"
+            data-dismiss="modal" aria-label="Close" class="close-button"><img src="./assets/images/cross.svg"
+              alt="" /></a>
+
+          <div class="user-modal-image-block">
+            <div class="login-image-content-block">
+              <div class="login-modal-title text-white text-center">
+                Enjoy hosting &<br /> renting experience
+              </div>
+            </div>
+          </div>
+          <div class="login-modal-content-wrapp position-relative">
+            <div *ngIf="!changeTypeMethordChoosen" class="position-relative w-100">
+              <div class="change-user-modal-right-content-block d-flex align-items-center">
+                <div class="login-modal-content-block profile-image-block text-center shift-top-30">
+                  <img src="{{ profilePic }}" alt="" class="mb-3" />
+                  <div class="row">
+                    <div class="col-md-9 mx-auto">
+                      <div class="text-center mb-3 text-24 fonmt-weight-normal">
+                        Do you want to create a new
+                        <strong>{{
+                          role == "guest" ? "Host" : "Guest"
+                          }}</strong> profile or do you want to list the property via your existing profile?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-md-6 mx-auto mb-3">
+                      <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto transparent"
+                        (click)="ChangeRegistrationType('existing')">Use Existing Profile</a>
+                    </div>
+                    <div class="col-md-6 mx-auto">
+                      <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                        (click)="ChangeRegistrationType('new')">
+                        {{
+                        role == "guest"
+                        ? "Create New Host Profile"
+                        : "Create New Guest Profile"
+                        }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="changeTypeMethordChoosen == 'existing'" class="position-relative w-100">
+              <div class="change-user-modal-right-content-block d-flex">
+                <div class="login-modal-content-block text-center">
+                  <div class="login-modal-title text-center mb-3">
+                    Terms & Conditions
+                  </div>
+                  <div class="term-condition-block">
+                    These terms and conditions (“Agreement”) set forth the general terms and conditions of your use of
+                    the podslivng.com website (“Website”), “podslivng.com” mobile application (“Mobile Application”) and
+                    any of their related products and services (collectively,
+                    “Services”). This Agreement is legally binding between you (“User”, “you” or “your”) and PodsLiving
+                    INC. (PodsLiving INC.”, “we”, “us” or “our”). If you are entering into this agreement on behalf of
+                    a business
+                    or other legal entity, you represent that you have the authority to bind such entity to this
+                    agreement, in which case the terms “User”, “you” or “your” shall refer to such entity. If you do not
+                    have such authority,
+                    or if you do not agree with the terms of this agreement, you must not accept this agreement and may
+                    not access and use the Services. By accessing and using the Services, you acknowledge that you have
+                    read, understood,
+                    and agree to be bound by the terms of this Agreement. You acknowledge that this Agreement is a
+                    contract between you and PodsLiving INC., even though it is electronic and is not physically signed
+                    by you, and it governs
+                    your use of the Services.
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col-md-6 ml-auto">
+                      <a href="javascript:void(0);" class="podsliving-button w-100 m-width-auto"
+                        (click)="updateUserType()">Accept & Continue</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

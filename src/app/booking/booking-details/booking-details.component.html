@@ -1,0 +1,373 @@
+<div class="sub-page-wrapp mt-70" *ngIf="booking">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5 mx-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="mb-2">Your Booking is
+                            {{booking.booking_status==1?'Pending':booking.booking_status==2?'Confirmed':booking.booking_status==3?'Complete':'Cancelled'}}!
+                        </h2>
+                        <div class="gray-text mb-3">Booking ID {{booking.booking_number}}</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="confirm-booking-carousel owl-carousel mb-3">
+                            <div class="confirm-booking-carousel-block">
+                                <img src="../assets/images/confm-booking.png" alt="">
+                            </div>
+                            <div class="confirm-booking-carousel-block">
+                                <img src="../assets/images/confm-booking.png" alt="">
+                            </div>
+                            <div class="confirm-booking-carousel-block">
+                                <img src="../assets/images/confm-booking.png" alt="">
+                            </div>
+                        </div>
+                        <h3>{{booking.booked_property.pro_title}} in {{booking.booked_property.city}}</h3>
+                        <div class="mt-1" *ngIf="booking.booked_property_details">
+                            {{booking.booked_property_details.total_guest ? booking.booked_property_details.total_guest+
+                            ' Guest(s) ' : ''}}
+                            {{booking.booked_property_details.bedrooms ? booking.booked_property_details.bedrooms +' •
+                            Bedroom(s) ' : ''}}
+                            {{booking.booked_property_details.beds ? booking.booked_property_details.beds +' • Bed(s) '
+                            : ''}}
+                            {{booking.booked_property_details.baths ? booking.booked_property_details.baths +' •
+                            Bathroom(s) ' : ''}}
+                        </div>
+                        <!-- <div class="mt-1">{{booking.booked_total_guest}} Guests • 2 Bedrooms • 2 Beds • 1 Bathroom</div> -->
+                        <!-- <div class="row mt-4 font-w-bold">
+                            <div class="col-md-6">
+                                <div class="border-link">
+                                    <a href="#"><img src="../assets/images/get-directions.svg" alt="">Get Directions</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="border-link">
+                                    <a href="#"><img src="../assets/images/message-host.svg" alt="">Message Host</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="border-link">
+                                    <a href="#" class="border-bottom-0"><img src="../assets/images/copy-address.svg" alt="">Copy Address</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="border-link">
+                                    <a href="#" class="border-bottom-0"><img src="../assets/images/call-host.svg" alt="">Call Host</a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row mt-5" *ngIf="center">
+                            <div class="col-md-12">
+                                <h3>Location</h3>
+                                <div class="my-3">{{ (booking.booked_property.address1) ?
+                                    booking.booked_property.address1 : " " }} {{ (booking.booked_property.address2) ?
+                                    booking.booked_property.address2 : " " }} {{(booking.booked_property.city) ?
+                                    booking.booked_property.city:
+                                    '' }}{{(booking.booked_property.state) ? ', '+booking.booked_property.state :
+                                    ''}}{{(booking.booked_property.country_region) ? ',
+                                    '+booking.booked_property.country_region : ''}}
+                                </div>
+                                <google-map height="450" width="100%" [zoom]="14" [center]="center">
+                                    <map-marker #marker="mapMarker" [position]="center"
+                                        (mouseOver)="openInfoWindow(marker, infoWindow)">
+                                    </map-marker>
+                                    <map-info-window #infoWindow="mapInfoWindow">
+                                        <strong>
+                                            <p>{{booking.booked_property.pro_title}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.booked_property.google_address}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.booked_property.city}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.booked_property.state}}</p>
+                                        </strong>
+                                    </map-info-window>
+                                </google-map>
+                            </div>
+                        </div>
+                        <div class="row mt-5" *ngIf="nearByPlaces">
+                            <div class="col-md-12">
+                                <h3 class="mb-3">What’s Nearby</h3>
+                                <div class="nearby-wrapp d-flex justify-content-between">
+                                    <ng-container *ngFor="let nearByPlaces of nearByPlaces; let i=index">
+                                        <a class="nearby-block d-flex justify-content-between" *ngIf="i<10">
+                                            <div class="d-flex">
+                                                <img src="{{nearByPlaces.icon}}" alt="" />
+                                                <div>{{nearByPlaces.name}}</div>
+                                            </div>
+                                            <div>{{getKmFromNearByPlace(nearByPlaces)}} Km</div>
+                                        </a>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12" *ngIf="booking.property_host && role=='guest'">
+                                <h3 class="mb-3">About Your Host</h3>
+                                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                                    <div class="about-host-info-block d-flex">
+                                        <div class="about-host-image-block">
+                                            <img src="{{booking.property_host.profile_picture}}" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="text-bold">{{booking.property_host.firstname}}
+                                                {{booking.property_host.lastname}}
+                                            </div>
+                                            <!-- <div class="star-icon-block d-flex mt-2">
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span>★</span>
+                                                <span class="disable">★</span>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="about-host-verified-block">
+                                        <img src="../assets/images/verified-user.svg" alt="" class="mr-2">
+                                        <span>Verified Host</span>
+                                    </div>
+                                </div>
+                                <p class="mb-3">{{booking.property_host.user_bio}}</p>
+                                <!-- <label class="text-bold mb-2">Send a Message to Bashita</label>
+                                <textarea class="host-cmment" placeholder="Type Your Message…"></textarea>
+                                <button class="podsliving-button mt-3">Send</button> -->
+                            </div>
+                            <div class="col-md-12" *ngIf="booking.property_guest && role=='host'">
+                                <h3 class="mb-3">About Your Guest</h3>
+                                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                                    <div class="about-host-info-block d-flex">
+                                        <div class="about-host-image-block">
+                                            <img src="{{booking.property_guest.profile_picture}}" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="text-bold">{{booking.property_guest.firstname}}
+                                                {{booking.property_guest.lastname}}
+                                            </div>
+                                            <!-- <div class="star-icon-block d-flex mt-2">
+                                                  <span>★</span>
+                                                  <span>★</span>
+                                                  <span>★</span>
+                                                  <span>★</span>
+                                                  <span class="disable">★</span>
+                                              </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="about-host-verified-block">
+                                        <img src="../assets/images/verified-user.svg" alt="" class="mr-2">
+                                        <span>Verified Guest</span>
+                                    </div>
+                                </div>
+                                <p class="mb-3">{{booking.property_guest.user_bio}}</p>
+                                <!-- <label class="text-bold mb-2">Send a Message to Bashita</label>
+                                  <textarea class="host-cmment" placeholder="Type Your Message…"></textarea>
+                                  <button class="podsliving-button mt-3">Send</button> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border-block">
+                            <div class="border-block-y">
+                                <div class="row">
+                                    <div class="col-md-8 pr-0">
+                                        <div class="mb-1">{{booking.total_stay_nights}} night in
+                                            <strong>{{booking.booked_property.pro_title}}</strong></div>
+                                        <div class="gray-text">{{booking.booked_adult_guest}} Adults •
+                                            {{booking.booked_child_guest!=null ? booking.booked_child_guest : "0" }}
+                                            Child</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="{{booking.booked_property.porperty_display_picture}}" alt=""
+                                            class="w-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div><img src="../assets/images/date.svg" alt="" class="mr-2">{{booking.check_in_date |
+                                    date:'mediumDate'}} - {{booking.exit_date | date:'mediumDate'}}</div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="right-wrapp mt-3">
+                                    <div class="right-block d-flex justify-content-between">
+                                        <div class="text-20 text-bold">Total</div>
+                                        <div class="text-20 text-bold">{{booking.amount | currency}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="border-block-y" *ngIf="booking.booking_status==4">
+                                <div class="right-wrapp mt-3">
+                                    <div class="right-block d-flex justify-content-between">
+                                        <div class="text-20 text-bold">Total Refund</div>
+                                        <div class="text-20 text-bold">
+                                            {{booking.booked_refund_calculator.refund_amount_guest | currency}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="border-block-y font-w-bold" *ngIf="invoice && role=='guest'">
+                                <div class="border-link-child" (click)="isViewInvoice = !isViewInvoice">
+                                    <a class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/invoice-icon.svg" alt="">View Invoice
+                                        </div>
+                                        <div>
+                                            <img *ngIf="!isViewInvoice" style="color:blue"
+                                                src="../assets/images/right-arrow.svg" alt="">
+                                            <img *ngIf="isViewInvoice" style="color:blue"
+                                                src="../assets/images/down-arrow.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <ng-container *ngIf="isViewInvoice">
+                                    <ng-container *ngFor="let invoice of invoiceArr">
+                                        <div class="border-link-child mx-3" *ngIf="invoice.invoice_user_type == role">
+                                            <a target="_blank"
+                                                [routerLink]="['/booking/invoice', invoice.booking_id, invoice.invoice_type]">
+                                                Booking {{invoice.invoice_type == 3 ? 'Cancellation' : ''}} Invoice
+                                            </a>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                                <!-- <div class="border-link-child" (click)="isDownloadInvoice = !isDownloadInvoice">
+                                    <a class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <img src="../assets/images/download-icon.svg" alt="">Download Invoice
+                                        </div>
+                                        <div>
+                                            <img *ngIf="!isDownloadInvoice" style="color:blue" src="../assets/images/right-arrow.svg" alt="">
+                                            <img *ngIf="isDownloadInvoice" style="color:blue" src="../assets/images/down-arrow.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div> -->
+                                <ng-container *ngIf="isDownloadInvoice">
+                                    <ng-container *ngFor="let invoice of invoiceArr">
+                                        <div class="border-link-child mx-3" *ngIf="invoice.invoice_user_type == role">
+                                            <a class="border-link-child mx-3"
+                                                (click)="exportPdf(invoice.invoice_path, invoice.invoice_no)">
+                                                Booking {{invoice.invoice_type == 3 ? 'Cancellation' : ''}}
+                                                Invoice</a>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                        <div *ngIf="booking.policy.text">
+                            <h3 class="mb-3 mt-4">Cancellation Policy</h3>
+                            <p>{{booking.policy.text}}</p>
+                        </div>
+
+                        <a href="javascript:void(0);" class="blue-text text-bold" data-toggle="modal"
+                            data-target="#cancellation_policy" *ngIf="booking.policy">View Details</a>
+
+                        <a class="podsliving-button mt-5 w-100 transparent"
+                            *ngIf="booking.booking_status==2 && role=='guest'" data-toggle="modal"
+                            data-target="#cancel_confirmation">Cancel Booking</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!booking" class="sub-page-wrapp mt-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-70">
+                <div class="text-center 404">
+                    <h3>Loading...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="promocode" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-block">
+                    <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                            src="./assets/images/cross.svg" alt=""></a>
+                    <div class="modal-title">Add Promocode</div>
+                    <div class="form-block">
+                        <label class="gray-text mb-2">Enter Code</label>
+                        <input type="text">
+                    </div>
+                    <div class="button-group">
+                        <a href="javascript:void(0);" class="podsliving-button transparent" data-dismiss="modal"
+                            aria-label="Close">Cancel</a>
+                        <a href="javascript:void(0);" class="podsliving-button">Apply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cancel_confirmation" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-body" *ngIf="booking">
+                <div class="modal-block">
+                    <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                            src="./assets/images/cross.svg" alt=""></a>
+                    <div class="modal-title">Cancel Booking</div>
+                    <div class="form-block">
+                        <label class="gray-text mb-2"><span
+                                style="font-weight: bold;color: black">{{booking.policy.refund_amount |
+                                currency}}</span> will be refunded.
+                            Are you sure you want to cancel this booking?</label>
+                    </div>
+                    <div class="button-group">
+                        <a href="javascript:void(0);" class="podsliving-button transparent" data-dismiss="modal"
+                            aria-label="Close">No</a>
+                        <a href="javascript:void(0);" data-dismiss="modal" (click)="cancelBooking()"
+                            class="podsliving-button">Yes, Proceed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="cancellation_policy" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-block" *ngIf="booking && booking.policy">
+                    <a href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img
+                            src="./assets/images/cross.svg" alt=""></a>
+                    <div class="text-24 text-bold mb-3">Cancellation Policy</div>
+                    <p>{{booking.policy.text}}</p>
+                    <div class="line-circle-wrapp d-flex justify-content-between">
+                        <div class="line-circle-block green">
+                            <div class="line-circle-label-block light-green">{{booking.policy.cancellation_time}}</div>
+                            <div class="line-circle-info-block">{{booking.policy.cancellation_date}}</div>
+                        </div>
+                        <div class="line-circle-block orange">
+                            <div class="line-circle-label-block light-pink">Check-In</div>
+                            <div class="line-circle-info-block">{{booking.policy.checkin_date}}</div>
+                        </div>
+                        <div class="line-circle-block red">
+                            <div class="line-circle-label-block pink">Check-Out</div>
+                            <div class="line-circle-info-block">{{booking.policy.checkout_date}}</div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-5">
+                        <a href="#" class="podsliving-button" data-dismiss="modal" aria-label="Close">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

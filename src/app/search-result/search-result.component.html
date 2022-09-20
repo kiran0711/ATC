@@ -1,0 +1,223 @@
+
+<div class="search-result-wrapp mt-70 gg n">
+    <div class="scroll-top-search-bar" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'notfixed'">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12" id="GuestDropDownClose">
+                    <form [formGroup]="searchPropertyForm" (ngSubmit)="fetchPropertiesForm()">
+                        <div class="landing-banner-form-wrapp" id="GuestDropDownClose3"
+                            style="background-color: #f8f8f8; border: 1px solid #dddddd;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-block">
+                                        <label>
+                                            <ng-container *ngIf="title; else otherContent">{{title}}</ng-container>
+                                            <ng-template #otherContent>
+                                                <ng-container *ngIf="reqFields && reqFields.destination">Destination</ng-container>
+                                                <ng-container *ngIf="reqFields && reqFields.services">Services</ng-container>
+                                                <ng-container *ngIf="reqFields && reqFields.property_type_id">Property</ng-container>
+                                            </ng-template>
+                                        </label>
+                                        <input *ngIf="reqFields.destination; else otherInput"
+                                            type="text" 
+                                            formControlName="destination" 
+                                            (input)="resetLatLng($event)"
+                                            (onAddressChange)="handleAddressChange($event)"
+                                            class="controls map-input-block" 
+                                            placeholder="Where do you want to go?" 
+                                            ngx-google-places-autocomplete 
+                                        >
+                                        <ng-template #otherInput>
+                                            <input 
+                                            type="text" 
+                                            formControlName="destination" 
+                                            class="controls map-input-block" 
+                                            readonly
+                                        >
+                                        </ng-template>
+                                       
+                                        <img src="./assets/images/location.svg" alt="" class="input-icon">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-block">
+                                        <label>Check-in and Check-out Dates</label>
+                                        <input style="cursor: pointer;"
+                                            placeholder="Select Check-in and Check-out Dates"
+                                            formControlName="startAndEndDate" bsDaterangepicker [bsConfig]="{ 
+                                                                rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY', 
+                                                                showWeekNumbers: false ,
+                                                                containerClass: 'theme-blue',
+                                                                minDate: minimumDate1
+                                                            }">
+                                        <img src="./assets/images/date.svg" alt="" class="input-icon" />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-block">
+                                        <label>Guest(s)</label>
+                                        <!-- <input type="text" formControlName="max_additional_guest_allow" placeholder="Add Guests">
+                                                            <img src="./assets/images/user.svg" alt="" class="input-icon"> -->
+                                        <div class="position-relative" id="drop-div">
+                                            <input type="text"
+                                                value="{{searchPropertFormControl.adults.value}} Adult(s), {{searchPropertFormControl.children.value}} Child(s)"
+                                                readonly (click)="onClickGuest($event)" style="cursor: pointer;">
+                                            <!-- <div id="sh" class="numberOfGuestLabel"></div> -->
+                                            <img src="./assets/images/user.svg" alt="" class="input-icon">
+
+                                            <div *ngIf="GuestDropDown" id="GuestDropDown"
+                                                class="right-wrapp error-right-wrapp banner-select user-dropdown"
+                                                style="position: absolute; background: #FFF;z-index: 9; min-width: 240px;">
+                                                <div
+                                                    class="mb-3 d-flex align-items-center justify-content-between border-botoom-0">
+                                                    <div class="w-100">Adult(s)</div>
+                                                    <div id="field1">
+                                                        <button type="button" id="sub" class="sub"
+                                                            [ngClass]="{ 'button-disable': searchPropertFormControl.adults.value == 1 }"
+                                                            (click)="decrease('adults')">-</button>
+                                                        <input type="number" formControlName="adults">
+                                                        <button type="button" id="add" class="add"
+                                                            (click)="increase('adults')">+</button>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class=" d-flex align-items-center justify-content-between border-botoom-0">
+                                                    <div class="w-100">Children(s) <span
+                                                            class="d-block mt-1 gray-text">Age
+                                                            2-12</span>
+                                                    </div>
+                                                    <div id="field1">
+                                                        <button type="button" id="sub" class="sub"
+                                                            (click)="decrease('children')">-</button>
+                                                        <input type="number" formControlName="children">
+                                                        <button type="button" id="add" class="add"
+                                                            (click)="increase('children')">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="podsliving-button black-bg"
+                                                [ngClass]="{ 'button-disable': !searchPropertyForm.valid }">
+                                                <img src="./assets/images/search-white.svg" alt="" class="search-icon">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- <div class="row">
+        <div class="col-md-12">
+          <h1>Properties -	We offer a wide range of properties for you to choose from.</h1>
+        </div>
+      </div> -->
+        <div class="row pt-3 align-items-center" id="GuestDropDownClose2">
+            <div class="col-md-6">
+                <h1 class="h1 m-0 ml-4">Vacation Rental Properties</h1>
+                <p class="ml-4">We offer a wide range of properties for you to choose from.</p>
+            </div>
+            <div class="col-md-6 search-result-left-blcok pt-0">
+                <div class="search-result-title-wrapp d-flex align-items-end justify-content-between">
+
+                    <div class="search-result-title-block">
+
+
+                        <!-- <ng-container *ngIf="title">{{title }}</ng-container>
+
+                        <ng-container *ngIf="reqFields && reqFields.category_slug">
+                            <span class="gray-text"> "{{apiService.inverseSlugify(reqFields.category_slug)}}" </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="reqFields && reqFields.destination">
+                            Destination
+                            <span class="gray-text"> "{{reqFields.destination}}" </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="reqFields && reqFields.services">
+                            Services
+                            <span class="gray-text"> "{{reqFields.services}}" </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="reqFields && reqFields.property_type_id">
+                            Property
+                            <span class="gray-text"> "{{reqFields.property_type_id}}" </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="reqFields && reqFields.max_additional_guest_allow">
+                            <div class="text-14 gray-text">{{reqFields.max_additional_guest_allow ? "· " +
+                                reqFields.max_additional_guest_allow+" guest(s)" : ""}}</div>
+                        </ng-container> -->
+
+                        <!-- <ng-template #otherContent> -->
+
+
+
+                        <!-- 300+ stays · 10 Aug - 11 Aug · 2 guest -->
+                        <!-- <div class="text-14 gray-text">{{(reqFields.startDate) ? (reqFields.startDate | date:'d MMM') +" - "+(reqFields.endDate | date:'d MMM'): ""}} {{(reqFields.max_additional_guest_allow) ? "· " + reqFields.max_additional_guest_allow+" guest" : ""}}
+                            </div> -->
+
+
+                        <!-- <input style="cursor: pointer" placeholder="Select Check-in and Check-out date" readonly
+                                bsDaterangepicker [(ngModel)]="datePickerValue" [bsConfig]="{
+                                    rangeInputFormat: 'MMM DD, YYYY', dateInputFormat: 'MMM DD, YYYY',
+                                    showWeekNumbers: false,
+                                    containerClass: 'theme-blue',
+                                    minDate: minimumDate1
+                                }" (ngModelChange)="onChangeDateRangePicker()" /> -->
+
+                        <!-- </ng-template> -->
+
+                    </div>
+
+
+                    <div class="search-result-filter-block">
+                        <div class="d-flex justify-content-between">
+                            <a (click)="toggleView('list')" *ngIf="gridView"
+                                class="black-text text-decoration-none cursor-pointer">
+                                <img src="./assets/images/grid-view.svg" alt="" class="mr-2">Switch to List View</a>
+                            <a (click)="toggleView('grid')" *ngIf="listView"
+                                class="black-text text-decoration-none cursor-pointer">
+                                <img src="./assets/images/grid-view.svg" alt="" class="mr-2">Switch to Grid View</a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#filer_block"
+                                class="black-text text-decoration-none"><img src="./assets/images/filters.svg" alt=""
+                                    class="mr-2">Filters</a>
+                            <!-- <span class="black-text text-decoration-none"><img src="./assets/images/sort-24px.svg" alt=""
+                  class="mr-2"></span> -->
+                            <select class="sorting-select" name="select-name" controlName="pricesort"
+                                (change)="propertySort($event)">
+                                <option value="">Sort</option>
+                                <option value="">Recently Added</option>
+                                <option value="">Distance</option>
+                                <option value="asc">Price - Low to High</option>
+                                <option value="desc">Price - High to Low</option>
+                                <!-- <option value="">User Rating - High to Low</option> -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <grid-view *ngIf="gridView" [reqFeild]="reqFields" [properties]="properties"
+            [propertyAttributes]="propertyAttributes" [showLoadMore]="showLoadMore" (scrolled)="scrolledEvent($event)"
+            (coverImage)="getCoverImage($event)"></grid-view>
+        <list-view *ngIf="listView" [reqFeild]="reqFields" [properties]="properties"
+            [propertyAttributes]="propertyAttributes" [showLoadMore]="showLoadMore" (scrolled)="scrolledEvent($event)"
+            (coverImage)="getCoverImage($event)"></list-view>
+    </div>
+</div>
+<search-filter [urlItem]="reqFields" (onFilterChange)="onReqChange($event)"></search-filter>

@@ -1,0 +1,93 @@
+.banner-title {
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -40%);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+h1.banner-over-text {
+    text-align: center;
+    font: normal normal bold 48px/65px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-shadow: 0px 3px 6px #000000;
+}
+
+.tab-content>.active {
+    display: block;
+    opacity: 1;
+}
+
+.job-tags {
+    color: #484444 !important;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.border-blue-btn {
+    font: normal normal bold 14px/22px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #3B5FA6;
+    border-radius: 4px;
+    letter-spacing: 0px;
+    color: #325EAB;
+}
+
+.job-tags img {
+    height: 18px;
+}
+
+input {
+    padding-left: 0;
+}
+
+.details ul {
+    color: #808080;
+    padding: 0;
+    list-style: inside;
+    line-height: 1.7;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-link {
+    color: #000;
+}
+
+.card-header {
+    background: #efefef;
+    padding: 15px;
+}
+
+.card {
+    border: 1px solid #CCC;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.modal-header {
+    padding: 0px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border: 0;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 80%;
+    }
+}

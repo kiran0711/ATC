@@ -1,0 +1,26 @@
+<div class="tab-content creat-listing-form-wrapp table-even-odd-wrapp with-image-block">
+    <div class="table-responsive">
+      <table>
+        <tbody>
+          <tr>
+            <th *ngFor="let def of colDef;let i=index">{{def.label}} 
+              <ng-container *ngIf="def.sort">
+                <img *ngIf=" def.sortOrder == SortEnum.asc" (click) = "sort(def)" src="../assets/images/sort-down-icon.svg" alt="">
+                <img *ngIf=" def.sortOrder == SortEnum.desc" (click) = "sort(def)" src="../assets/images/sort-up-icon.png" alt="">
+              </ng-container>
+            </th>
+          </tr>
+          <tr *ngFor="let data of dataList;let i=index" (click) = "clicked(data)">
+              <td *ngFor="let def of colDef;let j=index">
+                <ng-container *ngIf="!renderer(def); else customView" >
+                  {{getValue(data, def.dataKey)}}
+                </ng-container>
+                <ng-template #customView >
+                  <div [outerHTML]="def.renderer(data)"></div>
+                </ng-template>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

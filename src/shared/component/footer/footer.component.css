@@ -1,0 +1,75 @@
+select {
+    height: 41px !important;
+}
+
+.min-height-auto {
+    min-height: auto;
+}
+
+h3.title {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.description {
+    line-height: inherit;
+    margin: 0 0 24px px;
+    font-size: 17px;
+    font-weight: 300;
+    color: #000;
+}
+
+input#email {
+    height: 48px;
+}
+
+button.button.primary {
+    /* margin: 8px; */
+    padding: 11px 32px;
+    font-weight: 900;
+    line-height: 1.55555556;
+    border-radius: 0;
+    border: 3px solid #0f0f0f;
+    background-color: transparent;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.field {
+    margin-bottom: 40px;
+}
+
+.btn-c {
+    position: absolute;
+    right: 20px;
+    top: 15px
+}
+
+.shadow-box {
+    box-shadow: 0 10px 24px 0 rgb(54 61 77 / 15%);
+    padding: 50px;
+}
+
+@media screen and (min-width: 960px) {
+    #signUpForm {
+        margin: auto;
+    }
+    #signUpForm .modal-dialog {
+        width: 707px;
+        max-width: none;
+    }
+}
+
+.linkLegal {
+    /* color: #FFB100 !important; */
+    font-weight: 500;
+    color: var(--podsLiving-primary);
+    /* border-bottom: 1px dashed #FFB100 !important; */
+}
+
+.linkLegal:hover {
+    color: var(--podsLiving-secondary);
+    /* border-bottom: 1px dashed #FFB100; */
+}

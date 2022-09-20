@@ -1,0 +1,79 @@
+<div class="booking-flow-right-block border-block pt-0 pb-0" style="background: none">
+    <div class="row mlfminus30 pb-4 pt-4 border-bottom" style="background-color: #FAFAFA;">
+        <div class="col-md-12">
+            <span class="text-24 text-bold">Complete The Payment</span>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-12 border-block mt-3 p-3">
+            <div class="checkbox-group mb-0">
+                <input type="checkbox" id="use_wallet" [(ngModel)]="walletChecked" [disabled]="!walletBalance" (change)="applyWallet($event)" >
+                <label for="use_wallet" class="mb-0">Use your wallet balance: <strong>{{walletBalance | currency}} </strong>
+                </label>
+            </div>
+        </div>
+
+        <div class="col-md-12 border-block p-3">
+            <div class="row">
+                <div class="col-2">
+                    <input type="radio" id="paypal" name="paymentMethord" [(ngModel)]="selectedMethord"
+                        [value]="'paypal'" #paypal disabled [disabled]="cardDisabledOnlyWalletActive">
+                    <label for="paypal">
+                        <img src="/assets/images/pay-method-4.png" alt="">
+                    </label>
+                </div>
+                <div class="col-10">
+                    <form action="/" id="my-sample-form" method="post" [class.hidden]="selectedMethord != 'paypal'">
+                        <div class="row border bg-white mr-1 ml-0">
+                            <div class="col-6">
+                                <div id="card-number" style="height: 35px;"></div>
+                            </div>
+                            <div class="col">
+                                <div id="expiration-date" style="height: 35px;"></div>
+                            </div>
+                            <div class="col">
+                                <div id="cvv" style="height: 35px;"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 border-block p-3">
+            <div class="row">
+                <div class="col-2">
+                    <input type="radio" id="other_methods_1" name="paymentMethord" [(ngModel)]="selectedMethord" [value]="'stripe'" [disabled]="cardDisabledOnlyWalletActive">
+                    <label for="other_methods_1">
+                        <img src="/assets/images/pay-method-5.png" alt="">
+                    </label>
+                </div>
+                <div class="col-10">
+                    <form #checkout="ngForm" method="post" [class.hidden]="selectedMethord != 'stripe'">
+                        <div class="row">
+                            <div class="col-12">
+                                <div id="card-info" class="bg-white p-2 border" #cardInfo></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <ng-container *ngIf="braintreeError && selectedMethord == 'paypal'">
+                <div class="alert alert-danger">{{ braintreeError }}</div>
+
+            </ng-container>
+            <ng-container *ngIf="error && selectedMethord == 'stripe'">
+                <div class="alert alert-danger">{{ error }}</div>
+            </ng-container>
+
+        </div>
+
+    </div>
+    <div class="row mlfminus30 pb-4 pt-4 border-top" style="background-color: #FAFAFA;">
+        <div class="col-md-12">
+            <button class="podsliving-button w-25" [ngClass]="{ 'button-disable': !getFormValid() }" (click)="continue()"> Continue <ng-container *ngIf="charges"> <strong>[{{charges | currency }}]</strong> </ng-container> </button>
+        </div>
+    </div>
+</div>

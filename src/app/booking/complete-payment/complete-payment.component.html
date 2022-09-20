@@ -1,0 +1,435 @@
+<div class="sub-page-wrapp mt-70" [ngClass]="{ 'hidden': isProcessingPayment }">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 complete-payment mt-5 mx-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="mb-5">Complete The Payment</h2>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="border-block" *ngIf="walletBalance">
+                            <div class="checkbox mb-0">
+                                <input (change)="onWalletChange($event)" [(ngModel)]="wallet" type="checkbox" id="use_wallet">
+                                <label for="use_wallet" class="mb-0">Use your wallet balance: ${{walletBalance}}</label>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 hidden">
+                            <div class="border-block">
+                                <!-- <div class="w-100 text-center">T</div> -->
+                                <div class="mb-4 w-100">Add Money to wallet</div>
+                                <div class="row">
+                                    <div class="col-md-7 form-block">
+                                        <input type="number" [(ngModel)]="amount" placeholder="Enter Amount" />
+
+                                    </div>
+                                    <div class="col-5">
+                                        <!-- data-toggle="modal"
+                                    data-target="#add_to_wallet" -->
+                                        <a class="podsliving-button blue-bg with-padding" style="min-width: 0;width: 100%" (click)="openPaymentPopup()" [ngClass]="{ 'button-disable': !amount }">Add Money</a>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-bold mb-2">Remaining Amount to Pay: ${{remainingAmount}}</div>
+                            <!-- <div class="border-block">
+                              <div class="row">
+                                  <div class="col-md-5">
+                                      <input type="radio" id="pay_full_amount" name="rem-amount" checked="">
+                                      <label for="pay_full_amount">
+                                          <div class="text-bold">Pay Full Amount</div>
+                                          <div class="gray-text">Pay via single payment method</div>
+                                      </label>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <input type="radio" id="split_payment" name="rem-amount">
+                                      <label for="split_payment">
+                                          <div class="text-bold">Split Payment</div>
+                                          <div class="gray-text">Pay using multiple payment methods</div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div> -->
+                        </div>
+                        <!-- <div>
+                          <div class="text-bold mb-2">Default Payment Method</div>
+                          <div class="border-block active pay-mthd-wrapp">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <input type="radio" id="default" name="default-pay-method" checked="">
+                                      <label for="default" class="d-flex">
+                                          <div><img src="/assets/images/pay-method-1.png" alt=""></div>
+                                          <div>
+                                              <div>Prakhar Singh</div>
+                                          <div>Standard Chartered Bank Credit Card ending in 8823</div>
+                                          </div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> -->
+                        <div *ngIf="savedCards && savedCards.length">
+                            <div class="text-bold mb-2">Saved Credit & Debit Cards</div>
+                            <div class="border-block pay-mthd-wrapp" *ngFor="let cardData of savedCards">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <input type="radio" id="cards-{{card.id}}" name="paymentMethord" [(ngModel)]="selectedMethord" [value]="cardData" [disabled]="cardDisabled">
+                                        <label for="cards-{{card.id}}" class="d-flex">
+                                          <div><img src="/assets/images/pay-method-1.png" alt=""></div>
+                                          <div>
+                                            <div> {{card.billing_details.name}}</div>
+                                          <div>{{card.card.generated_from}} {{card.card.funding}} Card ending in {{card.card.last4}}</div>
+                                          </div>
+                                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="border-block pay-mthd-wrapp">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <input type="radio" id="card_1" name="saved-cards">
+                                      <label for="card_1" class="d-flex">
+                                          <div><img src="/assets/images/pay-method-2.svg" alt=""></div>
+                                          <div>
+                                              <div> Prakhar Singh</div>
+                                          <div>American Express Card ending in 8823</div>
+                                          </div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="border-block pay-mthd-wrapp">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <input type="radio" id="card_3" name="saved-cards">
+                                      <label for="card_3" class="d-flex">
+                                          <div><img src="/assets/images/pay-method-3.svg" alt=""></div>
+                                          <div>
+                                              <div> Prakhar Singh</div>
+                                          <div>ICICI Bank Credit Card ending in 8823</div>
+                                          </div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div> -->
+                        </div>
+                        <div>
+                            <div class="text-bold mb-2">Other Methods</div>
+                            <div class="border-block pay-mthd-wrapp">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="radio" id="other_methods_1" name="paymentMethord" [(ngModel)]="selectedMethord" [value]="card" [disabled]="cardDisabled">
+                                        <label for="other_methods_1">
+                                          <div>Add a new Credit or Debit Card</div>
+                                          <div class="mt-2">
+                                              <img src="/assets/images/pay-method-1.png" alt="">
+                                              <img src="/assets/images/pay-method-2.svg" alt="">
+                                              <img src="/assets/images/pay-method-3.svg" alt="">
+                                          </div>
+                                      </label>
+                                        <form #checkout="ngForm" class="checkout" [class.hidden]="selectedMethord!=card">
+                                            <div class="form-row">
+                                                <label for="card-info">Card Info</label>
+                                                <div id="card-info" #cardInfo></div>
+
+                                                <div id="card-errors" role="alert" *ngIf="error && selectedMethord==card">{{ error }}</div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block pay-mthd-wrapp">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="radio" id="paypal" name="paymentMethord" [(ngModel)]="selectedMethord" [value]="'paypal'" #paypal disabled [disabled]="cardDisabled">
+                                        <label for="paypal">
+                                          <div><img src="/assets/images/pay-method-4.png" alt=""></div>
+                                      </label>
+                                        <form action="/" id="my-sample-form" method="post" class="checkout col-md-12" [class.hidden]="selectedMethord!='paypal'">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <!-- <label for="card-number">Card Number</label> -->
+                                                    <div id="card-number" style="height: 40px;"></div>
+                                                </div>
+
+                                                <div class="col">
+                                                    <!-- <label for="expiration-date">Expiration Date</label> -->
+                                                    <div id="expiration-date" style="height: 40px;"></div>
+                                                </div>
+                                                <div class="col">
+                                                    <!-- <label for="cvv">CVV</label> -->
+                                                    <div id="cvv" style="height: 40px;"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <input type="submit" value="Pay" disabled /> -->
+                                        </form>
+                                        <div id="card-errors" role="alert" *ngIf="braintreeError && selectedMethord=='paypal'">{{ braintreeError }}</div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="border-block pay-mthd-wrapp">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <input type="radio" id="other_methods_3" name="other-methods">
+                                      <label for="other_methods_3">
+                                          <div><img src="/assets/images/pay-method-5.png" alt=""></div>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div> -->
+                        </div>
+                    </div>
+                    <div class="col-md-4" *ngIf="bookingInfo && stripe && hostedFieldsInstance">
+                        <div class="border-block">
+                            <div class="border-block-y">
+                                <div class="row">
+                                    <div class="col-md-8 pr-0">
+                                        <div class="mb-1">{{bookingInfo.pricing.total_stay_nights}} night in <strong>{{bookingInfo.property.pro_title}}</strong></div>
+                                        <div class="gray-text">{{bookingInfo.booking.adults}} Adults • {{bookingInfo.booking.children}} Child</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="{{bookingInfo.property.coverImageData}}" alt="" class="w-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div><img src="/assets/images/date.svg" alt="" class="mr-2">{{bookingInfo.booking.checkin_date | date:'EE, MMM d y'}} - {{bookingInfo.booking.checkout_date | date:'EE, MMM d y'}}</div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="text-20 text-bold">Price Details</div>
+                                <div class="right-wrapp mt-3">
+                                    <!-- <div class="right-block d-flex justify-content-between mb-3">
+                                  <div>USD 1,000 x 2 nights</div>
+                                  <div>USD 2,000</div>
+                              </div>
+                              <div class="right-block d-flex justify-content-between mb-3">
+                                  <div>Cleaning Fee x 2 nights</div>
+                                  <div>USD 200</div>
+                              </div>
+                              <div class="right-block d-flex justify-content-between mb-3">
+                                  <div>Service Fee</div>
+                                  <div>USD 100</div>
+                              </div>
+                              <div class="right-block d-flex justify-content-between">
+                                  <div class="text-20 text-bold">Total</div>
+                                  <div class="text-20 text-bold">USD 2,300</div>
+                              </div> -->
+                                    <table class="table">
+                                        <!-- <tr class="table-primary">
+                                  <th>Booking Date</th>
+                                  <th>Fee/night</th>
+                                  <th>Description</th>
+                                </tr>
+                                <tr *ngFor="let prop of keys(bookingInfo.display_dates_with_price)">
+                                  <td>{{bookingInfo.display_dates_with_price[prop].date}}</td>
+                                  <td>{{bookingInfo.display_dates_with_price[prop].base_price}}</td>
+                                  <td>{{bookingInfo.display_dates_with_price[prop].message}}</td>
+                                </tr> -->
+                                        <tr>
+                                            <td><strong>Total</strong></td>
+                                            <td colspan="2" class="text-right"><strong>${{pricing.total_accomodation_charge}}</strong></td>
+                                        </tr>
+                                        <tr *ngIf="pricing.additional_guest_charge">
+                                            <td><strong>Additional Guest Charges</strong></td>
+                                            <td colspan="2" class="text-right"><strong>${{pricing.additional_guest_charge}} </strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Cleaning Fee</strong></td>
+                                            <td colspan="2" class="text-right"><strong>${{pricing.cleaning_charge}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>PodsLiving Service Fee</strong></td>
+                                            <td colspan="2" class="text-right"><strong>${{pricing.pods_guest_service_charge}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tax</strong></td>
+                                            <td colspan="2" class="text-right"><strong>${{pricing.display_tax}}</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>MAT</strong></td>
+                                            <td colspan="2" class="text-right"><strong>{{pricing?.accomodation_tax}}</strong></td>
+                                        </tr>
+                                        <tr *ngIf="!pricing.discount_amount">
+                                            <td><strong>Grand Total (All inclusive)</strong></td>
+                                            <td colspan="2" class="text-right">
+                                                <s *ngIf="pricing.discount_amount">${{pricing.guest_total_pays}}</s><strong>${{pricing.guest_pays}}</strong></td>
+                                        </tr>
+                                        <tr *ngIf="pricing.discount_amount">
+                                            <td><strong>Discount</strong></td>
+                                            <td colspan="2" class="text-right">
+                                                <strong>- ${{pricing.discount_amount}}</strong>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="pricing.discount_amount">
+                                            <td><strong>Grand Total (All inclusive)</strong></td>
+                                            <td colspan="2" class="text-right">
+                                                <!-- <s>${{pricing.guest_total_pays}}</s> -->
+                                                <strong>${{pricing.guest_pays}}</strong>
+                                                <!-- <p>${{pricing.coupon_title}} applied</p> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="text-center my-3">
+                          <a href="javascript:void(0);" class="blue-text text-bold" data-toggle="modal" data-target="#promocode">Have a Promocode?</a>
+                      </div> -->
+                        <div class="text-center my-3" *ngIf="!isCouponApplied">
+                            <a href="javascript:void(0);" class="blue-text text-bold" data-toggle="modal" data-target="#promocode">Have a Promocode?</a
+                            >
+                          </div>
+                      <div class="f-14 f-w-bold mt-3 mb-4" *ngIf="isCouponApplied">
+                          <div class="coupon-info" >
+                             {{pricing.coupon_title}} applied <i
+                             class="close-icon fa fa-times cursor-pointer"
+                             (click)="removeCoupon()"
+                             aria-hidden="true"
+                 
+                           ></i>
+                          </div>
+                      </div>
+                      <a class="podsliving-button mb-5 w-100"
+                      (click)="onSubmit()"
+                      [ngClass]="{ 'button-disable': !getFormValid() }" >Continue to Pay ${{pricing.guest_pays}}</a>
+                            <!-- <p class="mb-3 mt-4 color-black"><strong>Cancellation Policy</strong></p>
+                     
+                      <div class="icon-list">
+                          <ul class="list">
+                              <li class="color1">Free cancellation until 24 hours before check-in (excluding PodsLiving service fee)</li>
+                              <li class="color2">For a full refund (excluding PodsLiving service fee) , the guest must cancel at least 24 hours before the listing’s local check-in time (shown in the confirmation email).</li>
+                              <li class="color3">If the guest cancels less than 24 hours before check-in, the first night and PodsLiving service fee are non-refundable.</li>
+                              <li class="color4">If the guest arrives and decides to leave early, the nightly rate for the nights not spent 24 hours after cancellation are fully refunded.</li>
+                          </ul>
+                      </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="polices-view mt-70" [ngClass]="{ 'hidden': !isProcessingPayment }">
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-md-12 mt-70">
+                    <div class="text-center 404 height-160">
+                        <h1 class="mt-70" style="    font-size: 2rem;">Please Wait...</h1>
+                        <h3>We are processing your order.</h3>
+                        <p>Please do not refresh or click back button as transaction is processing</p>
+                        <!-- <div class="text-center mt-4 promotion-button-group mt-2">
+                            <a href="#" class="podsliving-button border-0">Go Back</a>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <div #add_to_wallet class="modal fade" id="add_to_wallet" tabindex="-1" role="dialog" aria-labelledby="add_to_wallet" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header pt-15">
+                        <a id="closeWallet" href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img src="./assets/images/cross.svg" alt=""></a>
+                        <!-- <div class="text-bold text-24 mb-3">Search Options</div> -->
+
+
+                    </div>
+                    <div class="modal-block pt-0 pb-3 mt-3">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="text-bold mb-2">Other Methods</div>
+                                <div class="border-block pay-mthd-wrapp">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="radio" id="other_methods_wallet" name="paymentMethordWallet" [(ngModel)]="selectedMethordWallet" [value]="card">
+                                            <label for="other_methods_wallet">
+                                  <div>Add a new Credit or Debit Card</div>
+                                  <div class="mt-2">
+                                      <img src="/assets/images/pay-method-1.png" alt="">
+                                      <img src="/assets/images/pay-method-2.svg" alt="">
+                                      <img src="/assets/images/pay-method-3.svg" alt="">
+                                  </div>
+                              </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-block pay-mthd-wrapp hidden">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="radio" id="paypalWallet" name="paymentMethordWallet" [(ngModel)]="selectedMethordWallet" [value]="'paypal'" #paypal disabled>
+                                            <label for="paypalWallet">
+                                  <div><img src="/assets/images/pay-method-4.png" alt=""></div>
+                              </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <form #checkout="ngForm" class="checkout" [class.hidden]="selectedMethordWallet!=card">
+                                    <div class="form-row">
+                                        <label for="card-info">Card Info</label>
+                                        <div id="card-info" #cardInfoWallet></div>
+
+                                        <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="podsliving-button transparent with-padding pull-left" href="javascript:void(0);" data-dismiss="modal" aria-label="Close">Cancel</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <a class="podsliving-button blue-bg with-padding pull-right" [ngClass]="{ 'button-disable': !getFormValid() }" (click)="onSubmit()">Add Money</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="promocode" tabindex="-1" role="dialog" aria-labelledby="cancellation_policy" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="mt-4" [formGroup]="applyCouponForm">
+                        <div class="modal-block">
+                            <a id="closeReferModel" href="javascript:void(0);" data-dismiss="modal" aria-label="Close" class="close-button"><img src="./assets/images/cross.svg" alt=""></a>
+                            <div class="modal-title">Add Promocode</div>
+                            <div class="form-block">
+                                <label class="gray-text mb-2">Enter Code</label>
+                                <input type="text" formControlName="coupon" oninput="this.value = this.value.toUpperCase()">
+                            </div>
+                            <div class="error-msg f-14 f-w-bold mt-3 mb-4" *ngIf="bookingError">
+                                {{bookingError}}
+                            </div>
+                            <div class="button-group">
+                                <a href="javascript:void(0);" class="podsliving-button transparent" data-dismiss="modal" aria-label="Close">Cancel</a>
+                                <a href="javascript:void(0);" (click)="applyCoupon()" class="podsliving-button" [ngClass]="{ 'button-disable': !applyCouponForm.valid }">Apply</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

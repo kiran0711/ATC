@@ -1,0 +1,77 @@
+/*===============POLICIES CSS=======================*/
+
+.polocies-container {
+    padding-top: 20px
+}
+
+.policies li a.nav-link {
+    font: normal normal normal 14px/22px; font-family: var(--podsLiving-fontfamily);
+    color: #000000;
+    text-transform: capitalize;
+    border-color: #808080 #808080 #808080;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 6px 10px;
+}
+
+.policies li a.nav-link.active,
+.policies li a.nav-link:hover {
+    border-color: #808080 #808080 #808080;
+    background: var(--podsLiving-primary);
+    color: #FFF;
+}
+
+.policies li+li {
+    margin-left: 1px;
+}
+
+.band {
+    font: normal normal normal 12px/22px; font-family: var(--podsLiving-fontfamily);
+    background: #CBF2EB 0% 0% no-repeat padding-box;
+    padding: 2px 10px;
+}
+
+.light-green {
+    background: #CBF2EB 0% 0% no-repeat padding-box;
+}
+
+.light-orange {
+    background: #FFE9CC 0% 0% no-repeat padding-box;
+}
+
+.light-red {
+    background: #FECECE 0% 0% no-repeat padding-box;
+}
+
+.color span {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 7px 0px;
+}
+
+.green {
+    background: #1EC19C;
+}
+
+.orange {
+    background: #FD9326;
+}
+
+.red {
+    background: #FD0D1B;
+}
+
+.supple date {
+    font: normal normal normal 12px/19px;  font-family: var(--podsLiving-fontfamily);
+    color: #808080;
+}
+
+.polices-view p {
+    color: #000;
+}
+
+
+/*===============END POLICIES CSS=======================*/
+ul, ol{padding: 0; list-style: none;}

@@ -1,0 +1,965 @@
+/* =========================================================================================================================
+=========================================================================================================================
+                                                        Guest Dashboard
+ =========================================================================================================================                                           
+========================================================================================================================= */
+
+
+/* =========================================Common==================================== */
+
+.admin-panel-wrapp {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.gap-top-70 {
+    margin-top: 70px;
+}
+
+.gap-top-50 {
+    margin-top: 50px;
+}
+
+.podsliving-button.with-padding {
+    padding: 11px 10px;
+    /* width: 39%; */
+    min-width: 90px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.mb-30 {
+    margin-bottom: 30px !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+.block-title-wrapp.with-border {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 30px;
+}
+
+.back {
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    transform: translateY(-50%);
+}
+
+.text-semibold {
+    font-weight: 600;
+}
+
+.font-weight-normal {
+    font-weight: normal !important;
+}
+
+.podsliving-button.transparent.green {
+    border: 1px solid #00c19c !important;
+    color: #00c19c !important;
+}
+
+
+/* =========================================Sidebar=================================== */
+
+.sidebar-wrapp ul {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-wrapp ul li {
+    list-style: none;
+    padding: 15px 0;
+    position: relative;
+    padding-left: 50px;
+}
+
+.sidebar-wrapp ul li a {
+    text-decoration: none !important;
+    color: var(--podsLiving-black);
+}
+
+.sidebar-wrapp ul li.active a {
+    text-decoration: none !important;
+    color: var(--podsLiving-primary);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sidebar-wrapp ul li a img {
+    margin-right: 15px;
+}
+
+.sidebar-wrapp li.active:before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--podsLiving-primary);
+    ;
+}
+
+.sidebar-wrapp {
+    width: 20%;
+}
+
+.active-image-block {
+    display: none;
+}
+
+li.active .active-image-block {
+    display: inline-block;
+}
+
+li.active .inactive-image-block {
+    display: none;
+}
+
+.menu-notification-block {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: #fd0a0e;
+    margin-left: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.7;
+}
+
+
+/* ===========================================Admin panel content block================ */
+
+.admin-panel-cnt-wrapp {
+    padding: 15px 0;
+    width: 80%;
+}
+
+
+/* ===========================================Dashboard Page=========================== */
+
+
+/* Top Three Buttons */
+
+.dash-top-buttons-wrapp .border-block {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    margin-bottom: 0;
+    justify-content: center;
+    border: none;
+}
+
+.box-shadow{
+    box-shadow: rgb(0 0 0 / 15%) 0 0 5px 1px;
+}
+.box-shadow:hover{
+    box-shadow: rgb(0 0 0 / 15%) 0 0 1px 1px;
+    cursor: pointer;
+}
+.flex-button-input-block input {
+    width: 58%;
+}
+
+
+/* ============================================Table======================================== */
+
+.table-even-odd-wrapp table th {
+    color: #808080;
+    font-weight: normal;
+}
+
+.table-even-odd-wrapp table th,
+.table-even-odd-wrapp table td {
+    padding: 10px;
+    max-width: 350px;
+}
+
+.table-even-odd-wrapp .table-image-block img {
+    /* width: 100px;
+    height: 56px; */
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.table-even-odd-wrapp table {
+    width: 100%;
+}
+
+.table-even-odd-wrapp table tr:hover {
+    background-color: #f0f8ff;
+}
+
+.table-even-odd-wrapp tr {
+    border-top: 1px solid #efefef;
+}
+
+.table-even-odd-wrapp tr td a {
+    color: var(--podsLiving-black);
+    text-decoration: none !important;
+}
+
+
+/* =============================================Similar Products=============================================== */
+
+.admin-panel-cnt-wrapp .booked-block {
+    font-size: 14px;
+}
+
+.admin-panel-cnt-wrapp .similr-cnt-block h3 {
+    font: normal normal 600 14px/22px Open Sans;
+}
+
+.similr-cnt-block .my-1 {
+    font-size: 14px;
+}
+
+.wishlist-image-block {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wishlist-image-block img {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.similar-image-block-carosuel .owl-next {
+    right: 15px;
+}
+
+.similar-image-block-carosuel .owl-prev {
+    left: 15px;
+}
+
+.similar-image-block-carosuel .owl-prev span,
+.similar-image-block-carosuel .owl-next span {
+    width: 24px;
+    height: 24px;
+    background-color: #ffffff;
+    font-size: 20px;
+    color: var(--podsLiving-black);
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #000000;
+}
+
+.owl-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.owl-dots span {
+    display: inline-block;
+    background-color: #ffffff;
+    opacity: 0.5;
+    border-radius: 100%;
+    width: 8px;
+    height: 8px;
+    margin-right: 10px;
+}
+
+.owl-dots .owl-dot.active span {
+    opacity: 1;
+}
+
+.owl-dots .owl-dot {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 1500px) {
+    .admin-panel-cnt-wrapp .booked-block {
+        width: 64%;
+        font-size: 12px;
+    }
+    .admin-panel-cnt-wrapp .srch-btm-amount-block .text-24 {
+        font-size: 18px;
+    }
+    .admin-panel-cnt-wrapp .similr-cnt-block h3 {
+        font-size: 14px;
+    }
+}
+
+
+/* =============================================Simple Tabs=============================================== */
+
+.simple-tabs-wrapp .nav-pills .nav-link.active {
+    color: #008fff;
+    background-color: transparent;
+    border-bottom: 2px solid #008fff;
+    border-radius: 0;
+}
+
+.simple-tabs-wrapp .nav-item {
+    padding: 0;
+    margin-right: 30px;
+}
+
+.simple-tabs-wrapp .nav-item:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.simple-tabs-wrapp .nav-pills .nav-link {
+    padding: 0;
+    padding-bottom: 10px;
+    color: var(--podsLiving-black);
+    font-weight: bold;
+}
+
+
+/* =============================================Top blue block=============================================== */
+
+.top-blue-block {
+    background-color: #008fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    color: #ffffff;
+    -moz-box-shadow: 0px 3px 6px #008fff29;
+    -webkit-box-shadow: 0px 3px 6px #008fff29;
+    box-shadow: 0px 3px 6px #008fff29;
+    border-radius: 4px;
+}
+
+.top-blue-block .file-upload-only-name .file-upload {
+    border: 1px solid #ffffff;
+}
+
+.top-blue-block .file-upload-only-name .file-upload-wrapper:after {
+    color: #ffffff;
+}
+
+.top-blue-block .file-upload-only-name .file-upload-wrapper:after {
+    background-color: transparent;
+}
+
+.top-blue-block .file-upload-only-name {
+    width: 22%;
+    margin-left: 50px;
+}
+
+
+/* ===========================================Profile right block============================================== */
+
+.profile-progress-block {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #efefef;
+    position: relative;
+}
+
+.profile-progress-block:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fd0a0e;
+    display: inline-block;
+}
+
+.profile-progress-block.percent-0:after {
+    width: 0%;
+}
+
+.profile-progress-block.percent-5:after {
+    width: 5%;
+}
+
+.profile-progress-block.percent-10:after {
+    width: 10%;
+}
+
+.profile-progress-block.percent-15:after {
+    width: 15%;
+}
+
+.profile-progress-block.percent-20:after {
+    width: 20%;
+}
+
+.profile-progress-block.percent-25:after {
+    width: 25%;
+}
+
+.profile-progress-block.percent-30:after {
+    width: 30%;
+}
+
+.profile-progress-block.percent-35:after {
+    width: 35%;
+}
+
+.profile-progress-block.percent-40:after {
+    width: 40%;
+}
+
+.profile-progress-block.percent-45:after {
+    width: 45%;
+}
+
+.profile-progress-block.percent-50:after {
+    width: 50%;
+}
+
+.profile-progress-block.percent-55:after {
+    width: 55%;
+}
+
+.profile-progress-block.percent-60:after {
+    width: 60%;
+}
+
+.profile-progress-block.percent-65:after {
+    width: 65%;
+}
+
+.profile-progress-block.percent-70:after {
+    width: 70%;
+}
+
+.profile-progress-block.percent-75:after {
+    width: 75%;
+}
+
+.profile-progress-block.percent-80:after {
+    width: 80%;
+}
+
+.profile-progress-block.percent-85:after {
+    width: 85%;
+}
+
+.profile-progress-block.percent-90:after {
+    width: 90%;
+}
+
+.profile-progress-block.percent-95:after {
+    width: 95%;
+}
+
+.profile-progress-block.percent-100:after {
+    width: 100%;
+}
+
+.profile-right-block {
+    padding-top: 120px;
+}
+
+
+/* ====================================Copy Link========================================== */
+
+.copied::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    content: "Link Copied";
+    color: #fd0a0e;
+    background-color: #ffffff;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.copied span {
+    display: none;
+}
+
+
+/* ====================================Message Page======================================== */
+
+.message-image-block {
+    width: 56px;
+    height: 56px;
+}
+
+.messgae-title-block {
+    width: 75%;
+    padding: 0 15px;
+}
+
+.messgae-time-block {
+    width: 15%;
+}
+
+.message-image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.messgae-block {
+    padding: 20px 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.filters-block .button {
+    background-color: transparent;
+    outline: 0 !important;
+    border: 0;
+    padding: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.filters-block .button.is-checked {
+    border-bottom: 2px solid #008fff;
+}
+
+.image-block-center {
+    padding-top: 200px;
+}
+
+
+/* ====Chat Block==== */
+
+.chat-title-block {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #efefef;
+}
+
+.chat-image-block {
+    text-align: left;
+    width: 16%;
+}
+
+.chat-image-block img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.chat-cnt-block {
+    text-align: left;
+    width: 84%;
+    margin-left: auto;
+}
+
+.chat-block {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.align-block {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #efefef;
+    max-width: max-content;
+}
+
+.chat-block.me .chat-cnt-block {
+    background-color: #f0f8ff;
+}
+
+.chat-block.me {
+    margin-left: auto;
+}
+
+.align-block>.mb-1>img {
+    width: 100%;
+    border-radius: 4px;
+    max-width: 200px;
+}
+
+.align-block.with-image {
+    border: 0;
+    padding: 0;
+}
+
+.message-type-block button {
+    text-align: center;
+    padding: 13px 32px;
+    outline: 0 !important;
+    border: 0 !important;
+    border-radius: 4px;
+    background-color: #008fff;
+    color: #ffffff;
+    font-weight: bold;
+    width: 20%;
+}
+
+.message-type-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-input-block {
+    width: 78%;
+}
+
+.message-input-block input {
+    width: 100%;
+    height: 48px;
+    background-color: #efefef;
+}
+
+.msg-chat-block {
+    height: 790px;
+    overflow-y: auto;
+}
+
+.input-right-icon-block {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+
+.choose-file-action-block {
+    -moz-box-shadow: 0px 3px 6px #00000029;
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 0px 4px 4px;
+    padding: 20px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background-color: #ffffff;
+    display: none;
+}
+
+.choose-file-action-block a {
+    display: block;
+    text-decoration: none !important;
+    color: var(--podsLiving-black);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.message-type-block .file-upload-only-name .file-upload-wrapper:after {
+    font-weight: normal;
+    color: var(--podsLiving-black);
+    font-size: 14px;
+}
+
+.message-type-block .file-upload-only-name .file-upload {
+    border: 0;
+    height: auto;
+}
+
+.more-action-block {
+    -moz-box-shadow: 0px 3px 6px #00000029;
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 0px 4px 4px;
+    padding: 20px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    display: none;
+    text-align: left;
+}
+
+.more-action-block a {
+    display: block;
+    text-decoration: none !important;
+    color: var(--podsLiving-black);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.message-chat-wrapp {
+    display: none;
+}
+
+
+/* ========================Booking================================= */
+
+.admin-panel-cnt-wrapp .line-circle-info-block {
+    right: 13px;
+    width: 61%;
+}
+
+.admin-panel-cnt-wrapp .line-circle-label-block,
+.admin-panel-cnt-wrapp .line-circle-info-block {
+    font-size: 14px;
+}
+
+.admin-panel-cnt-wrapp .line-circle-block::after {
+    width: 32px;
+    height: 32px;
+}
+
+.custom-select-block {
+    position: absolute;
+    width: 100%;
+    top: 110%;
+    left: 0;
+    background-color: #ffffff;
+    -moz-box-shadow: 0px 3px 6px #00000029;
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    padding: 20px;
+    display: none;
+}
+
+.custm-selected-block {
+    height: 48px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    cursor: pointer;
+}
+
+.input-icon.right {
+    left: auto;
+    right: 15px;
+}
+
+
+/* ========================================Right side panel===================================== */
+
+.right-side-panel-wrapp {
+    width: 40%;
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff;
+    z-index: 10;
+    display: none;
+}
+
+.overlay-active .overlay {
+    position: fixed;
+    top: 0;
+}
+
+.right-side-panel-wrapp .border-link::after {
+    right: -8px;
+}
+
+.panel-label {
+    padding: 8px 16px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 15px;
+    font-weight: normal;
+}
+
+.rht-icon-block img {
+    width: 24px;
+}
+
+
+/* ============================Animated Popup=============================== */
+
+.animation-popuop-block {
+    padding: 16px;
+    border: 1px solid #00c19c;
+    color: #00c19c;
+    border-radius: 4px;
+    background-color: #d9fff8;
+    min-width: 300px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    display: none;
+}
+
+.popup-close-block img {
+    width: 24px;
+}
+
+
+/* ===============================Notification================================ */
+
+.btn-group-w-adjust {
+    width: 42%;
+}
+
+.btn-sm {
+    padding: 10px 20px;
+    min-width: 100px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #ffffff !important;
+    background-color: #008fff;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.btn-sm:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.btn-sm.white {
+    color: #008fff !important;
+    background-color: #ffffff;
+}
+
+.notification-image-block {
+    margin-right: 20px;
+}
+
+.notification-block {
+    padding: 15px;
+}
+
+.red-dot {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    background-color: #fd0a0e;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+}
+
+
+/* =====================Notification Dropdown Block====================== */
+
+.notification-dropdown-block {
+    display: none;
+    padding: 15px;
+    -moz-box-shadow: 0px 3px 6px #00000029;
+    -webkit-box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    position: absolute;
+    top: 122%;
+    right: 0;
+    min-width: 400px;
+    background-color: #ffffff;
+    z-index: 99;
+}
+
+.notification-dropdown-block .notification-image-block img {
+    width: 21px;
+}
+
+.notification-dropdown-block .notification-image-block>div {
+    width: 48px;
+    height: 48px;
+    background-color: #efefef;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-dropdown-block .notification-block.light-blue-bg .notification-image-block>div {
+    background-color: #ffffff;
+}
+
+.noti-drp-content-block {
+    height: 600px;
+    overflow-y: auto;
+}
+
+
+/* hide scrollbar but allow scrolling */
+
+.noti-drp-content-block {
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+    overflow-y: scroll;
+}
+
+.noti-drp-content-block::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+}
+
+.similiar-items-block {
+    border: 1px solid #efefef;
+}
+
+.admin-panel-cnt-wrapp .booked-block {
+    font-size: 13px;
+    display: inline-block;
+    width: auto;
+}
+
+.pr-100 {
+    padding-right: 100px;
+}
+/* =============================================Simple Tabs=============================================== */
+
+.simple-tabs-wrapp .nav-pills .nav-link.active {
+    color: var(--podsLiving-secondary);
+    background-color: transparent;
+    border-bottom: 2px solid var(--podsLiving-secondary);
+    border-radius: 0;
+}
+
+.simple-tabs-wrapp .nav-item {
+    padding: 0;
+    margin-right: 30px;
+}
+
+.simple-tabs-wrapp .nav-item:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.simple-tabs-wrapp .nav-pills .nav-link {
+    padding: 0;
+    padding-bottom: 10px;
+    color: #000000;
+    font-weight: bold;
+}
+.table-even-odd-wrapp table th {
+    color: var(--podsLiving-black);
+    font-weight: 700;
+    background-color: var(--podsLiving-borderColor);
+    border-left: 1px solid var(--podsLiving-borderColor);
+    border-right: 1px solid var(--podsLiving-borderColor);
+}

@@ -1,0 +1,6 @@
+.invalid {
+    border-color: #dc3545;
+}.checkbox-group {
+    margin-bottom: 0;
+}
+.btn-link { border-top: 0px solid #dddddd !important;}

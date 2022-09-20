@@ -1,0 +1,220 @@
+<div *ngIf="!booking" class="sub-page-wrapp mt-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-70">
+                <div class="text-center 404">
+                    <h3>Loading...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sub-page-wrapp mt-70" *ngIf="booking">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5 mx-auto">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="mb-2">Your Booking is Requested!</h2>
+                        <div class="gray-text mb-3">Booking Request ID {{booking.booking_request_number}}</div>
+                    </div>
+                    <div class="col-md-8">
+
+                        <h3>{{booking.requested_property.pro_title}} in {{booking.requested_property.city}}</h3>
+                        <div class="mt-1" *ngIf="booking.property_details">
+                            {{booking.property_details.total_guest ? booking.property_details.total_guest +' Guest(s) '
+                            : ''}}
+                            {{booking.property_details.bedrooms ? booking.property_details.bedrooms +' • Bedroom(s) ' :
+                            ''}}
+                            {{booking.property_details.beds ? booking.property_details.beds +' • Bed(s) ' : ''}}
+                            {{booking.property_details.baths ? booking.property_details.baths +' • Bathroom(s) ' : ''}}
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-md-12" *ngIf="booking.requested_host && role ==='guest'">
+                                <h3 class="mb-3">About Your Host</h3>
+                                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                                    <div class="about-host-info-block d-flex">
+                                        <div class="about-host-image-block">
+                                            <img src="{{booking.requested_host.profile_picture}}" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="text-bold">{{booking.requested_host.firstname}}
+                                                {{booking.requested_host.lastname}}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="about-host-verified-block">
+                                        <img src="../assets/images/verified-user.svg" alt="" class="mr-2">
+                                        <span>Verified Host</span>
+                                    </div>
+                                </div>
+                                <p class="mb-3">{{booking.requested_host.user_bio}}</p>
+                            </div>
+                            <div class="col-md-12" *ngIf="booking.requested_guest && role ==='host'">
+                                <h3 class="mb-3">About Your Guest</h3>
+                                <div class="about-host-wrapp d-flex justify-content-between mb-3">
+                                    <div class="about-host-info-block d-flex">
+                                        <div class="about-host-image-block">
+                                            <img src="{{booking.requested_guest.profile_picture}}" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="text-bold">{{booking.requested_guest.firstname}}
+                                                {{booking.requested_guest.lastname}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="about-host-verified-block">
+                                        <img src="../assets/images/verified-user.svg" alt="" class="mr-2">
+                                        <span>Verified Guest</span>
+                                    </div>
+                                </div>
+                                <p class="mb-3">{{booking.requested_guest.user_bio}}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-5" *ngIf="center">
+                            <div class="col-md-12">
+                                <h3>Location</h3>
+                                <div class="my-3">
+                                    {{ (booking.requested_property.address1) ? booking.requested_property.address1 : " "
+                                    }}
+                                    {{ (booking.requested_property.address2) ? booking.requested_property.address2 : " "
+                                    }}
+                                    {{ (booking.requested_property.city) ? booking.requested_property.city: '' }}
+                                    {{ (booking.requested_property.state) ? ', '+booking.requested_property.state : ''}}
+                                    {{ (booking.requested_property.country_region) ?
+                                    ','+booking.requested_property.country_region : ''}}
+                                </div>
+                                <google-map height="450" width="100%" [zoom]="14" [center]="center">
+                                    <map-marker #marker="mapMarker" [position]="center"
+                                        (mouseOver)="openInfoWindow(marker, infoWindow)">
+                                    </map-marker>
+                                    <map-info-window #infoWindow="mapInfoWindow">
+                                        <strong>
+                                            <p>{{booking.requested_property.pro_title}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.requested_property.google_address}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.requested_property.city}}</p>
+                                        </strong>
+                                        <strong>
+                                            <p>{{booking.requested_property.state}}</p>
+                                        </strong>
+                                    </map-info-window>
+                                </google-map>
+                            </div>
+                        </div>
+                        <div class="row mt-5" *ngIf="nearByPlaces">
+                            <div class="col-md-12">
+                                <h3 class="mb-3">What’s Nearby</h3>
+                                <div class="nearby-wrapp d-flex justify-content-between">
+                                    <ng-container *ngFor="let nearByPlaces of nearByPlaces; let i=index">
+                                        <a class="nearby-block d-flex justify-content-between" *ngIf="i<10">
+                                            <div class="d-flex">
+                                                <img src="{{nearByPlaces.icon}}" alt="" />
+                                                <div>{{nearByPlaces.name}}</div>
+                                            </div>
+                                            <div>{{getKmFromNearByPlace(nearByPlaces)}} Km</div>
+                                        </a>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border-block">
+                            <div class="border-block-y">
+                                <div class="row">
+                                    <div class="col-md-8 pr-0">
+                                        <div class="mb-1">
+                                            {{booking.total_stay_nights}} night in
+                                            <strong>{{booking.requested_property.pro_title}}</strong>
+                                        </div>
+                                        <div class="gray-text">
+                                            {{booking.adults}} Adults • {{booking.children! ? booking.children : "0" }}
+                                            Child
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <img src="{{booking.requested_property.porperty_display_picture}}" alt=""
+                                            class="w-100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div><img src="../assets/images/date.svg" alt="" class="mr-2">
+                                    {{booking.checkin_date | date:'mediumDate'}} - {{booking.checkout_date |
+                                    date:'mediumDate'}}</div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="right-wrapp mt-3">
+                                    <div class="right-block d-flex justify-content-between">
+                                        <div class="text-20 text-bold">Total</div>
+                                        <div class="text-20 text-bold">{{booking.amount | currency}}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="right-wrapp mt-3">
+                                    <div class="right-block d-flex justify-content-between">
+                                        <div class="text-20 text-bold">Status</div>
+                                        <div class="text-20">
+                                            <span *ngIf="booking.request_status == 1"
+                                                class="badge rounded-pill badge-secondary">Pending</span>
+                                            <span *ngIf="booking.request_status == 2"
+                                                class="badge rounded-pill badge-success">Accepted</span>
+                                            <span *ngIf="booking.request_status == 3"
+                                                class="badge rounded-pill badge-danger">cancelled</span>
+                                                <span *ngIf="booking.request_status == 4"
+                                                class="badge rounded-pill badge-primary">Booked</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="border-block-y">
+                                <div class="right-wrapp mt-3">
+                                    <div class="right-block d-flex justify-content-between">
+                                        <div class="text-20 text-bold">Action</div>
+                                        <div class="text-20">
+
+                                            <ng-container *ngIf="role === 'host'">
+                                                <div class="btn-sm-group" *ngIf="booking.request_status == 1">
+                                                    <a class="btn-sm" (click)="onRequestAction(booking, 2)">Accept</a>
+                                                    <a class="btn-sm white" (click)="onRequestAction(booking, 3)">Cancel</a>    
+                                                </div>
+                                                <ng-container *ngIf="booking.request_status != 1">
+                                                    Completed
+                                                </ng-container>
+                                            </ng-container>
+                                            <ng-container *ngIf="role === 'guest'">
+                                                <ng-container *ngIf="booking.request_status == 1">
+                                                    Wait...
+                                                  </ng-container>
+                                                  <ng-container *ngIf="booking.request_status == 2">
+                                                    <a class="btn-sm" (click)="guestDashboardComponent.bookNow(booking)" title="click to Boook Now"> Book Now</a>                        
+                                                  </ng-container>
+                                                  <ng-container *ngIf="booking.request_status == 3 || booking.request_status == 4">
+                                                    Completed
+                                                  </ng-container>
+                                            </ng-container>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+.list-style-tag li::before {
+    display: none;
+}
+
+.list-style-tag li {
+    padding: 5px 30px;
+    border: 1px solid var(--podsLiving-borderColor);
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.grid-ul {
+    display: -ms-flexbox;
+    /* IE 10 */
+    display: -webkit-inline-flex;
+    /* Safari 6.1+. iOS 7.1+ */
+    display: inline-flex;
+    -webkit-flex-flow: wrap row;
+    /* Safari 6.1+ */
+    flex-flow: wrap row;
+    list-style-type: none;
+    padding: 0px;
+    column-gap: 20px;
+}
+
+.grid-ul li {
+    position: relative;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.grid-ul li img {
+    float: right;
+}

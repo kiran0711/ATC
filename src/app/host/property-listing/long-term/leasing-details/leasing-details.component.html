@@ -1,0 +1,305 @@
+<form class="w-100" [formGroup]="propertyLeaseForm">
+    <div class="row create-listing-form login-modal-form-wrapp theiaStickySidebar">
+        <div class="prgress-bar percent-15"></div>
+        <div class="col-md-12 creat-listing-top-buttons-block d-flex align-items-center justify-content-between mb-4">
+            <a [routerLink]="proListingService.CREATE_PROPERTY_STEP_FIVE" [queryParams]="{ proId: pro_id }">
+                <img src="./assets/images/back.svg" alt="" />
+            </a>
+            <a (click)="saveAndExit()" [ngClass]="{ 'button-disable': !propertyLeaseForm.valid }"
+                class="btn btn-outline-primary"><strong>Save & Exit</strong></a>
+        </div>
+        <div class="col-md-12 mb-3">
+            <h2>Leasing Details</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="form-block">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="d-flex justify-content-between"><label>Monthly Rent</label>
+                            <span class="gray-text">(Additional merchant fee will be applicable)</span>
+                        </div>
+                        <input type="text" formControlName="monthly_rent" class="mb-3 form-control text-right"
+                            placeholder="0,000.00" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': propertyLeaseFormControl.monthly_rent.errors && (propertyLeaseFormControl.monthly_rent.dirty || propertyLeaseFormControl.monthly_rent.touched)}" />
+                        <div *ngIf="propertyLeaseFormControl.monthly_rent.errors" class="error-msg">{{
+                            propertyLeaseFormControl.monthly_rent.errors.incorrect }}</div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-4">
+                            <div><strong>Security Deposit</strong></div>
+                            <label class="switch">
+                                <input type="checkbox" formControlName="security_deposit">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-8" *ngIf="propertyLeaseFormControl.security_deposit.value">
+                        <div class="d-flex justify-content-between"><label>Enter Amount</label></div>
+                        <input type="text" formControlName="security_deposite_amount" class="mb-3 form-control text-right"
+                            placeholder="0,000.00" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': propertyLeaseFormControl.security_deposite_amount.errors && (propertyLeaseFormControl.security_deposite_amount.dirty || propertyLeaseFormControl.security_deposite_amount.touched)}" />
+                        <div *ngIf="propertyLeaseFormControl.security_deposite_amount.errors" class="error-msg">{{
+                            propertyLeaseFormControl.security_deposite_amount.errors.incorrect }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Minimum Lease Duration</strong>
+                    </div>
+                    <div class="col-md-6">
+                        <select nice-select placeholder="Select lease duration" formControlName="minimum_lease_duration"
+                            class="w-100 form-control" [ngClass]="{
+                            'is-invalid':
+                            propertyLeaseFormControl.minimum_lease_duration.errors &&
+                            (propertyLeaseFormControl.minimum_lease_duration.dirty ||
+                            propertyLeaseFormControl.minimum_lease_duration.touched)
+                        }">
+                            <option value="" disabled>Select lease duration</option>
+                            <option *ngFor="let element of leaseDurations" value="{{ element.value }}">{{
+                                element.text }}</option>
+                        </select>
+                        <div *ngIf="propertyLeaseFormControl.minimum_lease_duration.errors" class="error-msg">
+                            {{ propertyLeaseFormControl.minimum_lease_duration.errors.incorrect }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Maximum Lease Duration</strong>
+                    </div>
+                    <div class="col-md-6">
+                        <select nice-select placeholder="Select lease duration" formControlName="maximum_lease_duration"
+                            class="w-100 form-control" [ngClass]="{
+                            'is-invalid':
+                            propertyLeaseFormControl.maximum_lease_duration.errors &&
+                            (propertyLeaseFormControl.maximum_lease_duration.dirty ||
+                            propertyLeaseFormControl.maximum_lease_duration.touched)
+                        }">
+                            <option value="" disabled>Select lease duration</option>
+                            <option *ngFor="let element of leaseDurations" value="{{ element.value }}">{{
+                                element.text }}</option>
+                        </select>
+                        <div *ngIf="propertyLeaseFormControl.maximum_lease_duration.errors" class="error-msg">
+                            {{ propertyLeaseFormControl.maximum_lease_duration.errors.incorrect }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-block">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Tentative Lease Start Date</strong>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" formControlName="lease_start_date" [ngClass]="{
+                            'is-invalid':
+                            propertyLeaseFormControl.lease_start_date.errors &&
+                            (propertyLeaseFormControl.lease_start_date.dirty ||
+                            propertyLeaseFormControl.lease_start_date.touched)
+                        }" placeholder="Select tentative lease start date" bsDatepicker placement="top" [bsConfig]="{
+                            showWeekNumbers: false,
+                            containerClass: 'theme-blue',
+                            dateInputFormat: 'MMM DD, YYYY',
+                            minDate: minimumDate
+                        }" />
+                        <div *ngIf="propertyLeaseFormControl.lease_start_date.errors" class="error-msg">
+                            {{ propertyLeaseFormControl.lease_start_date.errors.incorrect }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                <div>
+                    <div><strong>Allow Sub Leasing</strong></div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" formControlName="allow_sub_leasing">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div id="the-count" class="d-flex  w-100"><span id="current">If turned on, you will allow your guest will be
+                    able to sub-lease the property to other guest.</span>
+            </div>
+
+
+
+            <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0 mt-4">
+                <div>
+                    <div><strong>Are you Listing on the behalf of Landlord?</strong></div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" formControlName="listing_on_behalfof_landlord">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <ng-container *ngIf="propertyLeaseFormControl.listing_on_behalfof_landlord.value">
+                <div id="the-count" class="d-flex  w-100"><span id="current">Note: The Rental Agreement will include only the names provided below.</span></div>
+                
+                
+                <div class="form-block">
+                    <div class="row">
+                        <div class="col-md-12 checkbox-group mt-3">
+                            <input type="checkbox" formControlName="co_owner_authorization" id="authorised">
+                            <label class="font-w-normal" for="authorised">I am authorized to act on behalf of additional Landlord(s)</label>
+                        </div>
+                        <div class="col-md-6">
+                            Landlord Name
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" formControlName="listing_on_behalfof_landlord_name" class="mb-3 form-control"
+                                placeholder="Please Type Landlord Name"
+                                [ngClass]="{'is-invalid': propertyLeaseFormControl.listing_on_behalfof_landlord_name.errors && (propertyLeaseFormControl.listing_on_behalfof_landlord_name.dirty || propertyLeaseFormControl.listing_on_behalfof_landlord_name.touched)}" />
+                            <div *ngIf="propertyLeaseFormControl.listing_on_behalfof_landlord_name.errors"
+                                class="error-msg">{{
+                                propertyLeaseFormControl.listing_on_behalfof_landlord_name.errors.incorrect }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                    <div>
+                        <div><strong>Do you have more Landlord of the property?</strong></div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" formControlName="more_landlords">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+    
+                <div class="form-block" *ngIf="propertyLeaseFormControl.more_landlords.value">
+                    <div class="row">
+                        <div class="col-md-12" *ngFor="let element of coOnwers;let i=index">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-between">
+                                        <label>Landlord {{i+1}} Name </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="d-flex justify-content-between">
+                                        <input type="text" [(ngModel)]="element.name" [ngModelOptions]="{standalone: true}"
+                                            placeholder="Enter Landlord Name">
+                                    </div>
+                                </div>
+                                <div class="col-mb-1">
+                                    <!-- <button class="button" (click)="deleteLandload(i)">Delete</button> -->
+                                    <span  (click)="deleteLandload(i)" title="Delete Rule" class="sml-circle ng-star-inserted"><i  aria-hidden="true" class="close-icon fa fa-times cursor-pointer"></i></span>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-between">
+                                        <label>Landlord {{i+1}} Email Address </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="d-flex justify-content-between">
+                                        <input type="email" [(ngModel)]="element.email"
+                                            [ngModelOptions]="{standalone: true}" placeholder="Enter Landlord Email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <!-- <button (click)="addLandload()">Add More Landlord</button> -->
+                            <a href="javascript:void(0);" class="add-another" (click)="addLandload()">+ Add More Landlord</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+
+            <hr>
+            <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                <div>
+                    <div><strong>Do you want lease document to be notarised by Lawyer</strong></div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" formControlName="lease_document_notarised_by_lawyer">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <ng-container *ngIf="propertyLeaseFormControl.lease_document_notarised_by_lawyer.value">
+                <div id="the-count" class="d-flex  w-100"><span id="current">Switching this on will enable to involve a
+                    lawyer to the process. This will include an additional fee.</span>
+            </div>
+            <div class="lable-cnt-block  mb-4 form-block">
+                <div class="d-flex justify-content-between"><label>Who will pay the notary fee?</label></div>
+                <div class="lable-cnt-block mt-3">
+                    <div class="row">
+                        <div class="col-md-3 d-block-sm">
+                            <input type="radio" id="Tenant" value="1" name="notary_fee_paid_by"
+                                formControlName="notary_fee_paid_by">
+                            <label for="Tenant" class="f-w-normal">Tenant</label>
+                        </div>
+                        <div class="col-md-3 d-block-sm">
+                            <input type="radio" id="Landlord" value="2" name="notary_fee_paid_by"
+                                formControlName="notary_fee_paid_by">
+                            <label for="Landlord" class="f-w-normal">Landlord</label>
+                        </div>
+                        <div class="col-md-3 d-block-sm">
+                            <input type="radio" id="both" value="3" name="notary_fee_paid_by"
+                                formControlName="notary_fee_paid_by">
+                            <label for="both" class="f-w-normal">Both (50% & 50%)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </ng-container>
+            
+            <hr>
+            <!-- <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                <div>
+                    <div><strong>Rental agreement will be on behalf of Landlord?</strong></div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" formControlName="rental_agreement_behalf_of">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="form-block" *ngIf="!propertyLeaseFormControl.rental_agreement_behalf_of.value">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" formControlName="rental_agreement_behalf_of_name" class="mb-3 form-control"
+                            placeholder="Type name of Landlord other than you."
+                            [ngClass]="{'is-invalid': propertyLeaseFormControl.rental_agreement_behalf_of_name.errors && (propertyLeaseFormControl.rental_agreement_behalf_of_name.dirty || propertyLeaseFormControl.rental_agreement_behalf_of_name.touched)}" />
+                        <div *ngIf="propertyLeaseFormControl.rental_agreement_behalf_of_name.errors" class="error-msg">
+                            {{
+                            propertyLeaseFormControl.rental_agreement_behalf_of_name.errors.incorrect }}</div>
+                    </div>
+                </div>
+            </div>
+            <hr> -->
+
+            <div class="lable-cnt-block d-flex align-items-center justify-content-between mb-0">
+                <div>
+                    <div><strong>Tenant Insurance Required</strong></div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" formControlName="tenant_insurance_required">
+                    <span class="slider round"></span>
+                </label>
+
+            </div>
+            <div id="the-count" class="d-flex  w-100"><span id="current">Switching this on will enable to involve a
+                    lawyer to the process. This will include an additional fee.</span>
+            </div>
+
+        </div>
+
+        <div class="col-md-12 form-block create-listing-submit-button-block">
+            <button (click)="next()" [ngClass]="{ 'button-disable': !propertyLeaseForm.valid }"
+                class="podsliving-button">
+                Next
+            </button>
+        </div>
+    </div>
+
+</form>

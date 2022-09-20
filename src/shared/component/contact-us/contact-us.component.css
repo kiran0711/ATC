@@ -1,0 +1,27 @@
+.banner {
+  margin-top: 70px;
+}
+.similar-items-carosuel {
+  margin: 0 10px;
+}
+.add-bar li{margin-bottom: 10px; position: relative;padding-left: 30px;color: #7a7979;}
+.add-bar li a{color: #7a7979;}
+.add-bar li:nth-child(1):before{    content: "\f041";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+.add-bar li:nth-child(2):before{    content: "\f0e0";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+}
+.add-bar li::before{
+  color: #f80205;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 0px;
+  left: 0;}

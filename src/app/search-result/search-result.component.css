@@ -1,0 +1,26 @@
+.sorting-select {
+  border: 0 !important;
+  outline: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("/assets/images/sort-24px.svg");
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  padding-right: 15px;
+}
+
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.3s linear;
+  top: 0;
+}
+.notfixed {
+  position: static;
+  transition: 0.3s linear;
+  top: -60px;
+}
+.fixed .landing-banner-form-wrapp {
+  margin-top: 0px;
+}
