@@ -49,7 +49,8 @@ import { PaymentComponent } from './long-term/request-details/payment/payment.co
     InvoiceComponent,
     BookingRequestDetailsComponent,
     LongTermBookingRequestDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    
   ],
   providers:[PodsTableComponent],
   imports: [
