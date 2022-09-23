@@ -331,58 +331,62 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row" *ngIf="rent">
-                    <label class="form-label">How much will the tenant pay per month?</label>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <label class="form-label"> Rent Amount</label>
-                                <div class="input-group mb-3 custom-input-group">
-                                    <span class="input-group-text">$</span>
-                                    <input type="text" class="form-control" placeholder="2500"
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                <ng-container *ngIf="rent">
+                    <div class="row" >
+                        <label class="form-label">How much will the tenant pay per month?</label>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label class="form-label"> Rent Amount</label>
+                                    <div class="input-group mb-3 custom-input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text" class="form-control" placeholder="2500"
+                                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-7">
-                        <label for="dadaad" class="form-label">What forms of payment will the landlord accept?</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Please select</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p>
-                            What forms of payment will the landlord accept?
-                        </p>
-                        <div class="toggle-btn-sec mb-3">
-                            <button class="btn">Cash</button>
-                            <button class="btn ml-3">Cheque</button>
-                            <button class="btn ml-3">Direct Transfer</button>
-                            <button class="btn ml-3">E-Transfer</button>
+                        <div class="col-sm-7">
+                            <label for="dadaad" class="form-label">What forms of payment will the landlord accept?</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Please select</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
                         </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>
+                                What forms of payment will the landlord accept?
+                            </p>
+                            <div class="toggle-btn-sec mb-3">
+                                <button class="btn">Cash</button>
+                                <button class="btn ml-3">Cheque</button>
+                                <button class="btn ml-3">Direct Transfer</button>
+                                <button class="btn ml-3">E-Transfer</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                
+               
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <p class="float-left">Will the tanent recieve any rent discounts? </p>
                         <div class="form-check form-switch float-right">
-                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('rent')">
+                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('rent1')">
                             <!-- <label class="form-check-label" for="iid">Will the tenant be allowed to move in before the lease starts? </label> -->
                         </div>
                     </div>
                 </div>
 
-                <div class="row" *ngIf="rent">
+                <div class="row" *ngIf="rent1">
                     <div class="col-sm-5">
 
                         <label class="form-label"> How much discount will be?</label>
@@ -444,7 +448,7 @@
                     <div class="col-sm-12">
                         <p class="float-left ">Will the tanent send rent payments to the landlord's address? </p>
                         <div class="form-check form-switch float-right">
-                            <input class="form-check-input" type="checkbox" id="aaax" change="toggleButton('formsPayment')">
+                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('formsPayment')">
                             <!-- <label class="form-check-label" for="iid">Will the tenant be allowed to move in before the lease starts? </label> -->
                         </div>
                     </div>
@@ -470,11 +474,11 @@
                     <div class="col-sm-12">
                         <p>How many days of notice will the tenant get before a rent increase?</p>
                         <div class="toggle-btn-sec my-3">
-                            <button class="btn">Legal Minimum</button>
-                            <button class="btn active ml-3">More than Legal Minimum</button>
+                            <button class="btn" (click)="buttonClick('min')">Legal Minimum</button>
+                            <button class="btn active ml-3" (click)="buttonClick('max')">More than Legal Minimum</button>
                         </div>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" *ngIf="legalInput">
                         <label for="dadaad" class="form-label">Number of days before increasing rent:</label>
                         <div class="col-sm-6 pl-0">
                             <select class="form-select" aria-label="Default select example">
@@ -522,7 +526,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-5" *ngIf ="securityDeposit">
+                    <div class="col-sm-5" >
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1">$</span>
                             <input type="text" class="form-control" placeholder="2500" aria-label="Username"
@@ -530,22 +534,26 @@
                         </div>
                     </div>
                 </div>
-
+                <ng-container *ngIf ="securityDeposit">
+               
                 <div class="row mb-3">
                     <div class="col-sm-12">
                         <p class="float-left ">Would you like to disclose which bank holds the security deposit? </p>
                         <div class="form-check form-switch float-right">
-                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('securitydeposit')">
+                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('securityDeposit1')">
                         </div>
                     </div>
-                    <div class="col-sm-6" *ngIf="securityDeposit">
-                        <label for="dadaad" class="form-label input-label">Bank Name</label>
-                        <input type="text" id="dadaad" placeholder="Enter Bank Name" class="form-control">
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="dadaad" class="form-label input-label">Bank Address</label>
-                        <input type="text" id="dadaad" placeholder="Enter Bank Address" class="form-control">
-                    </div>
+                    <ng-container *ngIf="securityDeposit1">
+                        <div class="col-sm-6">
+                            <label for="dadaad" class="form-label input-label">Bank Name</label>
+                            <input type="text" id="dadaad" placeholder="Enter Bank Name" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="dadaad" class="form-label input-label">Bank Address</label>
+                            <input type="text" id="dadaad" placeholder="Enter Bank Address" class="form-control">
+                        </div>
+                    </ng-container>
+                    
                 </div>
 
                 <div class="row">
@@ -562,7 +570,7 @@
                         </div>
                     </div>
                 </div>
-
+            </ng-container>
                 <div class="btn-sec mt-3">
                     <!-- <button class="btn-outline-primary mr-auto"><strong>Skip</strong></button>  -->
                     <button class="btn-outline-primary ml-auto" (click)="previous(9)"><strong>Back</strong></button>
@@ -682,8 +690,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row" *ngIf="guarantorInformation">
+                <ng-container *ngIf="guarantorInformation">               
+                <div class="row">
                     <div class="col-sm-12">
                         <p class="mb-1">
                             Who will be the guarantor and compensate the landlords if the tenant fails to pay rent?
@@ -705,7 +713,7 @@
                         <input type="text" id="dadaad" placeholder="Enter Address" class="form-control">
                     </div>
                 </div>
-
+            </ng-container>
                 <div class="btn-sec mt-3">
                     <!-- <button class="btn-outline-primary mr-auto"><strong>Skip</strong></button>  -->
                     <button class="btn-outline-primary ml-auto" (click)="previous(12)"><strong>Back</strong></button>
@@ -730,10 +738,21 @@
                     <div class="col-sm-12">
                         <p class="float-left">Are home businesses allowed?</p>
                         <div class="form-check form-switch float-right">
-                            <input class="form-check-input" type="checkbox" id="aaax">
+                            <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('useOfProperty')">
                         </div>
                     </div>
                 </div>
+
+                <ng-container *ngIf="useOfProperty">
+                    <div class="col-sm-6">
+                        <label for="dadaad" class="form-label input-label">Please Describe Business Name</label>
+                        <input type="text" id="dadaad" placeholder="Enter Name" class="form-control">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="dadaad" class="form-label input-label">Please Describe Business Area</label>
+                        <input type="text" id="dadaad" placeholder="Business Description" class="form-control">
+                    </div>
+                </ng-container>
 
                 <div class="btn-sec mt-3">
                     <button class="btn-outline-primary mr-auto" (click)="skip(15)"><strong>Skip</strong></button> <button
@@ -756,12 +775,12 @@
                             Are pets allowed on the property?
                         </p>
                         <div class="toggle-btn-sec mt-0 mb-4">
-                            <button class="btn active">Yes</button>
-                            <button class="btn  ml-3">No</button>
+                            <button class="btn active" (click)="buttonClick('Yes')">Yes</button>
+                            <button class="btn  ml-3" (click)="buttonClick('No')">No</button>
                             <button class="btn  ml-3">Only if landlord given written approval</button>
                         </div>
                     </div>
-
+                    <ng-container *ngIf="pets1">
                     <div class="col-sm-12 mb-1">
                         <p class="float-left">Do you want to specify which pets are not allowed?</p>
                         <div class="form-check form-switch float-right">
@@ -771,6 +790,7 @@
                     <div class="col-sm-12" *ngIf="pets">
                         <input class="form-control" placeholder="Per Description">
                     </div>
+                </ng-container>
                 </div>
 
                 <div class="btn-sec mt-3">
@@ -1381,10 +1401,12 @@
                             <input class="form-check-input" type="checkbox" id="aaax" (change)="toggleButton('renewal')">
                         </div>
                     </div>
+                    <ng-container *ngIf="renewal">
 
+                    </ng-container>
                 </div>
 
-                <div class="btn-sec mt-3" *ngIf="renewal">
+                <div class="btn-sec mt-3">
                     <button class="btn-outline-primary mr-auto" (click)="skip(29)"><strong>Skip</strong></button> <button
                     class="btn-outline-primary ml-auto" (click)="previous(27)"><strong>Back</strong></button> <button
                     class="btn-primary ml-3" (click)="next(29)"><strong>Save & Continue</strong></button>

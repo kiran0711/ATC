@@ -154,6 +154,7 @@ export class LongTermBookingRequestDetailsComponent implements OnInit, OnDestroy
   submit = false;
   propertyManagement = false;
   notices = false;
+  rent1 = false;
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
@@ -966,6 +967,8 @@ export class LongTermBookingRequestDetailsComponent implements OnInit, OnDestroy
 
   saveForm(){}
 
+  securityDeposit1 = false;
+  useOfProperty = false;
   toggleButton(e:any){
     if (e === 'early')
       if (this.earlypossesion) {
@@ -1029,6 +1032,13 @@ export class LongTermBookingRequestDetailsComponent implements OnInit, OnDestroy
         this.securityDeposit = true;
       }
     }
+    if(e === 'securityDeposit1'){
+      if (this.securityDeposit1) {
+        this.securityDeposit1 = false;
+      }else{
+        this.securityDeposit1 = true;
+      }
+    }
     if(e === 'guarantorInformation'){
       if (this.guarantorInformation) {
         this.guarantorInformation = false;
@@ -1048,6 +1058,13 @@ export class LongTermBookingRequestDetailsComponent implements OnInit, OnDestroy
         this.petDeposit = false;
       }else{
         this.petDeposit = true;
+      }
+    }
+    if(e === 'useOfProperty'){
+      if (this.useOfProperty) {
+        this.useOfProperty = false;
+      }else{
+        this.useOfProperty = true;
       }
     }
     if(e === 'utilitiesDetails'){
@@ -1112,6 +1129,28 @@ export class LongTermBookingRequestDetailsComponent implements OnInit, OnDestroy
       }else{
         this.notices = true;
       }
+    }
+    if(e === 'rent1'){
+      if (this.rent1) {
+        this.rent1 = false;
+      }else{
+        this.rent1 = true;
+      }
+    }
+  }
+  legalInput = true;
+  pets1 = true;
+  buttonClick(e: any){
+    if(e === 'min'){
+      this.legalInput = false;
+    } else if(e === 'max'){
+      this.legalInput = true;
+    }
+
+    if(e === 'Yes'){
+      this.pets1 = true;
+    } else if(e === 'No'){
+      this.pets1 = false;
     }
   }
 
